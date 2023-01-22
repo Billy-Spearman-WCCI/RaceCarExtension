@@ -43,18 +43,7 @@ public class Racecar {
         System.out.println(name + " is currently in position " + position + ".");
     }
 
-    //determine the position of all cars in the race
-    public static int[] determinePositions(Racecar... racecars) {
-        int[] positions = new int[racecars.length];
-        for (int counter = 0; counter < racecars.length; counter++) {
-            int position = 1;
-            for (int otherCarCounter = 0; otherCarCounter < racecars.length; otherCarCounter++) {
-                if (racecars[counter].distanceTraveled <= racecars[otherCarCounter].distanceTraveled) {
-                    position++;
-                }
-            }
-            positions[counter] = position;
-        }
-        return  positions;
+    public float getDistanceTraveled() {
+        return distanceTraveled;
     }
 }

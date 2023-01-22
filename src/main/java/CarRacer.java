@@ -25,6 +25,21 @@ public class CarRacer {
         carRacer.runRace(maxCounter, turnFrequency, turnLocation);
     }
 
+    //determine the position of all cars in the race
+    public static int[] determinePositions(Racecar... racecars) {
+        int[] positions = new int[racecars.length];
+        for (int counter = 0; counter < racecars.length; counter++) {
+            int position = 1;
+            for (int otherCarCounter = 0; otherCarCounter < racecars.length; otherCarCounter++) {
+                if (racecars[counter].getDistanceTraveled() <= racecars[otherCarCounter].getDistanceTraveled()) {
+                    position++;
+                }
+            }
+            positions[counter] = position;
+        }
+        return  positions;
+    }
+
     private void runRace(int maxCounter, int turnFrequency, int turnLocation) {
         for (int counter = 0; counter < maxCounter; counter++) {
             if (counter % turnFrequency == turnLocation) {
@@ -51,7 +66,7 @@ public class CarRacer {
     }
 
     public void analyzeLeader() {
-        int[] currentPositions = Racecar.determinePositions(redCar, blueCar, greenCar, yellowCar);
+        int[] currentPositions = determinePositions(redCar, blueCar, greenCar, yellowCar);
         redCar.outputPosition(currentPositions[0]);
         blueCar.outputPosition(currentPositions[1]);
         greenCar.outputPosition(currentPositions[2]);
