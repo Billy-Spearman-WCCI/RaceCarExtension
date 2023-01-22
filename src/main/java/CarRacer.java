@@ -10,8 +10,11 @@ public class CarRacer {
         Racecar blueCar = new Racecar("Blue Car", 40f, 10f);
         Racecar greenCar = new Racecar("Green Car", 70f, 4f);
         Racecar yellowCar = new Racecar("Yellow Car", 50f, 7f);
-        for (int counter = 0; counter < 50; counter++) {
-            if (counter % 10 == 5) {
+        int maxCounter = 50;
+        int turnFrequency = 10;
+        int turnLocation = 5;
+        for (int counter = 0; counter < maxCounter; counter++) {
+            if (counter % turnFrequency == turnLocation) {
                 System.out.println("The cars hit a turn!");
                 redCar.turn();
                 blueCar.turn();
