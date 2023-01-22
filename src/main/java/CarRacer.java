@@ -46,11 +46,11 @@ public class CarRacer {
             yellowCar.accelerate();
             yellowCar.move();
             System.out.println(yellowCar.toString());
-            analyzeLeader(redCar, blueCar, greenCar, yellowCar);
+            analyzeLeader();
         }
     }
 
-    public static void analyzeLeader(Racecar redCar, Racecar blueCar, Racecar greenCar, Racecar yellowCar) {
+    public void analyzeLeader() {
         int[] currentPositions = Racecar.determinePositions(redCar, blueCar, greenCar, yellowCar);
         redCar.outputPosition(currentPositions[0]);
         blueCar.outputPosition(currentPositions[1]);
