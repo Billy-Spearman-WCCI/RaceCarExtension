@@ -6,14 +6,10 @@ public class CarRacer {
         Yellow Car in 3rd with 2163 feet travelled
      */
     public static void main(String[] args) {
-        Racecar redCar = new Racecar("Red Car", 60f, 5f);
-        Racecar blueCar = new Racecar("Blue Car", 40f, 10f);
-        Racecar greenCar = new Racecar("Green Car", 70f, 4f);
-        Racecar yellowCar = new Racecar("Yellow Car", 50f, 7f);
         int maxCounter = 50;
         int turnFrequency = 10;
         int turnLocation = 5;
-        runRace(redCar, blueCar, greenCar, yellowCar, maxCounter, turnFrequency, turnLocation);
+        runRace(new Racecar("Red Car", 60f, 5f), new Racecar("Blue Car", 40f, 10f), new Racecar("Green Car", 70f, 4f), new Racecar("Yellow Car", 50f, 7f), maxCounter, turnFrequency, turnLocation);
     }
 
     private static void runRace(Racecar redCar, Racecar blueCar, Racecar greenCar, Racecar yellowCar, int maxCounter, int turnFrequency, int turnLocation) {
