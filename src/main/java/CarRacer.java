@@ -13,6 +13,10 @@ public class CarRacer {
         int maxCounter = 50;
         int turnFrequency = 10;
         int turnLocation = 5;
+        runRace(redCar, blueCar, greenCar, yellowCar, maxCounter, turnFrequency, turnLocation);
+    }
+
+    private static void runRace(Racecar redCar, Racecar blueCar, Racecar greenCar, Racecar yellowCar, int maxCounter, int turnFrequency, int turnLocation) {
         for (int counter = 0; counter < maxCounter; counter++) {
             if (counter % turnFrequency == turnLocation) {
                 System.out.println("The cars hit a turn!");
