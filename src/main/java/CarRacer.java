@@ -4,11 +4,10 @@ import java.util.List;
 public class CarRacer {
     List<Racecar> cars = new ArrayList<>();
 
-    public CarRacer(Racecar redCar, Racecar blueCar, Racecar greenCar, Racecar yellowCar) {
-        cars.add(redCar);
-        cars.add(blueCar);
-        cars.add(greenCar);
-        cars.add(yellowCar);
+    public CarRacer(Racecar ... contestants) {
+        for (Racecar car : contestants) {
+            cars.add(car);
+        }
     }
 
     /*The results of this race are incorrect, the correct result is:
