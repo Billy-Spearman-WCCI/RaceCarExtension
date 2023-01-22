@@ -26,7 +26,7 @@ public class CarRacer {
     }
 
     //determine the position of all cars in the race
-    public void determinePositions(Racecar... racecars) {
+    public void determinePositions() {
         for (Racecar car : cars) {
             int position = 1;
             for (Racecar otherCar : cars) {
@@ -51,15 +51,12 @@ public class CarRacer {
                 car.move();
                 System.out.println(car.toString());
             }
-            analyzeLeader();
+            determinePositions();
+            for (Racecar car : cars) {
+                car.outputPosition();
+            }
+            System.out.println();
         }
     }
 
-    public void analyzeLeader() {
-        determinePositions();
-        for (Racecar car : cars) {
-            car.outputPosition();
-        }
-        System.out.println();
-    }
 }
