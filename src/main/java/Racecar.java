@@ -1,4 +1,3 @@
-//You should only need to modify this file to fix the issues with the race
 public class Racecar {
     public String name;
     private float maxSpeed;
