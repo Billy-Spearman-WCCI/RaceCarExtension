@@ -1,14 +1,14 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class CarRacer {
-    Racecar redCar;
-    Racecar blueCar;
-    Racecar greenCar;
-    Racecar yellowCar;
+    List<Racecar> cars = new ArrayList<>();
 
     public CarRacer(Racecar redCar, Racecar blueCar, Racecar greenCar, Racecar yellowCar) {
-        this.redCar = redCar;
-        this.blueCar = blueCar;
-        this.greenCar = greenCar;
-        this.yellowCar = yellowCar;
+        cars.add(redCar);
+        cars.add(blueCar);
+        cars.add(greenCar);
+        cars.add(yellowCar);
     }
 
     /*The results of this race are incorrect, the correct result is:
@@ -27,14 +27,14 @@ public class CarRacer {
 
     //determine the position of all cars in the race
     public void determinePositions(Racecar... racecars) {
-        for (int counter = 0; counter < racecars.length; counter++) {
+        for (Racecar car : cars) {
             int position = 1;
-            for (int otherCarCounter = 0; otherCarCounter < racecars.length; otherCarCounter++) {
-                if (racecars[counter].getDistanceTraveled() <= racecars[otherCarCounter].getDistanceTraveled()) {
+            for (Racecar otherCar : cars) {
+                if (car.getDistanceTraveled() <= otherCar.getDistanceTraveled()) {
                     position++;
                 }
             }
-            racecars[counter].setPosition(position);
+            car.setPosition(position);
         }
     }
 
@@ -42,33 +42,24 @@ public class CarRacer {
         for (int counter = 0; counter < maxCounter; counter++) {
             if (counter % turnFrequency == turnLocation) {
                 System.out.println("The cars hit a turn!");
-                redCar.turn();
-                blueCar.turn();
-                greenCar.turn();
-                yellowCar.turn();
+                for (Racecar car : cars) {
+                    car.turn();
+                }
             }
-            redCar.accelerate();
-            redCar.move();
-            System.out.println(redCar.toString());
-            blueCar.accelerate();
-            blueCar.move();
-            System.out.println(blueCar.toString());
-            greenCar.accelerate();
-            greenCar.move();
-            System.out.println(greenCar.toString());
-            yellowCar.accelerate();
-            yellowCar.move();
-            System.out.println(yellowCar.toString());
+            for (Racecar car : cars) {
+                car.accelerate();
+                car.move();
+                System.out.println(car.toString());
+            }
             analyzeLeader();
         }
     }
 
     public void analyzeLeader() {
-        determinePositions(redCar, blueCar, greenCar, yellowCar);
-        redCar.outputPosition();
-        blueCar.outputPosition();
-        greenCar.outputPosition();
-        yellowCar.outputPosition();
+        determinePositions();
+        for (Racecar car : cars) {
+            car.outputPosition();
+        }
         System.out.println();
     }
 }
