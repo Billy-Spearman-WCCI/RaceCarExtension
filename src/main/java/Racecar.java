@@ -5,6 +5,7 @@ public class Racecar {
     private float acceleration;
     private float currentSpeed;
     private float distanceTraveled;
+    private int position;
 
     public Racecar(String name, float maxSpeed, float acceleration) {
         this.name = name;
@@ -39,11 +40,15 @@ public class Racecar {
     }
 
     //output car's current position in the race
-    public void outputPosition(int position) {
+    public void outputPosition() {
         System.out.println(name + " is currently in position " + position + ".");
     }
 
     public float getDistanceTraveled() {
         return distanceTraveled;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 }
