@@ -36,7 +36,7 @@ public class RaceCar implements Contestant {
     @Override
     public String toString() {
         return name + " is moving at " + currentSpeed + " feet per second and has travelled " +
-                distanceTraveled + " feet.";
+                getDistanceTraveled() + " feet.";
     }
 
     //output car's current position in the race
