@@ -1,5 +1,6 @@
 public class Odometer {
-    float miles = 0;
+    private float miles = 0;
+
     public void increase(float currentSpeed) {
         miles += currentSpeed;
     }
