@@ -1,4 +1,4 @@
-public class Racecar {
+public class Racecar implements Contestant {
     public String name;
     private float maxSpeed;
     private float acceleration;

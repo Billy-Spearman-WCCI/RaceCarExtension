@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Race {
-    List<Racecar> cars = new ArrayList<>();
+    List<Contestant> cars = new ArrayList<>();
 
-    public Race(Racecar ... contestants) {
-        for (Racecar car : contestants) {
+    public Race(Contestant ... contestants) {
+        for (Contestant car : contestants) {
             cars.add(car);
         }
     }
@@ -26,9 +26,9 @@ public class Race {
 
     //determine the position of all cars in the race
     public void determinePositions() {
-        for (Racecar car : cars) {
+        for (Contestant car : cars) {
             int position = 1;
-            for (Racecar otherCar : cars) {
+            for (Contestant otherCar : cars) {
                 if (car.getDistanceTraveled() < otherCar.getDistanceTraveled()) {
                     position++;
                 }
@@ -41,21 +41,20 @@ public class Race {
         for (int counter = 0; counter < maxCounter; counter++) {
             if (counter % turnFrequency == turnLocation) {
                 System.out.println("The cars hit a turn!");
-                for (Racecar car : cars) {
+                for (Contestant car : cars) {
                     car.turn();
                 }
             }
-            for (Racecar car : cars) {
+            for (Contestant car : cars) {
                 car.accelerate();
                 car.move();
                 System.out.println(car.toString());
             }
             determinePositions();
-            for (Racecar car : cars) {
+            for (Contestant car : cars) {
                 car.outputPosition();
             }
             System.out.println();
         }
     }
-
 }
