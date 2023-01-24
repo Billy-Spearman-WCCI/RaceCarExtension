@@ -24,7 +24,7 @@ public class Race {
                 new RaceTruck("Red Truck", new UnlimitedSpeedComputer(), 5f), //
                 new RaceCar("Blue Car", new LimitedSpeedComputer(40f), 10f), //
                 new RaceCar("Green Car", new LimitedSpeedComputer(70f), 4f), //
-                new RaceCar("Yellow Car", new LimitedSpeedComputer(50f), 7f));
+                new RaceCar("Yellow Car", new StupidSpeedComputer(), 7f));
 
         race.runRace(maxCounter, turnFrequency, turnLocation);
     }

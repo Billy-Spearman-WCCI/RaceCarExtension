@@ -2,7 +2,8 @@ public class RaceTruck implements Contestant {
     final private String name;
     final private SpeedComputer speedComputer;
     final private Odometer distanceTraveled;
-    private float acceleration;
+    final private float acceleration;
+
     private float currentSpeed;
     private int position;
 
@@ -17,7 +18,7 @@ public class RaceTruck implements Contestant {
     //Increase current speed by acceleration,
     // if current speed is greater than max speed, set current speed to max speed
     public void accelerate() {
-        currentSpeed = speedComputer.computeNewSpeed(currentSpeed, acceleration);
+        this.currentSpeed = this.speedComputer.computeNewSpeed(this.currentSpeed, this.acceleration);
     }
 
     //add current speed to distance travelled
