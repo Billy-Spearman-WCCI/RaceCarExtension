@@ -29,7 +29,7 @@ public class CarRacer {
         for (Racecar car : cars) {
             int position = 1;
             for (Racecar otherCar : cars) {
-                if (car.getDistanceTraveled() <= otherCar.getDistanceTraveled()) {
+                if (car.getDistanceTraveled() < otherCar.getDistanceTraveled()) {
                     position++;
                 }
             }

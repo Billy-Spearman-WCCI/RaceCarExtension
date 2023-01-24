@@ -11,13 +11,14 @@ public class Racecar {
         this.acceleration = acceleration;
         this.currentSpeed = 0;
         this.distanceTraveled = 0;
+        this.maxSpeed = maxSpeed;
     }
 
     //Increase current speed by acceleration,
     // if current speed is greater than max speed, set current speed to max speed
     public void accelerate() {
         currentSpeed += acceleration;
-        if (maxSpeed > currentSpeed) {
+        if (maxSpeed < currentSpeed) {
             currentSpeed = maxSpeed;
         }
     }
@@ -28,7 +29,7 @@ public class Racecar {
 
     //cut speed in half
     public void turn() {
-        currentSpeed = currentSpeed / .5f;
+        currentSpeed = currentSpeed * .5f;
     }
 
     //output current car info
