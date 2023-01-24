@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarRacer {
+public class Race {
     List<Racecar> cars = new ArrayList<>();
 
-    public CarRacer(Racecar ... contestants) {
+    public Race(Racecar ... contestants) {
         for (Racecar car : contestants) {
             cars.add(car);
         }
@@ -20,8 +20,8 @@ public class CarRacer {
         int maxCounter = 50;
         int turnFrequency = 10;
         int turnLocation = 5;
-        CarRacer carRacer = new CarRacer(new Racecar("Red Car", 60f, 5f), new Racecar("Blue Car", 40f, 10f), new Racecar("Green Car", 70f, 4f), new Racecar("Yellow Car", 50f, 7f));
-        carRacer.runRace(maxCounter, turnFrequency, turnLocation);
+        Race race = new Race(new Racecar("Red Car", 60f, 5f), new Racecar("Blue Car", 40f, 10f), new Racecar("Green Car", 70f, 4f), new Racecar("Yellow Car", 50f, 7f));
+        race.runRace(maxCounter, turnFrequency, turnLocation);
     }
 
     //determine the position of all cars in the race
