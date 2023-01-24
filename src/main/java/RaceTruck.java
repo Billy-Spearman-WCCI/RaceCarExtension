@@ -1,7 +1,7 @@
 public class RaceTruck implements Contestant {
     final private String name;
     final private SpeedComputer speedComputer;
-    final private Odometer distanceTraveled;
+    final private Odometer odometer;
 
     private float currentSpeed;
     private int position;
@@ -10,21 +10,19 @@ public class RaceTruck implements Contestant {
         this.name = name;
         this.speedComputer = speedComputer;
         this.currentSpeed = 0;
-        this.distanceTraveled = new Odometer();
+        this.odometer = new Odometer();
     }
 
-    //Increase current speed by acceleration,
-    // if current speed is greater than max speed, set current speed to max speed
+    // Update the speed according to the logic of your speedComputer
     public void accelerate() {
         this.currentSpeed = this.speedComputer.computeNewSpeed(this.currentSpeed);
     }
 
-    //add current speed to distance travelled
     public void move() {
-        distanceTraveled.increase(currentSpeed);
+        odometer.increase(currentSpeed);
     }
 
-    //cut speed in half
+    // Turning might change your sepeed
     public void turn() {
         currentSpeed = speedComputer.computerTurningSpeed(currentSpeed);
     }
@@ -33,7 +31,7 @@ public class RaceTruck implements Contestant {
     @Override
     public String toString() {
         return name + " is moving at " + currentSpeed + " feet per second and has travelled " +
-                getDistanceTraveled() + " feet. And I'm a truck!";
+                getDistanceTravelled() + " feet. And I'm a truck!";
     }
 
     //output car's current position in the race
@@ -41,8 +39,8 @@ public class RaceTruck implements Contestant {
         System.out.println(name + " is currently in position " + position + ".");
     }
 
-    public float getDistanceTraveled() {
-        return distanceTraveled.getCurrentMileage();
+    public float getDistanceTravelled() {
+        return odometer.getCurrentMileage();
     }
 
     public void setPosition(final int position) {

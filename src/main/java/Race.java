@@ -34,7 +34,7 @@ public class Race {
         for (Contestant racer : racers) {
             int position = 1;
             for (Contestant otherRacer : racers) {
-                if (racer.getDistanceTraveled() < otherRacer.getDistanceTraveled()) {
+                if (racer.getDistanceTravelled() < otherRacer.getDistanceTravelled()) {
                     position++;
                 }
             }

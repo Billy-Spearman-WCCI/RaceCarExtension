@@ -1,5 +1,5 @@
 public interface Contestant {
-    float getDistanceTraveled();
+    float getDistanceTravelled();
     void setPosition(int position);
     void turn();
     void accelerate();
