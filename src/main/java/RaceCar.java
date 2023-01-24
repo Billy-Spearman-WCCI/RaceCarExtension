@@ -1,27 +1,25 @@
 public class RaceCar implements Contestant {
     public String name;
-    private float maxSpeed;
+    private SpeedComputer speedComputer;
     private float acceleration;
     private float currentSpeed;
     private Odometer distanceTraveled;
     private int position;
 
-    public RaceCar(String name, float maxSpeed, float acceleration) {
+    public RaceCar(String name, SpeedComputer speedComputer, float acceleration) {
         this.name = name;
+        this.speedComputer = speedComputer;
         this.acceleration = acceleration;
         this.currentSpeed = 0;
         this.distanceTraveled = new Odometer();
-        this.maxSpeed = maxSpeed;
     }
 
     //Increase current speed by acceleration,
     // if current speed is greater than max speed, set current speed to max speed
     public void accelerate() {
-        currentSpeed += acceleration;
-        if (maxSpeed < currentSpeed) {
-            currentSpeed = maxSpeed;
-        }
+        currentSpeed = speedComputer.computeNewSpeed(currentSpeed, acceleration);
     }
+
     //add current speed to distance travelled
     public void move() {
         distanceTraveled.increase(currentSpeed);
@@ -29,7 +27,7 @@ public class RaceCar implements Contestant {
 
     //cut speed in half
     public void turn() {
-        currentSpeed = currentSpeed * .5f;
+        currentSpeed = speedComputer.computerTurningSpeed(currentSpeed);
     }
 
     //output current car info
