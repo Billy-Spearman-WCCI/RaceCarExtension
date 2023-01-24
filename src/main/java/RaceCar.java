@@ -3,14 +3,14 @@ public class RaceCar implements Contestant {
     private float maxSpeed;
     private float acceleration;
     private float currentSpeed;
-    private float distanceTraveled;
+    private Odometer distanceTraveled;
     private int position;
 
     public RaceCar(String name, float maxSpeed, float acceleration) {
         this.name = name;
         this.acceleration = acceleration;
         this.currentSpeed = 0;
-        this.distanceTraveled = 0;
+        this.distanceTraveled = new Odometer();
         this.maxSpeed = maxSpeed;
     }
 
@@ -24,7 +24,7 @@ public class RaceCar implements Contestant {
     }
     //add current speed to distance travelled
     public void move() {
-        distanceTraveled += currentSpeed;
+        distanceTraveled.increase(currentSpeed);
     }
 
     //cut speed in half
@@ -45,7 +45,7 @@ public class RaceCar implements Contestant {
     }
 
     public float getDistanceTraveled() {
-        return distanceTraveled;
+        return distanceTraveled.getCurrentMileage();
     }
 
     public void setPosition(int position) {
