@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Race {
-    List<Contestant> cars = new ArrayList<>();
+    List<Contestant> racers = new ArrayList<>();
 
     public Race(Contestant ... contestants) {
-        for (Contestant car : contestants) {
-            cars.add(car);
+        for (Contestant contestant : contestants) {
+            racers.add(contestant);
         }
     }
 
@@ -26,14 +26,14 @@ public class Race {
 
     //determine the position of all cars in the race
     public void determinePositions() {
-        for (Contestant car : cars) {
+        for (Contestant racer : racers) {
             int position = 1;
-            for (Contestant otherCar : cars) {
-                if (car.getDistanceTraveled() < otherCar.getDistanceTraveled()) {
+            for (Contestant otherRacer : racers) {
+                if (racer.getDistanceTraveled() < otherRacer.getDistanceTraveled()) {
                     position++;
                 }
             }
-            car.setPosition(position);
+            racer.setPosition(position);
         }
     }
 
@@ -41,18 +41,18 @@ public class Race {
         for (int counter = 0; counter < maxCounter; counter++) {
             if (counter % turnFrequency == turnLocation) {
                 System.out.println("The cars hit a turn!");
-                for (Contestant car : cars) {
+                for (Contestant car : racers) {
                     car.turn();
                 }
             }
-            for (Contestant car : cars) {
-                car.accelerate();
-                car.move();
-                System.out.println(car.toString());
+            for (Contestant contestant : racers) {
+                contestant.accelerate();
+                contestant.move();
+                System.out.println(contestant.toString());
             }
             determinePositions();
-            for (Contestant car : cars) {
-                car.outputPosition();
+            for (Contestant contestant : racers) {
+                contestant.outputPosition();
             }
             System.out.println();
         }
