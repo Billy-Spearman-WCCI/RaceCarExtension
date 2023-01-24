@@ -29,14 +29,14 @@ public class RaceTruck implements Contestant {
 
     //cut speed in half
     public void turn() {
-        currentSpeed = currentSpeed * .5f;
+        currentSpeed = currentSpeed * .25f;
     }
 
     //output current car info
     @Override
     public String toString() {
         return name + " is moving at " + currentSpeed + " feet per second and has travelled " +
-                distanceTraveled + " feet.";
+                distanceTraveled + " feet. And I'm a truck!";
     }
 
     //output car's current position in the race
