@@ -3,14 +3,14 @@ public class RaceTruck implements Contestant {
     private float maxSpeed;
     private float acceleration;
     private float currentSpeed;
-    private float distanceTraveled;
+    private Odometer distanceTraveled;
     private int position;
 
     public RaceTruck (String name, float maxSpeed, float acceleration) {
         this.name = name;
         this.acceleration = acceleration;
         this.currentSpeed = 0;
-        this.distanceTraveled = 0;
+        this.distanceTraveled = new Odometer();
         this.maxSpeed = maxSpeed;
     }
 
@@ -24,7 +24,7 @@ public class RaceTruck implements Contestant {
     }
     //add current speed to distance travelled
     public void move() {
-        distanceTraveled += currentSpeed;
+        distanceTraveled.increase(currentSpeed);
     }
 
     //cut speed in half
@@ -36,7 +36,7 @@ public class RaceTruck implements Contestant {
     @Override
     public String toString() {
         return name + " is moving at " + currentSpeed + " feet per second and has travelled " +
-                distanceTraveled + " feet. And I'm a truck!";
+                getDistanceTraveled() + " feet. And I'm a truck!";
     }
 
     //output car's current position in the race
@@ -45,7 +45,7 @@ public class RaceTruck implements Contestant {
     }
 
     public float getDistanceTraveled() {
-        return distanceTraveled;
+        return distanceTraveled.getCurrentMileage();
     }
 
     public void setPosition(int position) {
