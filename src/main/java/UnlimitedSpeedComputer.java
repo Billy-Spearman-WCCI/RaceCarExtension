@@ -1,6 +1,12 @@
 public class UnlimitedSpeedComputer implements SpeedComputer {
+    private final float acceleration;
+
+    public UnlimitedSpeedComputer(final float acceleration) {
+        this.acceleration = acceleration;
+    }
+    
     @Override
-    public float computeNewSpeed(float currentSpeed, float acceleration) {
+    public float computeNewSpeed(float currentSpeed) {
         return currentSpeed + acceleration;
     }
 

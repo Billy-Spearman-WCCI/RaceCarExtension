@@ -1,5 +1,5 @@
 public interface SpeedComputer {
-    float computeNewSpeed(float currentSpeed, float acceleration);
+    float computeNewSpeed(float currentSpeed);
 
     float computerTurningSpeed(float currentSpeed);
 }

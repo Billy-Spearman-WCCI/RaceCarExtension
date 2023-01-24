@@ -21,10 +21,10 @@ public class Race {
         final int turnFrequency = 10;
         final int turnLocation = 5;
         Race race = new Race( //
-                new RaceTruck("Red Truck", new UnlimitedSpeedComputer(), 5f), //
-                new RaceCar("Blue Car", new LimitedSpeedComputer(40f), 10f), //
-                new RaceCar("Green Car", new LimitedSpeedComputer(70f), 4f), //
-                new RaceCar("Yellow Car", new StupidSpeedComputer(), 7f));
+                new RaceTruck("Red Truck", new UnlimitedSpeedComputer(5f)), //
+                new RaceCar("Blue Car", new LimitedSpeedComputer(40f, 10f)), //
+                new RaceCar("Green Car", new LimitedSpeedComputer(70f, 4f)), //
+                new RaceCar("Yellow Car", new StupidSpeedComputer()));
 
         race.runRace(maxCounter, turnFrequency, turnLocation);
     }
