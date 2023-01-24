@@ -1,4 +1,4 @@
-public class UnlimitedSpeedComputer implements SpeedComputer{
+public class UnlimitedSpeedComputer implements SpeedComputer {
     @Override
     public float computeNewSpeed(float currentSpeed, float acceleration) {
         return currentSpeed + acceleration;

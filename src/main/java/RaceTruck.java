@@ -1,12 +1,12 @@
 public class RaceTruck implements Contestant {
-    public String name;
-    private final SpeedComputer speedComputer;
+    final private String name;
+    final private SpeedComputer speedComputer;
+    final private Odometer distanceTraveled;
     private float acceleration;
     private float currentSpeed;
-    private Odometer distanceTraveled;
     private int position;
 
-    public RaceTruck (String name, SpeedComputer speedComputer, float acceleration) {
+    public RaceTruck (final String name, final SpeedComputer speedComputer, final float acceleration) {
         this.name = name;
         this.speedComputer = speedComputer;
         this.acceleration = acceleration;
@@ -46,7 +46,7 @@ public class RaceTruck implements Contestant {
         return distanceTraveled.getCurrentMileage();
     }
 
-    public void setPosition(int position) {
+    public void setPosition(final int position) {
         this.position = position;
     }
 }

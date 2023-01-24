@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Race {
-    List<Contestant> racers = new ArrayList<>();
+    final List<Contestant> racers = new ArrayList<>();
 
     public Race(Contestant ... contestants) {
         for (Contestant contestant : contestants) {
@@ -17,9 +17,9 @@ public class Race {
             Yellow Car in 3rd with 2163 feet travelled
          */
     public static void main(String[] args) {
-        int maxCounter = 50;
-        int turnFrequency = 10;
-        int turnLocation = 5;
+        final int maxCounter = 50;
+        final int turnFrequency = 10;
+        final int turnLocation = 5;
         Race race = new Race( //
                 new RaceTruck("Red Truck", new UnlimitedSpeedComputer(), 5f), //
                 new RaceCar("Blue Car", new LimitedSpeedComputer(40f), 10f), //
@@ -46,17 +46,17 @@ public class Race {
         for (int counter = 0; counter < maxCounter; counter++) {
             if (counter % turnFrequency == turnLocation) {
                 System.out.println("The cars hit a turn!");
-                for (Contestant car : racers) {
+                for (final Contestant car : racers) {
                     car.turn();
                 }
             }
-            for (Contestant contestant : racers) {
+            for (final Contestant contestant : racers) {
                 contestant.accelerate();
                 contestant.move();
                 System.out.println(contestant.toString());
             }
             determinePositions();
-            for (Contestant contestant : racers) {
+            for (final Contestant contestant : racers) {
                 contestant.outputPosition();
             }
             System.out.println();

@@ -1,13 +1,14 @@
 public class LimitedSpeedComputer implements SpeedComputer {
-    public LimitedSpeedComputer(float maxSpeed) {
+    final private float maxSpeed;
+
+    public LimitedSpeedComputer(final float maxSpeed) {
         this.maxSpeed = maxSpeed;
     }
 
-    private float maxSpeed;
-
     @Override
-    public float computeNewSpeed(float currentSpeed, float acceleration) {
-        float result = currentSpeed + acceleration;
+    public float computeNewSpeed(final float currentSpeed, final float acceleration) {
+        final float result = currentSpeed + acceleration;
+
         if (maxSpeed < result) {
             return maxSpeed;
         } else {
@@ -16,7 +17,7 @@ public class LimitedSpeedComputer implements SpeedComputer {
     }
 
     @Override
-    public float computerTurningSpeed(float currentSpeed) {
+    public float computerTurningSpeed(final float currentSpeed) {
         return currentSpeed * 0.5f;
     }
 }
