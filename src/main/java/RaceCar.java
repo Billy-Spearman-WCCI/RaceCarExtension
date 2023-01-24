@@ -1,4 +1,4 @@
-public class Racecar implements Contestant {
+public class RaceCar implements Contestant {
     public String name;
     private float maxSpeed;
     private float acceleration;
@@ -6,7 +6,7 @@ public class Racecar implements Contestant {
     private float distanceTraveled;
     private int position;
 
-    public Racecar(String name, float maxSpeed, float acceleration) {
+    public RaceCar(String name, float maxSpeed, float acceleration) {
         this.name = name;
         this.acceleration = acceleration;
         this.currentSpeed = 0;
