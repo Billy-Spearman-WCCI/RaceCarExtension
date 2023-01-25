@@ -41,7 +41,7 @@
   * **polymorphism**: the Race class can call `contestant.turn()` and Java will ensure that the right method is called, depending upon the *actual* class of the object implementing Contestant.
   * **inheritance**: when one class extends another. 
   * **encapsulation**: when a RaceCar contains an Odometer rather than trying to do that behavior itself https://github.com/marshallfWCCI/RaceCarInterface/commit/92e8da66095290ebdb11e4e53e04cede7639f787
-* **Imperative** -- A programming style in which the system is told what to do.
+* **Imperative** -- A programming style in which the system is told what to do step-by-step.
 * **Declarative** -- A programming style in which the system is told the desired state and isn't micromanaged in the executed. `build.gradle` is declarative.
 * **Structured** -- An imperative programming style in which statements are organized into nesting contexts.
 
