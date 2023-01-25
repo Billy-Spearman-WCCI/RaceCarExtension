@@ -26,10 +26,10 @@
 * **method**: A function defined within a class. In java, all functions are defined within classes.
   * **code block** -- one or more statements surrounded by curly braces `{` ... `}`.
   * **nesting** -- when one code block has sub-code-blocks within it.
-  * **parameter** -- a value passed to a method when it is called
+  * **parameters** -- the actual values passed to a method or constructor.
   * **variable** -- a placeholder defined within a method ... available within the block but not outside.
   * `return`: Exit the current method. If the method returns a value, specifies the value to return.
-  * **signature**: The definition of the types of the parameters a method accepts and the type of the value the method returns.
+  * **signature**: The definition of the types of the parameters a method accepts and the type of the value the method returns. Also, what types of Exceptions it might throw.
   * `void`: Indicates that the call to a method does not result in a value.
   * **call stack**: The current method, the method from which it is called, the method from which that was called, and all the way up to the `main()` method.
 * `interface`: a list of promised behaviors (i.e. a list of methods -- but without implementations)
@@ -49,14 +49,21 @@
 * `@Override` is an example of an **annotation**. `@Override` identifies when a method is either required by an interface or redefines an existing method (this case we'll talk about tomorrow)
 * **Instance variables** -- the fields you've seen belonging to object instances.  (There is also a concept of **class variable** which should only be used in very specific instances, which we might not even encounter this course.)
 * `extends` -- A **subclass** `extend`s another `class`. If we tell Java that C extends B and B extends A, then C extends A (even if we don't explicitly say so).
-* `abstract` -- A class which has incompletely-defined behavior and so cannot have instances. But it will have **concrete** subclasses which may create instances.
+* `super()` -- The first line of most constructors will be to call the constructors of its parent class.
+* `abstract` -- A class which has partially-defined behavior and so cannot have instances. But it will have **concrete** subclasses which may create instances.
 * Visibility (of data and behavior)
   * `final` -- Write-once.  May not be modified after it is set. 
   * `private` -- Only visible within the defining class.
-  * `protected` -- Only visible within the defining class and its subclasses (and subsubclasses, etc)
+  * `protected` -- Only visible within the defining class and its subclasses.
   * `public` -- Visible everywhere
 * `package` -- The directory where the class is defined. Code in `src/main/java/org/wcci/marshall/project1` and `src/test/java/org/wcci/marshall/project1/` lie in package `org.wcci.marshall.project1`. Many core classes lie in subpackages of `java`, e.g. `java.util`.
   * `import` -- Having `import java.util.ArrayList` or `import java.util.*` at the top of a source file allows one to type `new ArrayList()` rather than `new java.util.ArrayList()`. If no import applies and the full path of the class isn't specified, then Java defaults to only seeing classes in the current package.
   * **package visibility** -- If neither `private`, `protected`, nor `public` are specified, then the visibility extends to everything in the same package. Don't do this.
 * `Exception` -- stop the execution of the code...something unexpected has happened. An instance of the `Exception` class (or its subclasses) is passed up the call stack.
   * `throws` -- A method signature may also specify that the method may throw one or more subclasses of `Exception`.
+  * `try {} catch (Exception e) {}` block -- code that is prepared to handle a thrown exception and decide what should happen next.  (If the exception occurs while trying to read a number from input, perhaps issue a warning and try again.)
+
+# Control flow
+* `break` -- Immediately exit the current loop (or switch block)
+* `continue` -- Immediately go to the top of the loop for the next iteration.
+* `switch(val) {case val1: ... default: }` -- Jump to the first matching case statement.
