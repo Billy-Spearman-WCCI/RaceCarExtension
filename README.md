@@ -8,7 +8,7 @@
 * **object**: a thing encapsulating data (in "instance fields") and behavior (in "methods")
   * `this` -- the syntax to access **Instance fields**
   * `class`: The definition of the data and/or behavior of its instances.
-  * `new`: Creates an object of the specified class.
+  * `new`: Creates an object of the specified class. `new` can only be called on non-abstract classes. It cannot be called on abstract classes or interfaces themselves.
   * **constructor**: A method which runs when an object is created and sets its initial state.
   * `static`: Data and behavior (i.e. fields and methods) encapsulated by the class itself, rather than any particular instance. **Usually** a code smell. `System.in` and `System.out` are static fields of `System`. Static methods cannot access `this`.
 * **Type**: what data may be stored in a variable or parameter. May be a primitive type, a `class`, or `interface`.
@@ -47,7 +47,7 @@
 
 ## More Java keywords 
 * `@Override` is an example of an **annotation**. `@Override` identifies when a method is either required by an interface or redefines an existing method (this case we'll talk about tomorrow)
-* **Instance variables** -- the fields you've seen belonging to object instances.  (There is also a concept of `class variable` which should only be used in very specific instances, which we might not even encounter this course.)
+* **Instance variables** -- the fields you've seen belonging to object instances.  (There is also a concept of **class variable** which should only be used in very specific instances, which we might not even encounter this course.)
 * `extends` -- A **subclass** `extend`s another `class`. If we tell Java that C extends B and B extends A, then C extends A (even if we don't explicitly say so).
 * `abstract` -- A class which has incompletely-defined behavior and so cannot have instances. But it will have **concrete** subclasses which may create instances.
 * Visibility (of data and behavior)
