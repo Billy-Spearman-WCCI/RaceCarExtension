@@ -70,6 +70,8 @@
 * `switch(val) {case val1: ... default: }` -- Jump to the first matching case statement.
 
 # Containers
+* **JavaDoc** -- Documentation for each Java class, defining the methods, their parameters, return types, and behavior.
+* `Collection<V>` -- even more generic than a `List` or a `Set`.  https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html
 * `List<V>` -- a list to which elements of type V can be added. If you don't have a specific need, use `ArrayList`.
 * `Map<K,V>` -- a map from keys (of type K) to values (of type V). The most common keys are Strings. Values could be anything. If you don't have a specific need, use `HashMap`.
 * `Iterable<V>` -- Something which can be after the `:` in `for (V value : values) {}`.  All lists, `map.keySet()`, and `map.valueSet()` are all iterable.
