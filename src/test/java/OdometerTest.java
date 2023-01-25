@@ -22,7 +22,11 @@ class OdometerTest {
     @Test
     public void testTampering() {
         Odometer odometer = new Odometer();
-        assertThrows(Exception.class, () -> {
+
+        // () -> {odometer.increase(-1);} is an "anonymous function" which is passed to
+        // assertThrows for execution in a context which keeps track of whether an
+        // HackingException has been called and complains if it isn't.
+        assertThrows(HackingException.class, () -> {
             odometer.increase(-1);
         });
     }
