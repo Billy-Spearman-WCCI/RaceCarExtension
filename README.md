@@ -10,7 +10,7 @@
   * `class`: The definition of the data and/or behavior of its instances.
   * `new`: Creates an object of the specified class.
   * **constructor**: A method which runs when an object is created and sets its initial state.
-  * `static`: Data and behavior (i.e. fields and methods) encapsulated by the class itself, rather than any particular instance. **Usually** a code smell. `System.in` and `System.out` are static fields of `System`.
+  * `static`: Data and behavior (i.e. fields and methods) encapsulated by the class itself, rather than any particular instance. **Usually** a code smell. `System.in` and `System.out` are static fields of `System`. Static methods cannot access `this`.
 * **Type**: what data may be stored in a variable or parameter. May be a primitive type, a `class`, or `interface`.
   * **Primitive Type** -- Non-objects in Java
     * `boolean` : `true` or `false`. Note that this is the only value allowed in `if ()`.
