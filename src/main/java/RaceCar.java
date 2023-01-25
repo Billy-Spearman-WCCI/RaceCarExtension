@@ -5,11 +5,14 @@ public class RaceCar implements Contestant {
     private float currentSpeed;
     private int position;
 
-    public RaceCar(final String name, final SpeedComputer speedComputer) {
+    final private boolean hasSunRoof;
+
+    public RaceCar(final String name, final SpeedComputer speedComputer, final boolean hasSunRoof) {
         this.name = name;
         this.speedComputer = speedComputer;
         this.currentSpeed = 0;
         this.odometer = new Odometer();
+        this.hasSunRoof = hasSunRoof;
     }
 
     // Update the speed according to the logic of your speedComputer
@@ -37,6 +40,16 @@ public class RaceCar implements Contestant {
     //output car's current position in the race
     public void outputPosition() {
         System.out.println(name + " is currently in position " + position + ".");
+    }
+
+    @Override
+    public float getStyleCreditDistance() {
+        // Racecars with a sunroof get 100ft bonus because of the extra weight of a sunroof.
+        if (hasSunRoof) {
+            return 100;
+        } else {
+            return 0;
+        }
     }
 
     public float getDistanceTravelled() {

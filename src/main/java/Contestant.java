@@ -5,4 +5,7 @@ public interface Contestant {
     void accelerate();
     void move();
     void outputPosition();
+
+    // When computing places, we give extra credit to contestants who have flair
+    float getStyleCreditDistance();
 }

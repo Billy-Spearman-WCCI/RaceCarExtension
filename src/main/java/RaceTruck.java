@@ -6,11 +6,14 @@ public class RaceTruck implements Contestant {
     private float currentSpeed;
     private int position;
 
-    public RaceTruck (final String name, final SpeedComputer speedComputer) {
+    final private boolean isPullingABoatTrailer;
+
+    public RaceTruck (final String name, final SpeedComputer speedComputer, final boolean isPullingABoatTrailer) {
         this.name = name;
         this.speedComputer = speedComputer;
         this.currentSpeed = 0;
         this.odometer = new Odometer();
+        this.isPullingABoatTrailer = isPullingABoatTrailer;
     }
 
     // Update the speed according to the logic of your speedComputer
@@ -37,6 +40,16 @@ public class RaceTruck implements Contestant {
     //output car's current position in the race
     public void outputPosition() {
         System.out.println(name + " is currently in position " + position + ".");
+    }
+
+    @Override
+    public float getStyleCreditDistance() {
+        // Trucks which are pulling a boat trailer during the race get 1000ft bonus for style
+        if (isPullingABoatTrailer) {
+            return 1000;
+        } else {
+            return 0;
+        }
     }
 
     public float getDistanceTravelled() {

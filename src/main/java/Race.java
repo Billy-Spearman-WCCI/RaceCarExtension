@@ -21,10 +21,10 @@ public class Race {
         final int turnFrequency = 10;
         final int turnLocation = 5;
         Race race = new Race( //
-                new RaceTruck("Red Truck", new UnlimitedSpeedComputer(5f)), //
-                new RaceCar("Blue Car", new LimitedSpeedComputer(40f, 10f)), //
-                new RaceCar("Green Car", new LimitedSpeedComputer(70f, 4f)), //
-                new RaceCar("Yellow Car", new StupidSpeedComputer()));
+                new RaceTruck("Red Truck", new UnlimitedSpeedComputer(5f), true), //
+                new RaceCar("Blue Car", new LimitedSpeedComputer(40f, 10f), true), //
+                new RaceCar("Green Car", new LimitedSpeedComputer(70f, 4f), false), //
+                new RaceCar("Yellow Car", new StupidSpeedComputer(), true));
 
         race.runRace(maxCounter, turnFrequency, turnLocation);
     }
@@ -34,7 +34,7 @@ public class Race {
         for (Contestant racer : racers) {
             int position = 1;
             for (Contestant otherRacer : racers) {
-                if (racer.getDistanceTravelled() < otherRacer.getDistanceTravelled()) {
+                if ((racer.getDistanceTravelled() + racer.getStyleCreditDistance()) < (otherRacer.getDistanceTravelled() + otherRacer.getStyleCreditDistance())) {
                     position++;
                 }
             }
