@@ -1,33 +1,11 @@
-public class RaceTruck implements Contestant {
-    final private String name;
-    final private SpeedComputer speedComputer;
-    final private Odometer odometer;
-
-    private float currentSpeed;
-    private int position;
-
+public class RaceTruck extends GenericRacer {
     final private boolean isPullingABoatTrailer;
 
-    public RaceTruck (final String name, final SpeedComputer speedComputer, final boolean isPullingABoatTrailer) {
-        this.name = name;
-        this.speedComputer = speedComputer;
-        this.currentSpeed = 0;
-        this.odometer = new Odometer();
+    public RaceTruck(final String name, final SpeedComputer speedComputer, final boolean isPullingABoatTrailer) {
+        // The constructor for GenericRacer cares about name and speedComputer only.
+        super(name, speedComputer);
+
         this.isPullingABoatTrailer = isPullingABoatTrailer;
-    }
-
-    // Update the speed according to the logic of your speedComputer
-    public void accelerate() {
-        this.currentSpeed = this.speedComputer.computeNewSpeed(this.currentSpeed);
-    }
-
-    public void move() {
-        odometer.increase(currentSpeed);
-    }
-
-    // Turning might change your sepeed
-    public void turn() {
-        currentSpeed = speedComputer.computerTurningSpeed(currentSpeed);
     }
 
     //output current car info
@@ -50,13 +28,5 @@ public class RaceTruck implements Contestant {
         } else {
             return 0;
         }
-    }
-
-    public float getDistanceTravelled() {
-        return odometer.getCurrentMileage();
-    }
-
-    public void setPosition(final int position) {
-        this.position = position;
     }
 }
