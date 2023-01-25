@@ -3,6 +3,7 @@
 ## Tools
 * **Markdown**: The format of the source code for this glossary.
 * **IDE**: Integrated Development Environment (VSCode, IntelliJ) -- a programming-language-aware text editor.
+* **JavaDoc** -- Documentation for each Java class, defining the methods, their parameters, return types, and behavior.  Adding comments of the form `/** Text describing the method */` just before each method will automatically be understood by IntelliJ and is most useful.
 
 ## Java
 * **object**: a thing encapsulating data (in "instance fields") and behavior (in "methods")
@@ -65,13 +66,16 @@
   * `try {} catch (Exception e) {}` block -- code that is prepared to handle a thrown exception and decide what should happen next.  (If the exception occurs while trying to read a number from input, perhaps issue a warning and try again.)
 
 # Control flow
+* `while(condition) {statements;}` -- the simplest loop.
+* `do {statements;} while (condition)` -- only use when you can't check the condition before the loop runs.
+* `for (int i = 0; i < n; i++) {statements;}` -- the classic way to index into an array of size `n`.
+* `for (Contestant contestant : contestants) {statements;}` -- the modern way to iterate through any collection.
 * `break` -- Immediately exit the current loop (or switch block)
 * `continue` -- Immediately go to the top of the loop for the next iteration.
 * `switch(val) {case val1: ... default: }` -- Jump to the first matching case statement.
 
 # Containers
-* **JavaDoc** -- Documentation for each Java class, defining the methods, their parameters, return types, and behavior.
 * `Collection<V>` -- even more generic than a `List` or a `Set`.  https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html
 * `List<V>` -- a list to which elements of type V can be added. If you don't have a specific need, use `ArrayList`.
 * `Map<K,V>` -- a map from keys (of type K) to values (of type V). The most common keys are Strings. Values could be anything. If you don't have a specific need, use `HashMap`.
-* `Iterable<V>` -- Something which can be after the `:` in `for (V value : values) {}`.  All lists, `map.keySet()`, and `map.valueSet()` are all iterable.
+* `Iterable<V>` -- Something which can be after the `:` in `for (V value : values) {}`.  All lists, `map.keySet()`, and `map.valueSet()` are all iterables.
