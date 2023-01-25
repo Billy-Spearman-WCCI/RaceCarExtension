@@ -3,10 +3,16 @@
 * **object**: a thing encapsulating data (in "instance fields") and behavior (in "methods")
   * `this` -- the syntax to access **Instance fields**
   * `class`: The definition of the data and/or behavior of its instances.
+  * `new`: Creates an object of the specified class.
+  * **constructor**: A method which runs when an object is created and sets its initial state.
   * `static`: Data and behavior (i.e. fields and methods) encapsulated by the class itself, rather than any particular instance. **Usually** a code smell.
 * **Type**: what data may be stored in a variable or parameter. May be a primitive type, a `class`, or `interface`.
   * **Primitive Type** -- `boolean`, `byte`, `char`, `float`, `int`, `long`, `short`, `double`. Most operators only act upon primitive values, though Java does special things behind-the-scenes for String values.
+  * **Type safety** -- Java won't compile if you try to write an incompatible value to a variable.
 * **method**: A function defined within a class. In java, all functions are defined within classes.
+  * **code block** -- one or more statements surrounded by curly braces `{` ... `}`.
+  * **parameter** -- a value passed to a method when it is called
+  * **variable** -- a placeholder defined within a method ... available within the block but not outside.
   * `return`: Exit the current method. If the method returns a value, specifies the value to return.
   * **signature**: The definition of the types of the parameters a method accepts and the type of the value the method returns.
   * `void`: Indicates that the call to a method does not result in a value.
@@ -28,8 +34,8 @@
   * `private` -- Only visible within the defining class.
   * `protected` -- Only visible within the defining class and its subclasses (and subsubclasses, etc)
   * `public` -- Visible everywhere
-* `package` -- The directory where the class is defined. Code in `src/main/java/org/wcci/marshall/project1` and `src/test/java/org/wcci/marshall/project1/` lies in package `org.wcci.marshall.project1`. Many core classes lie in subpackages of `java`, e.g. `java.util`.
-  * `import` -- Having `import java.util.ArrayList` or `import java.util.*` at the top of a source file allows one to type `new ArrayList()` rather than `new java.util.ArrayList()`
+* `package` -- The directory where the class is defined. Code in `src/main/java/org/wcci/marshall/project1` and `src/test/java/org/wcci/marshall/project1/` lie in package `org.wcci.marshall.project1`. Many core classes lie in subpackages of `java`, e.g. `java.util`.
+  * `import` -- Having `import java.util.ArrayList` or `import java.util.*` at the top of a source file allows one to type `new ArrayList()` rather than `new java.util.ArrayList()`. If no import applies and the full path of the class isn't specified, then Java defaults to only seeing classes in the current package.
   * **package visibility** -- If neither `private`, `protected`, nor `public` are specified, then the visibility extends to everything in the same package. Don't do this.
 * `Exception` -- stop the execution of the code...something unexpected has happened. An instance of the `Exception` class (or its subclasses) is passed up the call stack.
   * `throws` -- A method signature may also specify that the method may throw one or more subclasses of `Exception`.
