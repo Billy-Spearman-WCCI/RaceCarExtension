@@ -51,6 +51,7 @@
 * `extends` -- A **subclass** `extend`s another `class`. If we tell Java that C extends B and B extends A, then C extends A (even if we don't explicitly say so).
 * `super()` -- The first line of most constructors will be to call the constructors of its parent class.
 * `abstract` -- A class which has partially-defined behavior and so cannot have instances. But it will have **concrete** subclasses which may create instances.
+* **Class Hierarchy** -- a diagram showing which classes extend and/or implement other classes and interfaces. For instance, https://en.wikipedia.org/wiki/Java_collections_framework#/media/File:Java.util.Collection_hierarchy.svg
 * Visibility (of data and behavior)
   * `final` -- Write-once.  May not be modified after it is set. 
   * `private` -- Only visible within the defining class.
@@ -67,3 +68,8 @@
 * `break` -- Immediately exit the current loop (or switch block)
 * `continue` -- Immediately go to the top of the loop for the next iteration.
 * `switch(val) {case val1: ... default: }` -- Jump to the first matching case statement.
+
+# Containers
+* `List<V>` -- a list to which elements of type V can be added. If you don't have a specific need, use `ArrayList`.
+* `Map<K,V>` -- a map from keys (of type K) to values (of type V). The most common keys are Strings. Values could be anything. If you don't have a specific need, use `HashMap`.
+* `Iterable<V>` -- Something which can be after the `:` in `for (V value : values) {}`.  All lists, `map.keySet()`, and `map.valueSet()` are all iterable.
