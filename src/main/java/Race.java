@@ -26,7 +26,11 @@ public class Race {
                 new RaceCar("Green Car", new LimitedSpeedComputer(70f, 4f), false), //
                 new RaceCar("Yellow Car", new StupidSpeedComputer(), true));
 
-        race.runRace(maxCounter, turnFrequency, turnLocation);
+        try {
+            race.runRace(maxCounter, turnFrequency, turnLocation);
+        } catch (HackingException e) {
+            System.out.println("Attention everybody. Tampering has been detected in this race. The race is scratched and all bets will be returned.");
+        }
     }
 
     //determine the position of all cars in the race
@@ -42,7 +46,7 @@ public class Race {
         }
     }
 
-    private void runRace(int maxCounter, int turnFrequency, int turnLocation) {
+    private void runRace(int maxCounter, int turnFrequency, int turnLocation) throws HackingException {
         for (int counter = 0; counter < maxCounter; counter++) {
             if (counter % turnFrequency == turnLocation) {
                 System.out.println("The cars hit a turn!");

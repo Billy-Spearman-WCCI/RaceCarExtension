@@ -18,7 +18,7 @@ abstract public class GenericRacer implements Contestant {
     }
 
     // Update the odometer
-    public void move() {
+    public void move() throws HackingException {
         odometer.increase(currentSpeed);
     }
 
