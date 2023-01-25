@@ -1,12 +1,16 @@
 # Glossary
 
+## Tools
+* **Markdown**: The format of the source code for this glossary.
 * **IDE**: Integrated Development Environment (VSCode, IntelliJ) -- a programming-language-aware text editor.
+
+## Java
 * **object**: a thing encapsulating data (in "instance fields") and behavior (in "methods")
   * `this` -- the syntax to access **Instance fields**
   * `class`: The definition of the data and/or behavior of its instances.
   * `new`: Creates an object of the specified class.
   * **constructor**: A method which runs when an object is created and sets its initial state.
-  * `static`: Data and behavior (i.e. fields and methods) encapsulated by the class itself, rather than any particular instance. **Usually** a code smell.
+  * `static`: Data and behavior (i.e. fields and methods) encapsulated by the class itself, rather than any particular instance. **Usually** a code smell. `System.in` and `System.out` are static fields of `System`.
 * **Type**: what data may be stored in a variable or parameter. May be a primitive type, a `class`, or `interface`.
   * **Primitive Type** -- Non-objects in Java
     * `boolean` : `true` or `false`. Note that this is the only value allowed in `if ()`.
@@ -30,6 +34,8 @@
   * **call stack**: The current method, the method from which it is called, the method from which that was called, and all the way up to the `main()` method.
 * `interface`: a list of promised behaviors (i.e. a list of methods -- but without implementations)
   * `implements`: an assertion by a class that it implements all promised behaviors of an interface.
+
+## Programming styles
 * **OO** -- An Object-Oriented programming style
   * **abstraction**: separating what's essential for a particular use from what isn't.
   * **polymorphism**: the Race class can call `contestant.turn()` and Java will ensure that the right method is called, depending upon the *actual* class of the object implementing Contestant.
@@ -38,7 +44,8 @@
 * **Imperative** -- A programming style in which the system is told what to do.
 * **Declarative** -- A programming style in which the system is told the desired state and isn't micromanaged in the executed. `build.gradle` is declarative.
 * **Structured** -- An imperative programming style in which statements are organized into nesting contexts.
- 
+
+## More Java keywords 
 * `@Override` is an example of an **annotation**. `@Override` identifies when a method is either required by an interface or redefines an existing method (this case we'll talk about tomorrow)
 * **Instance variables** -- the fields you've seen belonging to object instances.  (There is also a concept of `class variable` which should only be used in very specific instances, which we might not even encounter this course.)
 * `extends` -- A **subclass** `extend`s another `class`. If we tell Java that C extends B and B extends A, then C extends A (even if we don't explicitly say so).
