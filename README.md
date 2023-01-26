@@ -90,3 +90,6 @@
 * Name variables, methods, classes, and interfaces so that you can understand what they are without having to actually look at their definitions.
 * Let IntelliJ reformat your code so the formatting reflects the actual structure.
 * Put useful information in the README.md in the root of your project.
+* Segregate code smells
+
+
