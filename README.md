@@ -64,6 +64,7 @@
 * `Exception` -- stop the execution of the code...something unexpected has happened. An instance of the `Exception` class (or its subclasses) is passed up the call stack.
   * `throws` -- A method signature may also specify that the method may throw one or more subclasses of `Exception`.
   * `try {} catch (Exception e) {}` block -- code that is prepared to handle a thrown exception and decide what should happen next.  (If the exception occurs while trying to read a number from input, perhaps issue a warning and try again.)
+* `enum` -- Defines a small set of possibilities.  Can do many of the things a `short` can do (e.g. be part of a `switch` statement).
 
 # Control flow
 * `while(condition) {statements;}` -- the simplest loop.
@@ -79,3 +80,13 @@
 * `List<V>` -- a list to which elements of type V can be added. If you don't have a specific need, use `ArrayList`.
 * `Map<K,V>` -- a map from keys (of type K) to values (of type V). The most common keys are Strings. Values could be anything. If you don't have a specific need, use `HashMap`.
 * `Iterable<V>` -- Something which can be after the `:` in `for (V value : values) {}`.  All lists, `map.keySet()`, and `map.valueSet()` are all iterables.
+
+# My opinions
+* Make everything possible `private`. If it really can't be private, make it `protected`. If it can't even be protected, then make it `public`.
+* Make everything possible `final`.
+* When in doubt, ask yourself: what would be easier to test?
+* When in doubt, having more smaller components is better than having fewer complex ones.
+* If you're not sure if something will work, try it!
+* Name variables, methods, classes, and interfaces so that you can understand what they are without having to actually look at their definitions.
+* Let IntelliJ reformat your code so the formatting reflects the actual structure.
+* Put useful information in the README.md in the root of your project.
