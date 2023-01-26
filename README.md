@@ -50,7 +50,7 @@
 * `@Override` is an example of an **annotation**. `@Override` identifies when a method is either required by an interface or redefines an existing method (this case we'll talk about tomorrow)
 * **Instance variables** -- the fields you've seen belonging to object instances.  (There is also a concept of **class variable** which should only be used in very specific instances, which we might not even encounter this course.)
 * `extends` -- A **subclass** `extend`s another `class`. If we tell Java that C extends B and B extends A, then C extends A (even if we don't explicitly say so).
-* `super()` -- The first line of most constructors will be to call the constructors of its parent class.
+* `super()` -- The first line of most constructor will be to call the constructor of its parent class.
 * `abstract` -- A class which has partially-defined behavior and so cannot have instances. But it will have **concrete** subclasses which may create instances.
 * **Class Hierarchy** -- a diagram showing which classes extend and/or implement other classes and interfaces. For instance, https://en.wikipedia.org/wiki/Java_collections_framework#/media/File:Java.util.Collection_hierarchy.svg
 * Visibility (of data and behavior)
@@ -80,6 +80,11 @@
 * `List<V>` -- a list to which elements of type V can be added. If you don't have a specific need, use `ArrayList`.
 * `Map<K,V>` -- a map from keys (of type K) to values (of type V). The most common keys are Strings. Values could be anything. If you don't have a specific need, use `HashMap`.
 * `Iterable<V>` -- Something which can be after the `:` in `for (V value : values) {}`.  All lists, `map.keySet()`, and `map.valueSet()` are all iterables.
+
+# Why do we write unit tests?
+* To better understand what our classes are supposed to do
+* To make sure that our classes do what we think they do
+* To make sure that our code keeps on working .
 
 # My opinions
 * Make everything possible `private`. If it really can't be private, make it `protected`. If it can't even be protected, then make it `public`.
