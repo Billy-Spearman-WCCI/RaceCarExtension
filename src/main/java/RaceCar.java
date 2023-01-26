@@ -1,12 +1,15 @@
 public class RaceCar extends GenericRacer {
+    public enum SPECIAL_INFO {
+        HAS_SUNROOF, HAS_SPOILER, BORING
+    }
 
-    final private boolean hasSunRoof;
+    final private SPECIAL_INFO specialInfo;
 
-    public RaceCar(final String name, final SpeedComputer speedComputer, final boolean hasSunRoof) {
+    public RaceCar(final String name, final SpeedComputer speedComputer, final SPECIAL_INFO specialInfo) {
         // The constructor for GenericRacer cares about name and speedComputer only.
         super(name, speedComputer);
 
-        this.hasSunRoof = hasSunRoof;
+        this.specialInfo = specialInfo;
     }
 
     //output current car info
@@ -24,10 +27,11 @@ public class RaceCar extends GenericRacer {
     @Override
     public float getStyleCreditDistance() {
         // Racecars with a sunroof get 100ft bonus because of the extra weight of a sunroof.
-        if (hasSunRoof) {
-            return 100;
-        } else {
-            return 0;
+        switch (specialInfo) {
+            case HAS_SUNROOF:
+                return 100;
+            default:
+                return 0;
         }
     }
 }

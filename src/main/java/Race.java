@@ -22,9 +22,9 @@ public class Race {
         final int turnLocation = 5;
         Race race = new Race( //
                 new RaceTruck("Red Truck", new UnlimitedSpeedComputer(5f), true), //
-                new RaceCar("Blue Car", new LimitedSpeedComputer(40f, 10f), true), //
-                new RaceCar("Green Car", new LimitedSpeedComputer(70f, 4f), false), //
-                new RaceCar("Yellow Car", new StupidSpeedComputer(), true));
+                new RaceCar("Blue Car", new LimitedSpeedComputer(40f, 10f), RaceCar.SPECIAL_INFO.HAS_SUNROOF), //
+                new RaceCar("Green Car", new LimitedSpeedComputer(70f, 4f), RaceCar.SPECIAL_INFO.BORING), //
+                new RaceCar("Yellow Car", new StupidSpeedComputer(), RaceCar.SPECIAL_INFO.HAS_SUNROOF));
 
         try {
             race.runRace(maxCounter, turnFrequency, turnLocation);
