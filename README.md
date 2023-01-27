@@ -140,6 +140,23 @@
 * `huh.getCurrentMileage()` results in an Exception, `NullPointerException`. How could it not throw some sort of
   exception? This is such a common source of pain that `NullPointerException` is known as "NPE".
 
+# The Internet
+
+* **server** -- A process which is running continuously on machine, accepting connections from clients and interacting
+  with them.
+* **client** -- A process (like Chrome) which connects to a server process.
+* `netstat -n` -- A bash command showing your current connections between clients and servers.
+* **DNS** -- Maps from human-readable domains (e.g. wecancodeit.org) to actual computer IP addresses (e.g.
+  159.65.180.149).  https://dns.google/query?name=wecancodeit.org&rr_type=ALL&ecs=&show_dnssec=true
+* **IP Address** an address on the internet. https://whatismyipaddress.com/ip/159.65.180.149
+* 80 and 443 -- The server locations for http and https.  https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
+* **HTTP Response Codes**. https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+    * 1xx --> Informational
+    * 2xx --> Success
+    * 3xx --> Redirection
+    * 4xx --> Client did something wrong
+    * 5xx --> Server did something wrong
+
 # My opinions
 
 * Make everything possible `private`. If it really can't be private, make it `protected`. If it can't even be protected,
