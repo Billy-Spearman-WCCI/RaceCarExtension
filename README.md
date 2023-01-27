@@ -123,7 +123,7 @@
 * To make sure that our classes do what we think they do
 * To make sure that our code keeps on working.
 
-# The Truth about Java
+# The (Almost) Truth about Java
 
 * Variables in Java contain either "primitive values" (`float`, `int`, `char`, etc.) or *references* to objects. The
   address of a house is not the house itself.
@@ -132,6 +132,13 @@
 * As a shorthand, we say that we pass objects as parameters to methods. This is not technically true. We actually pass
   references to objects as parameters to methods. But that's too many words, so we oversimplify. As long as you know the
   truth, talking in shorthand is fine.
+
+# The Billion-Dollar Mistake -- NPE
+
+* In `Odometer huh = new HashMap<String, Odometer>().get("B");`, `huh` is *not* a reference to any actual object.
+  Instead, it has the value `null`.
+* `huh.getCurrentMileage()` results in an Exception, `NullPointerException`. How could it not throw some sort of
+  exception? This is such a common source of pain that `NullPointerException` is known as "NPE".
 
 # My opinions
 

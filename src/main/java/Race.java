@@ -38,9 +38,12 @@ public class Race {
         System.out.println("odometer2: " + o2.getCurrentMileage());
 
         Map<String, Odometer> map = new HashMap<>();
+        Odometer huh = new HashMap<String, Odometer>().get("B");
+
         map.put("A", new Odometer());
         System.out.println(map.get("A").getCurrentMileage());
         System.out.println(map.get("B").getCurrentMileage());
+
 
         System.exit(0);
 
