@@ -20,7 +20,24 @@ public class Race {
             Green Car in 2nd with 2191.5 feet travelled
             Yellow Car in 3rd with 2163 feet travelled
          */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws HackingException {
+        // ints, floats, and anything not using `new` are *primitives*.
+        int num1 = 0;
+        int num2 = num1;
+        num2++;
+
+        System.out.println("num1: " + num1);
+        System.out.println("num2: " + num2);
+
+        // We've been saying that o1 and o2 are objects.
+        Odometer o1 = new Odometer();
+        Odometer o2 = o1;
+        o2.increase(1);
+        System.out.println("odometer1: " + o1.getCurrentMileage());
+        System.out.println("odometer2: " + o2.getCurrentMileage());
+
+        System.exit(0);
+
         final int maxCounter = 50;
         final int turnFrequency = 10;
         final int turnLocation = 5;
