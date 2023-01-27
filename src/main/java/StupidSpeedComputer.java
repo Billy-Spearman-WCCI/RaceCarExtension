@@ -1,4 +1,4 @@
-public class StupidSpeedComputer implements SpeedComputer{
+public class StupidSpeedComputer implements SpeedComputer {
     @Override
     public float computeNewSpeed(float currentSpeed) {
         return 0;

@@ -1,10 +1,14 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Runs races for one or more Contestants
+ */
 public class Race {
     final List<Contestant> racers = new ArrayList<>();
 
-    public Race(Contestant ... contestants) {
+    public Race(Contestant... contestants) {
         for (Contestant contestant : contestants) {
             racers.add(contestant);
         }
@@ -46,7 +50,7 @@ public class Race {
         }
     }
 
-    private void runRace(int maxCounter, int turnFrequency, int turnLocation) throws HackingException {
+    private void runRace(final int maxCounter, final int turnFrequency, final int turnLocation) throws HackingException {
         for (int counter = 0; counter < maxCounter; counter++) {
             if (counter % turnFrequency == turnLocation) {
                 System.out.println("The cars hit a turn!");
