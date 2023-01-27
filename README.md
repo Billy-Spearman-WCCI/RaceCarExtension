@@ -123,6 +123,16 @@
 * To make sure that our classes do what we think they do
 * To make sure that our code keeps on working.
 
+# The Truth about Java
+
+* Variables in Java contain either "primitive values" (`float`, `int`, `char`, etc.) or *references* to objects. The
+  address of a house is not the house itself.
+* In Java one *never* has direct access to an object ... it is always via some reference. The most famous reference
+  is `this`.
+* As a shorthand, we say that we pass objects as parameters to methods. This is not technically true. We actually pass
+  references to objects as parameters to methods. But that's too many words, so we oversimplify. As long as you know the
+  truth, talking in shorthand is fine.
+
 # My opinions
 
 * Make everything possible `private`. If it really can't be private, make it `protected`. If it can't even be protected,
