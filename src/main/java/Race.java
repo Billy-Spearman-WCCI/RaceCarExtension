@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Runs races for one or more Contestants
@@ -35,6 +36,11 @@ public class Race {
         o2.increase(1);
         System.out.println("odometer1: " + o1.getCurrentMileage());
         System.out.println("odometer2: " + o2.getCurrentMileage());
+
+        Map<String, Odometer> map = new HashMap<>();
+        map.put("A", new Odometer());
+        System.out.println(map.get("A").getCurrentMileage());
+        System.out.println(map.get("B").getCurrentMileage());
 
         System.exit(0);
 
