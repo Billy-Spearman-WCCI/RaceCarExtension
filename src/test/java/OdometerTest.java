@@ -5,6 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class OdometerTest {
 
+    public static void main(String[] args) {
+        Race.snoop(OdometerTest.class);
+    }
+
     @Test
     public void testOdometerStartsAtZero() {
         Odometer odometer = new Odometer();

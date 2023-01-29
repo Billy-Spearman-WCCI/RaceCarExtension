@@ -1,8 +1,11 @@
+import jdk.jfr.Description;
+
 import java.util.*;
 
 /**
  * Runs races for one or more Contestants
  */
+@Description("This class knows how to run races among contestants")
 public class Race {
     final List<Contestant> racers = new ArrayList<>();
 
@@ -21,6 +24,11 @@ public class Race {
     public static void main(String[] args) throws HackingException {
         // Uncomment when you want to just run some experiments
         // experiments(args);
+        snoop(Race.class);
+        snoop(RaceCar.class);
+        snoop(FunnyRaceCar.class);
+        snoop(Odometer.class);
+        System.exit(0);
 
         final int maxCounter = 50;
         final int turnFrequency = 10;
@@ -72,6 +80,7 @@ public class Race {
         }
     }
 
+
     private static void experiments(String[] args) throws HackingException {
         Odometer uninitialized = null;
         String string1;
@@ -86,7 +95,7 @@ public class Race {
         System.out.println(uninitialized.getCurrentMileage());
 
         // ints, floats, and anything not using `new` are *primitives*.
-        int num1; // Java will set this to 0.
+        int num1 = 0;
         int num2 = num1;
         num2++;
 
@@ -141,4 +150,24 @@ public class Race {
         return 0;
     }
 
+    public static void snoop(Class c) {
+        System.out.println();
+        System.out.println("Snooping into " + c.getCanonicalName());
+        for (var a : c.getAnnotations()) {
+            System.out.println(c.getCanonicalName() + " has annotation " + a.toString() + " of type " + a.annotationType().toString());
+        }
+        for (var f : c.getFields()) {
+            System.out.println(c.getCanonicalName() + " has accessible Field \"" + f.getName() + "\" of type " + f.getType().toString());
+        }
+        for (var f : c.getDeclaredFields()) {
+            System.out.println(c.getCanonicalName() + " has declared Field \"" + f.getName() + "\" of type " + f.getType().toString());
+        }
+        for (var m : c.getMethods()) {
+            System.out.println(c.getCanonicalName() + " has method " + m.getName() + " with " + m.getParameterCount() + " parameters");
+            for (var a : m.getAnnotations()) {
+                System.out.println(c.getCanonicalName() + " has method " + m.getName() + " with annotation " + a.toString());
+            }
+        }
+
+    }
 }
