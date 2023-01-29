@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Runs races for one or more Contestants
@@ -22,30 +19,8 @@ public class Race {
             Yellow Car in 3rd with 2163 feet travelled
          */
     public static void main(String[] args) throws HackingException {
-        // ints, floats, and anything not using `new` are *primitives*.
-        int num1 = 0;
-        int num2 = num1;
-        num2++;
-
-        System.out.println("num1: " + num1);
-        System.out.println("num2: " + num2);
-
-        // We've been saying that o1 and o2 are objects.
-        Odometer o1 = new Odometer();
-        Odometer o2 = o1;
-        o2.increase(1);
-        System.out.println("odometer1: " + o1.getCurrentMileage());
-        System.out.println("odometer2: " + o2.getCurrentMileage());
-
-        Map<String, Odometer> map = new HashMap<>();
-        Odometer huh = new HashMap<String, Odometer>().get("B");
-
-        map.put("A", new Odometer());
-        System.out.println(map.get("A").getCurrentMileage());
-        System.out.println(map.get("B").getCurrentMileage());
-
-
-        System.exit(0);
+        // Uncomment when you want to just run some experiments
+        // experiments(args);
 
         final int maxCounter = 50;
         final int turnFrequency = 10;
@@ -96,4 +71,74 @@ public class Race {
             System.out.println();
         }
     }
+
+    private static void experiments(String[] args) throws HackingException {
+        Odometer uninitialized = null;
+        String string1;
+        if (args.length == 0) {
+            string1 = "Hello world";
+        } else {
+            string1 = "Goodbye world";
+        }
+
+        System.out.println(string1);
+
+        System.out.println(uninitialized.getCurrentMileage());
+
+        // ints, floats, and anything not using `new` are *primitives*.
+        int num1; // Java will set this to 0.
+        int num2 = num1;
+        num2++;
+
+        System.out.println("num1: " + num1);
+        System.out.println("num2: " + num2);
+
+        // We've been saying that o1 and o2 are objects.
+        Odometer o1 = new Odometer();
+        Odometer o2 = o1;
+        Odometer o3 = new Odometer();
+        o2.increase(1);
+        System.out.println("odometer1: " + o1.getCurrentMileage());
+        System.out.println("odometer2: " + o2.getCurrentMileage());
+
+        // MAP
+        // YOU GIVE ME A STRING, I REMEMBER FOR YOU AN ODOMETER (put)
+        // YOU GIVE ME A STRING, I GIVE YOU AN ODOMETER (get)
+        Map<String, Odometer> map = new HashMap<>();
+
+        map.put("C", new Odometer());
+        map.put("D", new Odometer());
+        map.put("E", new Odometer());
+        Odometer o4 = map.get("A");
+        Odometer o5 = map.get("B");
+
+        if (o4 != null) {
+            System.out.println(o4.getCurrentMileage());
+        } else {
+            System.out.println("o4 is nonsense");
+        }
+
+        try {
+            System.out.println("Before the dangerous code");
+            System.out.println(o5.getCurrentMileage());
+            System.out.println("After the dangerous code");
+        } catch (final InputMismatchException e) {
+            System.out.println("Please learn to type");
+        } catch (final NullPointerException e) {
+            System.out.println("Billion dollars");
+        }
+
+
+        Odometer huh = new HashMap<String, Odometer>().get("B");
+        System.exit(0);
+    }
+
+    public Odometer getAnOdometer() {
+        return null;
+    }
+
+    public int getAnumber() {
+        return 0;
+    }
+
 }
