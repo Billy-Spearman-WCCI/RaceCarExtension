@@ -112,8 +112,16 @@
 * `Collection<V>` -- even more generic than a `List` or
   a `Set`.  https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html
 * `List<V>` -- a list to which elements of type V can be added. If you don't have a specific need, use `ArrayList`.
+    * Good for adding to the end of a list.
+    * Good for doing the same thing to everything on a list.
+    * Good if you want to do things in exactly the order in which they were added to the list.
+    * Not good if you want to do things in a different order.
+    * Not good if you want to act on a specific item
 * `Map<K,V>` -- a map from keys (of type K) to values (of type V). The most common keys are Strings. Values could be
   anything. If you don't have a specific need, use `HashMap`.
+    * Good when you want to access a specific item with a key.
+    * Good when you have a natural key. (Social Number for people, or address for houses).
+    * Not good when you want to act on all things in a specific order.
 * `Iterable<V>` -- Something which can be after the `:` in `for (V value : values) {}`. All lists, `map.keySet()`,
   and `map.valueSet()` are all iterables.
 
@@ -126,7 +134,7 @@
 # The (Almost) Truth about Java
 
 * Variables in Java contain either "primitive values" (`float`, `int`, `char`, etc.) or *references* to objects. The
-  address of a house is not the house itself.
+  address of a house is not the house itself. A single human can have two nicknames.
 * In Java one *never* has direct access to an object ... it is always via some reference. The most famous reference
   is `this`.
 * As a shorthand, we say that we pass objects as parameters to methods. This is not technically true. We actually pass
