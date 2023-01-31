@@ -22,6 +22,14 @@ public class Race {
             Yellow Car in 3rd with 2163 feet travelled
          */
     public static void main(String[] args) throws HackingException {
+        int[] numbers = {7, 8, 7, 7, 9};
+        SevenDetector detector = new SevenDetector();
+        for (int num : numbers) {
+            detector.accept(num);
+        }
+        detector.noMoreData();
+        System.out.println(detector.state().toString());
+
         // Uncomment when you want to just run some experiments
         // experiments(args);
         snoop(Race.class);
