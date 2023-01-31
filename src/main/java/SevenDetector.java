@@ -2,7 +2,7 @@ public class SevenDetector {
     private STATE state = STATE.NO7;
 
     public STATE state() {
-        return this.state;
+        return state;
     }
 
     //    public void accept(int i) {

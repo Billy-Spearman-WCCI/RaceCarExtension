@@ -123,4 +123,15 @@ class SevenDetectorTest {
         detector.noMoreData();
         assertEquals(SevenDetector.STATE.SUCCESS, detector.state());
     }
+
+    // Ensure that one detector doesn't interfere with another.
+    @Test
+    void twoDetectors() {
+        SevenDetector d1 = new SevenDetector();
+        SevenDetector d2 = new SevenDetector();
+
+        d1.accept(7);
+        assertEquals(SevenDetector.STATE.ONE7, d1.state());
+        assertEquals(SevenDetector.STATE.NO7, d2.state());
+    }
 }
