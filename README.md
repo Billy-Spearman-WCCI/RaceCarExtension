@@ -165,6 +165,32 @@
     * 4xx --> Client did something wrong
     * 5xx --> Server did something wrong
 
+# **Spring Boot**
+
+* **Spring** -- a widely-used and powerful framework for creating Java servers. Spring scans your code for annotated
+  Java entities (classes, interfaces, methods, fields, etc) and connects them altogether into a production-ready
+  application.
+* `@Controller` -- An annotation for linking endpoints (e.g. `/fancyHello`) to templated web pages (e.g,
+  in `src/main/resources/templates`).
+* `@RestController` -- An annotation for linking endpoints (e.g. `/courses/{course_id}/`) to API responses.
+* `@GetMapping`, `@PutMapping`, `@PostMapping`, `@PatchMapping`, and `@DeleteMapping` -- annotations for the five HTTP
+  verb endpoints.
+* `@SpringBootApplication` -- An annotation that Spring should run the `main()` in the class.
+* `@Bean` -- An annotation that Spring should wire in the entity into its framework.
+* `Logger logger = LoggerFactory.getLogger(ThisClass.class);` -- standard phrasing to create a logger to which you can
+  write interesting information. Used in all Java programs, Spring and non-Spring. We use the `org.slf4j` loggers.
+* **Reflection** -- The ability for Java code to see the structure of Classes programmatically. You should never use
+  reflection directly, but it's what allows Spring to work.
+* **Gradle** -- a system for defining the configuration of a Java project in a `build.gradle` file, written in the
+  "Groovy" language. Defines what version of Java is required, which libraries to download and use, etc. Is a modern
+  replacement for the "Maven" system (which used a `pom.xml` file instead).
+
+# **Algorithms**
+
+* **State diagram** -- A diagram showing the different states an object can be in, and how it transitions from one state
+  to another. https://us02web.zoom.us/wb/doc/gglGbp9mSjWaXQ7Yn5-Ygg
+* **Scaling** -- How the resources required and work done by a process increases as the size of a problem increases.
+
 # My opinions
 
 * Make everything possible `private`. If it really can't be private, make it `protected`. If it can't even be protected,
