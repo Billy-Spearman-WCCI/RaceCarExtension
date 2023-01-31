@@ -176,11 +176,13 @@
 * `@GetMapping`, `@PutMapping`, `@PostMapping`, `@PatchMapping`, and `@DeleteMapping` -- annotations for the five HTTP
   verb endpoints.
 * `@SpringBootApplication` -- An annotation that Spring should run the `main()` in the class.
-* `@Bean` -- An annotation that Spring should wire in the entity into its framework.
+* `@Bean` -- An annotation that Spring should wire in the entity into its framework. Controllers, RestControllers, and
+  everything else that Spring knows about are all subclasses of bean.
 * `Logger logger = LoggerFactory.getLogger(ThisClass.class);` -- standard phrasing to create a logger to which you can
   write interesting information. Used in all Java programs, Spring and non-Spring. We use the `org.slf4j` loggers.
 * **Reflection** -- The ability for Java code to see the structure of Classes programmatically. You should never use
-  reflection directly, but it's what allows Spring to work.
+  reflection directly, but it's what allows Spring to work. Every object has a `.class` field which contains a `Class`
+  object which you can ask for annotations, method names, etc.
 * **Gradle** -- a system for defining the configuration of a Java project in a `build.gradle` file, written in the
   "Groovy" language. Defines what version of Java is required, which libraries to download and use, etc. Is a modern
   replacement for the "Maven" system (which used a `pom.xml` file instead).
