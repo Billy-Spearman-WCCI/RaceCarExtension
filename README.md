@@ -203,6 +203,13 @@
     * 4xx --> Client did something wrong
     * 5xx --> Server did something wrong. Web servers usually run all client requests in a outer try/catch and if
       something truly horrible happens, will return a 500 because of that.
+* **HTTP Verbs** https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods
+    * Retrieve a single item (GET)
+    * Retrieve a list of items (GET)
+    * Create an item (POST)
+    * Update an item (PUT)
+    * Delete an item (DELETE)
+    * Partially modify an item (PATCH)
 
 # **Spring Boot**
 
@@ -292,8 +299,36 @@
 * You want to see (or want others to see) the development of your code, step-by-step, and including short `-m` comments.
 * You want to revert to a prior version of your code.
 
+## Release Branches
 
-* You want to take a snapshot of the current state of your "main" code
+* You want to take a snapshot of the current state of your "main" code, so we know exactly what code is running in
+  production -- even if you're continuing to push changes to the "main" branch. Hopefully, that snapshot will be tested
+  before it goes to production. And you need to be able to answer questions like
+    * "did that change make it into this week's release?"
+    * "what are all the differences between this week's release and last week's release?"
+* We also need to, on Wednesday, make one tiny change to Monday's release (because our QA department found something)
+  without pulling in all of the development which happened on Tuesday.
+
+## Feature Branches
+
+* We also want to be able to continue adding functionality to VirtualPetApp, while experimenting on the side with
+  changing between ArrayList and HashMap.
+
+## Branching
+
+* It's a very good idea to have a standard naming convention for branches.
+    * RELEASE_YYYY_MM_DD_HH_MM for candidates for QA and perhaps deployment.
+    * FEATURE_INITIALS_FEATURENAME for new coding, e.g. `FEATURE_MGF_BETTERCOLLECTIONS`
+* git bash is smart and will do "Tab completion" on branch names.
+* `git status` and `git diff` are very useful and `less README.md` will show that file (`q` to exit, space to show
+  more).
+* `git checkout -b NEW_BRANCH_NAME` creates a new branch based on the current state of whatever branch you're in when
+  you run the command (normally this will be "main" or "master")
+* The first time you run `git push` after creating a new branch, it will fail and just do what it says.
+* `git checkout EXISTING_BRANCH_NAME` will switch your **workspace** (i.e. files on your laptop) to contain state the
+  new branch.
+* It's **far** less confusing if `git status` is clean before you run either type `git checkout`.
+* `git branch` shows all branches and the "current" one is starred and hopefully on your bash prompt in blue.
 
 # My opinions
 
