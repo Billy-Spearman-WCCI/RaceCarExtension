@@ -17,8 +17,12 @@
       called on abstract classes or interfaces themselves.
     * **constructor**: A method which runs when an object is created and sets its initial state.
     * `static`: Data and behavior (i.e. fields and methods) encapsulated by the class itself, rather than any particular
-      instance. **Usually** a code smell. `System.in` and `System.out` are static fields of `System`. Static methods
+      instance. `System.in` and `System.out` are static fields of `System`. Static methods
       cannot access `this`.
+    * `static` fields in a class are usually a code smell, unless the field is declares `final` and is also
+      **immutable**.
+    * **immutable** -- an object which never changes state. The most famous example is `String`, which is why we
+      need `StringBuilder`.
 * **Type**: what data may be stored in a variable or parameter. May be a primitive type, a `class`, or `interface`.
     * **Primitive Type** -- Non-objects in Java
         * `boolean` : `true` or `false`. Note that this is the only value allowed in `if ()`.
@@ -51,12 +55,16 @@
 ## Programming styles
 
 * **OO** -- An Object-Oriented programming style
-    * **abstraction**: separating what's essential for a particular use from what isn't.
+    * **abstraction**: separating what's essential for a particular use from what isn't. Code to interfaces whenever
+      possible.
     * **polymorphism**: the Race class can call `contestant.turn()` and Java will ensure that the right method is
       called, depending upon the *actual* class of the object implementing Contestant.
     * **inheritance**: when one class extends another.
     * **encapsulation**: when a RaceCar contains an Odometer rather than trying to do that behavior
       itself https://github.com/marshallfWCCI/RaceCarInterface/commit/92e8da66095290ebdb11e4e53e04cede7639f787
+    * Note: you will see the acronym "A PIE" to remember the above, but I dislike it because abstraction (programming to
+      interfaces), polymorphism (the magic which allows abstraction to work), and encapsulation are essential to OO
+      programming, but inheritance is usually a way to reduce duplicate code when classes don't encapsulate well.
 * **Imperative** -- A programming style in which the system is told what to do step-by-step.
 * **Declarative** -- A programming style in which the system is told the desired state and isn't micromanaged in the
   executed. `build.gradle` is declarative.
@@ -117,11 +125,18 @@
     * Good if you want to do things in exactly the order in which they were added to the list.
     * Not good if you want to do things in a different order.
     * Not good if you want to act on a specific item
+    * Only use arrays when speed is super super super important, or when you're given an array.
 * `Map<K,V>` -- a map from keys (of type K) to values (of type V). The most common keys are Strings. Values could be
   anything. If you don't have a specific need, use `HashMap`.
     * Good when you want to access a specific item with a key.
     * Good when you have a natural key. (Social Number for people, or address for houses).
     * Not good when you want to act on all things in a specific order.
+    * HashMaps operate by allocating all its elements into many rooms, so that each room contains only a handful of
+      entries. And given the key, it is super-fast to find the right room. And once you know the room, there are only a
+      handful of entries to check one-by-one.
+    * .equals() and .hashCode() need to make sense (and be consistent with each other) for `K`'s and there really should
+      only be one `V` for any given `K`.
+    * `V`'s can be anything, even other Lists or Maps.
 * `Iterable<V>` -- Something which can be after the `:` in `for (V value : values) {}`. All lists, `map.keySet()`,
   and `map.valueSet()` are all iterables.
 
@@ -171,7 +186,8 @@
   Java entities (classes, interfaces, methods, fields, etc) and connects them altogether into a production-ready
   application.
 * `@Controller` -- An annotation for linking endpoints (e.g. `/fancyHello`) to templated web pages (e.g,
-  in `src/main/resources/templates`).
+  in `src/main/resources/templates`). The templates are using a library called Thymeleaf and has special tags
+  like `th:each` which can iterate lists, etc.
 * `@RestController` -- An annotation for linking endpoints (e.g. `/courses/{course_id}/`) to API responses.
 * `@GetMapping`, `@PutMapping`, `@PostMapping`, `@PatchMapping`, and `@DeleteMapping` -- annotations for the five HTTP
   verb endpoints.
@@ -187,11 +203,61 @@
   "Groovy" language. Defines what version of Java is required, which libraries to download and use, etc. Is a modern
   replacement for the "Maven" system (which used a `pom.xml` file instead).
 
+# **Model-View-Controller" style of web server programming ("MVC")
+
+* **Model** interfaces with the database
+    * Spring provides an "Object-Relational Mapping" (called Hibernate) which allows you to *annotate* your classes and
+      fields with information about the tables and columns they map into the database and then Spring will take care of
+      the plumbing.
+* **View** takes data and converts it to a form suitable for use (HTML, or JSON, ...)
+* **Controller** contains logic for what data is written to the database and how the information is presented to users.
+
+# **Databases
+
+* Database contain tables of information. Tables contain rows of information. Different tables in a database contain
+  different types of information. So one table might contain student and their addresses. Another table might contain
+  the list of courses. Another table might contain class lists.
+* A database row can contain many columns (or fields). Each column has a type (String, number, etc).
+* All of the rows in a table have the same columns.
+* It works really nicely if each object in a class has its own row in the same table. However, inheritance makes things
+  hard, unless each concrete class has its own table.
+* Consistency within a table is key -- a given field must have the same meaning in each row in that table.
+* Tables can refer to other tables. So "student_id" might be the key to one table, and just a field in another.
+* Databases don't handle lists or maps well within a row ... instead you have lots of rows.
+* Databases can ("CRUD")
+    * Create rows
+    * Read rows
+    * Update rows
+    * Delete rows
+* You can also ask databases to do fancy things like search records, and combine records from multiple tables into a
+  single result, using a language called SQL.
+* Databases are good at two hard things:
+    * Not losing your data. Allowing multiple people to write to a database without conflicting with each other. ("
+      CRUD", transactions).
+    * Efficiently combining data from multiple tables into useful results. ("SQL" is language for these queries.)
+* **Query** -- a request to a database for data from one or more tables, usually phrased in SQL ("Structured Query
+  Language"), e.g., "SELECT * FROM students WHERE last_name='Smith'". keywords are usually uppercase. SQL has it own
+  keywords entirely different from Java keywords.
+* **Transactions**:
+    * Suppose I tell the bank's database: "Pay electric company $100" "Take $100 out of bank account".
+    * Most (not all) databases can be told: "begin transaction", "pay $100", "debit my account $100", "end transaction".
+      And the database will do all or nothing, and tell us.
+* It's common for our Java code to stop at writing to the database, and other teams read from it.
+* Common databases include Oracle, SQL Server, MySQL, Postgres. There's also "H2", which is a fake database that only
+  lasts while your program is running.
+
+* **JSON** a concise way for computers to pass information to other computers. A Json message is a Map whose keys are
+  strings and whose values are numbers, booleans, strings, lists, or other maps. It is the standard for sending
+  information to and from REST endpoints, and to and from browsers. A map is surrounded with curly braces `{}` and a
+  list is surrounded with square brackets `[]`. In maps, the key and value are separated by a colon `:`. Java has
+  libraries to convert JSON to useful formats.
+
 # **Algorithms**
 
 * **State diagram** -- A diagram showing the different states an object can be in, and how it transitions from one state
   to another. https://us02web.zoom.us/wb/doc/gglGbp9mSjWaXQ7Yn5-Ygg
 * **Scaling** -- How the resources required and work done by a process increases as the size of a problem increases.
+  When searching for items in a collection, HashMap scales better than Lists.
 
 # My opinions
 
