@@ -34,10 +34,11 @@
         * `boolean` : `true` or `false`. Note that this is the only value allowed in `if ()`.
         * `byte` : In Java, this has values -128..127. In the sane world, it has values 0..255. Consists of 8 **bits**.
         * `char`: Two bytes in size, encodes the first 60000 or so **Unicode** characters. During American hegemony,
-          ASCII used one byte (especially 0..127) to represent common characters.
+          ASCII used one byte (especially 0..127) to represent common characters. The boxed version is `Character`
         * `float`: A floating-point number. Rarely used, since memory is so cheap. Prefer `double`
-        * `int`: Four bytes in size, so can go from -2Billion to 2Billion. Fine for indices and small numbers.
-        * `long`: Eight bytes in size, so big enough for most purposes.
+        * `int`: Four bytes in size, so can go from -2Billion to 2Billion. Fine for indices and small numbers. The boxed
+          version is `Integer`.
+        * `long`: Eight bytes in size, so big enough for most purposes. The boxed version is `Long`.
         * `short`: Two bytes in size, so useful when you *know* that you're dealing with values <30000 or so.
         * `double`. A more precise floating-point number. But floating-point is dark magic nobody understands. If you
           need exact decimals, use `BigDecimal`.
@@ -281,7 +282,23 @@
   strings and whose values are numbers, booleans, strings, lists, or other maps. It is the standard for sending
   information to and from REST endpoints, and to and from browsers. A map is surrounded with curly braces `{}` and a
   list is surrounded with square brackets `[]`. In maps, the key and value are separated by a colon `:`. Java has
-  libraries to convert JSON to useful formats.
+  libraries to convert JSON to useful formats. Sample endpoints and possible responses:
+
+```
+GET /api/v1/pets/23
+{"id": 23, "name": "fluffy", "age": 4.5, "status": { "hunger": 10, "sleepiness" : 5, }, "is_ready_for_adoption": true }
+
+GET /api/v1/pets
+[{ "id": 23, "name": "fluffy", "species": "bunny", "age": 4.5, "status": { "dietary_requirements": { "will_eat_grass": true, "will_eat_insects": false }, "hunger": 10, "sleepiness" : 5, }, "is_ready_for_adoption": true },
+ { "id": 24, "name": "astro", "species": "cat", "age": 1.5, "status": { "hunger": 11, "sleepiness" : 5, }, "is_ready_for_adoption": true }
+ ] 
+```
+
+* `curl` -- a command in the Git Bash shell which will send data to an endpoint and display the response.
+
+```
+curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
+```
 
 # **Algorithms**
 
