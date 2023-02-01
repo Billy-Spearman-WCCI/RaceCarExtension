@@ -31,15 +31,17 @@
               classes to return new instances containing modified information.
 * **Type**: what data may be stored in a variable or parameter. May be a primitive type, a `class`, or `interface`.
     * **Primitive Type** -- Non-objects in Java. They cannot be null.
-        * `boolean` : `true` or `false`. Note that this is the only value allowed in `if ()`.
+        * `boolean` : `true` or `false`. Note that this is the only value allowed in `if ()`. The boxed version is the
+          class `Boolean`.
         * `byte` : In Java, this has values -128..127. In the sane world, it has values 0..255. Consists of 8 **bits**.
         * `char`: Two bytes in size, encodes the first 60000 or so **Unicode** characters. During American hegemony,
-          ASCII used one byte (especially 0..127) to represent common characters. The boxed version is `Character`
+          ASCII used one byte (especially 0..127) to represent common characters. The boxed version is `Character`.
         * `float`: A floating-point number. Rarely used, since memory is so cheap. Prefer `double`
         * `int`: Four bytes in size, so can go from -2Billion to 2Billion. Fine for indices and small numbers. The boxed
           version is `Integer`.
         * `long`: Eight bytes in size, so big enough for most purposes. The boxed version is `Long`.
-        * `short`: Two bytes in size, so useful when you *know* that you're dealing with values <30000 or so.
+        * `short`: Two bytes in size, so useful when you *know* that you're dealing with values <30000 or so. (Actually
+          -32768 to 32767.) The boxed version is `Short`.
         * `double`. A more precise floating-point number. But floating-point is dark magic nobody understands. If you
           need exact decimals, use `BigDecimal`.
         * Most operators only act upon primitive values, though Java does special things behind-the-scenes for String
@@ -54,7 +56,7 @@
           type `Integer val = 2;` ... so Java does the work automatically for you in such cases so you can be lazy. This
           laziness is called **autoboxing**.
         * But why do we need types like `Integer`? Can't we always just use `int`??? Because Maps, Lists, etc, cannot
-          contain primitives. This is just a limitation of Java.
+          contain primitives. This is just a limitation of Java, and occurs because primitive values don't have methods.
         * The process of encapsulating primitive values is called "Boxing". And the process of getting a primitive back
           is called "Unboxing". The box is a legitimate object, while primitives are the only things in Java which
           aren't objects at all. When unboxing, you must be sure that the object isn't null, or deal with the
