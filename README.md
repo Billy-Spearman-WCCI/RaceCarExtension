@@ -17,14 +17,20 @@
       called on abstract classes or interfaces themselves.
     * **constructor**: A method which runs when an object is created and sets its initial state.
     * `static`: Data and behavior (i.e. fields and methods) encapsulated by the class itself, rather than any particular
-      instance. `System.in` and `System.out` are static fields of `System`. Static methods
-      cannot access `this`.
+      instance. They are shared by all instances of the class. `System.in` and `System.out` are static fields
+      of `System`. Static methods cannot access `this`.
     * `static` fields in a class are usually a code smell, unless the field is declares `final` and is also
       **immutable**.
     * **immutable** -- an object which never changes state. The most famous example is `String`, which is why we
       need `StringBuilder`.
+        * We need a word to distinguish between two different types of objects:
+            * (Not safe for all the instances of a class to share) StringBuilder, Odometer, HashMap, Lists, .... -->
+              These can change on the inside.
+            * (Safe for all the instances of a class to share) String, Integer, ImmutableHashMap --> These cannot change
+              on the inside and therefore can be shared by all of the objects of a class. But it's common for such
+              classes to return new instances containing modified information.
 * **Type**: what data may be stored in a variable or parameter. May be a primitive type, a `class`, or `interface`.
-    * **Primitive Type** -- Non-objects in Java
+    * **Primitive Type** -- Non-objects in Java. They cannot be null.
         * `boolean` : `true` or `false`. Note that this is the only value allowed in `if ()`.
         * `byte` : In Java, this has values -128..127. In the sane world, it has values 0..255. Consists of 8 **bits**.
         * `char`: Two bytes in size, encodes the first 60000 or so **Unicode** characters. During American hegemony,
@@ -37,6 +43,21 @@
           need exact decimals, use `BigDecimal`.
         * Most operators only act upon primitive values, though Java does special things behind-the-scenes for String
           values.
+            * Java allows you to type `String s = "Hello";` rather than writing `String s = new String(....)` like for
+              every other type actual class.
+            * In many cases (e.g. System.out.println()) Java will automatically call `.toString()` when the method
+              expects a String and you give it a random object.
+            * So when you type System.out.println("" + 2), behind the scenes something like `new Integer(2).toString()`
+              is happening.
+        * Programmers are lazy, and don't want to type `Integer val = new Integer(2);` when they just want to
+          type `Integer val = 2;` ... so Java does the work automatically for you in such cases so you can be lazy. This
+          laziness is called **autoboxing**.
+        * But why do we need types like `Integer`? Can't we always just use `int`??? Because Maps, Lists, etc, cannot
+          contain primitives. This is just a limitation of Java.
+        * The process of encapsulating primitive values is called "Boxing". And the process of getting a primitive back
+          is called "Unboxing". The box is a legitimate object, while primitives are the only things in Java which
+          aren't objects at all. When unboxing, you must be sure that the object isn't null, or deal with the
+          consequences (e.g. by running the code in a try/catch block), or be ok with the program crashing.
     * **Type safety** -- Java won't compile if you try to write an incompatible value to a variable.
 * **method**: A function defined within a class. In java, all functions are defined within classes.
     * **code block** -- one or more statements surrounded by curly braces `{` ... `}`.
@@ -110,6 +131,8 @@
 * `while(condition) {statements;}` -- the simplest loop.
 * `do {statements;} while (condition)` -- only use when you can't check the condition before the loop runs.
 * `for (int i = 0; i < n; i++) {statements;}` -- the classic way to index into an array of size `n`.
+    * **Increment** -- to add 1 to something.
+    * **Decrement** -- to subtract 1 to something.
 * `for (Contestant contestant : contestants) {statements;}` -- the modern way to iterate through any collection.
 * `break` -- Immediately exit the current loop (or switch block)
 * `continue` -- Immediately go to the top of the loop for the next iteration.
@@ -136,7 +159,7 @@
       handful of entries to check one-by-one.
     * .equals() and .hashCode() need to make sense (and be consistent with each other) for `K`'s and there really should
       only be one `V` for any given `K`.
-    * `V`'s can be anything, even other Lists or Maps.
+    * `V`'s can be anything, even other Lists or Maps.  `Map<String, List<Integers>>` is perfectly fine.
 * `Iterable<V>` -- Something which can be after the `:` in `for (V value : values) {}`. All lists, `map.keySet()`,
   and `map.valueSet()` are all iterables.
 
@@ -178,7 +201,8 @@
     * 2xx --> Success
     * 3xx --> Redirection
     * 4xx --> Client did something wrong
-    * 5xx --> Server did something wrong
+    * 5xx --> Server did something wrong. Web servers usually run all client requests in a outer try/catch and if
+      something truly horrible happens, will return a 500 because of that.
 
 # **Spring Boot**
 
@@ -258,6 +282,18 @@
   to another. https://us02web.zoom.us/wb/doc/gglGbp9mSjWaXQ7Yn5-Ygg
 * **Scaling** -- How the resources required and work done by a process increases as the size of a problem increases.
   When searching for items in a collection, HashMap scales better than Lists.
+
+# Git Scenarios
+
+* You want to clone a GitHub repository so you can make changes on your own machine (
+  e.g. https://github.com/marshallfWCCI/SpringBootExample1.git)
+* You want to your own copy on GitHub of a repository so you can make changes and push
+  them (https://github.com/2023-Spring-Cohort/virtualpet-YOUR_NAME_HERE).
+* You want to see (or want others to see) the development of your code, step-by-step, and including short `-m` comments.
+* You want to revert to a prior version of your code.
+
+
+* You want to take a snapshot of the current state of your "main" code
 
 # My opinions
 
