@@ -151,22 +151,11 @@
       List internally. All that should be tested is the external *behavior* of its objects. Of course, if you want to "
       encourage" a class to be a List, you could have tests verifying a "returnPetsInTheOrderTheyWereAdded()". But if
       the class still decided to use a `LinkedHashMap<K,V>`, that's the class's business.
-* **Design Patterns**
-    * Builder Pattern
-* **Fluent**
-  // class VirtualPet() {
-  // void feed() {this.food++;}
-  // void water() {this.water++;}
-  // VirtualPet fancyFeed() {this.food++; return this;}
-  // VirtualPet fancyWater() {this.water++; return this;}
-  // }
-  // pet = new VirtualPet()
-  // pet.feed()
-  // pet.water()
-  //
-  // pet.fancyFeed().water();
-  // (pet.fancyFeed()).water();
-  // pet.fancyFeed().fancyWater().sleep();
+* **Design Patterns** -- Standard solution to design problems
+    * **Builder Pattern** -- Standard solution to the problem of constructors getting too complex. Uses the "Fluent"
+      pattern to accumulate parameters one-by-one.
+    * **Fluent Pattern** -- Methods which end with `return this;` so that multiple methods can be called on a single
+      object in a single statement.
 
 ## More Java keywords
 
