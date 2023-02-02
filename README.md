@@ -289,7 +289,11 @@
         * Should not change the state of any resource.
     * Update an item (PUT)
         * Should be **idempotent** (which is a fancy word for a requirement that calling PUT twice with the same
-          information should be the same as just calling it once)
+          information should be the same as just calling it once).
+        * Real-life examples of idempotent operations:
+            * Converting a color picture to black-and-white.
+            * Washing a plate.
+            * Tuning to a radio station.
     * Create an item (POST)
         * Typically returns the created resource. Not "idempotent", which is why sometimes your browser will ask say
           something like "reloading this page will resubmit the data".
@@ -419,6 +423,9 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
 
 ## Branching
 
+* When you switch to a different branch, or if you think a teammate might have pushed something to GitHub,
+  run `git pull`. In general, it's always a good time to run `git pull`.
+* It's always a good time to run `git status`.
 * It's a very good idea to have a standard naming convention for branches.
     * RELEASE_YYYY_MM_DD_HH_MM for candidates for QA and perhaps deployment.
     * FEATURE_INITIALS_FEATURENAME for new coding, e.g. `FEATURE_MGF_BETTERCOLLECTIONS`
@@ -427,7 +434,8 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
   more).
 * `git checkout -b NEW_BRANCH_NAME` creates a new branch based on the current state of whatever branch you're in when
   you run the command (normally this will be "main" or "master")
-* The first time you run `git push` after creating a new branch, it will fail and just do what it says.
+* If you don't run the "push.autoSetupRemote" command at the top of this file, then first time you run `git push` after
+  creating a new branch, it will fail and just do what it says.
 * `git checkout EXISTING_BRANCH_NAME` will switch your **workspace** (i.e. files on your laptop) to contain state the
   new branch.
 * It's **far** less confusing if `git status` is clean before you run either type `git checkout`.
