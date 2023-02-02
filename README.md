@@ -12,6 +12,17 @@
         * `git config --global --add --bool push.autoSetupRemote true`
         * `git config --global core.editor "nano"`
 
+## Syntax
+
+* **Code** -- instructions to a computer using the expected syntax.
+* Java has a syntax -- `;` separate statements, etc.
+    * IntelliJ does the parsing of your Java program, converting it into something that can run.
+* Html has a syntax -- `<tagName>` at start and `</tagName>` at end, etc.
+    * Chrome is *VERY* good at parsing HTML for you.
+* Markdown (.md files like this one) has a syntax, for instance backquotes say that it should have a grey background.
+* **Parsing** -- The act of taking text (e.g. a String) and splitting it up into meaning "words" according to the syntax
+    * When Chrome receives an HTML document, it needs to parse into a tree of elements so it can display it.
+
 ## Java
 
 * **object**: a thing encapsulating data (in "instance fields") and behavior (in "methods")
@@ -26,7 +37,8 @@
     * `static` fields in a class are usually a code smell, unless the field is declares `final` and is also
       **immutable**.
     * **immutable** -- an object which never changes state. The most famous example is `String`, which is why we
-      need `StringBuilder`.
+      need `StringBuilder`, which is just something that can accept `.append("morestuff")` to build a long string
+      easily -- and then convert to a string at the end with `.toString()`.
         * We need a word to distinguish between two different types of objects:
             * (Not safe for all the instances of a class to share) StringBuilder, Odometer, HashMap, Lists, .... -->
               These can change on the inside.
@@ -66,6 +78,8 @@
           aren't objects at all. When unboxing, you must be sure that the object isn't null, or deal with the
           consequences (e.g. by running the code in a try/catch block), or be ok with the program crashing.
     * **Type safety** -- Java won't compile if you try to write an incompatible value to a variable.
+    * **Casting** or **TypeCasting** -- Telling Java to manually convert one type to another,
+      e.g. `double x = (double) 0`;
 * **method**: A function defined within a class. In java, all functions are defined within classes.
     * **code block** -- one or more statements surrounded by curly braces `{` ... `}`.
     * **nesting** -- when one code block has sub-code-blocks within it.
@@ -108,7 +122,8 @@
     * Occasionally run all tests for all classes. IntelliJ can do this with control-shift-F10, or you can do it in Git
       Bash with `gradle test`.
     * Name tests usefully. There's no reason to have lots of verbiage duplicating the name of the class, etc. But you
-      should get at least a hint of what the class was testing from the name.
+      should get at least a hint of what the class was testing from the name. The same rule as `git commit -m""`
+      applies ... write comments useful to you in the future.
     * To the extent possible, tests should be simple, so that when it fails you have a good idea where to look in your
       code. Use nice round numbers when possible. Avoid unintentional coincidences. Adding $1 to an account containing
       $1 might not detect all failure scenarios. Subtracting $1 from an account containing $100 is quite
@@ -136,6 +151,22 @@
       List internally. All that should be tested is the external *behavior* of its objects. Of course, if you want to "
       encourage" a class to be a List, you could have tests verifying a "returnPetsInTheOrderTheyWereAdded()". But if
       the class still decided to use a `LinkedHashMap<K,V>`, that's the class's business.
+* **Design Patterns**
+    * Builder Pattern
+* **Fluent**
+  // class VirtualPet() {
+  // void feed() {this.food++;}
+  // void water() {this.water++;}
+  // VirtualPet fancyFeed() {this.food++; return this;}
+  // VirtualPet fancyWater() {this.water++; return this;}
+  // }
+  // pet = new VirtualPet()
+  // pet.feed()
+  // pet.water()
+  //
+  // pet.fancyFeed().water();
+  // (pet.fancyFeed()).water();
+  // pet.fancyFeed().fancyWater().sleep();
 
 ## More Java keywords
 
@@ -182,7 +213,9 @@
 * `for (Contestant contestant : contestants) {statements;}` -- the modern way to iterate through any collection.
 * `break` -- Immediately exit the current loop (or switch block)
 * `continue` -- Immediately go to the top of the loop for the next iteration.
-* `switch(val) {case val1: ... default: }` -- Jump to the first matching case statement.
+* `switch(val) {case val1: ... default: }` -- Java finds the first case that matches and starts running code at that
+  point.
+    * In a switch statement, either: (1) every statement has a `break;` or (2) none do -- be consistent.
 
 # Containers
 
@@ -251,11 +284,19 @@
       something truly horrible happens, will return a 500 because of that.
 * **HTTP Verbs** https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods
     * Retrieve a single item (GET)
+        * Should not change the state of any resource.
     * Retrieve a list of items (GET)
-    * Create an item (POST)
+        * Should not change the state of any resource.
     * Update an item (PUT)
+        * Should be **idempotent** (which is a fancy word for a requirement that calling PUT twice with the same
+          information should be the same as just calling it once)
+    * Create an item (POST)
+        * Typically returns the created resource. Not "idempotent", which is why sometimes your browser will ask say
+          something like "reloading this page will resubmit the data".
     * Delete an item (DELETE)
+        * Typically returns the deleted resource.
     * Partially modify an item (PATCH)
+        * (Less commonly used.)
 
 # **Spring Boot**
 
