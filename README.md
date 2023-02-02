@@ -11,6 +11,7 @@
     * Setting better defaults:
         * `git config --global --add --bool push.autoSetupRemote true`
         * `git config --global core.editor "nano"`
+    * `nano` is a super-tiny text editor within git bash. Type control-X to exit, control-G for help.
 
 ## Syntax
 
@@ -156,6 +157,9 @@
       pattern to accumulate parameters one-by-one.
     * **Fluent Pattern** -- Methods which end with `return this;` so that multiple methods can be called on a single
       object in a single statement.
+* **Convention over Configuration** -- Put things where the framework expects and you don't to tell it explicitly. So
+  IntelliJ *expects* that code will be in src/main/java and src/test/java. If you that, your configuration is *much*
+  easier.
 
 ## More Java keywords
 
@@ -167,14 +171,18 @@
   extends A (even if we don't explicitly say so).
 * `super()` -- The first line of most constructor will be to call the constructor of its parent class.
 * `abstract` -- A class which has partially-defined behavior and so cannot have instances. But it will have **concrete**
-  subclasses which may create instances.
+  subclasses which may create instances as long as they implement all of the missing methods.
 * **Class Hierarchy** -- a diagram showing which classes extend and/or implement other classes and interfaces. For
   instance, https://en.wikipedia.org/wiki/Java_collections_framework#/media/File:Java.util.Collection_hierarchy.svg
 * Visibility (of data and behavior)
     * `final` -- Write-once. May not be modified after it is set.
-    * `private` -- Only visible within the defining class.
-    * `protected` -- Only visible within the defining class and its subclasses.
-    * `public` -- Visible everywhere
+    * `private` -- Only visible within the defining class. (Most restrictive, and there easiest for the reader.)
+    * `protected` -- Only visible within:
+        * (1) the defining class
+        * (2) children (really, descendants) of the defining class
+        * (3) classes in the same package as the defining class (this is the one I forget).
+    * `public` -- Visible everywhere. (Unrestricted)
+    * Rule: use `private` when you can, otherwise `protected`, otherwise `public`
 * `package` -- The directory where the class is defined. Code in `src/main/java/org/wcci/marshall/project1`
   and `src/test/java/org/wcci/marshall/project1/` lie in package `org.wcci.marshall.project1`. Many core classes lie in
   subpackages of `java`, e.g. `java.util`.
@@ -183,6 +191,8 @@
       class isn't specified, then Java defaults to only seeing classes in the current package.
     * **package visibility** -- If neither `private`, `protected`, nor `public` are specified, then the visibility
       extends to everything in the same package. Don't do this.
+    * `protected` is visible to everything in the same
+      package. https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html
 * `Exception` -- stop the execution of the code...something unexpected has happened. An instance of the `Exception`
   class (or its subclasses) is passed up the call stack.
     * `throws` -- A method signature may also specify that the method may throw one or more subclasses of `Exception`.
@@ -276,13 +286,15 @@
         * Should not change the state of any resource.
     * Retrieve a list of items (GET)
         * Should not change the state of any resource.
-    * Update an item (PUT)
+    * Update an item (PUT) "Hey, item #23 should contain this data"
         * Should be **idempotent** (which is a fancy word for a requirement that calling PUT twice with the same
           information should be the same as just calling it once).
         * Real-life examples of idempotent operations:
             * Converting a color picture to black-and-white.
-            * Washing a plate.
+            * Washing a plate. (Once-washed plates and twice-washed plates are the same.)
             * Tuning to a radio station.
+        * Question: is map.put(key, value) "idempotent"?
+        * Question: is list.add(value) "not idempotent"
     * Create an item (POST)
         * Typically returns the created resource. Not "idempotent", which is why sometimes your browser will ask say
           something like "reloading this page will resubmit the data".
