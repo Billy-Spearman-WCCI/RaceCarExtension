@@ -7,6 +7,10 @@
 * **JavaDoc** -- Documentation for each Java class, defining the methods, their parameters, return types, and behavior.
   Adding comments of the form `/** Text describing the method */` just before each method will automatically be
   understood by IntelliJ and is most useful.
+* **Git**
+    * Setting better defaults:
+        * `git config --global --add --bool push.autoSetupRemote true`
+        * `git config --global core.editor "nano"`
 
 ## Java
 
@@ -93,6 +97,45 @@
 * **Declarative** -- A programming style in which the system is told the desired state and isn't micromanaged in the
   executed. `build.gradle` is declarative.
 * **Structured** -- An imperative programming style in which statements are organized into nesting contexts.
+* **TDD (Test-driven development)**
+    * To the extent TDD is utilized, all code is justified by some test.
+    * The best time to use TDD is when you don't know how to otherwise begin.
+    * The best time to use TDD is when you're still trying to think through what a new method should do, and what it
+      should return.
+    * The best time to use TDD is when you discover a bug. Don't fix the bug until you first write a test which detects
+      it.
+    * Always run **all** tests for the class, not just the one you're working on. Success should be a "ratchet".
+    * Occasionally run all tests for all classes. IntelliJ can do this with control-shift-F10, or you can do it in Git
+      Bash with `gradle test`.
+    * Name tests usefully. There's no reason to have lots of verbiage duplicating the name of the class, etc. But you
+      should get at least a hint of what the class was testing from the name.
+    * To the extent possible, tests should be simple, so that when it fails you have a good idea where to look in your
+      code. Use nice round numbers when possible. Avoid unintentional coincidences. Adding $1 to an account containing
+      $1 might not detect all failure scenarios. Subtracting $1 from an account containing $100 is quite
+      straightforward.
+    * There's no reason not to commit to git after *every* successful addition of a test. When all tests pass you may:
+        * Celebrate
+        * See that your class is still missing some desired behavior, and add another test.
+        * See that some other class is missing some desired behavior, and switch to working on that class for a while.
+        * Look at the class's implementation and see ways it could be clearer or faster or better in some other way.
+          Assuming you have submitted and pushed the working code, you can experiment with refactoring your code. If the
+          experiment succeeds, congratulations ... otherwise you can just rollback to the last-committed code.
+        * Imagine that a chaos monkey will occasionally go and change your class's code. Do your tests cover all of the
+          bugs they might try to introduce? (Sometimes called **Adversarial TDD**.)
+        * See that the class is good-enough, and get on to the next class -- or even be done with the project.
+    * Tests are perfect to understand using the debugger, because you can run the same code paths many times until you
+      find out what isn't behaving as expected.
+    * It's often entirely reasonable to use TDD at the start of a project, when you're defining your business objects
+      and how they should behave and interact -- but not for the final user-interacting stuff (if the user-interacting
+      stuff contains little business logic itself).
+    * TDD forces you to think of the *uses* of your objects, because every test:
+        * Starts with the creation of an instance of the class which is being tested;
+        * Usually calls one or more methods on that object; and then
+        * Ends with an expectation about the information returned by a method on that object.
+    * TDD should never be a micro-manager. It's not the test's business whether the class being tested uses a Map or a
+      List internally. All that should be tested is the external *behavior* of its objects. Of course, if you want to "
+      encourage" a class to be a List, you could have tests verifying a "returnPetsInTheOrderTheyWereAdded()". But if
+      the class still decided to use a `LinkedHashMap<K,V>`, that's the class's business.
 
 ## More Java keywords
 
