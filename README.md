@@ -273,7 +273,11 @@
 * **DNS** -- Maps from human-readable domains (e.g. wecancodeit.org) to actual computer IP addresses (e.g.
   159.65.180.149).  https://dns.google/query?name=wecancodeit.org&rr_type=ALL&ecs=&show_dnssec=true
 * **IP Address** an address on the internet. https://whatismyipaddress.com/ip/159.65.180.149
-* 80 and 443 -- The server locations for http and https.  https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
+* 80 and 443 -- The server locations ("port number") for http and
+  https.  https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
+* 8000, 8080, 8088 -- common port numbers for test http servers. (There are multiple numbers because sometimes you want
+  multiple test servers on a single machine for different uses)
+* 3306 -- the default port number for MySQL
 * **HTTP Response Codes**. https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
     * 1xx --> Informational
     * 2xx --> Success
@@ -368,6 +372,8 @@
 * It's common for our Java code to stop at writing to the database, and other teams read from it.
 * Common databases include Oracle, SQL Server, MySQL, Postgres. There's also "H2", which is a fake database that only
   lasts while your program is running.
+    * `choco install mysql -y` installs an MySQL server listening on port 3306 with an empty password for the `root`
+      user.
 
 * **JSON** a concise way for computers to pass information to other computers. A Json message is a Map whose keys are
   strings and whose values are numbers, booleans, strings, lists, or other maps. It is the standard for sending
