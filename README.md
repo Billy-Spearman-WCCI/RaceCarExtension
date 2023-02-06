@@ -129,6 +129,15 @@
     * Note: you will see the acronym "A PIE" to remember the above, but I dislike it because abstraction (programming to
       interfaces), polymorphism (the magic which allows abstraction to work), and encapsulation are essential to OO
       programming, but inheritance is usually a way to reduce duplicate code when classes don't encapsulate well.
+    * In general, classes should know about other interfaces, not other classes.
+    * SOLID
+        * Single responsibility principle -- each class should have one job.
+        * Open/closed principle -- parent classes should not know about the existence of subclasses, and certainly
+          should not need modification for new children to be added.
+        * Liskov substitution principle -- if you can do something with an instance of the parent class, then you also
+          should be able to do the same thing with an instance of the child class.
+        * Interface segregation principle -- more smaller interfaces better than fewer larger interfaces.
+        * Dependency inversion principle -- Spring is Magic.
 * **Imperative** -- A programming style in which the system is told what to do step-by-step.
 * **Declarative** -- A programming style in which the system is told the desired state and isn't micromanaged in the
   executed.
@@ -136,6 +145,13 @@
     * SQL is probably the most famous declarative language. You tell the database which tables to merge together and it
       decides the best strategy for doing so.
 * **Structured** -- An imperative programming style in which statements are organized into nesting contexts.
+* **Inversion of Control** or **Dependency Injection** -- a style of programming in which classes can do two things:
+    * Define how to create instances of classes, and trust the framework to call those constructors when necessary.
+    * Define what instances one expects and trust the framework to provide them as necessary.
+    * In other words, Spring is *magic*.
+    * Another example:
+        * Most code has zero idea which database it's using. Instead, it provides constructors which are passed the
+          information they need.
 * **TDD (Test-driven development)**
     * To the extent TDD is utilized, all code is justified by some test.
     * The best time to use TDD is when you don't know how to otherwise begin.
