@@ -100,6 +100,13 @@
     * `void`: Indicates that the call to a method does not result in a value.
     * **call stack**: The current method, the method from which it is called, the method from which that was called, and
       all the way up to the `main()` method.
+* Anonymous methods: `public static void something(int a, int b) {}` is a *named* function. You need a class to own that
+  method.
+    * `(int a, int b) -> {return a > b;}` is a special syntax when you want to create a function just for a single
+      purpose.
+    * This is used when you want to pass *behavior* to an actual method.
+    * The simplest example is `() -> {do_something();}`, which is a method with no parameters that does something.
+    * This is a relatively new addition to Java, but Spring does use it.
 * `interface`: a list of promised behaviors (i.e. a list of methods -- but without implementations)
     * `implements`
         * Easy definition: an assertion by a class that it implements all promised behaviors of an interface.
@@ -447,12 +454,12 @@ openNewAccount(((((new Account.Builder())
     * src/main/java/..../repositories -- Any special SQL goes here ... otherwise Spring creates all the boilerplate
       automatically.
         * `CrudRepository<TableClass, PrimaryKeyClass>` automatically knows how to create/read/update/delete.
-    * src/main/java/..../restController -- endpoints accepting and consuming JSON.
-    * src/main/java/..../templateControllers -- endpoints populating data for the Thymeleaf HTML templates.
 * **View** takes data and converts it to a form suitable for use (HTML, or JSON, ...)
     * **Thymeleaf** templates in src/main/resources/templates (
       e.g., https://github.com/marshallfWCCI/SpringBootExample1/blob/main/src/main/resources/templates/departments.html )
 * **Controller** contains logic for what data is written to the database and how the information is presented to users.
+    * src/main/java/..../restController -- endpoints accepting and consuming JSON.
+    * src/main/java/..../templateControllers -- endpoints populating data for the Thymeleaf HTML templates.
 
 # **Databases
 
