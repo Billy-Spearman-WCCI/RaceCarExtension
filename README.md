@@ -322,11 +322,13 @@ openNewAccount(((((new Account.Builder())
 * **DNS** -- Maps from human-readable domains (e.g. wecancodeit.org) to actual computer IP addresses (e.g.
   159.65.180.149).  https://dns.google/query?name=wecancodeit.org&rr_type=ALL&ecs=&show_dnssec=true
 * **IP Address** an address on the internet. https://whatismyipaddress.com/ip/159.65.180.149
-* 80 and 443 -- The server locations ("port number") for http and
-  https.  https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
-* 8000, 8080, 8088 -- common port numbers for test http servers. (There are multiple numbers because sometimes you want
-  multiple test servers on a single machine for different uses)
-* 3306 -- the default port number for MySQL
+* **Port Number** -- Each server process on a machine listens on a different port number.
+    * 80 and 443 -- The server locations ("port number") for http and
+      https.  https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
+    * 8000, 8080, 8088 -- common port numbers for test http servers. (There are multiple numbers because sometimes you
+      want multiple test servers on a single machine for different uses)
+    * 3306 -- the default port number for MySQL
+    * `netstat -an | grep LISTEN` -- A bash command to see the current ports your machine has processes listening on.
 * **HTTP Response Codes**. https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
     * 1xx --> Informational
     * 2xx --> Success
