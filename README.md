@@ -392,11 +392,26 @@ openNewAccount(((((new Account.Builder())
 * `@RestController` -- An annotation for linking endpoints (e.g. `/courses/{course_id}/`) to API responses.
 * `@GetMapping`, `@PutMapping`, `@PostMapping`, `@PatchMapping`, and `@DeleteMapping` -- annotations for the five HTTP
   verb endpoints.
+    * `@RequestBody` -- Json supplied in the POST request.
 * `@SpringBootApplication` -- An annotation that Spring should run the `main()` in the class.
 * `@Bean` -- An annotation that Spring should wire in the entity into its framework. Controllers, RestControllers, and
   everything else that Spring knows about are all subclasses of bean.
-* `Logger logger = LoggerFactory.getLogger(ThisClass.class);` -- standard phrasing to create a logger to which you can
-  write interesting information. Used in all Java programs, Spring and non-Spring. We use the `org.slf4j` loggers.
+    * `@Autowired` -- Annotation that Spring should automatically populate this parameter.
+* `@Entity` -- Marks a class as an "entity" which should be persisted in a Relational Database.
+    * `@Table` -- the database table for the entity
+    * `@Index` -- a database index for the table.
+    * `@Column` -- the database column for the specified field in the class.
+    * `@Lob` -- identifies a field containing binary data (e.g. images, etc.)
+    * `@Id` -- Identifies the field primary key for the table.
+    * `@EmbeddedId` -- Identifies the multiple fields which together form the primary key for the table.
+    * `@Embeddable` -- Identifies the class wrapping all of the columns of a composite primary key.
+    * `@MapsId` -- Identifies a field which is the primary key of some other table
+        * `@ManyToOne`, `@OnDelete`, `@JoinColumn` -- Defines the details of the above linkage.
+* `@SpringBootTest`
+    * `@AutoConfigureMockMvc`
+* `final private Logger logger = LoggerFactory.getLogger(ThisClass.class);` -- standard phrasing to create a logger to
+  which you can write interesting information. Used in all Java programs, Spring and non-Spring. We use the `org.slf4j`
+  loggers.
 * **Reflection** -- The ability for Java code to see the structure of Classes programmatically. You should never use
   reflection directly, but it's what allows Spring to work. Every object has a `.class` field which contains a `Class`
   object which you can ask for annotations, method names, etc.
