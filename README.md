@@ -46,6 +46,10 @@
             * (Safe for all the instances of a class to share) String, Integer, ImmutableHashMap --> These cannot change
               on the inside and therefore can be shared by all of the objects of a class. But it's common for such
               classes to return new instances containing modified information.
+    * The data and behavior contained in a Class can be other classes too. Normally, this is super-confusing, so don't
+      do it. The exception is when a class has a "helper".
+        * Another example is when the job of a class is complicated that it needs other classes to solve its problem,
+          but that is a detail no other class should be able to see. Then you could use `private` nested classes.
 * **Type**: what data may be stored in a variable or parameter. May be a primitive type, a `class`, or `interface`.
     * **Primitive Type** -- Non-objects in Java. They cannot be null.
         * `boolean` : `true` or `false`. Note that this is the only value allowed in `if ()`. The boxed version is the
@@ -93,7 +97,18 @@
     * **call stack**: The current method, the method from which it is called, the method from which that was called, and
       all the way up to the `main()` method.
 * `interface`: a list of promised behaviors (i.e. a list of methods -- but without implementations)
-    * `implements`: an assertion by a class that it implements all promised behaviors of an interface.
+    * `implements`
+        * Easy definition: an assertion by a class that it implements all promised behaviors of an interface.
+        * True definition:
+            * If it's a concrete class, then the class implements the interface.
+            * If it's an abstract (partial), then all concrete subclasses implement the interface.
+        * Java's syntax is that one "extends a class" and "implements an interface", but both basically say that you're
+          basing yourself on something else.
+        * Class and interface are actually different.
+            * `class` defines objects with data and behavior.
+            * `interface` lists required behavior.
+            * (We haven't done this yet...might never do so) an `abstract` class *can* say that it requires certain
+              behavior to be implemented by its children.
 
 ## Programming styles
 
@@ -110,7 +125,10 @@
       programming, but inheritance is usually a way to reduce duplicate code when classes don't encapsulate well.
 * **Imperative** -- A programming style in which the system is told what to do step-by-step.
 * **Declarative** -- A programming style in which the system is told the desired state and isn't micromanaged in the
-  executed. `build.gradle` is declarative.
+  executed.
+    * `build.gradle` is declarative.
+    * SQL is probably the most famous declarative language. You tell the database which tables to merge together and it
+      decides the best strategy for doing so.
 * **Structured** -- An imperative programming style in which statements are organized into nesting contexts.
 * **TDD (Test-driven development)**
     * To the extent TDD is utilized, all code is justified by some test.
@@ -154,9 +172,40 @@
       the class still decided to use a `LinkedHashMap<K,V>`, that's the class's business.
 * **Design Patterns** -- Standard solution to design problems
     * **Builder Pattern** -- Standard solution to the problem of constructors getting too complex. Uses the "Fluent"
-      pattern to accumulate parameters one-by-one.
+      pattern to accumulate parameters one-by-one -- rather than having complicated constructors with
+      difficult-to-remember parameters.
+        * Builders can be super-fancy. You could allow .withInterestRate() if .withSavings() was called before but not
+          if .withChecking() was called.
+        * But normally, one of the nice things about builders is they can be called in any order.
     * **Fluent Pattern** -- Methods which end with `return this;` so that multiple methods can be called on a single
       object in a single statement.
+
+```
+// Error-prone
+new Account("string1", "string2", 0.0);
+
+// this is "fluent"
+openNewAccount(new Account.Builder()
+              .withAccountNumber(TEST_ACCOUNT_NUMBER1)
+              .withType(TEST_ACCOUNT_TYPE1)
+              .withBalance(TEST_ACCOUNT_BALANCE1)
+              .build());
+             
+// Is identical to 
+openNewAccount(((((new Account.Builder())
+                  ).withAccountNumber(TEST_ACCOUNT_NUMBER1)
+                 ).withType(TEST_ACCOUNT_TYPE1)
+                ).withBalance(TEST_ACCOUNT_BALANCE1)
+               ).build());
+              
+// is easier to read then
+// Builder b = new Builder();
+// b.setAccountNumber("");
+// b.setType();
+// b.setBalance();
+// Account a = b.build();
+```
+
 * **Convention over Configuration** -- Put things where the framework expects and you don't to tell it explicitly. So
   IntelliJ *expects* that code will be in src/main/java and src/test/java. If you that, your configuration is *much*
   easier.
@@ -358,6 +407,22 @@
     * Delete rows
 * You can also ask databases to do fancy things like search records, and combine records from multiple tables into a
   single result, using a language called SQL.
+
+```
+SELECT * FROM dept_manager dm, departments d, employees e
+ WHERE d.dept_no = dm.dept_no 
+   AND e.emp_no = dm.emp_no
+   AND TO_DATE < SYSDATE()
+```
+
+A database might have something like:
+
+* A Pet table, indexed by PetID and containing other columns like name and birthdate.
+* A Shelter table, indexed by ShelterID and containing information like address.
+* A Admission table, which says PetID and ShelterID occurred on a an admission_date.
+    * This table does not contain addresses or birthdays. Instead, you take the ShelterID or PetID and look in their
+      tables to find that information.
+
 * Databases are good at two hard things:
     * Not losing your data. Allowing multiple people to write to a database without conflicting with each other. ("
       CRUD", transactions).
@@ -447,6 +512,23 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
   new branch.
 * It's **far** less confusing if `git status` is clean before you run either type `git checkout`.
 * `git branch` shows all branches and the "current" one is starred and hopefully on your bash prompt in blue.
+
+## Git commands
+
+* `git status` -- run this early and often.
+* `git pull` -- run this early and often. Pulls commits from the corresponding branch on GitHub, and attempts to merge
+  them in (if necessary). The more frequently you pull, the smaller the merges, and the more likely that any merges will
+  be painless.
+* `git add .` -- Add changes in the current directory (and subdirectories thereof) to the be included in the
+  next `git commit`. This is called "staging" the changes.
+* `git commit -m "Useful message"` -- stores the staged changes into your repository. The message should be useful most
+  of all to you. Smaller commits are far easier to summarize -- which is yet another reason to commit frequently.
+* `git reset HEAD~1` -- Undos the most recent commit -- *but* should only be used if that change is not yet pushed.
+* `git push`
+* `git checkout -b FEATURE_SOMEFEATURE` -- Creates a new branch, allowing for experimentation independent of maintenance
+  which is occurring on the primary branch. I suggest that you only run this command when `git status` is clean.
+* `git checkout FEATURE_SOMEFEATURE`, `git checkout main` -- Switches your workspace (e.g. the files in your project) to
+  an existing branch. I suggest that you only run this command when `git status` is clean.
 
 # My opinions
 
