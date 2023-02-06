@@ -425,7 +425,14 @@ openNewAccount(((((new Account.Builder())
     * Spring provides an "Object-Relational Mapping" (called Hibernate) which allows you to *annotate* your classes and
       fields with information about the tables and columns they map into the database and then Spring will take care of
       the plumbing.
+    * src/main/java/..../entities -- Java objects annotated with their database mapping.
+    * src/main/java/..../repositories -- Any special SQL goes here ... otherwise Spring creates all the boilerplate
+      automatically.
+    * src/main/java/..../restController -- endpoints accepting and consuming JSON.
+    * src/main/java/..../templateControllers -- endpoints populating data for the Thymeleaf HTML templates.
 * **View** takes data and converts it to a form suitable for use (HTML, or JSON, ...)
+    * **Thymeleaf** templates in src/main/resources/templates (
+      e.g., https://github.com/marshallfWCCI/SpringBootExample1/blob/main/src/main/resources/templates/departments.html )
 * **Controller** contains logic for what data is written to the database and how the information is presented to users.
 
 # **Databases
