@@ -93,6 +93,10 @@
     * `return`: Exit the current method. If the method returns a value, specifies the value to return.
     * **signature**: The definition of the types of the parameters a method accepts and the type of the value the method
       returns. Also, what types of Exceptions it might throw.
+        * Java allows for a single class to have multiple methods with the same name, as long as the parameters are
+          different enough that it can always tell which to call. When trying to figure out which method to call, Java
+          does not look at the return type.
+        * Don't do this unless you have a good reason.
     * `void`: Indicates that the call to a method does not result in a value.
     * **call stack**: The current method, the method from which it is called, the method from which that was called, and
       all the way up to the `main()` method.
@@ -104,6 +108,8 @@
             * If it's an abstract (partial), then all concrete subclasses implement the interface.
         * Java's syntax is that one "extends a class" and "implements an interface", but both basically say that you're
           basing yourself on something else.
+            * I usually put grandparents at the top and grandchildren at the bottom. As you go towards the bottom of the
+              page, more and more information and behavior is added -- but *never* subtracted.
         * Class and interface are actually different.
             * `class` defines objects with data and behavior.
             * `interface` lists required behavior.
@@ -231,6 +237,13 @@ openNewAccount(((((new Account.Builder())
 * `super()` -- The first line of most constructor will be to call the constructor of its parent class.
 * `abstract` -- A class which has partially-defined behavior and so cannot have instances. But it will have **concrete**
   subclasses which may create instances as long as they implement all of the missing methods.
+    * `abstract` is the opposite of "concrete".
+    * Suppose that `Food` is the parent class, `Apple` is the child class. Food can have properties, like
+      .getCalorieCount(). But you cant get a can of "Food". You can get an apple.
+    * Classes which can't be instantiated (fancy word for creating instances) because they don't implement all of the
+      behavior they promise are called "abstract".
+    * The only reason to have an abstract class is when you want to create at least subclasses which share some
+      behavior.
 * **Class Hierarchy** -- a diagram showing which classes extend and/or implement other classes and interfaces. For
   instance, https://en.wikipedia.org/wiki/Java_collections_framework#/media/File:Java.util.Collection_hierarchy.svg
 * Visibility (of data and behavior)
@@ -527,6 +540,22 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
 * It's **far** less confusing if `git status` is clean before you run either type `git checkout`.
 * `git branch` shows all branches and the "current" one is starred and hopefully on your bash prompt in blue.
 
+## Bash commands
+
+* `cd` -- Navigate to your home directory.
+* `cd ..` -- Navigate to the parent directory.
+* `pwd` -- Display the actual current directory.
+* `ls -l` -- list files in current directory. Shows the size (in bytes) of each file and when they were last modified.
+* `explorer .` -- Opens Windows File Explorer in the current directory.
+* `code .` -- Opens VSCode in the current directory.
+
+### Dangerous Bash commands
+
+* `rm` -- Delete a file
+* `mv` -- Rename a file
+* `touch` -- Create a file
+* `>` and `>>` -- To write to (or append to) a file.
+
 ## Git commands
 
 * `git help` -- When you forget the name of a subcommand.
@@ -538,7 +567,8 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
 * `git add .` -- Add changes in the current directory (and subdirectories thereof) to the be included in the
   next `git commit`. This is called "staging" the changes.
 * `git add README.md` -- Stages only the one file. Useful when you're working on multiple changes and want to commit
-  them separately.
+  them separately. (Perhaps one file you're working on has lots of additional System.out.println() for debugging that
+  you don't want to confuse things in the repository.)
 * `git commit -m "Useful message"` -- stores the staged changes into your repository. The message should be useful most
   of all to you. Smaller commits are far easier to summarize -- which is yet another reason to commit frequently.
 * `git reset HEAD~1` -- Undos the most recent commit -- *but* should only be used if that change is not yet pushed.
