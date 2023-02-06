@@ -492,6 +492,8 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
 
 * We also want to be able to continue adding functionality to VirtualPetApp, while experimenting on the side with
   changing between ArrayList and HashMap.
+* We want the advantage of creating a detailed `commit -m` log, but not bother anyone else on our team until we've
+  completed a coherent body of work.
 
 ## Branching
 
@@ -529,6 +531,11 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
   which is occurring on the primary branch. I suggest that you only run this command when `git status` is clean.
 * `git checkout FEATURE_SOMEFEATURE`, `git checkout main` -- Switches your workspace (e.g. the files in your project) to
   an existing branch. I suggest that you only run this command when `git status` is clean.
+
+# Too-advanced to discuss now
+
+* End-point **Pagination**, e.g. https://www.baeldung.com/rest-api-pagination-in-spring.
+* JPA Laziness, e.g. https://www.baeldung.com/hibernate-lazy-eager-loading
 
 # My opinions
 
