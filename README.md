@@ -179,6 +179,16 @@
         * But normally, one of the nice things about builders is they can be called in any order.
     * **Fluent Pattern** -- Methods which end with `return this;` so that multiple methods can be called on a single
       object in a single statement.
+* **Refactoring** -- Simplifying your code without changing its behavior.
+    * If you're doing TDD, refactoring can occur anytime: (1) all tests are currently passing, and (2) you've already
+      committed to git.
+    * Refactor in as small steps as humanly possible.
+        * Rename a single method or field, and then run your tests again.
+        * If you're introducing an interface to a class which currently doesn't implement any interface, start with an
+          empty interface, and add one method at a time.
+        * Refactor early and often.
+    * Refactoring should not be done just because you think the code will be faster ... that's an entirely separate
+      discussion. Refactoring should be to make the code cleaner.
 
 ```
 // Error-prone
@@ -519,16 +529,20 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
 
 ## Git commands
 
+* `git help` -- When you forget the name of a subcommand.
+* `git status -h` -- When you forget the details of a subcommand, like `status`.
 * `git status` -- run this early and often.
 * `git pull` -- run this early and often. Pulls commits from the corresponding branch on GitHub, and attempts to merge
   them in (if necessary). The more frequently you pull, the smaller the merges, and the more likely that any merges will
   be painless.
 * `git add .` -- Add changes in the current directory (and subdirectories thereof) to the be included in the
   next `git commit`. This is called "staging" the changes.
+* `git add README.md` -- Stages only the one file. Useful when you're working on multiple changes and want to commit
+  them separately.
 * `git commit -m "Useful message"` -- stores the staged changes into your repository. The message should be useful most
   of all to you. Smaller commits are far easier to summarize -- which is yet another reason to commit frequently.
 * `git reset HEAD~1` -- Undos the most recent commit -- *but* should only be used if that change is not yet pushed.
-* `git push`
+* `git push` -- Sends changes on the current branch to GitHub. Works best if you first did a `git pull`.
 * `git checkout -b FEATURE_SOMEFEATURE` -- Creates a new branch, allowing for experimentation independent of maintenance
   which is occurring on the primary branch. I suggest that you only run this command when `git status` is clean.
 * `git checkout FEATURE_SOMEFEATURE`, `git checkout main` -- Switches your workspace (e.g. the files in your project) to
