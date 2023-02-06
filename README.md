@@ -403,6 +403,8 @@ openNewAccount(((((new Account.Builder())
     * `@Column` -- the database column for the specified field in the class.
     * `@Lob` -- identifies a field containing binary data (e.g. images, etc.)
     * `@Id` -- Identifies the field primary key for the table.
+        * `@GeneratedValue` -- When inserting records into the table, automatically compute a new unique value for the
+          primary key field.
     * `@EmbeddedId` -- Identifies the multiple fields which together form the primary key for the table.
     * `@Embeddable` -- Identifies the class wrapping all of the columns of a composite primary key.
     * `@MapsId` -- Identifies a field which is the primary key of some other table
@@ -428,6 +430,7 @@ openNewAccount(((((new Account.Builder())
     * src/main/java/..../entities -- Java objects annotated with their database mapping.
     * src/main/java/..../repositories -- Any special SQL goes here ... otherwise Spring creates all the boilerplate
       automatically.
+        * `CrudRepository<TableClass, PrimaryKeyClass>` automatically knows how to create/read/update/delete.
     * src/main/java/..../restController -- endpoints accepting and consuming JSON.
     * src/main/java/..../templateControllers -- endpoints populating data for the Thymeleaf HTML templates.
 * **View** takes data and converts it to a form suitable for use (HTML, or JSON, ...)
