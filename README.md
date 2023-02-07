@@ -138,6 +138,7 @@
       interfaces), polymorphism (the magic which allows abstraction to work), and encapsulation are essential to OO
       programming, but inheritance is usually a way to reduce duplicate code when classes don't encapsulate well.
     * In general, classes should know about other interfaces, not other classes.
+        * When designing OO programs, the primary question is: who needs to know what?
     * SOLID
         * Single responsibility principle -- each class should have one job.
         * Open/closed principle -- parent classes should not know about the existence of subclasses, and certainly
