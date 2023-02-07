@@ -104,9 +104,10 @@
   method.
     * `(int a, int b) -> {return a > b;}` is a special syntax when you want to create a function just for a single
       purpose.
-    * This is used when you want to pass *behavior* to an actual method.
+    * This is used when you want to pass *behavior* as a parameter to an actual method.
     * The simplest example is `() -> {do_something();}`, which is a method with no parameters that does something.
     * This is a relatively new addition to Java, but Spring does use it.
+    * These are sometimes called **lambda expressions**.
 * `interface`: a list of promised behaviors (i.e. a list of methods -- but without implementations)
     * `implements`
         * Easy definition: an assertion by a class that it implements all promised behaviors of an interface.
@@ -248,6 +249,18 @@ openNewAccount(((((new Account.Builder())
 * **Convention over Configuration** -- Put things where the framework expects and you don't to tell it explicitly. So
   IntelliJ *expects* that code will be in src/main/java and src/test/java. If you that, your configuration is *much*
   easier.
+
+## Code exploration styles
+
+* Make fields and methods `final` and `private`, and see if IntelliJ complains. Remove apparently-unused constructors
+  and see if IntelliJ complains. Add `@Override` annotations if you think a method might be overriding something in the
+  inheritance tree...if you're wrong IntelliJ will tell you and you'll learn something.
+* Create a minimal example and then step through with the debugger.
+* Checks for conditions which you believe are impossible, and then log them.
+* For Spring applications, https://en.wikipedia.org/wiki/Gene_knockout works well for understanding how the components
+  fit together ... temporarily remove an annotation and see what happens. (In the real world, if you're using Spring
+  then you'll have IntelliJ Ultimate Edition rather than IntelliJ Community Edition, and there are more tools to
+  visualize how Spring wires beans together.)
 
 ## More Java keywords
 
