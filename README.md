@@ -477,6 +477,8 @@ openNewAccount(((((new Account.Builder())
 
 # **Databases
 
+* Java servers lose their memory when they restart, so we write data we care about to databases. Some might argue that
+  the primary job of most servers is to feed data to databases, and present data already in databases.
 * Database contain tables of information. Tables contain rows of information. Different tables in a database contain
   different types of information. So one table might contain student and their addresses. Another table might contain
   the list of courses. Another table might contain class lists.
