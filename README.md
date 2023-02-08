@@ -433,7 +433,12 @@ openNewAccount(((((new Account.Builder())
 * `@SpringBootApplication` -- An annotation that Spring should run the `main()` in the class.
 * `@Bean` -- An annotation that Spring should wire in the entity into its framework. Controllers, RestControllers, and
   everything else that Spring knows about are all subclasses of bean.
-    * `@Autowired` -- Annotation that Spring should automatically populate this parameter.
+    * `@Autowired` -- Annotation that Spring should automatically populate this parameter. This is sort of the partner
+      to `@Bean`, in that it *uses* beans, whereas `@Bean` *provides* beans.
+    * `@Qualifier` -- Allows Spring to manage two beans of the same type. Used when declaring them, to "name" them. Used
+      when autowiring them, to choose one.
+        * `@Primary` -- An alternative to `@Qualifier`, when one of the beans should be used unless the consuming
+          component specified otherwise.
 * `@Entity` -- Marks a class as an "entity" which should be persisted in a Relational Database.
     * `@Table` -- the database table for the entity
     * `@Index` -- a database index for the table.
@@ -457,6 +462,21 @@ openNewAccount(((((new Account.Builder())
 * **Gradle** -- a system for defining the configuration of a Java project in a `build.gradle` file, written in the
   "Groovy" language. Defines what version of Java is required, which libraries to download and use, etc. Is a modern
   replacement for the "Maven" system (which used a `pom.xml` file instead).
+
+## Getting started with a Spring Boot Project
+
+* Option A.
+    * http://start.spring.io, and specify which features of Spring you want (and has *many*), and then download a
+      settings.gradle, and start that way.
+* Option B.
+    * Find a sample program which does much of what we want, and tweak it. For
+      example, https://github.com/spring-guides/gs-spring-boot.git
+* Option C.
+    * To start with a project you already know and tweak it.
+    * https://github.com/marshallfWCCI/SpringBootExample1/ --> REST, Thymeleaf, and Database access.
+    * https://github.com/marshallfWCCI/SpringBootExample2/ --> Only Thymeleaf
+* Also:
+    * The `build.gradle` file is small and so fairly straightforward to make sure you got right.
 
 # **Model-View-Controller" style of web server programming ("MVC")
 
@@ -646,6 +666,7 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
 
 * End-point **Pagination**, e.g. https://www.baeldung.com/rest-api-pagination-in-spring.
 * JPA Laziness, e.g. https://www.baeldung.com/hibernate-lazy-eager-loading
+* Default methods in interfaces, e.g. https://www.baeldung.com/java-static-default-methods
 
 # My opinions
 
