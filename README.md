@@ -272,7 +272,11 @@ openNewAccount(((((new Account.Builder())
       we'll talk about tomorrow). `@Override` is put on the method in the subclass.
     * The parent class should either:
         1. Not know or care if the method is overridden or not, or
-        2. Explicitly prohibit overriding by putting the `final` keyword on the method.
+        2. Explicitly prohibit overriding by putting the `final` keyword on the method, or
+        3. *Force* the child classes to implement the method by not providing an implementation at all. (Such parent
+           classes will be abstract, of course.)
+* `@Deprecated` is an annotation which merely tells other coders not to use this method, and is likely to be removed in
+  future releases. Also sometimes used if a given method should *only* be used in very special cases.
 * **Instance variables** -- the fields you've seen belonging to object instances.  (There is also a concept of **class
   variable** which should only be used in very specific instances, which we might not even encounter this course.)
 * `extends` -- A **subclass** `extend`s another `class`. If we tell Java that C extends B and B extends A, then C
@@ -738,9 +742,10 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
       human-readable descriptions of each class and the relationships (e.g. one-to-many or many-to-many) between them.
     * Annotate your classes with JPA annotations (`@Entity`, etc.) Create a super-simple `CrudRepository` per class.
       Create the standard `main()` with the usual `@SpringBootAppplication`. Run the program. See if Spring is able to
-      create the database tables, or whether you have missed something in your annotations. (If it doesn't even try to
-      create tables, perhaps annotations like `spring.jpa.hibernate.ddl-auto=create-drop` are missing.) Verify that the
-      tables exist (and look roughly like what you expect) by using a tool like the VSCode MySQL plugin.
+      create the database tables, or whether you have missed something in your annotations. Perhaps Spring requires
+      zero-argument constructors, etc. (If it doesn't even try to create tables, perhaps annotations
+      like `spring.jpa.hibernate.ddl-auto=create-drop` are missing.) Verify that the tables exist (and look roughly like
+      what you expect) by using a tool like the VSCode MySQL plugin.
     * Add some sample records to your database by using a Populator-style component. Run the process again and verify
       that the data is written to MySQL. Verify again using the plugin or similar tool.
     * *Now* you can start working on the `@RestController` endpoints.
