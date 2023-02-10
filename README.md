@@ -125,6 +125,9 @@
             * `interface` lists required behavior.
             * (We haven't done this yet...might never do so) an `abstract` class *can* say that it requires certain
               behavior to be implemented by its children.
+        * Every time you can replace a reference to a class with a reference to an interface, your code becomes easier
+          to read. So if `Race.java` can have a `List<Contestant>` rather than `List<GenericRacer>`, that's a win.
+            * This is called "programming to interfaces" rather than "programming to classes", and is a "best practice".
 
 ## Programming styles
 
@@ -342,6 +345,12 @@ openNewAccount(((((new Account.Builder())
       common parent allows us to write `public void doIt() throws MyApplicationException`.
     * It's easy to get into a pattern in which every method is declared to possibly throw MyApplicationException, but
       methods which don't throw exceptions are easier to reason about and put less burden upon those who call them.
+    * Suppose you're a method which receives a filename and is supposed to read from the file and do something with it.
+      And you ask `System` to open that file and it refuses. You will receive an exception which not only says "unable
+      to open file", but is likely to give a reason why (e.g., "file doesn't exist", or "you don't rights to read the
+      file", etc.) And the exception will contain both the name of the file and perhaps the reason.
+    * In addition, Exceptions contain the entire stack trace of where they occurred (e.g. A() called B() called C()
+      called D() and the exception occurred in D()).
 * `enum` -- Defines a small set of possibilities. Can do many of the things a `short` can do (e.g. be part of a `switch`
   statement).
 
@@ -355,7 +364,9 @@ openNewAccount(((((new Account.Builder())
 * `for (Contestant contestant : contestants) {statements;}` -- the modern way to iterate through any collection.
     * The thing to the right of the `:` can be *anything* which can supply values one-by-one. It can be an `array`,
       or `List<T>`, or `Set<T>` or `map.getValues()` or `map.getKeys()` or anything which is "Iterable".
-    * The thing to the left of the `:` is just the type and name of each such value.
+    * The thing to the left of the `:` is just the type and name of each such value. Basically, every collection-like
+      thing in Java is
+      Iterable -- https://en.wikipedia.org/wiki/Java_collections_framework#/media/File:Java.util.Collection_hierarchy.svg
 * `break` -- Immediately exit the current loop (or switch block)
 * `continue` -- Immediately go to the top of the loop for the next iteration.
 * `switch(val) {case val1: ... default: }` -- Java finds the first case that matches and starts running code at that
