@@ -1,3 +1,19 @@
+# Projects containing useful code
+
+* https://github.com/marshallfWCCI/RaceCarInterface
+    * Step-by-step refactoring
+* https://github.com/2023-Spring-Cohort/RaceCarExtension/
+    * This Structured Glossary
+    * Example of subclasses, interfaces, abstract classes, etc.
+* https://github.com/marshallfWCCI/SpringBootExample1/tree/main/src/main/java/com/example/springboot
+    * Spring boot: REST endpoints, Thymeleaf HTML templates. Entities for the Employees mySQL database.
+* https://github.com/marshallfWCCI/SpringBootExample2/tree/main/src/main/java/com/example/springboot
+    * Spring boot: Just Thymeleaf templates ... no REST or JPA.
+* https://github.com/marshallfWCCI/MarshallCampusExample
+    * My fork of https://github.com/2022-Fall-Cohort/CampusExample, with comments and examples.
+* https://github.com/marshallfWCCI/p134022/blob/main/src/main/java/org/wecancodeit/LinearIn.java
+    * My solution to https://codingbat.com/prob/p134022
+
 # Glossary
 
 ## Tools
