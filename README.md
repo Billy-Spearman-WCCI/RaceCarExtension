@@ -97,6 +97,8 @@
           different enough that it can always tell which to call. When trying to figure out which method to call, Java
           does not look at the return type.
         * Don't do this unless you have a good reason.
+        * Java also allows a special `...` syntax to say that the last parameter to a method can be repeated any number
+          of times (including zero) and then be presented as an array. https://www.baeldung.com/java-varargs
     * `void`: Indicates that the call to a method does not result in a value.
     * **call stack**: The current method, the method from which it is called, the method from which that was called, and
       all the way up to the `main()` method.
@@ -265,8 +267,12 @@ openNewAccount(((((new Account.Builder())
 
 ## More Java keywords
 
-* `@Override` is an example of an **annotation**. `@Override` identifies when a method is either required by an
-  interface or redefines an existing method (this case we'll talk about tomorrow)
+* `@Override` is an example of an **annotation**.
+    * `@Override` identifies when a method is either required by an interface or redefines an existing method (this case
+      we'll talk about tomorrow). `@Override` is put on the method in the subclass.
+    * The parent class should either:
+        1. Not know or care if the method is overridden or not, or
+        2. Explicitly prohibit overriding by putting the `final` keyword on the method.
 * **Instance variables** -- the fields you've seen belonging to object instances.  (There is also a concept of **class
   variable** which should only be used in very specific instances, which we might not even encounter this course.)
 * `extends` -- A **subclass** `extend`s another `class`. If we tell Java that C extends B and B extends A, then C
@@ -319,6 +325,9 @@ openNewAccount(((((new Account.Builder())
     * **Increment** -- to add 1 to something.
     * **Decrement** -- to subtract 1 to something.
 * `for (Contestant contestant : contestants) {statements;}` -- the modern way to iterate through any collection.
+    * The thing to the right of the `:` can be *anything* which can supply values one-by-one. It can be an `array`,
+      or `List<T>`, or `Set<T>` or `map.getValues()` or `map.getKeys()` or anything which is "Iterable".
+    * The thing to the left of the `:` is just the type and name of each such value.
 * `break` -- Immediately exit the current loop (or switch block)
 * `continue` -- Immediately go to the top of the loop for the next iteration.
 * `switch(val) {case val1: ... default: }` -- Java finds the first case that matches and starts running code at that
@@ -341,6 +350,8 @@ openNewAccount(((((new Account.Builder())
     * Good when you want to access a specific item with a key.
     * Good when you have a natural key. (Social Number for people, or address for houses).
     * Not good when you want to act on all things in a specific order.
+    * Good when you only care about the last value for a given key, because multiple `.put()` on the same key will
+      overwrite.
     * HashMaps operate by allocating all its elements into many rooms, so that each room contains only a handful of
       entries. And given the key, it is super-fast to find the right room. And once you know the room, there are only a
       handful of entries to check one-by-one.
@@ -372,6 +383,17 @@ openNewAccount(((((new Account.Builder())
   Instead, it has the value `null`.
 * `huh.getCurrentMileage()` results in an Exception, `NullPointerException`. How could it not throw some sort of
   exception? This is such a common source of pain that `NullPointerException` is known as "NPE".
+* Variables in Java are not objects -- they are references to objects. And that reference can be `null`. And if you try
+  to call a method on a variable whose value is `null`, you get a `NullPointerException` and if you catch it, your
+  program will crash.
+* So, `map.get("Nonexistent Key")` returns null, but that's lousy design.
+* A better design is for our methods to return something like `Optional<Odometer>`, and this means that the return is
+  *either* an Odometer or nothing.
+* It is almost exactly the same as a list which can have exactly 0 or 1 elements.
+* It should be used when you're not guaranteed to actually return an object.
+* When you get an `Optional<T>`, you *have* to check whether it is populated before you use its actual value.
+* Without Optional, you could just "tell" your callers to check to see if the returned value `==null`, but people don't
+  listen.
 
 # The Internet
 
@@ -438,7 +460,7 @@ openNewAccount(((((new Account.Builder())
     * `@Qualifier` -- Allows Spring to manage two beans of the same type. Used when declaring them, to "name" them. Used
       when autowiring them, to choose one.
         * `@Primary` -- An alternative to `@Qualifier`, when one of the beans should be used unless the consuming
-          component specified otherwise.
+          component specified otherwise with a `@Qualifier` as part of its `@Autowired`.
 * `@Entity` -- Marks a class as an "entity" which should be persisted in a Relational Database.
     * `@Table` -- the database table for the entity
     * `@Index` -- a database index for the table.
@@ -455,7 +477,7 @@ openNewAccount(((((new Account.Builder())
     * `@AutoConfigureMockMvc`
 * `final private Logger logger = LoggerFactory.getLogger(ThisClass.class);` -- standard phrasing to create a logger to
   which you can write interesting information. Used in all Java programs, Spring and non-Spring. We use the `org.slf4j`
-  loggers.
+  loggers.  `logger.error("Somehow the .name is null here");`
 * **Reflection** -- The ability for Java code to see the structure of Classes programmatically. You should never use
   reflection directly, but it's what allows Spring to work. Every object has a `.class` field which contains a `Class`
   object which you can ask for annotations, method names, etc.
@@ -509,7 +531,7 @@ openNewAccount(((((new Account.Builder())
 * Consistency within a table is key -- a given field must have the same meaning in each row in that table.
 * Tables can refer to other tables. So "student_id" might be the key to one table, and just a field in another.
 * Databases don't handle lists or maps well within a row ... instead you have lots of rows.
-* Databases can ("CRUD")
+* Databases can ("CRUD"), so we have `@CrudRepository` in Spring.
     * Create rows
     * Read rows
     * Update rows
@@ -681,6 +703,23 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
 * Let IntelliJ reformat your code so the formatting reflects the actual structure.
 * Put useful information in the README.md in the root of your project.
 * Segregate code smells
+* To write a Spring Boot REST/JPA application:
+    * Define the core concepts of your application as plain (and unannotated) classes within a "model" or "entities"
+      package. Try out their constructors and methods using classic JUnit tests. Make sure that the order in which
+      complex structures are constructed make sense to you. Make sure that the business logic (if any) in the entities
+      also works.
+    * Write out the REST endpoints you're planning on providing. For each: what's the endpoint, what's the HTTP verb,
+      what data is expected and what data will be returned. Put all of this data in your README.md file. Verify that the
+      classes you defined above allow you to actually support these endpoints. Also include in the README.md
+      human-readable descriptions of each class and the relationships (e.g. one-to-many or many-to-many) between them.
+    * Annotate your classes with JPA annotations (`@Entity`, etc.) Create a super-simple `CrudRepository` per class.
+      Create the standard `main()` with the usual `@SpringBootAppplication`. Run the program. See if Spring is able to
+      create the database tables, or whether you have missed something in your annotations. (If it doesn't even try to
+      create tables, perhaps annotations like `spring.jpa.hibernate.ddl-auto=create-drop` are missing.) Verify that the
+      tables exist (and look roughly like what you expect) by using a tool like the VSCode MySQL plugin.
+    * Add some sample records to your database by using a Populator-style component. Run the process again and verify
+      that the data is written to MySQL. Verify again using the plugin or similar tool.
+    * *Now* you can start working on the `@RestController` endpoints.
 
 # Principles
 
@@ -764,3 +803,4 @@ should continue to use it. But don't just copy stuff without understanding.
 [^2]: The whole point of encapsulation is that we don't have to understand details if they're hidden behind
 abstractions. So we can tell students: "The `Console` object knows how to write stuff to the screen. We can trust that
 it does so and not worry about how it does so."
+********
