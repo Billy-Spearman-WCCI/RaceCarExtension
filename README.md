@@ -314,6 +314,30 @@ openNewAccount(((((new Account.Builder())
     * `try {} catch (Exception e) {}` block -- code that is prepared to handle a thrown exception and decide what should
       happen next.  (If the exception occurs while trying to read a number from input, perhaps issue a warning and try
       again.)
+    * Exceptions are great, because they allow you to *immediately* exit the current program flow when you encounter a
+      problem. Exceptions are confusing, because they exit the current program flow from the middle. Only use Exceptions
+      when there is a problem -- not just as a way to exit out of a loop; changing the return type to something
+      like `Optional<T>` is preferable when your logic allows it.
+    * As shorthand, we say that a method is "throwing an Exception" ... but the truth is that we're actually throwing a
+      object which is an instance of the `Exception` class (or one of its subclasses). As whenever you define a
+      subclass, you can add whatever fields you wish and add parameters to constructors to populate those fields. It is
+      often quite useful to include useful diagnostic information (e.g., what was the name of the file you couldn't
+      open) when throwing exceptions. At the very least, nearly all Exception constructors allow you specify a `String`
+      message.
+    * Many constructors also allow you to include *another* exception in the constructor. (E.g., I could write code
+      which catches a standard exception like `NullPointerException` and makes it a parameter to another throw.
+      in `try {} catch (NullPointerException e) {throw new PetNotFoundException("Pet " + petName + " not found", e);}`)
+    * If you are writing a large application and are creating multiple subclasses of Exception (e.g., one for each
+      unexpected condition), it is quite convenient to have them all descend from a parent class (
+      e.g. `class PetNotFoundException extends MyApplicationException`).
+    * Other than Exceptions descending
+      from `RuntimeException` (https://docs.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html), every method
+      which *might* throw an exception *must* declare so in its signature. Exceptions which must be declared are
+      called "checked exceptions" and descendants of `RunTimeException` are called "unchecked exceptions".
+    * Instead of having to write `public void doIt() throws PetNotFoundException, ShelterNotFoundException`, having a
+      common parent allows us to write `public void doIt() throws MyApplicationException`.
+    * It's easy to get into a pattern in which every method is declared to possibly throw MyApplicationException, but
+      methods which don't throw exceptions are easier to reason about and put less burden upon those who call them.
 * `enum` -- Defines a small set of possibilities. Can do many of the things a `short` can do (e.g. be part of a `switch`
   statement).
 
