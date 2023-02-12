@@ -144,6 +144,10 @@
         * Every time you can replace a reference to a class with a reference to an interface, your code becomes easier
           to read. So if `Race.java` can have a `List<Contestant>` rather than `List<GenericRacer>`, that's a win.
             * This is called "programming to interfaces" rather than "programming to classes", and is a "best practice".
+    
+    ## HTML
+* **Hyper Text Mark-up Language** -- We are using Mark-up Language to write this document here, but HTML is the 
+     unified language of the internet. If you're looking at a web page, you're looking at HTML.
 
 ## Programming styles
 
