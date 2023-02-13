@@ -146,29 +146,30 @@
             * This is called "programming to interfaces" rather than "programming to classes", and is a "best practice".
     
     ## HTML
-* **Hyper Text Mark-up Language** -- We are using Mark-up Language to write this document here, but HTML is the 
+* **Hyper Text Markup Language** -- We are using Markdown Language to write this document here, but HTML is the 
      unified language of the internet. If you're looking at a web page, you're looking at HTML.
 * **tags**: A way to reference HTML elements within the documents most (not all) tags will have an 
   opening and closing tag with the syntax <></>
 * **useful tags and what they do**: 
-* Division "<div></div>" -- A commonly used wrapper, used to contain elements for reference in CSS.
-* Style "<style></style>" -- Used for internal styling with CSS. It is not best practice to use internal styling.
-* Title "<title></title>" -- This is the title of the HTML document, it will not show-up on the webpage, but the tab of the browser.
-* Span "<span></span>" -- Inline div, used to select elements within text.
-* Tables "<table></table>" -- Table
-  Table header "<th></th>" 
-  Table rows "<tr></tr>"
-  Table cell "<td></td>" -- also known as "table data"
-* Code "<code></code>" --  Used to define a piece of computer code. The content inside is displayed in the browser's default monospace font.
-* Break "<br>" -- Akin to "break;" in Java. Will not have an end tag.
-* Body "<body></body>" -- A container that wraps most of the webpage, most HTML will exist in the body.
-* Header "<h1></h1>" -- Header 1-6 Where 1 being the largest and 6 being the smallest, used for heading individual sections. 
+* Division `<div></div>` -- A commonly used wrapper, used to contain elements for reference in CSS.
+* Style `<style></style>` -- Used for internal styling with CSS. It is not best practice to use internal styling.
+* Title `<title></title>` -- This is the title of the HTML document, it will not show-up on the webpage, but the tab of the browser.
+* Span `<span></span> `-- Inline div, used to select elements within text.
+* Tables `<table></table>` -- Table
+  * Table header `<th></th>`
+  * Table rows `<tr></tr>`
+  * Table cell `<td></td>` -- also known as "table data"
+* Code `<code></code>` --  Used to define a piece of computer code. The content inside is displayed in the browser's default monospace font.
+* Break `<br>` -- Akin to "break;" in Java. Will not have an end tag.
+* Body `<body></body>` -- A container that wraps most of the webpage, most HTML will exist in the body.
+* Header `<h1></h1>` -- Header 1-6 Where 1 being the largest and 6 being the smallest, used for heading individual sections. 
   Think Headlines on a newspaper 
 * List -- There are two types of commonly used list: 
-  Ordered "<ol></ol>" (Numbered 1-X) and "<ul></ul>" Un-ordered (appears on the webpage as they load)
-* Paragraph "<p></p>" -- Normally used for the vast majority of text that appears on a web page; A small text element.
-* Anchor "<a></a>" -- Used, in combination with "href="link destination"" to link pages together.
-* Footer "<footer></footer>" Exists at the very bottom of the page. 
+  * Ordered `<ol></ol>` (Numbered 1-X)  
+  * Un-ordered`<ul></ul>` (appears on the webpage as they load)
+* Paragraph `<p></p>`-- Normally used for the vast majority of text that appears on a web page; A small text element.
+* Anchor `<a></a>` -- Used, in combination with "href="link destination"" to link pages together.
+* Footer `<footer></footer>` Exists at the very bottom of the page. 
 
 ## Programming styles
 
