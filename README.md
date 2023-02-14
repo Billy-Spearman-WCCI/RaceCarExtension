@@ -588,8 +588,6 @@ openNewAccount(((((new Account.Builder())
             * The cascade is so we can add new Secondaries as implied when we are creating new Primaries.
         * And the Secondary class contains something
           like `@OneToMany(mappedBy="secondaries") @JsonIgnore private Collection<Primary> primaries = new HashSet<>();`.
-* `@SpringBootTest`
-    * `@AutoConfigureMockMvc`
 * `final private Logger logger = LoggerFactory.getLogger(ThisClass.class);` -- standard phrasing to create a logger to
   which you can write interesting information. Used in all Java programs, Spring and non-Spring. We use the `org.slf4j`
   loggers.  `logger.error("Somehow the .name is null here");`
