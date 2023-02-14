@@ -605,10 +605,10 @@ openNewAccount(((((new Account.Builder())
 // curl -X POST http://localhost:8080/categories -H 'Content-Type: application/json' -d '{"name": "nonfiction", "description": "Purports to correspond to reality"}'
 // curl -X GET http://localhost:8080/categories -H 'Content-Type: application/json'
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
-@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-@AutoConfigureMockMvc
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)   // Startup a real webserver, but not on port 8080
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)   // Wipe out the existing tables and start from scratch
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD) // And reset the database between each test
+@AutoConfigureMockMvc                                                         // And populate a MockMvc framework below.
 public class CategoryControllerTest {
     @Autowired
     private MockMvc mvc;
@@ -653,7 +653,8 @@ public class CategoryControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content().json(getJsonContent(new Category[]{category2})));
     }
-    
+   
+    // Utility to convert objects to their JSON representation 
     private static String getJsonContent(Object o) throws JsonProcessingException {
         return new ObjectMapper().writeValueAsString(o);
     }
