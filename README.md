@@ -329,16 +329,16 @@ openNewAccount(((((new Account.Builder())
   variable** which should only be used in very specific instances, which we might not even encounter this course.)
 * `extends` -- A **subclass** `extend`s another `class`. If we tell Java that C extends B and B extends A, then C
   extends A (even if we don't explicitly say so).
-* `super()` -- The first line of most constructor will be to call the constructor of its parent class.
+* `super()` -- The first line of most constructor will be to call the constructor of its parent class. `super` is the
+  same as `this` except that it refers to the fields and methods of the parent class.
 * `abstract` -- A class which has partially-defined behavior and so cannot have instances. But it will have **concrete**
   subclasses which may create instances as long as they implement all of the missing methods.
     * `abstract` is the opposite of "concrete".
     * Suppose that `Food` is the parent class, `Apple` is the child class. Food can have properties, like
-      .getCalorieCount(). But you cant get a can of "Food". You can get an apple.
+      .getCalorieCount(). But you can't get a can of "Food". You can get an apple.
     * Classes which can't be instantiated (fancy word for creating instances) because they don't implement all of the
       behavior they promise are called "abstract".
-    * The only reason to have an abstract class is when you want to create at least subclasses which share some
-      behavior.
+    * The only reason to have an abstract class is when you want to create subclasses which share some behavior.
 * **Class Hierarchy** -- a diagram showing which classes extend and/or implement other classes and interfaces. For
   instance, https://en.wikipedia.org/wiki/Java_collections_framework#/media/File:Java.util.Collection_hierarchy.svg
 * Visibility (of data and behavior)
@@ -601,6 +601,10 @@ openNewAccount(((((new Account.Builder())
 ## Spring *integration* tests
 
 ```
+// Using automated testing is far easier than manually pasting commands into the bash shell, e.g.
+// curl -X POST http://localhost:8080/categories -H 'Content-Type: application/json' -d '{"name": "nonfiction", "description": "Purports to correspond to reality"}'
+// curl -X GET http://localhost:8080/categories -H 'Content-Type: application/json'
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
@@ -613,25 +617,38 @@ public class CategoryControllerTest {
     public void addCategories() throws Exception {
         final Category category1 = new Category("Romance", "Happily-ever-after");
         final Category category2 = new Category("Climatology", "*Not* Happily-ever-after");
-
+        
+        // If I do an http POST to /categories and pass in {"name": "Romance", "description": "Happily-ever-after"}
+        // then I expect to get an "OK" back. Oh, and just to be clear, I'm sending JSON and expect to get JSON back
+        // (rather than, say, HTML).
         mvc.perform(MockMvcRequestBuilders.post("/categories")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(getJsonContent(category1)))
                 .andExpect(status().isOk());
+                
+        // If I do an http POST to /categories and pass in {"name": "Climatology", "description": "Not Happily-ever-after"}
+        // then I expect to get an "OK" back.
         mvc.perform(MockMvcRequestBuilders.post("/categories")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(getJsonContent(category2)))
                 .andExpect(status().isOk());
 
+        // At this point, we have two records in MySQL (or something similar) 
+        // If I do an http GET to /categories, and pass in nothing else, I expect to get
+        // [{"name": "Romance", "description": "Happily-ever-after"},
+        //  {"name": "Climatology", "description": "Not Happily-ever-after"}]
         mvc.perform(MockMvcRequestBuilders.get("/categories").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content().json(getJsonContent(new Category[]{category1, category2})));
 
+        // And then if I do an http DELETE to /categories/Romance, I expect to get an OK back
         mvc.perform(MockMvcRequestBuilders.delete("/categories/" + category1.getName()).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
+        // If I then do an http GET to /categories, and pass in nothing else, I expect to get
+        // [{"name": "Climatology", "description": "Not Happily-ever-after"}]
         mvc.perform(MockMvcRequestBuilders.get("/categories").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content().json(getJsonContent(new Category[]{category2})));
