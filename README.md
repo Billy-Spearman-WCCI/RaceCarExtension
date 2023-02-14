@@ -500,13 +500,23 @@ openNewAccount(((((new Account.Builder())
 * **Spring** -- a widely-used and powerful framework for creating Java servers. Spring scans your code for annotated
   Java entities (classes, interfaces, methods, fields, etc) and connects them altogether into a production-ready
   application.
-* `@Controller` -- An annotation for linking endpoints (e.g. `/fancyHello`) to templated web pages (e.g,
-  in `src/main/resources/templates`). The templates are using a library called Thymeleaf and has special tags
-  like `th:each` which can iterate lists, etc.
-* `@RestController` -- An annotation for linking endpoints (e.g. `/courses/{course_id}/`) to API responses.
-* `@GetMapping`, `@PutMapping`, `@PostMapping`, `@PatchMapping`, and `@DeleteMapping` -- annotations for the five HTTP
-  verb endpoints.
-    * `@RequestBody` -- Json supplied in the POST request.
+* **Constructor dependency injection** -- the preferred pattern for injecting dependencies. For example,
+  a `@RestController`-annotated class might
+  have `final MyEntityRepository myEntityRepo; public MyRestController(final @Autowired MyEntityRepository repo){this.myEntityRepo = repo;}`.
+  https://www.youtube.com/watch?v=aX-bgylmprA.
+* Controllers
+    * `@Controller` -- An annotation for linking endpoints (e.g. `/fancyHello`) to templated web pages (e.g,
+      in `src/main/resources/templates`). The templates are using a library called Thymeleaf and has special tags
+      like `th:each` which can iterate lists, etc.
+    * `@RestController` -- An annotation for linking endpoints (e.g. `/courses/{course_id}/`) to API responses.
+* Endpoints
+    * `@GetMapping`, `@PutMapping`, `@PostMapping`, `@PatchMapping`, and `@DeleteMapping` -- annotations for the five
+      most common HTTP verb endpoint types.
+    * `@RequestBody` -- A parameter to endpoint extracted from the body of a POST or PUT and deserialized from JSON to
+      the appropriate entity type.
+    * `@PathVariable` -- A parameter to an endpoint method extracted from a `{some_id}` component of the endpoint path.
+    * `@ResponseBody` -- An annotation on an endpoint that it's returning json-encoded data. Not needed
+      for `@RestController`-annotated classes.
 * `@SpringBootApplication` -- An annotation that Spring should run the `main()` in the class.
 * `@Bean` -- An annotation that Spring should wire in the entity into its framework. Controllers, RestControllers, and
   everything else that Spring knows about are all subclasses of bean.
@@ -517,17 +527,31 @@ openNewAccount(((((new Account.Builder())
         * `@Primary` -- An alternative to `@Qualifier`, when one of the beans should be used unless the consuming
           component specified otherwise with a `@Qualifier` as part of its `@Autowired`.
 * `@Entity` -- Marks a class as an "entity" which should be persisted in a Relational Database.
-    * `@Table` -- the database table for the entity
-    * `@Index` -- a database index for the table.
-    * `@Column` -- the database column for the specified field in the class.
-    * `@Lob` -- identifies a field containing binary data (e.g. images, etc.)
-    * `@Id` -- Identifies the field primary key for the table.
+    * `@Table` -- the database table for the entity. Optional unless you wish to specify the name of the table or if you
+      wish to specify secondary key(s) using the `@Index` annotation.
+    * `@Id` -- Identifies the field primary key for the table. Every table needs to identify its key, so this field is
+      required.  (Note: JPA also allows for "composite" keys comprising more than one column, but that's beyond the
+      scope of this course.)
         * `@GeneratedValue` -- When inserting records into the table, automatically compute a new unique value for the
-          primary key field.
-    * `@EmbeddedId` -- Identifies the multiple fields which together form the primary key for the table.
-    * `@Embeddable` -- Identifies the class wrapping all of the columns of a composite primary key.
-    * `@MapsId` -- Identifies a field which is the primary key of some other table
-        * `@ManyToOne`, `@OnDelete`, `@JoinColumn` -- Defines the details of the above linkage.
+          field (typically used for primary keys).
+        * `@EmbeddedId` -- (Beyond the scope of this course) Identifies the multiple fields which together form the
+          primary key for the table.
+        * `@Embeddable` -- (Beyond the scope of this course) Identifies the class wrapping all of the columns of a
+          composite primary key. primary key field.
+    * `@Column` -- Specifies the database column for the specified field in the class. By default all fields in
+      an `@Entity`-annotated class are persisted to the database, so this annotation is optional unless you need to
+      specify the actual database column name.
+    * `@JsonIgnore` -- Not actually a JPA annotation, but marks a field which should not be converted to/from JSON,
+      especially for `@RequestBody`. Useful when you wish to store data in the database but not return it from GET or
+      require it in POST.
+    * `@Lob` -- identifies a field containing large data (e.g. images, etc.)  Useful when you want to store a longer
+      string (e.g. longer than 255 characters).
+    * Two-sided: ManyToMany. Let's suppose that "Primary" is the "owning" class (i.e. insertions and deletions are done
+      via that class) and that "Secondary" is the "owned" class.
+        * Then the Primary class
+          contains `@ManyToMany() @JoinTable() private Collection<Secondary> secondaries = new HashSet<>();`
+        * And the Secondary class
+          contains `@ManyToMany(mappedBy = "secondaries") private Collection<Primary> primaries;`
 * `@SpringBootTest`
     * `@AutoConfigureMockMvc`
 * `final private Logger logger = LoggerFactory.getLogger(ThisClass.class);` -- standard phrasing to create a logger to
@@ -539,6 +563,51 @@ openNewAccount(((((new Account.Builder())
 * **Gradle** -- a system for defining the configuration of a Java project in a `build.gradle` file, written in the
   "Groovy" language. Defines what version of Java is required, which libraries to download and use, etc. Is a modern
   replacement for the "Maven" system (which used a `pom.xml` file instead).
+
+## Spring *integration* tests
+
+```
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+@AutoConfigureMockMvc
+public class CategoryControllerTest {
+    @Autowired
+    private MockMvc mvc;
+
+    @Test
+    public void addCategories() throws Exception {
+        final Category category1 = new Category("Romance", "Happily-ever-after");
+        final Category category2 = new Category("Climatology", "*Not* Happily-ever-after");
+
+        mvc.perform(MockMvcRequestBuilders.post("/categories")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(getJsonContent(category1)))
+                .andExpect(status().isOk());
+        mvc.perform(MockMvcRequestBuilders.post("/categories")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(getJsonContent(category2)))
+                .andExpect(status().isOk());
+
+        mvc.perform(MockMvcRequestBuilders.get("/categories").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json(getJsonContent(new Category[]{category1, category2})));
+
+        mvc.perform(MockMvcRequestBuilders.delete("/categories/" + category1.getName()).accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+        mvc.perform(MockMvcRequestBuilders.get("/categories").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json(getJsonContent(new Category[]{category2})));
+    }
+    
+    private static String getJsonContent(Object o) throws JsonProcessingException {
+        return new ObjectMapper().writeValueAsString(o);
+    }
+}
+```
 
 ## Getting started with a Spring Boot Project
 
@@ -859,4 +928,3 @@ should continue to use it. But don't just copy stuff without understanding.
 [^2]: The whole point of encapsulation is that we don't have to understand details if they're hidden behind
 abstractions. So we can tell students: "The `Console` object knows how to write stuff to the screen. We can trust that
 it does so and not worry about how it does so."
-********
