@@ -865,7 +865,8 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
     * Define the core concepts of your application as plain (and unannotated) classes within a "model" or "entities"
       package. Try out their constructors and methods using classic JUnit tests. Make sure that the order in which
       complex structures are constructed make sense to you. Make sure that the business logic (if any) in the entities
-      also works.
+      also works. Mark collections containing Sets of other objects as `@JsonIgnore` so they aren't sent over REST
+      unintentionally.
     * Write out the REST endpoints you're planning on providing. For each: what's the endpoint, what's the HTTP verb,
       what data is expected and what data will be returned. Put all of this data in your README.md file. Verify that the
       classes you defined above allow you to actually support these endpoints. Also include in the README.md
@@ -878,7 +879,8 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
       what you expect) by using a tool like the VSCode MySQL plugin.
     * Add some sample records to your database by using a Populator-style component. Run the process again and verify
       that the data is written to MySQL. Verify again using the plugin or similar tool.
-    * *Now* you can start working on the `@RestController` endpoints.
+    * *Now* you can start working on the `@RestController` endpoints. Do this
+      using [Integration-test TDD](#spring-integration-tests).
 
 # Principles
 
