@@ -145,7 +145,8 @@
           to read. So if `Race.java` can have a `List<Contestant>` rather than `List<GenericRacer>`, that's a win.
             * This is called "programming to interfaces" rather than "programming to classes", and is a "best practice".
 
-  ## HTML
+## HTML
+
 * **Hyper Text Markup Language** -- We are using Markdown Language to write this document here, but HTML is the
   unified language of the internet. If you're looking at a web page, you're looking at HTML.
 * **tags**: A way to reference HTML elements within the documents most (not all) tags will have an
@@ -175,6 +176,21 @@
 * Footer `<footer></footer>` Exists at the very bottom of the page.
 
 ## Programming styles
+
+### Overview
+
+* Software development is not graded like a high-school or college course. You'll be working on a team, and you will be
+  doing your work in a git branch, and when you say you're ready your work will be reviewed *before* it will be merged
+  into the main development branch. Your work will *not* be merged until is is _acceptable_ (i.e. it has passed all
+  requirements for code to be accepted). Acceptance criteria include:
+    * Compliance with coding standards, including stylistic things like formatting and comments.
+    * The code is *clean*, and consistent with the practices of already-existing code in your organization.
+    * The use (e.g. public interface) of your new code is clearly documented.
+    * You can answer the question: "how do you *know* that the code functions as desired?"
+    * You can answer the question: "how do you *know* that adding this code doesn't break other parts of the system?"
+* Code will go through as many review cycles as are necessary, until the review(s) judge the code acceptable.
+
+### Approaches for writing acceptable code.
 
 * **OO** -- An Object-Oriented programming style
     * **abstraction**: separating what's essential for a particular use from what isn't. Code to interfaces whenever
