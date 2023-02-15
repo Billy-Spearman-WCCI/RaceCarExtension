@@ -187,6 +187,11 @@
       environment.
     * *JavaScript*: Quite nice if you add everything necessary for IntelliJ to be an awesome development environment and
       thereby get TypeScript.
+* Reason for living
+    * *Java*: Large corporate codebases, with moderate speed requirements but lots of business logic. Web servers with
+      database backends is a typical use.
+    * *JavaScript*: For dynamically updating the structure or data of webpages within the browser, including responding
+      locally to user input, I'm the only game in town.
 * Runtime
     * *Java* runs on machines which has the Java Runtime Environment or Java Software Development Kit downloaded.
     * *JavaScript* runs in nearly every browser worldwide. Can also run outside of browsers (e.g. "node.js").
@@ -197,17 +202,19 @@
     * *Java*: requires all code and data to belong to a class or object.
     * *JavaScript*: sure, if you want classes we can do that without much fuss.
 * Arrays
-    * *Java*: indexed from 0, retrieved using `[]` syntax.
-    * *JavaScript*: indexed from 0, retrieved using `[]` syntax.
+    * *Java*: indexed from 0, retrieved using `[]` syntax. But want to change the size ... congratulations, you can't
+      unless you just make a new array with the new size.
+    * *JavaScript*: indexed from 0, retrieved using `[]` syntax. They function like very much `ArrayList`, except
+      you `.push` and `.pop` rather than `.add` and `.remove(o.length() - 1)`
 * Array length
     * *Java* `(new int[]{"a", "b", "c"}).length == 3`
     * *JavaScript*: `["a", "b", "c"].length == 3`
 * Reading/writing structured data
     * *Java*: Spring offers some magic to read/write JSON-formatted data.
-    * *JavaScript*: JSON stands for "JavaScript Object Notation". Json is valid JavaScript code as-is.
+    * *JavaScript*: Um, JSON stands for "JavaScript Object Notation". Json is valid JavaScript code as-is.
 * Fields
     * *Java* Accessed through `o.fieldName`.
-    * *JavaScript* Accessed through `o.fieldName` or `o['fieldName']`, so you can *computed* fieldnames.
+    * *JavaScript* Accessed through `o.fieldName` or `o['fieldName']`, so you can have *computed* field names.
 * Variable declaration
     * *Java* Variable declarations must specify the type of the variable, e.g. `final VirtualPet myPet;`.
     * *JavaScript* Variable declarations don't specify the type of the variable, e.g. `myPet = {"name": "astro"}`.
