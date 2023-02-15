@@ -175,6 +175,55 @@
 * Anchor `<a></a>` -- Used, in combination with "href="link destination"" to link pages together.
 * Footer `<footer></footer>` Exists at the very bottom of the page.
 
+# JavaScript
+
+## JavaScript vs Java
+
+* Language name
+    * *Java* is named after the Indonesian coffee-growing island.
+    * *JavaScript* is named after the programming language.
+* Strategy
+    * *Java*: What's left of C++ if you pull out everything not necessary for IntelliJ to be an awesome development
+      environment.
+    * *JavaScript*: Quite nice if you add everything necessary for IntelliJ to be an awesome development environment and
+      thereby get TypeScript.
+* Runtime
+    * *Java* runs on machines which has the Java Runtime Environment or Java Software Development Kit downloaded.
+    * *JavaScript* runs in nearly every browser worldwide. Can also run outside of browsers (e.g. "node.js").
+* Object-orientation
+    * *Java* claims to be OO, but actually is class-centric. Plus, primitive values aren't objects at all.
+    * *JavaScript* is actually object-centric. Even functions are objects which can contain fields!
+* Classes
+    * *Java*: requires all code and data to belong to a class or object.
+    * *JavaScript*: sure, if you want classes we can do that without much fuss.
+* Arrays
+    * *Java*: indexed from 0, retrieved using `[]` syntax.
+    * *JavaScript*: indexed from 0, retrieved using `[]` syntax.
+* Array length
+    * *Java* `(new int[]{"a", "b", "c"}).length == 3`
+    * *JavaScript*: `["a", "b", "c"].length == 3`
+* Reading/writing structured data
+    * *Java*: Spring offers some magic to read/write JSON-formatted data.
+    * *JavaScript*: JSON stands for "JavaScript Object Notation". Json is valid JavaScript code as-is.
+* Fields
+    * *Java* Accessed through `o.fieldName`.
+    * *JavaScript* Accessed through `o.fieldName` or `o['fieldName']`, so you can *computed* fieldnames.
+* Variable declaration
+    * *Java* Variable declarations must specify the type of the variable, e.g. `final VirtualPet myPet;`.
+    * *JavaScript* Variable declarations don't specify the type of the variable, e.g. `myPet = {"name": "astro"}`.
+* `var` keyword
+    * *Java*: `var` is the new hotness which allows you to avoid explicitly specifying variable types when Java can
+      figure it out on its own.
+    * *JavaScript*: `var` is an abomination which need to be buried at least ten feet underground. Use `const` to
+      declare "final" variables and `let` for variables which can't be final.
+* Equality
+    * *Java*: For non-primitives be sure to use `.equals` ... and the owner of the class gets to define what that means.
+    * *JavaScript*: Congratulations, you get to choose between `==` (i.e. mostly equal) and `===` (i.e., really equal --
+      but rather similar to Java's `==`). It's easier to explain when you're drunk, but here `5 == "5"`.
+* Comments
+    * *Java*: `//` for single lines and `/* ... */` for blocks.
+    * *JavaScript*: `//` for single lines and `/* ... */` for blocks.
+
 ## Programming styles
 
 ### Overview
