@@ -643,6 +643,9 @@ public class CategoryControllerTest {
         // If I do an http POST to /categories and pass in {"name": "Romance", "description": "Happily-ever-after"}
         // then I expect to get an "OK" back. Oh, and just to be clear, I'm sending JSON and expect to get JSON back
         // (rather than, say, HTML).
+        
+        // Yes, the ".accept(...).contentType(...).content(...)" style coding is the same Builder pattern we've seen 
+        // before, except that there's a `.perform()` rather than a `.build()`.
         mvc.perform(MockMvcRequestBuilders.post("/categories")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
