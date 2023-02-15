@@ -144,68 +144,99 @@
         * Every time you can replace a reference to a class with a reference to an interface, your code becomes easier
           to read. So if `Race.java` can have a `List<Contestant>` rather than `List<GenericRacer>`, that's a win.
             * This is called "programming to interfaces" rather than "programming to classes", and is a "best practice".
-    
-    ## HTML
-* **Hyper Text Markup Language** -- We are using Markdown Language to write this document here, but HTML is the 
-     unified language of the internet. If you're looking at a web page, you're looking at HTML.
-* **tags**: A way to reference HTML elements within the documents most (not all) tags will have an 
+
+## HTML
+
+* **Hyper Text Markup Language** -- We are using Markdown Language to write this document here, but HTML is the
+  unified language of the internet. If you're looking at a web page, you're looking at HTML.
+* **tags**: A way to reference HTML elements within the documents most (not all) tags will have an
   opening and closing tag with the syntax <></>
-* **useful tags and what they do**: 
+* **useful tags and what they do**:
 * Division `<div></div>` -- A commonly used wrapper, used to contain elements for reference in CSS.
 * Style `<style></style>` -- Used for internal styling with CSS. It is not best practice to use internal styling.
-* Title `<title></title>` -- This is the title of the HTML document, it will not show-up on the webpage, but the tab of the browser.
+* Title `<title></title>` -- This is the title of the HTML document, it will not show-up on the webpage, but the tab of
+  the browser.
 * Span `<span></span> `-- Inline div, used to select elements within text.
 * Tables `<table></table>` -- Table
-  * Table header `<th></th>`
-  * Table rows `<tr></tr>`
-  * Table cell `<td></td>` -- also known as "table data"
-* Code `<code></code>` --  Used to define a piece of computer code. The content inside is displayed in the browser's default monospace font.
+    * Table header `<th></th>`
+    * Table rows `<tr></tr>`
+    * Table cell `<td></td>` -- also known as "table data"
+* Code `<code></code>` -- Used to define a piece of computer code. The content inside is displayed in the browser's
+  default monospace font.
 * Break `<br>` -- Akin to "break;" in Java. Will not have an end tag.
 * Body `<body></body>` -- A container that wraps most of the webpage, most HTML will exist in the body.
-* Header `<h1></h1>` -- Header 1-6 Where 1 being the largest and 6 being the smallest, used for heading individual sections. 
-  Think Headlines on a newspaper 
-* List -- There are two types of commonly used list: 
-  * Ordered `<ol></ol>` (Numbered 1-X)  
-  * Un-ordered`<ul></ul>` (appears on the webpage as they load)
+* Header `<h1></h1>` -- Header 1-6 Where 1 being the largest and 6 being the smallest, used for heading individual
+  sections.
+  Think Headlines on a newspaper
+* List -- There are two types of commonly used list:
+    * Ordered `<ol></ol>` (Numbered 1-X)
+    * Un-ordered`<ul></ul>` (appears on the webpage as they load)
 * Paragraph `<p></p>`-- Normally used for the vast majority of text that appears on a web page; A small text element.
 * Anchor `<a></a>` -- Used, in combination with "href="link destination"" to link pages together.
-* Footer `<footer></footer>` Exists at the very bottom of the page. 
+* Footer `<footer></footer>` Exists at the very bottom of the page.
+
 ## CSS
+
 * **Cascading Style Sheets** -- The style layer of the front end. Linked to the HTML document and with the use of
   selectors a CSS can transform individual, or groups of elements within an HTML doc.
 * **types of selectors**:
-    * **Elements Selectors** -- The least specific of the selectors use to select all elements wrapped in a tag `element{css-goes-here;}`
+    * **Elements Selectors** -- The least specific of the selectors use to select all elements wrapped in a
+      tag `element{css-goes-here;}`
     * **Pseudo Selectors** -- Used to select elements by the attributes they have `input[type="text"]{css-goes-here;}`
-    * **Class Selectors** -- Classes must be applied to HTML elements first to be referenced by CSS. Referenced by `.CLASS-NAME`
+    * **Class Selectors** -- Classes must be applied to HTML elements first to be referenced by CSS. Referenced
+      by `.CLASS-NAME`
       Multiple HTML elements can be defined by the same class
       HTML:`<div class="my-class"></div>` CSS: `.my-class{css-goes: here;}`
-    * **ID Selectors** -- Just like classes, ID's must be applied to HTML elements first to be referenced by CSS. Referenced by `#class-name`
+    * **ID Selectors** -- Just like classes, ID's must be applied to HTML elements first to be referenced by CSS.
+      Referenced by `#class-name`
       Unlike classes, ID's can only be applied to on HTML element at a time. Duplicate ID's will have conflicting
       results in your HTML, leading to undesired styling. HTML:`<div id="my-id"></div>` CSS: `#my-id{css-goes: here;}`
     * **Chain Selectors** -- With CSS you are able to chain together selectors to reference multiple elements
       `element another-element .class-name one-more-element{css-goes: here;}`
-* **Default Styles** -- Each browser has default style rules, some CSS stylings can conflict with the default browser stylings.
+* **Default Styles** -- Each browser has default style rules, some CSS stylings can conflict with the default browser
+  stylings.
   It's a good rule to disable any default stylings through the browser dev tools `ctrl + alt + i`
 * **Colors** -- There are 4 ways to declare colors within CSS.
     * **Hexadecimal** -- # followed by 6 characters with any configuration of A-F &| 1-9 `#0000FF` is blue
-    * **Hue, Saturation, Lightness, Alpha** -- h: degrees on a color circle 0-360 s: saturation 0%-100% l:lightness 0%-100% a: alpha 1.0 is opaque
+    * **Hue, Saturation, Lightness, Alpha** -- h: degrees on a color circle 0-360 s: saturation 0%-100% l:lightness
+      0%-100% a: alpha 1.0 is opaque
     * **Keyword** -- There are currently 140 defined colors in CSS refer to:
-      https://www.w3schools.com/cssref/css_colors.php for the list. `MediumOrchid`,`GoldenRood`, or just `Blue` are examples.
+      https://www.w3schools.com/cssref/css_colors.php for the list. `MediumOrchid`,`GoldenRood`, or just `Blue` are
+      examples.
     * **Red, Blue, Green, Alpha** -- RBG have values of 0-255 alpha is opacity `0,255,0,1` is blue.
     * **Units** -- There are multiple units of measurements in CSS. Some dynamic and some static.
         * **`px`** -- Refers to pixels on a screen. Screen sizes are not universal so be careful in using this.
-        *  **`rem`** -- Root em. Refers to the default font size of the root element HTML in most cases.
-        *  **`em`** -- Relative to the font size in containing elements.
-        *  **Percentage** -- Relative to the size of the parent element `element{300px}` `element h1{width: 50%}` = 150px
-        *  **Viewport Height`vh` & Width`vw`** -- This is measured based on the X (0 would be the left most area of the Viewport 100 is the right most.)
-           and the Y (0 would be the top of the Viewport. 100 is the bottom) axes. `
-           img{height: 50vh; width: 50vw;}` would put something directly in the middle of the Viewport.
-        *  **Font Stack** -- Font stacks are used for applying fonts for elements. CSS will pick the first declared font and continue down the stack
-           based on what is available to the user. `h1{font-family: Cambria, Utopia, Times-New-Roman}` Cambria will be displayed if available, if not Utopia... etc.
-        * **CSS Variables** -- Just like Java you can declare Variables in CSS. These must be declared in the `:root{}` element in your CSS.
+        * **`rem`** -- Root em. Refers to the default font size of the root element HTML in most cases.
+        * **`em`** -- Relative to the font size in containing elements.
+        * **Percentage** -- Relative to the size of the parent element `element{300px}` `element h1{width: 50%}` = 150px
+        * **Viewport Height`vh` & Width`vw`** -- This is measured based on the X (0 would be the left most area of the
+          Viewport 100 is the right most.)
+          and the Y (0 would be the top of the Viewport. 100 is the bottom) axes. `
+          img{height: 50vh; width: 50vw;}` would put something directly in the middle of the Viewport.
+        * **Font Stack** -- Font stacks are used for applying fonts for elements. CSS will pick the first declared font
+          and continue down the stack
+          based on what is available to the user. `h1{font-family: Cambria, Utopia, Times-New-Roman}` Cambria will be
+          displayed if available, if not Utopia... etc.
+        * **CSS Variables** -- Just like Java you can declare Variables in CSS. These must be declared in the `:root{}`
+          element in your CSS.
           `:root{--my-variable-color: blue;} p{background-color: var(--my-variable-color);}`
 
 ## Programming styles
+
+### Overview
+
+* Software development is not graded like a high-school or college course. You'll be working on a team, and you will be
+  doing your work in a git branch, and when you say you're ready your work will be reviewed *before* it will be merged
+  into the main development branch. Your work will *not* be merged until is is _acceptable_ (i.e. it has passed all
+  requirements for code to be accepted). Acceptance criteria include:
+    * Compliance with coding standards, including stylistic things like formatting and comments.
+    * The code is *clean*, and consistent with the practices of already-existing code in your organization.
+    * The use (e.g. public interface) of your new code is clearly documented.
+    * You can answer the question: "how do you *know* that the code functions as desired?"
+    * You can answer the question: "how do you *know* that adding this code doesn't break other parts of the system?"
+* Code will go through as many review cycles as are necessary, until the review(s) judge the code acceptable.
+
+### Approaches for writing acceptable code.
 
 * **OO** -- An Object-Oriented programming style
     * **abstraction**: separating what's essential for a particular use from what isn't. Code to interfaces whenever
@@ -360,16 +391,16 @@ openNewAccount(((((new Account.Builder())
   variable** which should only be used in very specific instances, which we might not even encounter this course.)
 * `extends` -- A **subclass** `extend`s another `class`. If we tell Java that C extends B and B extends A, then C
   extends A (even if we don't explicitly say so).
-* `super()` -- The first line of most constructor will be to call the constructor of its parent class.
+* `super()` -- The first line of most constructor will be to call the constructor of its parent class. `super` is the
+  same as `this` except that it refers to the fields and methods of the parent class.
 * `abstract` -- A class which has partially-defined behavior and so cannot have instances. But it will have **concrete**
   subclasses which may create instances as long as they implement all of the missing methods.
     * `abstract` is the opposite of "concrete".
     * Suppose that `Food` is the parent class, `Apple` is the child class. Food can have properties, like
-      .getCalorieCount(). But you cant get a can of "Food". You can get an apple.
+      .getCalorieCount(). But you can't get a can of "Food". You can get an apple.
     * Classes which can't be instantiated (fancy word for creating instances) because they don't implement all of the
       behavior they promise are called "abstract".
-    * The only reason to have an abstract class is when you want to create at least subclasses which share some
-      behavior.
+    * The only reason to have an abstract class is when you want to create subclasses which share some behavior.
 * **Class Hierarchy** -- a diagram showing which classes extend and/or implement other classes and interfaces. For
   instance, https://en.wikipedia.org/wiki/Java_collections_framework#/media/File:Java.util.Collection_hierarchy.svg
 * Visibility (of data and behavior)
@@ -560,13 +591,26 @@ openNewAccount(((((new Account.Builder())
 * **Spring** -- a widely-used and powerful framework for creating Java servers. Spring scans your code for annotated
   Java entities (classes, interfaces, methods, fields, etc) and connects them altogether into a production-ready
   application.
-* `@Controller` -- An annotation for linking endpoints (e.g. `/fancyHello`) to templated web pages (e.g,
-  in `src/main/resources/templates`). The templates are using a library called Thymeleaf and has special tags
-  like `th:each` which can iterate lists, etc.
-* `@RestController` -- An annotation for linking endpoints (e.g. `/courses/{course_id}/`) to API responses.
-* `@GetMapping`, `@PutMapping`, `@PostMapping`, `@PatchMapping`, and `@DeleteMapping` -- annotations for the five HTTP
-  verb endpoints.
-    * `@RequestBody` -- Json supplied in the POST request.
+* **JPA** -- Java Persistence Architecture ... a standard way of marking Java objects which should be stored in
+  databases. Hibernate is by far the most common *implementation* of JPA (and predates it). In most cases, they're
+  interchangeable in ordinary speech. This also called an ORM (Object-RelationalDatabase Mapping).
+* **Constructor dependency injection** -- the preferred pattern for injecting dependencies. For example,
+  a `@RestController`-annotated class might
+  have `final MyEntityRepository myEntityRepo; public MyRestController(final @Autowired MyEntityRepository repo){this.myEntityRepo = repo;}`.
+  https://www.youtube.com/watch?v=aX-bgylmprA.
+* Controllers
+    * `@Controller` -- An annotation for linking endpoints (e.g. `/fancyHello`) to templated web pages (e.g,
+      in `src/main/resources/templates`). The templates are using a library called Thymeleaf and has special tags
+      like `th:each` which can iterate lists, etc.
+    * `@RestController` -- An annotation for linking endpoints (e.g. `/courses/{course_id}/`) to API responses.
+* Endpoints
+    * `@GetMapping`, `@PutMapping`, `@PostMapping`, `@PatchMapping`, and `@DeleteMapping` -- annotations for the five
+      most common HTTP verb endpoint types.
+    * `@RequestBody` -- A parameter to endpoint extracted from the body of a POST or PUT and deserialized from JSON to
+      the appropriate entity type.
+    * `@PathVariable` -- A parameter to an endpoint method extracted from a `{some_id}` component of the endpoint path.
+    * `@ResponseBody` -- An annotation on an endpoint that it's returning json-encoded data. Not needed
+      for `@RestController`-annotated classes.
 * `@SpringBootApplication` -- An annotation that Spring should run the `main()` in the class.
 * `@Bean` -- An annotation that Spring should wire in the entity into its framework. Controllers, RestControllers, and
   everything else that Spring knows about are all subclasses of bean.
@@ -577,19 +621,41 @@ openNewAccount(((((new Account.Builder())
         * `@Primary` -- An alternative to `@Qualifier`, when one of the beans should be used unless the consuming
           component specified otherwise with a `@Qualifier` as part of its `@Autowired`.
 * `@Entity` -- Marks a class as an "entity" which should be persisted in a Relational Database.
-    * `@Table` -- the database table for the entity
-    * `@Index` -- a database index for the table.
-    * `@Column` -- the database column for the specified field in the class.
-    * `@Lob` -- identifies a field containing binary data (e.g. images, etc.)
-    * `@Id` -- Identifies the field primary key for the table.
+    * `@Table` -- the database table for the entity. Optional unless you wish to specify the name of the table or if you
+      wish to specify secondary key(s) using the `@Index` annotation.
+    * `@Id` -- Identifies the field primary key for the table. Every table needs to identify its key, so this field is
+      required.  (Note: JPA also allows for "composite" keys comprising more than one column, but that's beyond the
+      scope of this course.)
         * `@GeneratedValue` -- When inserting records into the table, automatically compute a new unique value for the
-          primary key field.
-    * `@EmbeddedId` -- Identifies the multiple fields which together form the primary key for the table.
-    * `@Embeddable` -- Identifies the class wrapping all of the columns of a composite primary key.
-    * `@MapsId` -- Identifies a field which is the primary key of some other table
-        * `@ManyToOne`, `@OnDelete`, `@JoinColumn` -- Defines the details of the above linkage.
-* `@SpringBootTest`
-    * `@AutoConfigureMockMvc`
+          field (typically used for primary keys).
+        * `@EmbeddedId` -- (Beyond the scope of this course) Identifies the multiple fields which together form the
+          primary key for the table.
+        * `@Embeddable` -- (Beyond the scope of this course) Identifies the class wrapping all of the columns of a
+          composite primary key. primary key field.
+    * `@Column` -- Specifies the database column for the specified field in the class. By default all fields in
+      an `@Entity`-annotated class are persisted to the database, so this annotation is optional unless you need to
+      specify the actual database column name.
+    * `@JsonIgnore` -- Not actually a JPA annotation, but marks a field which should not be converted to/from JSON,
+      especially for `@RequestBody`. Useful when you wish to store data in the database but not return it from GET or
+      require it in POST.
+    * `@Lob` -- identifies a field containing large data (e.g. images, etc.)  Useful when you want to store a longer
+      string (e.g. longer than 255 characters).
+    * Two-sided: ManyToMany. Let's suppose that "Primary" is the "owning" class (i.e. insertions and deletions are done
+      via that class) and that "Secondary" is the "owned" class.
+        * Then the Primary class
+          contains `@ManyToMany() @JoinTable() private Collection<Secondary> secondaries = new HashSet<>();`
+        * And the Secondary class
+          contains `@ManyToMany(mappedBy = "secondaries") private Collection<Primary> primaries;`
+    * Two-sided: OneToMany. Let's suppose that the "Many" is the "owning" class (i.e. insertions and deletions are done
+      via that class)
+        * Then the Primary class contains `@ManyToOne() @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
+          private Secondary secondary;`
+            * The cascade is so we can add new Secondaries as implied when we are creating new Primaries.
+        * And the Secondary class contains something
+          like `@OneToMany(mappedBy="secondaries") @JsonIgnore private Collection<Primary> primaries = new HashSet<>();`.
+    * Reminder: classes which are stored in Sets should have explicit `.equals()` and `.hashCode()` methods looking at
+      the fields which should matter for saying that two objects are essentially the same. If two tags have the same
+      name, then we want only one in the database -- so `.equals()` for tags should only look at important fields.
 * `final private Logger logger = LoggerFactory.getLogger(ThisClass.class);` -- standard phrasing to create a logger to
   which you can write interesting information. Used in all Java programs, Spring and non-Spring. We use the `org.slf4j`
   loggers.  `logger.error("Somehow the .name is null here");`
@@ -599,6 +665,72 @@ openNewAccount(((((new Account.Builder())
 * **Gradle** -- a system for defining the configuration of a Java project in a `build.gradle` file, written in the
   "Groovy" language. Defines what version of Java is required, which libraries to download and use, etc. Is a modern
   replacement for the "Maven" system (which used a `pom.xml` file instead).
+
+## Spring *integration* tests
+
+```
+// Using automated testing is far easier than manually pasting commands into the bash shell, e.g.
+// curl -X POST http://localhost:8080/categories -H 'Content-Type: application/json' -d '{"name": "nonfiction", "description": "Purports to correspond to reality"}'
+// curl -X GET http://localhost:8080/categories -H 'Content-Type: application/json'
+
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)   // Startup a real webserver, but not on port 8080
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)   // Wipe out the existing tables and start from scratch
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD) // And reset the database between each test
+@AutoConfigureMockMvc                                                         // And populate a MockMvc framework below.
+public class CategoryControllerTest {
+    @Autowired
+    private MockMvc mvc;
+
+    @Test
+    public void addCategories() throws Exception {
+        final Category category1 = new Category("Romance", "Happily-ever-after");
+        final Category category2 = new Category("Climatology", "*Not* Happily-ever-after");
+        
+        // If I do an http POST to /categories and pass in {"name": "Romance", "description": "Happily-ever-after"}
+        // then I expect to get an "OK" back. Oh, and just to be clear, I'm sending JSON and expect to get JSON back
+        // (rather than, say, HTML).
+        
+        // Yes, the ".accept(...).contentType(...).content(...)" style coding is the same Builder pattern we've seen 
+        // before, except that there's a `.perform()` rather than a `.build()`.
+        mvc.perform(MockMvcRequestBuilders.post("/categories")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(getJsonContent(category1)))
+                .andExpect(status().isOk());
+                
+        // If I do an http POST to /categories and pass in {"name": "Climatology", "description": "Not Happily-ever-after"}
+        // then I expect to get an "OK" back.
+        mvc.perform(MockMvcRequestBuilders.post("/categories")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(getJsonContent(category2)))
+                .andExpect(status().isOk());
+
+        // At this point, we have two records in MySQL (or something similar) 
+        // If I do an http GET to /categories, and pass in nothing else, I expect to get
+        // [{"name": "Romance", "description": "Happily-ever-after"},
+        //  {"name": "Climatology", "description": "Not Happily-ever-after"}]
+        mvc.perform(MockMvcRequestBuilders.get("/categories").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json(getJsonContent(new Category[]{category1, category2})));
+
+        // And then if I do an http DELETE to /categories/Romance, I expect to get an OK back
+        mvc.perform(MockMvcRequestBuilders.delete("/categories/" + category1.getName()).accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+        // If I then do an http GET to /categories, and pass in nothing else, I expect to get
+        // [{"name": "Climatology", "description": "Not Happily-ever-after"}]
+        mvc.perform(MockMvcRequestBuilders.get("/categories").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json(getJsonContent(new Category[]{category2})));
+    }
+   
+    // Utility to convert objects to their JSON representation 
+    private static String getJsonContent(Object o) throws JsonProcessingException {
+        return new ObjectMapper().writeValueAsString(o);
+    }
+}
+```
 
 ## Getting started with a Spring Boot Project
 
@@ -822,7 +954,8 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
     * Define the core concepts of your application as plain (and unannotated) classes within a "model" or "entities"
       package. Try out their constructors and methods using classic JUnit tests. Make sure that the order in which
       complex structures are constructed make sense to you. Make sure that the business logic (if any) in the entities
-      also works.
+      also works. Mark collections containing Sets of other objects as `@JsonIgnore` so they aren't sent over REST
+      unintentionally.
     * Write out the REST endpoints you're planning on providing. For each: what's the endpoint, what's the HTTP verb,
       what data is expected and what data will be returned. Put all of this data in your README.md file. Verify that the
       classes you defined above allow you to actually support these endpoints. Also include in the README.md
@@ -835,7 +968,8 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
       what you expect) by using a tool like the VSCode MySQL plugin.
     * Add some sample records to your database by using a Populator-style component. Run the process again and verify
       that the data is written to MySQL. Verify again using the plugin or similar tool.
-    * *Now* you can start working on the `@RestController` endpoints.
+    * *Now* you can start working on the `@RestController` endpoints. Do this
+      using [Integration-test TDD](#spring-integration-tests).
 
 # Principles
 
@@ -919,4 +1053,3 @@ should continue to use it. But don't just copy stuff without understanding.
 [^2]: The whole point of encapsulation is that we don't have to understand details if they're hidden behind
 abstractions. So we can tell students: "The `Console` object knows how to write stuff to the screen. We can trust that
 it does so and not worry about how it does so."
-********
