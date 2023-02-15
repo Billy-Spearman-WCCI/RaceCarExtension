@@ -234,6 +234,52 @@
     * *Java*: `//` for single lines and `/* ... */` for blocks.
     * *JavaScript*: `//` for single lines and `/* ... */` for blocks.
 
+## CSS
+
+* **Cascading Style Sheets** -- The style layer of the front end. Linked to the HTML document and with the use of
+  selectors a CSS can transform individual, or groups of elements within an HTML doc.
+* **types of selectors**:
+    * **Elements Selectors** -- The least specific of the selectors use to select all elements wrapped in a
+      tag `element{css-goes-here;}`
+    * **Pseudo Selectors** -- Used to select elements by the attributes they have `input[type="text"]{css-goes-here;}`
+    * **Class Selectors** -- Classes must be applied to HTML elements first to be referenced by CSS. Referenced
+      by `.CLASS-NAME`
+      Multiple HTML elements can be defined by the same class
+      HTML:`<div class="my-class"></div>` CSS: `.my-class{css-goes: here;}`
+    * **ID Selectors** -- Just like classes, ID's must be applied to HTML elements first to be referenced by CSS.
+      Referenced by `#class-name`
+      Unlike classes, ID's can only be applied to on HTML element at a time. Duplicate ID's will have conflicting
+      results in your HTML, leading to undesired styling. HTML:`<div id="my-id"></div>` CSS: `#my-id{css-goes: here;}`
+    * **Chain Selectors** -- With CSS you are able to chain together selectors to reference multiple elements
+      `element another-element .class-name one-more-element{css-goes: here;}`
+* **Default Styles** -- Each browser has default style rules, some CSS stylings can conflict with the default browser
+  stylings.
+  It's a good rule to disable any default stylings through the browser dev tools `ctrl + alt + i`
+* **Colors** -- There are 4 ways to declare colors within CSS.
+    * **Hexadecimal** -- # followed by 6 characters with any configuration of A-F &| 1-9 `#0000FF` is blue
+    * **Hue, Saturation, Lightness, Alpha** -- h: degrees on a color circle 0-360 s: saturation 0%-100% l:lightness
+      0%-100% a: alpha 1.0 is opaque
+    * **Keyword** -- There are currently 140 defined colors in CSS refer to:
+      https://www.w3schools.com/cssref/css_colors.php for the list. `MediumOrchid`,`GoldenRood`, or just `Blue` are
+      examples.
+    * **Red, Blue, Green, Alpha** -- RBG have values of 0-255 alpha is opacity `0,255,0,1` is blue.
+    * **Units** -- There are multiple units of measurements in CSS. Some dynamic and some static.
+        * **`px`** -- Refers to pixels on a screen. Screen sizes are not universal so be careful in using this.
+        * **`rem`** -- Root em. Refers to the default font size of the root element HTML in most cases.
+        * **`em`** -- Relative to the font size in containing elements.
+        * **Percentage** -- Relative to the size of the parent element `element{300px}` `element h1{width: 50%}` = 150px
+        * **Viewport Height`vh` & Width`vw`** -- This is measured based on the X (0 would be the left most area of the
+          Viewport 100 is the right most.)
+          and the Y (0 would be the top of the Viewport. 100 is the bottom) axes. `
+          img{height: 50vh; width: 50vw;}` would put something directly in the middle of the Viewport.
+        * **Font Stack** -- Font stacks are used for applying fonts for elements. CSS will pick the first declared font
+          and continue down the stack
+          based on what is available to the user. `h1{font-family: Cambria, Utopia, Times-New-Roman}` Cambria will be
+          displayed if available, if not Utopia... etc.
+        * **CSS Variables** -- Just like Java you can declare Variables in CSS. These must be declared in the `:root{}`
+          element in your CSS.
+          `:root{--my-variable-color: blue;} p{background-color: var(--my-variable-color);}`
+
 ## Programming styles
 
 ### Overview
