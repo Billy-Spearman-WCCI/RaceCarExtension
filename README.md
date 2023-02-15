@@ -195,6 +195,9 @@
 * Runtime
     * *Java* runs on machines which has the Java Runtime Environment or Java Software Development Kit downloaded.
     * *JavaScript* runs in nearly every browser worldwide. Can also run outside of browsers (e.g. "node.js").
+* Hello, World!
+    * *Java*: `public class Main {public static void main(String[] args){System.out.println("Hello, World");}}`
+    * *JavaScript*: `console.log("Hello, world!")`
 * Object-orientation
     * *Java* claims to be OO, but actually is class-centric. Plus, primitive values aren't objects at all.
     * *JavaScript* is actually object-centric. Even functions are objects which can contain fields!
@@ -221,7 +224,7 @@
 * `var` keyword
     * *Java*: `var` is the new hotness which allows you to avoid explicitly specifying variable types when Java can
       figure it out on its own.
-    * *JavaScript*: `var` is an abomination which need to be buried at least ten feet underground. Use `const` to
+    * *JavaScript*: `var` is an abomination which needs to be buried at least ten feet underground. Use `const` to
       declare "final" variables and `let` for variables which can't be final.
 * Equality
     * *Java*: For non-primitives be sure to use `.equals` ... and the owner of the class gets to define what that means.
