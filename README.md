@@ -545,6 +545,9 @@ openNewAccount(((((new Account.Builder())
 * **Spring** -- a widely-used and powerful framework for creating Java servers. Spring scans your code for annotated
   Java entities (classes, interfaces, methods, fields, etc) and connects them altogether into a production-ready
   application.
+* **JPA** -- Java Persistence Architecture ... a standard way of marking Java objects which should be stored in
+  databases. Hibernate is by far the most common *implementation* of JPA (and predates it). In most cases, they're
+  interchangeable in ordinary speech. This also called an ORM (Object-RelationalDatabase Mapping).
 * **Constructor dependency injection** -- the preferred pattern for injecting dependencies. For example,
   a `@RestController`-annotated class might
   have `final MyEntityRepository myEntityRepo; public MyRestController(final @Autowired MyEntityRepository repo){this.myEntityRepo = repo;}`.
@@ -605,7 +608,8 @@ openNewAccount(((((new Account.Builder())
         * And the Secondary class contains something
           like `@OneToMany(mappedBy="secondaries") @JsonIgnore private Collection<Primary> primaries = new HashSet<>();`.
     * Reminder: classes which are stored in Sets should have explicit `.equals()` and `.hashCode()` methods looking at
-      the fields which should matter for saying that two objects are essentially the same.
+      the fields which should matter for saying that two objects are essentially the same. If two tags have the same
+      name, then we want only one in the database -- so `.equals()` for tags should only look at important fields.
 * `final private Logger logger = LoggerFactory.getLogger(ThisClass.class);` -- standard phrasing to create a logger to
   which you can write interesting information. Used in all Java programs, Spring and non-Spring. We use the `org.slf4j`
   loggers.  `logger.error("Somehow the .name is null here");`
