@@ -192,6 +192,10 @@
       database backends is a typical use.
     * *JavaScript*: For dynamically updating the structure or data of webpages within the browser, including responding
       locally to user input, I'm the only game in town.
+* Expressiveness
+    * *Java*: Can express coding styles which lie somewhere on the spectrum between "rather ugly" and "rather clean".
+    * *JavaScript*: Can express coding styles which lie somewhere on the spectrum between "unimaginably ugly"
+      and "beautifully clean".
 * Runtime
     * *Java* runs on machines which has the Java Runtime Environment or Java Software Development Kit downloaded.
     * *JavaScript* runs in nearly every browser worldwide. Can also run outside of browsers (e.g. "node.js").
@@ -1112,3 +1116,4 @@ should continue to use it. But don't just copy stuff without understanding.
 [^2]: The whole point of encapsulation is that we don't have to understand details if they're hidden behind
 abstractions. So we can tell students: "The `Console` object knows how to write stuff to the screen. We can trust that
 it does so and not worry about how it does so."
+********
