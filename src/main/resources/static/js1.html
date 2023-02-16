@@ -1,6 +1,64 @@
 <html>
+
 <body>
-<div id="greeting">Hello, world</div>
-<button onclick="getElementById('greeting').innerHTML += '!'">Click me!</button>
+    <script>
+        function sayHello(name) { console.log("Hello, " + name) }
+        let goodbye = function (name) { console.log("GoodBye, " + name) }
+        const both = function (name) { sayHello(name); goodbye(name) }
+        var mistake = function (name) { sayHello(name); goodbye(name0) }
+
+        function double(name) { return name + name }
+
+        for (let i = 0; i < 5; i++) sayHello("Mr. " + i);
+        for (let i = 5; i < 10; i++) goodbye("Mr. " + i);
+        for (let i = 10; i < 15; i++) both("Mr. " + i);
+
+        // https://developer.mozilla.org/en-US/docs/Web/API/HTMLDocument
+        console.log("The document object " + document)
+
+        // https://developer.mozilla.org/en-US/docs/Web/API/HTMLHtmlElement
+        console.log("The document root " + document.documentElement)
+        console.log("The document root " + document['documentElement'])
+
+
+        function dumpElement(htmlElement, indentation, logger) {
+            if (htmlElement.childElementCount) logger(indentation + " childElementCount " + htmlElement.childElementCount)
+            if (htmlElement.cssText) logger(indentation + " cssText " + htmlElement.cssText)
+            if (htmlElement.className) logger(indentation + " className " + htmlElement.className)
+            if (htmlElement.hidden) logger(indentation + " hidden " + htmlElement.hidden)
+            if (htmlElement.nodeName) logger(indentation + " nodeName " + htmlElement.nodeName)
+            if (htmlElement.style) logger(indentation + " style " + htmlElement.style)
+
+            // Note the `of` at the place where Java has `:`
+            for (const child of htmlElement.children) {
+                dumpElement(child, indentation + " ", logger)
+            }
+        }
+
+        function perhapsDump(element, field, indentation, logger) {
+            if (element[field])
+                logger(indentation + " " + field + " " + element[field])
+        }
+
+        function dumpElement2(htmlElement, indentation, logger) {
+            for (const field of ['childElementCount', 'classList', 'cssText', 'className', 'hidden', 'nodeName', 'style'])
+                perhapsDump(htmlElement, field, indentation, logger)
+
+            // Note the `of` at the place where Java has `:`
+            for (const child of htmlElement.children) {
+                dumpElement(child, indentation + " ", logger)
+            }
+        }
+
+        // dumpElement(document.documentElement, "_", function(text){console.log(text)})
+        dumpElement2(document.documentElement, "!", function (text) { console.log(text) })
+    </script>
+    <div id="greeting">Hello, world</div>
+    <button id="excitement_button" onclick="getElementById('greeting').innerHTML += '!'">Excitement</button>
+    <br />
+    <button id="double_button" onclick="getElementById('greeting').innerHTML = double('MGF')">double</button>
+    <br />
+    <button id="triple_button" onclick="getElementById('greeting').innerHTML = triple('MGF')">triple</button>
 </body>
+
 </html>
