@@ -213,6 +213,9 @@
       unless you just make a new array with the new size.
     * *JavaScript*: indexed from 0, retrieved using `[]` syntax. They function like very much `ArrayList`, except
       you `.push` and `.pop` rather than `.add` and `.remove(o.length() - 1)`
+* Arrays
+    * *Java*: `myArray[-1]` and `myArray[-2]` crash
+    * *JavaScript*: `myArray[-1]` and `myArray[-2]` yield the last or second-to-last values in the array. Quite nice.
 * Array length
     * *Java* `(new int[]{"a", "b", "c"}).length == 3`
     * *JavaScript*: `["a", "b", "c"].length == 3`
