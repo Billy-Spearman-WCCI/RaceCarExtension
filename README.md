@@ -197,14 +197,19 @@
   stylings.
   It's a good rule to disable any default stylings through the browser dev tools `ctrl + alt + i`
 * **Colors** -- There are 4 ways to declare colors within CSS.
-    * **Hexadecimal** -- # followed by 6 characters with any configuration of A-F &| 1-9 `#0000FF` is blue
-    * **Hue, Saturation, Lightness, Alpha** -- h: degrees on a color circle 0-360 s: saturation 0%-100% l:lightness
-      0%-100% a: alpha 1.0 is opaque
-    * **Keyword** -- There are currently 140 defined colors in CSS refer to:
+    * **Hexadecimal** -- # followed by 6 characters with any configuration of `0-9` and `A-F`. The first two digits
+      specify red on a scale from `00` to `FF`, then green, then blue, e.g. `#0000FF` is blue.
+    * **Hue, Saturation, Lightness, Alpha**
+        * h: degrees on a color circle 0-360
+        * s: saturation 0%-100%
+        * l: lightness 0%-100%
+        * a: alpha 0.0 is entirely transparent, and 1.0 is entirely opaque.
+    * **Color Name** -- There are currently 140 defined colors in CSS refer to:
       https://www.w3schools.com/cssref/css_colors.php for the list. `MediumOrchid`,`GoldenRood`, or just `Blue` are
       examples.
-    * **Red, Blue, Green, Alpha** -- RBG have values of 0-255 alpha is opacity `0,255,0,1` is blue.
-    * **Units** -- There are multiple units of measurements in CSS. Some dynamic and some static.
+    * **Red, Green, Blue, Alpha** -- RGB have values of 0-255, while alpha is opacity ranging from 0.0 to
+      1.0. `0,255,0,1` is opaque green.
+    * **Units** -- There are multiple units of measurements in CSS: some dynamic and some static.
         * **`px`** -- Refers to pixels on a screen. Screen sizes are not universal so be careful in using this.
         * **`rem`** -- Root em. Refers to the default font size of the root element HTML in most cases.
         * **`em`** -- Relative to the font size in containing elements.
@@ -321,7 +326,9 @@
           if .withChecking() was called.
         * But normally, one of the nice things about builders is they can be called in any order.
     * **Fluent Pattern** -- Methods which end with `return this;` so that multiple methods can be called on a single
-      object in a single statement.
+      object in a single statement. Highly related to "functional programming".
+        * Note that the methods don't actually have to end with "return this" ... they just need to return some object
+          upon which further method calls can be made.
 * **Refactoring** -- Simplifying your code without changing its behavior.
     * If you're doing TDD, refactoring can occur anytime: (1) all tests are currently passing, and (2) you've already
       committed to git.
@@ -540,6 +547,32 @@ openNewAccount(((((new Account.Builder())
 * When you get an `Optional<T>`, you *have* to check whether it is populated before you use its actual value.
 * Without Optional, you could just "tell" your callers to check to see if the returned value `==null`, but people don't
   listen.
+* If you need to work with an Optional:
+    * You just want to *do* something, `ifPresentOrElse` works wonderfully:
+
+    ```
+    final Optional<Category> perhapsCategory = categoryRepository.findById(category_id);
+    perhapsCategory.ifPresentOrElse(
+       // what to do if category was found
+       (category) -> {
+           categoryRepository.delete(category)
+       }, 
+       // what to do if category is not found
+       () -> {
+           throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cannot delete nonexistent category " + category_id)
+       });
+    ```
+
+    * If you need to return data, then `.map()` and perhaps `.orElseGet()`
+
+    ```
+    return categoryRepository.findById(category_id)
+                .map((category) -> category.getReviews())
+                .orElseGet(() -> {
+                    // this never returns data because it throws an exception instead
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cannot find category " + category_id);
+                });
+    ```
 
 # The Internet
 
