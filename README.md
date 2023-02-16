@@ -197,14 +197,19 @@
   stylings.
   It's a good rule to disable any default stylings through the browser dev tools `ctrl + alt + i`
 * **Colors** -- There are 4 ways to declare colors within CSS.
-    * **Hexadecimal** -- # followed by 6 characters with any configuration of A-F &| 1-9 `#0000FF` is blue
-    * **Hue, Saturation, Lightness, Alpha** -- h: degrees on a color circle 0-360 s: saturation 0%-100% l:lightness
-      0%-100% a: alpha 1.0 is opaque
-    * **Keyword** -- There are currently 140 defined colors in CSS refer to:
+    * **Hexadecimal** -- # followed by 6 characters with any configuration of `0-9` and `A-F`. The first two digits
+      specify red on a scale from `00` to `FF`, then green, then blue, e.g. `#0000FF` is blue.
+    * **Hue, Saturation, Lightness, Alpha**
+        * h: degrees on a color circle 0-360
+        * s: saturation 0%-100%
+        * l: lightness 0%-100%
+        * a: alpha 0.0 is entirely transparent, and 1.0 is entirely opaque.
+    * **Color Name** -- There are currently 140 defined colors in CSS refer to:
       https://www.w3schools.com/cssref/css_colors.php for the list. `MediumOrchid`,`GoldenRood`, or just `Blue` are
       examples.
-    * **Red, Blue, Green, Alpha** -- RBG have values of 0-255 alpha is opacity `0,255,0,1` is blue.
-    * **Units** -- There are multiple units of measurements in CSS. Some dynamic and some static.
+    * **Red, Green, Blue, Alpha** -- RGB have values of 0-255, while alpha is opacity ranging from 0.0 to
+      1.0. `0,255,0,1` is opaque green.
+    * **Units** -- There are multiple units of measurements in CSS: some dynamic and some static.
         * **`px`** -- Refers to pixels on a screen. Screen sizes are not universal so be careful in using this.
         * **`rem`** -- Root em. Refers to the default font size of the root element HTML in most cases.
         * **`em`** -- Relative to the font size in containing elements.
