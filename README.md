@@ -181,12 +181,13 @@
   selectors a CSS can transform individual, or groups of elements within an HTML doc.
 * **types of selectors**:
     * **Elements Selectors** -- The least specific of the selectors use to select all elements wrapped in a
-      tag `element{css-goes-here;}`
-    * **Pseudo Selectors** -- Used to select elements by the attributes they have `input[type="text"]{css-goes-here;}`
-    * **Class Selectors** -- Classes must be applied to HTML elements first to be referenced by CSS. Referenced
-      by `.CLASS-NAME`
-      Multiple HTML elements can be defined by the same class
-      HTML:`<div class="my-class"></div>` CSS: `.my-class{css-goes: here;}`
+      tag `element{css-goes-here;}` 
+    * **Class Selectors** -- Classes must be applied to HTML elements first to be referenced by CSS. Referenced 
+        by `.class-name` 
+        Multiple HTML elements can be defined by the same class
+       HTML:`<div class="my-class"></div>` CSS: `.my-class{css-goes: here;}`
+    * **Pseudo Class Selectors** -- Used to select elements and proceeded by a colon.
+        these a are normally based on the state of an element.`element:focus{css-goes-here;}`
     * **ID Selectors** -- Just like classes, ID's must be applied to HTML elements first to be referenced by CSS.
       Referenced by `#class-name`
       Unlike classes, ID's can only be applied to on HTML element at a time. Duplicate ID's will have conflicting
@@ -220,6 +221,31 @@
         * **CSS Variables** -- Just like Java you can declare Variables in CSS. These must be declared in the `:root{}`
           element in your CSS.
           `:root{--my-variable-color: blue;} p{background-color: var(--my-variable-color);}`
+    * **Grid** --A useful tool in website design. Used to create a grid of HTML elements by wrapping them into a container,
+        grids are very flexible and used on almost every website. 
+        *  **`grid-template-columns:`** -- This will set you grid column layout[left to right], remember the 
+          `repeat(x[number-of-repititions], i[css-that-is-being-repeated]);` syntax 
+           for quickly and cleanly creating multiple cells in your grid.
+        *  **`grid-template-rows:`** -- This will set you grid row layout[up and down].
+        *  **`grid-column-start:`** -- Used to select elements within a grid by spanning across columns.
+           Grids are counted by the lines vertical lines they on, not by the cells of the grid.
+           If we had a 4x4 grid, and we were to select the third item from the x axis in the grid `grid-column-start: 3`
+           will work fine, because it starts on the third column counting from left to right. 
+           When `grid-column-start` is used alone, the grid item by default will span exactly one column.
+        *  **`grid-column-end:`** -- Used to select elements within a grid by spanning across columns, 
+           this will set the endpoint of your span.
+           Going back to the 4x4 grid example if we were to select elements 2 and 3 from the x axis `
+           grid-column-start: 2` `grid-column-end: 4` will select those two elements because the 3rd element 
+           will end on the 4th vertical line.
+        * **`grid-row-start`** -- Works the same as `grid-column-start` but on the y axis.
+        * **`grid-row-end`** -- Works the same as `grid-column-end` but on the y axis.
+        * **`grid-area`** -- The combination of the last for transformations. 
+            `grid-area: 1/2/4/6` In this example "1" refers to `grid-row-start`
+             "2" refers to `grid-column-start`
+             "4" refers to `grid-row-end`
+             "6" refers to `grid-column-end`
+             `grid-area: y[start]/x[start]/y[end]/x[end]`always in that order. 
+           
 
 ## Programming styles
 
