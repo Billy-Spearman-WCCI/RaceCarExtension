@@ -240,6 +240,9 @@
 * Comments
     * *Java*: `//` for single lines and `/* ... */` for blocks.
     * *JavaScript*: `//` for single lines and `/* ... */` for blocks.
+* Imports
+    * *Java*: `import` is just a way to save typing when accessing classes in other packages
+    * *JavaScript*: `import` loads and executes the specified library
 
 ## CSS
 
@@ -633,11 +636,13 @@ openNewAccount(((((new Account.Builder())
 * **HTTP Verbs** https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods
     * Retrieve a single item (GET)
         * Should not change the state of any resource.
+        * Chrome does this all day every day.
     * Retrieve a list of items (GET)
         * Should not change the state of any resource.
     * Update an item (PUT) "Hey, item #23 should contain this data"
         * Should be **idempotent** (which is a fancy word for a requirement that calling PUT twice with the same
           information should be the same as just calling it once).
+        * Chrome does this when you have a form and click "submit"
         * Real-life examples of idempotent operations:
             * Converting a color picture to black-and-white.
             * Washing a plate. (Once-washed plates and twice-washed plates are the same.)
@@ -647,10 +652,13 @@ openNewAccount(((((new Account.Builder())
     * Create an item (POST)
         * Typically returns the created resource. Not "idempotent", which is why sometimes your browser will ask say
           something like "reloading this page will resubmit the data".
+        * Chrome does this when you have a form and click "submit"
     * Delete an item (DELETE)
         * Typically returns the deleted resource.
+        * Chrome does this when you have a form and click "submit"
     * Partially modify an item (PATCH)
         * (Less commonly used.)
+        * Chrome does this when you have a form and click "submit"
 
 # **Spring Boot**
 
