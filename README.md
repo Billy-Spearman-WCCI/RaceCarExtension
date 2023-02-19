@@ -233,6 +233,10 @@
       figure it out on its own.
     * *JavaScript*: `var` is an abomination which needs to be buried at least ten feet underground. Use `const` to
       declare "final" variables and `let` for variables which can't be final.
+* Error-handling
+    * *Java*: "a".substring(0,2) will crash the program unless the resulting exception is caught
+    * *JavaScript*: "a".substring(0,2) will return "a" without complaint. (
+      e.g. https://the-winter.github.io/codingjs/exercise.html?name=front22&title=Warmup-1)
 * Equality
     * *Java*: For non-primitives be sure to use `.equals` ... and the owner of the class gets to define what that means.
     * *JavaScript*: Congratulations, you get to choose between `==` (i.e. mostly equal) and `===` (i.e., really equal --
