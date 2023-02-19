@@ -242,6 +242,11 @@
       figure it out on its own.
     * *JavaScript*: `var` is an abomination which needs to be buried at least ten feet underground. Use `const` to
       declare "final" variables and `let` for variables which can't be final.
+* Anonymous functions
+    * *Java* uses `->`, e.g. `(s) -> s+1` or `s -> {System.out.println(s); return s+1;}`
+    * *JavaScript* uses `=>`, e.g. `(s) => s+1` or `s => {Console.log("Hello world"); return s+1}`
+        * Allows rest (`...`) parameters, default values, and
+          destructuring (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 * Error-handling
     * *Java*: "a".substring(0,2) will crash the program unless the resulting exception is caught
     * *JavaScript*: "a".substring(0,2) will return "a" without complaint. (
@@ -249,7 +254,7 @@
 * Equality
     * *Java*: For non-primitives be sure to use `.equals` ... and the owner of the class gets to define what that means.
     * *JavaScript*: Congratulations, you get to choose between `==` (i.e. mostly equal) and `===` (i.e., really equal --
-      but rather similar to Java's `==`). It's easier to explain when you're drunk, but here `5 == "5"`.
+      but rather similar to Java's `==`). Here, `5 == "5"`.
 * Comments
     * *Java*: `//` for single lines and `/* ... */` for blocks.
     * *JavaScript*: `//` for single lines and `/* ... */` for blocks.
