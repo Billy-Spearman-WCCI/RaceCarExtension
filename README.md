@@ -576,6 +576,8 @@ openNewAccount(((((new Account.Builder())
 
 # The Internet
 
+* **URL** -- Universal Resource Locator, e.g., `http://google.com`, `https://wecancodeit.org/about-us/`,
+  or `mailto:Admissions@WeCanCodeIT.org`.
 * **server** -- A process which is running continuously on machine, accepting connections from clients and interacting
   with them.
 * **client** -- A process (like Chrome) which connects to a server process.
