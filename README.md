@@ -177,7 +177,7 @@
 
 # JavaScript
 
-## JavaScript vs Java
+## JavaScript vs Java, an opinionated comparison.
 
 * Language name
     * *Java* is named after the Indonesian coffee-growing island.
@@ -208,6 +208,15 @@
 * Classes
     * *Java*: requires all code and data to belong to a class or object.
     * *JavaScript*: sure, if you want classes we can do that without much fuss.
+      But it's *objects* which are central.
+* Threading
+    * *Java*: Multiple lines of Java can be executing *simultaneously*, each in its own "thread".
+      Doing this correctly is difficult, and hard.
+      We will give you some rules-of-thumb to keep you out of trouble, but much of threading is beyond the scope of this
+      bootcamp.
+    * *JavaScript*: Only one line of JavaScript will run at a time (though the browser will be doing multiple things
+      simultaneously on your code's behalf, like downloading multiple URLs simultaneously. `fetch` and `promise` are
+      JavaScript's answer to waiting for external events, and `eventListener` is its answer to defining UIs.
 * Arrays
     * *Java*: indexed from 0, retrieved using `[]` syntax. But want to change the size ... congratulations, you can't
       unless you just make a new array with the new size.
