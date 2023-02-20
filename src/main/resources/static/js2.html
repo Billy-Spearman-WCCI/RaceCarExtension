@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <script>
+      // Stolen from https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction
+
+      const populateHTML = () => {
+        // create a couple of elements in an otherwise empty HTML page
+        const table = document.createElement("table")
+        table.border = 1
+        for (r = 1; r < 4; r++) {
+           const row = document.createElement("tr")
+           for (i = 1; i < 6; i++) {
+             const cell = document.createElement("td")
+             cell.innerHTML = "row " + r + " cell " + i
+             for (h = i; h < 7; h++) {
+                 const heading = document.createElement("h" + h);
+                 const headingText = document.createTextNode("Hello, world # " + h);
+                 const div1 = document.createElement("div")
+
+                 const bold1 = document.createElement("small")
+                 bold1.setAttribute("id", "bold" + h)
+                 bold1.innerText = "This text is bold"
+                 div1.appendChild(bold1)
+
+                 heading.appendChild(headingText)
+                 cell.appendChild(heading)
+             }
+             row.appendChild(cell)
+           }
+           table.appendChild(row)
+        }
+        document.body.appendChild(table)
+      };
+
+      // window is an object which Chrome always creates
+      // window.onload is a field which contains a function to run when the window is loaded
+      window.onload = populateHTML
+
+      // Standard way to link newly-created elements to CSS
+      // document.getElementById('foo').className += ' intro'
+      // .intro {background-color: yellow;}
+      // See https://www.w3schools.com/cssref/sel_class.php
+
+    </script>
+</head>
+<body></body>
+</html>

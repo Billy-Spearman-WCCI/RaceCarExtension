@@ -1,14 +1,40 @@
 <html>
 <body>
 <script>
+var colors = ["red", "green", "blue", "yellow"];
+var listAllColors = function(array, callbackFunction) {
+  result = "";
+  for (var i = 0; i < array.length; i++) {
+    result += array[i];
+    if (i < array.length - 1) {
+      result += ", ";
+    }
+  }
+  callbackFunction(result);
+};
+
+if (false) {
+  logger = function(someString) {console.log(someString)}
+} else {
+  logger = (someString) => console.error(someString)
+}
+
+listAllColors(colors, logger)
+
+        // JavaScript has *many* ways to define functions
         function sayHello(name) { console.log("Hello, " + name) }
         let goodbye = function (name) { console.log("GoodBye, " + name) }
         const both = function (name) { sayHello(name); goodbye(name) }
-        var mistake = function (name) { sayHello(name); goodbye(name0) }
+        var mistake = function (name) { sayHello(name); goodbye(name) }
+
+        // ??? moreConcise = (name) => {console.log("Hello, " + name)}
+
+        both("both!")
+        mistake("mistake!")
 
         function double(name) { return name + name }
 
-        for (let i = 0; i < 5; i++) sayHello("Mr. " + i);
+        for (let i = -1; i < 5; i++) sayHello("Mr. " + i);
         for (let i = 5; i < 10; i++) goodbye("Mr. " + i);
         for (let i = 10; i < 15; i++) both("Mr. " + i);
 
@@ -42,15 +68,48 @@
         }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 
 <div id="example">
     <div id="greeting">Hello, world</div>
     <button id="excitement_button" onclick="getElementById('greeting').innerHTML += '!'">Excitement</button>
     <br/>
-    <button id="double_button" onclick="getElementById('greeting').innerHTML = double('MGF')">double</button>
+    <button id="double_button" onclick="getElementById('greeting').innerHTML = moreConcise('MGF')">double</button>
     <br/>
-    <button id="triple_button" onclick="getElementById('greeting').innerHTML = triple('MGF')">triple</button>
+    <button id="triple_button"
+            onclick="getElementById('greeting').hidden = !getElementById('greeting').hidden">toggle hidden
+    </button>
+    <br/>
+    <button id="swap" onclick="let children = getElementById('example').children; children[5].before(children[1])">
+        swap
+    </button>
+    <br/>
+    <button id="shift" onclick="let children = getElementById('example').children; children.shift(children.unshift())">
+        shift
+    </button>
     <br/>
     <button id="dumper" onclick="dumpElements(document.documentElement, '!', function (text) { console.log(text) })">
         dumpDOM

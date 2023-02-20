@@ -187,6 +187,14 @@
       We call this "manipulating the DOM" and the entire web is based on this.
     * We can do this because the user pressed a button, or because we issued a REST-like request to a webserver and got
       more info, using something called `fetch` and `promise`s.
+* Javascript can update that tree and then Chrome will automatically redraw the screen accordingly.
+* We think of the "outline" of elements as a tree, with the outermost tag (`<html>`) being the trunk, and then we keep
+  on branching and branching. This tree is the "Document Object Model" because it's all of the objects in the html
+  document.
+* Javascript allows for *dynamic* web pages. If you want new messages to appear at the bottom of your screen, then
+  you're adding additionals `div` or whatever, and that requires JS.
+* Javascript updates the DOM in response to user actions.
+* Javascript talks to webservers to get information so that they can update the DOM.
 
 # JavaScript
 
@@ -257,9 +265,11 @@
       declare "final" variables and `let` for variables which can't be final.
 * Anonymous functions
     * *Java* uses `->`, e.g. `(s) -> s+1` or `s -> {System.out.println(s); return s+1;}`
-    * *JavaScript* uses `=>`, e.g. `(s) => s+1` or `s => {Console.log("Hello world"); return s+1}`
-        * Allows rest (`...`) parameters, default values, and
-          destructuring (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+    * *JavaScript* has *two* ways to define an anonymous function
+        * uses `function`, e.g. `function (s) {Console.log(s)}`
+            * This is the older syntax, which hearkens back to the 1950's.
+        * uses `=>`, e.g. `(s) => s+1` or `s => {Console.log("Hello world"); return s+1}`
+            * This happened when JavaScript got jealous of Java's `->` syntax. (I'm making this up.)
 * Error-handling
     * *Java*: "a".substring(0,2) will crash the program unless the resulting exception is caught
     * *JavaScript*: "a".substring(0,2) will return "a" without complaint. (
@@ -274,6 +284,12 @@
 * Imports
     * *Java*: `import` is just a way to save typing when accessing classes in other packages
     * *JavaScript*: `import` loads and executes the specified library
+* Modern for loops
+    * *Java*: `(for String i : s.values())`
+    * *JavaScript*: `(for i of s.values())`
+* Ease of use
+    * *Java*: easier to write programs that work correctly
+    * *JavaScript*: easier to write programs
 
 ## CSS
 
@@ -613,6 +629,11 @@ openNewAccount(((((new Account.Builder())
     * `V`'s can be anything, even other Lists or Maps.  `Map<String, List<Integers>>` is perfectly fine.
 * `Iterable<V>` -- Something which can be after the `:` in `for (V value : values) {}`. All lists, `map.keySet()`,
   and `map.valueSet()` are all iterables.
+* `Stack<V>` -- A list with easy access to the last element. Think a spring-powered plate dispenser in a cafeteria.
+    * `.pop()` -- removes the last element and returns it if you care about its value.
+    * `.push()` -- adds to the end of the list.
+    * `.shift()` -- like `.pop()` but removes the *first* element.
+    * `.unshift()` -- like .push()` but inserts at the first location and everything else slides to the right.
 
 # Why do we write unit tests?
 
@@ -807,6 +828,13 @@ openNewAccount(((((new Account.Builder())
   replacement for the "Maven" system (which used a `pom.xml` file instead).
 
 ## Spring *integration* tests
+
+* **Unit Test** -- cheap to run and tests single classes in isolation. So other than calling the constructors of other
+  classes, really should be for the class being tested.
+    * It's poor form to have a single unit test verify multiple things in general.
+* **Integration Test** -- more expensive to run, and are frequently end-to-end.
+    * More common for them to complex and fewer.
+* The truth is, any test is far better than no test.
 
 ```
 // Using automated testing is far easier than manually pasting commands into the bash shell, e.g.
