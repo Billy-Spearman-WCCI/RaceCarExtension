@@ -1,0 +1,61 @@
+<html>
+<body>
+<script>
+        function sayHello(name) { console.log("Hello, " + name) }
+        let goodbye = function (name) { console.log("GoodBye, " + name) }
+        const both = function (name) { sayHello(name); goodbye(name) }
+        var mistake = function (name) { sayHello(name); goodbye(name0) }
+
+        function double(name) { return name + name }
+
+        for (let i = 0; i < 5; i++) sayHello("Mr. " + i);
+        for (let i = 5; i < 10; i++) goodbye("Mr. " + i);
+        for (let i = 10; i < 15; i++) both("Mr. " + i);
+
+        // https://developer.mozilla.org/en-US/docs/Web/API/HTMLDocument
+        console.log("The document object " + document)
+
+        // https://developer.mozilla.org/en-US/docs/Web/API/HTMLHtmlElement
+        console.log("The document root " + document.documentElement)
+        console.log("The document root " + document['documentElement'])
+
+        function dumpElements(thisElement, indentation, logger) {
+            logger(indentation + " " + thisElement)
+            for (field of ['id',
+                           'childElementCount',
+                           'classList',
+                           'className',
+                           'cssText',
+                           'hidden',
+                           'nodeName',
+                           'style',
+                           'children'
+                           ])
+                if (thisElement[field])
+                    logger(indentation + " " + thisElement + " " + field + " " + thisElement[field])
+
+            // Note the `of` at the place where Java has `:`
+            for (childElement of thisElement.children) {
+                logger(indentation + " " + thisElement + " -> " + childElement)
+                dumpElements(childElement, indentation + "_", logger)
+            }
+        }
+
+
+</script>
+
+<div id="example">
+    <div id="greeting">Hello, world</div>
+    <button id="excitement_button" onclick="getElementById('greeting').innerHTML += '!'">Excitement</button>
+    <br/>
+    <button id="double_button" onclick="getElementById('greeting').innerHTML = double('MGF')">double</button>
+    <br/>
+    <button id="triple_button" onclick="getElementById('greeting').innerHTML = triple('MGF')">triple</button>
+    <br/>
+    <button id="dumper" onclick="dumpElements(document.documentElement, '!', function (text) { console.log(text) })">
+        dumpDOM
+    </button>
+</div>
+</body>
+
+</html>

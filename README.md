@@ -175,6 +175,93 @@
 * Anchor `<a></a>` -- Used, in combination with "href="link destination"" to link pages together.
 * Footer `<footer></footer>` Exists at the very bottom of the page.
 
+# JavaScript
+
+## JavaScript vs Java, an opinionated comparison.
+
+* Language name
+    * *Java* is named after the Indonesian coffee-growing island.
+    * *JavaScript* is named after the programming language.
+* Strategy
+    * *Java*: What's left of C++ if you pull out everything not necessary for IntelliJ to be an awesome development
+      environment.
+    * *JavaScript*: Quite nice if you add everything necessary for IntelliJ to be an awesome development environment and
+      thereby get TypeScript.
+* Reason for living
+    * *Java*: Large corporate codebases, with moderate speed requirements but lots of business logic. Web servers with
+      database backends is a typical use.
+    * *JavaScript*: For dynamically updating the structure or data of webpages within the browser, including responding
+      locally to user input, I'm the only game in town.
+* Expressiveness
+    * *Java*: Can express coding styles which lie somewhere on the spectrum between "rather ugly" and "rather clean".
+    * *JavaScript*: Can express coding styles which lie somewhere on the spectrum between "unimaginably ugly"
+      and "beautifully clean".
+* Runtime
+    * *Java* runs on machines which has the Java Runtime Environment or Java Software Development Kit downloaded.
+    * *JavaScript* runs in nearly every browser worldwide. Can also run outside of browsers (e.g. "node.js").
+* Hello, World!
+    * *Java*: `public class Main {public static void main(String[] args){System.out.println("Hello, World");}}`
+    * *JavaScript*: `console.log("Hello, world!")`
+* Object-orientation
+    * *Java* claims to be OO, but actually is class-centric. Plus, primitive values aren't objects at all.
+    * *JavaScript* is actually object-centric. Even functions are objects which can contain fields!
+* Classes
+    * *Java*: requires all code and data to belong to a class or object.
+    * *JavaScript*: sure, if you want classes we can do that without much fuss.
+      But it's *objects* which are central.
+* Threading
+    * *Java*: Multiple lines of Java can be executing *simultaneously*, each in its own "thread".
+      Doing this correctly is difficult, and hard.
+      We will give you some rules-of-thumb to keep you out of trouble, but much of threading is beyond the scope of this
+      bootcamp.
+    * *JavaScript*: Only one line of JavaScript will run at a time (though the browser will be doing multiple things
+      simultaneously on your code's behalf, like downloading multiple URLs simultaneously. `fetch` and `promise` are
+      JavaScript's answer to waiting for external events, and `eventListener` is its answer to defining UIs.
+* Arrays
+    * *Java*: indexed from 0, retrieved using `[]` syntax. But want to change the size ... congratulations, you can't
+      unless you just make a new array with the new size.
+    * *JavaScript*: indexed from 0, retrieved using `[]` syntax. They function like very much `ArrayList`, except
+      you `.push` and `.pop` rather than `.add` and `.remove(o.length() - 1)`
+* Arrays
+    * *Java*: `myArray[-1]` and `myArray[-2]` crash
+    * *JavaScript*: `myArray[-1]` and `myArray[-2]` yield the last or second-to-last values in the array. Quite nice.
+* Array length
+    * *Java* `(new int[]{"a", "b", "c"}).length == 3`
+    * *JavaScript*: `["a", "b", "c"].length == 3`
+* Reading/writing structured data
+    * *Java*: Spring offers some magic to read/write JSON-formatted data.
+    * *JavaScript*: Um, JSON stands for "JavaScript Object Notation". Json is valid JavaScript code as-is.
+* Fields
+    * *Java* Accessed through `o.fieldName`.
+    * *JavaScript* Accessed through `o.fieldName` or `o['fieldName']`, so you can have *computed* field names.
+* Variable declaration
+    * *Java* Variable declarations must specify the type of the variable, e.g. `final VirtualPet myPet;`.
+    * *JavaScript* Variable declarations don't specify the type of the variable, e.g. `myPet = {"name": "astro"}`.
+* `var` keyword
+    * *Java*: `var` is the new hotness which allows you to avoid explicitly specifying variable types when Java can
+      figure it out on its own.
+    * *JavaScript*: `var` is an abomination which needs to be buried at least ten feet underground. Use `const` to
+      declare "final" variables and `let` for variables which can't be final.
+* Anonymous functions
+    * *Java* uses `->`, e.g. `(s) -> s+1` or `s -> {System.out.println(s); return s+1;}`
+    * *JavaScript* uses `=>`, e.g. `(s) => s+1` or `s => {Console.log("Hello world"); return s+1}`
+        * Allows rest (`...`) parameters, default values, and
+          destructuring (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+* Error-handling
+    * *Java*: "a".substring(0,2) will crash the program unless the resulting exception is caught
+    * *JavaScript*: "a".substring(0,2) will return "a" without complaint. (
+      e.g. https://the-winter.github.io/codingjs/exercise.html?name=front22&title=Warmup-1)
+* Equality
+    * *Java*: For non-primitives be sure to use `.equals` ... and the owner of the class gets to define what that means.
+    * *JavaScript*: Congratulations, you get to choose between `==` (i.e. mostly equal) and `===` (i.e., really equal --
+      but rather similar to Java's `==`). Here, `5 == "5"`.
+* Comments
+    * *Java*: `//` for single lines and `/* ... */` for blocks.
+    * *JavaScript*: `//` for single lines and `/* ... */` for blocks.
+* Imports
+    * *Java*: `import` is just a way to save typing when accessing classes in other packages
+    * *JavaScript*: `import` loads and executes the specified library
+
 ## CSS
 
 * **Cascading Style Sheets** -- The style layer of the front end. Linked to the HTML document and with the use of
@@ -602,11 +689,13 @@ openNewAccount(((((new Account.Builder())
 * **HTTP Verbs** https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods
     * Retrieve a single item (GET)
         * Should not change the state of any resource.
+        * Chrome does this all day every day.
     * Retrieve a list of items (GET)
         * Should not change the state of any resource.
     * Update an item (PUT) "Hey, item #23 should contain this data"
         * Should be **idempotent** (which is a fancy word for a requirement that calling PUT twice with the same
           information should be the same as just calling it once).
+        * Chrome does this when you have a form and click "submit"
         * Real-life examples of idempotent operations:
             * Converting a color picture to black-and-white.
             * Washing a plate. (Once-washed plates and twice-washed plates are the same.)
@@ -616,10 +705,13 @@ openNewAccount(((((new Account.Builder())
     * Create an item (POST)
         * Typically returns the created resource. Not "idempotent", which is why sometimes your browser will ask say
           something like "reloading this page will resubmit the data".
+        * Chrome does this when you have a form and click "submit"
     * Delete an item (DELETE)
         * Typically returns the deleted resource.
+        * Chrome does this when you have a form and click "submit"
     * Partially modify an item (PATCH)
         * (Less commonly used.)
+        * Chrome does this when you have a form and click "submit"
 
 # **Spring Boot**
 
@@ -1088,3 +1180,4 @@ should continue to use it. But don't just copy stuff without understanding.
 [^2]: The whole point of encapsulation is that we don't have to understand details if they're hidden behind
 abstractions. So we can tell students: "The `Console` object knows how to write stuff to the screen. We can trust that
 it does so and not worry about how it does so."
+********
