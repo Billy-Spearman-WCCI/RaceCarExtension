@@ -175,6 +175,19 @@
 * Anchor `<a></a>` -- Used, in combination with "href="link destination"" to link pages together.
 * Footer `<footer></footer>` Exists at the very bottom of the page.
 
+# Browser
+
+* Browser sends a request to a server, and gets some HTML back. (I.e. text with things like `<div>`).
+* Browser then "parses" that text into elements it understands (i.e. a different subclass for each HTML tag).
+* Browser create a "tree" of these elements. So everything within a `<div>` is a "child" of that div, etc, etc.,etc
+* Browser then takes that tree of objects and draws it on the screen.
+* Browser allows javascript code to access -- and even modify -- this tree of objects, which it
+  calls `document.documentElement`, which is a truly lousy name. We call the "DOM" (Document Object Model).
+    * We can add element, change them, delete them ... create entire new subtrees.
+      We call this "manipulating the DOM" and the entire web is based on this.
+    * We can do this because the user pressed a button, or because we issued a REST-like request to a webserver and got
+      more info, using something called `fetch` and `promise`s.
+
 # JavaScript
 
 ## JavaScript vs Java, an opinionated comparison.
