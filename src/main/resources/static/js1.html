@@ -34,6 +34,9 @@ listAllColors(colors, logger)
                 .then((listOfCategories) => {
                    const table = document.createElement("table") // "table" is exactly the same as "<table>"
                    table.setAttribute("border", 1)               // <table border="1">
+
+                   // The map is the same as Java's stream().map() ... you pass in an anonymous function which
+                   // will be executed in turn for each element of the list
                    listOfCategories.map((thisCategory) => {
                       const row = document.createElement("tr")   // <tr> "table row"
                       const c1 = document.createElement("td")    // <td> "table data cell"
@@ -42,6 +45,48 @@ listAllColors(colors, logger)
                       c2.innerHTML = thisCategory.description
                       row.appendChild(c1)
                       row.appendChild(c2)
+                      table.appendChild(row)
+                      })
+                   document.body.appendChild(table)
+                })
+        }
+
+        const experiment2 = () => {
+          fetch("https://swapi.dev/api/people", {method: 'GET', cache: 'no-cache'})
+                .then((response) => response.json())
+                // Here, we pass an anonymous function to .then(), and the anonymous function has a single parameter "list"
+                .then((responseBody) => {
+                   // responseBody is a complicated object. It's a map which contains strings and lists, and those
+                   // lists can themselves be of maps which contain other lists.
+                   listOfPeople = responseBody.results
+                   const table = document.createElement("table") // "table" is exactly the same as "<table>"
+                   table.setAttribute("border", 1)               // <table border="1">
+
+                   // The map is the same as Java's stream().map() ... you pass in an anonymous function which
+                   // will be executed in turn for each element of the list
+                   listOfPeople.map((thisCategory) => {
+                      const row = document.createElement("tr")   // <tr> "table row"
+                      const nameCell = document.createElement("td")    // <td> "table data cell"
+                      const homeWorldCell = document.createElement("td")
+                      const filmsCell = document.createElement("td")
+                      nameCell.innerHTML = thisCategory.name
+                      homeWorldCell.innerHTML = thisCategory.homeworld
+
+                      const filmsTable = document.createElement("table")
+                      filmsTable.setAttribute("border", 1)               // <table border="1">
+                      thisCategory.films.map((thisFilm) => {
+                        const filmRow = document.createElement("tr")   // <tr> "table row"
+                        const filmCell = document.createElement("td")   // <tr> "table row"
+                        filmCell.innerText = thisFilm
+                        filmRow.appendChild(filmCell)
+                        filmsTable.appendChild(filmRow)
+                      }) // this is the end of the callback passed to the map function
+
+                      filmsCell.appendChild(filmsTable)
+
+                      row.appendChild(nameCell)
+                      row.appendChild(homeWorldCell)
+                      row.appendChild(filmsCell)
                       table.appendChild(row)
                       })
                    document.body.appendChild(table)
@@ -95,35 +140,6 @@ listAllColors(colors, logger)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </script>
 
 <div id="example">
@@ -144,6 +160,7 @@ listAllColors(colors, logger)
         shift
     </button>
     <button id="experiment" onclick="experiment()"> experiment</button>
+    <button id="experiment2" onclick="experiment2()"> experiment2</button>
     <br/>
     <button id="dumper" onclick="dumpElements(document.documentElement, '!', function (text) { console.log(text) })">
         dumpDOM
