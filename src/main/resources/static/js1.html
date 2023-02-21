@@ -27,6 +27,27 @@ listAllColors(colors, logger)
         const both = function (name) { sayHello(name); goodbye(name) }
         var mistake = function (name) { sayHello(name); goodbye(name) }
 
+        const experiment = () => {
+          fetch("http://localhost:8080/categories", {method: 'GET', cache: 'no-cache'})
+                .then((response) => response.json())
+                // Here, we pass an anonymous function to .then(), and the anonymous function has a single parameter "list"
+                .then((listOfCategories) => {
+                   const table = document.createElement("table") // "table" is exactly the same as "<table>"
+                   table.setAttribute("border", 1)               // <table border="1">
+                   listOfCategories.map((thisCategory) => {
+                      const row = document.createElement("tr")   // <tr> "table row"
+                      const c1 = document.createElement("td")    // <td> "table data cell"
+                      const c2 = document.createElement("td")
+                      c1.innerHTML = "<strong>" + thisCategory.name + "</strong>"
+                      c2.innerHTML = thisCategory.description
+                      row.appendChild(c1)
+                      row.appendChild(c2)
+                      table.appendChild(row)
+                      })
+                   document.body.appendChild(table)
+                })
+        }
+
         // ??? moreConcise = (name) => {console.log("Hello, " + name)}
 
         both("both!")
@@ -91,6 +112,18 @@ listAllColors(colors, logger)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 
 <div id="example">
@@ -110,6 +143,7 @@ listAllColors(colors, logger)
     <button id="shift" onclick="let children = getElementById('example').children; children.shift(children.unshift())">
         shift
     </button>
+    <button id="experiment" onclick="experiment()"> experiment</button>
     <br/>
     <button id="dumper" onclick="dumpElements(document.documentElement, '!', function (text) { console.log(text) })">
         dumpDOM

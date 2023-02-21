@@ -291,6 +291,39 @@
     * *Java*: easier to write programs that work correctly
     * *JavaScript*: easier to write programs
 
+## Dynamic Javascript Pages
+
+* We have a HTML page, and it's probably loading in .css and .js resources.
+* It probably has some literal HTML text, which the browser will interpret and create an initial DOM tree, containing
+  one element per HTML tag in the initial download.
+* Some of these html elements, like "button", can have javascript associated with them, and this JavaScript can do just
+  about anything you could imagine in response to user actions.
+* So you could have a button that adds a row to a table, or a button that causes part of the display to disappear
+  temporarily.
+* BUT ... everything above occurs essentially instantanously ... if you press a button and it adds a row to the table,
+  all of that can occur before Chrome does the next thing.
+    * You press button; JS executes and adds elements to the existing DOM, or modifies the existing DOM; Chrome redraws
+      the screen.
+    * But the world isn't instantaneous. If I have a button that says "go to http://localhost:8080/categories", my web
+      server does not respond instantaneously. And things are even worse if the server is in Australia.
+    * So how we handle this?
+    * But functions just return values, so we need JavaScript to do something magical.
+* Answer: `fetch` and `promise`.
+* Vocabulary:
+    * Asynchronous --> Not happening at the same time ... if I ask a web server, I don't get an instantaneous response
+        * Email is asynchronous
+        * Special features are necessary to handle async easily,
+          e.g. https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+          And https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+    * Synchronous --> Occurring without waiting.
+        * A telephone call is synchronous
+    * In-between
+        * Slack can be either.
+    * Programming is *MUCH* easier when everything is synchronous. When you've been coding PetShelter, you never have to
+      deal with the shelter saying "i'll you that list later today" ... you've been getting immediate responses.
+    * It would be nice if we could program everything without having to worry about delays in getting responses.
+    * But we can't avoid this when writing client-side javascript code, because web servers always have delays.
+
 ## CSS
 
 * **Cascading Style Sheets** -- The style layer of the front end. Linked to the HTML document and with the use of
