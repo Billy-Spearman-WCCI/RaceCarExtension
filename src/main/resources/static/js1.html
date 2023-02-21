@@ -64,17 +64,21 @@ listAllColors(colors, logger)
 
                    // The map is the same as Java's stream().map() ... you pass in an anonymous function which
                    // will be executed in turn for each element of the list
-                   listOfPeople.map((thisCategory) => {
+                   listOfPeople.map((thisPerson) => {
                       const row = document.createElement("tr")   // <tr> "table row"
                       const nameCell = document.createElement("td")    // <td> "table data cell"
+
+                      // Everything in the DOM is fair game to be tweaked
+                      nameCell.setAttribute("bgColor", thisPerson.eye_color)
+
                       const homeWorldCell = document.createElement("td")
                       const filmsCell = document.createElement("td")
-                      nameCell.innerHTML = thisCategory.name
-                      homeWorldCell.innerHTML = thisCategory.homeworld
+                      nameCell.innerHTML = thisPerson.name
+                      homeWorldCell.innerHTML = thisPerson.homeworld
 
                       const filmsTable = document.createElement("table")
                       filmsTable.setAttribute("border", 1)               // <table border="1">
-                      thisCategory.films.map((thisFilm) => {
+                      thisPerson.films.map((thisFilm) => {
                         const filmRow = document.createElement("tr")   // <tr> "table row"
                         const filmCell = document.createElement("td")   // <tr> "table row"
                         filmCell.innerText = thisFilm
@@ -132,6 +136,13 @@ listAllColors(colors, logger)
                 dumpElements(childElement, indentation + "_", logger)
             }
         }
+
+
+
+
+
+
+
 
 
 
