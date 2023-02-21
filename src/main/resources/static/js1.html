@@ -28,7 +28,10 @@ listAllColors(colors, logger)
         var mistake = function (name) { sayHello(name); goodbye(name) }
 
         const experiment = () => {
+          // Here we use no-cache because I might be adding categories using Curl while I'm playing around
           fetch("http://localhost:8080/categories", {method: 'GET', cache: 'no-cache'})
+                // response is something that knows about HTTP response codes, etc
+                // response.json() is an actual JS object which has fields that we can access using `.` notation.
                 .then((response) => response.json())
                 // Here, we pass an anonymous function to .then(), and the anonymous function has a single parameter "list"
                 .then((listOfCategories) => {
@@ -52,9 +55,13 @@ listAllColors(colors, logger)
         }
 
         const experiment2 = () => {
-          fetch("https://swapi.dev/api/people", {method: 'GET', cache: 'no-cache'})
+          // Caching because swapi isn't changing their data all the time
+          fetch("https://swapi.dev/api/people", {method: 'GET', cache: 'default'})
+                // response is something that knows about HTTP response codes, etc
+                // response.json() is an actual JS object which has fields that we can access using `.` notation.
                 .then((response) => response.json())
                 // Here, we pass an anonymous function to .then(), and the anonymous function has a single parameter "list"
+                // And responseBody is the object returned by response.json()
                 .then((responseBody) => {
                    // responseBody is a complicated object. It's a map which contains strings and lists, and those
                    // lists can themselves be of maps which contain other lists.
@@ -82,6 +89,12 @@ listAllColors(colors, logger)
                         const filmRow = document.createElement("tr")   // <tr> "table row"
                         const filmCell = document.createElement("td")   // <tr> "table row"
                         filmCell.innerText = thisFilm
+
+                        // Typical link is https://swapi.dev/api/films/1/
+                        fetch(thisFilm, {method: 'GET', cache: 'default'})
+                           .then((response) => response.json())
+                           .then((data) => filmCell.innerText = data.title)
+
                         filmRow.appendChild(filmCell)
                         filmsTable.appendChild(filmRow)
                       }) // this is the end of the callback passed to the map function
@@ -136,6 +149,21 @@ listAllColors(colors, logger)
                 dumpElements(childElement, indentation + "_", logger)
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
