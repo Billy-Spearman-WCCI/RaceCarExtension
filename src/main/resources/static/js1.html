@@ -58,7 +58,7 @@ listAllColors(colors, logger)
           // Caching because swapi isn't changing their data all the time
           fetch("https://swapi.dev/api/people", {method: 'GET', cache: 'default'})
                 // response is something that knows about HTTP response codes, etc
-                // response.json() is an actual JS object which has fields that we can access using `.` notation.
+                // response.json() is an actual JS object (i.e. map) which has fields that we can access using `.` notation.
                 .then((response) => response.json())
                 // Here, we pass an anonymous function to .then(), and the anonymous function has a single parameter "list"
                 // And responseBody is the object returned by response.json()
@@ -81,7 +81,10 @@ listAllColors(colors, logger)
                       const homeWorldCell = document.createElement("td")
                       const filmsCell = document.createElement("td")
                       nameCell.innerHTML = thisPerson.name
-                      homeWorldCell.innerHTML = thisPerson.homeworld
+                      const desired_field = "rotation_period"
+                      fetch(thisPerson.homeworld)
+                         .then((response) => response.json())
+                         .then((data) => homeWorldCell.innerText = data[desired_field])
 
                       const filmsTable = document.createElement("table")
                       filmsTable.setAttribute("border", 1)               // <table border="1">
@@ -149,36 +152,6 @@ listAllColors(colors, logger)
                 dumpElements(childElement, indentation + "_", logger)
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </script>
 
 <div id="example">
@@ -203,6 +176,11 @@ listAllColors(colors, logger)
     <br/>
     <button id="dumper" onclick="dumpElements(document.documentElement, '!', function (text) { console.log(text) })">
         dumpDOM
+    </button>
+    <button id="addCategory"
+            onclick="fetch('http://localhost:8080/categories', { headers: { 'Content-Type': 'application/json'},
+            'method':'POST', 'body': JSON.stringify({'name':'automatic', 'description':'wow'})})">
+        newCategory
     </button>
 </div>
 </body>
