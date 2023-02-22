@@ -317,6 +317,7 @@
         * Special features are necessary to handle async easily,
           e.g. https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
           And https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+        * 99% of the time, a simple `fetch().then().then()` or perhaps `fetch().then().then().else()` will suffice.
     * Synchronous --> Occurring without waiting.
         * A telephone call is synchronous
     * In-between
@@ -871,6 +872,10 @@ openNewAccount(((((new Account.Builder())
 * **Spring** -- a widely-used and powerful framework for creating Java servers. Spring scans your code for annotated
   Java entities (classes, interfaces, methods, fields, etc) and connects them altogether into a production-ready
   application.
+    * This pattern of: (1) components identifying what resources they require, (2) components identifying what resources
+      they could make available, and (3) a framework detangling these dependencies and passing to each component the
+      dependencies it requires is called **Dependency Injection**
+      e.g., https://en.wikipedia.org/wiki/Dependency_injection.
 * **JPA** -- Java Persistence Architecture ... a standard way of marking Java objects which should be stored in
   databases. Hibernate is by far the most common *implementation* of JPA (and predates it). In most cases, they're
   interchangeable in ordinary speech. This also called an ORM (Object-RelationalDatabase Mapping).
