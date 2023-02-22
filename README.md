@@ -400,16 +400,25 @@
         * "Customer collaboration over contract negotiation"
         * "Responding to change over following a plan"
     * A set of principles -- https://agilemanifesto.org/principles.html
-        * "Our highest priority is to satisfy the customer through early and continuous delivery of valuable software.
+        * "Our highest priority is to satisfy the customer through early and continuous delivery of valuable software."
+            * This means that code only be merged into the primary Git branch once it is *done*.
+            * This means that each function we add has value.
         * "Welcome changing requirements, even late in development. Agile processes harness change for the customer's
           competitive advantage."
+            * With a weekly Scrum cycle (see below), the product owner can have radically-different priorities for next
+              week's sprint.
         * "Deliver working software frequently, from a couple of weeks to a couple of months, with a preference to the
           shorter timescale."
+            * With internet delivery, delivery cycles of just a week (or even shorter) are common now.
         * "Business people and developers must work together daily throughout the project."
+            * This is vital. The team needs ready access to a *decisionmaker* ... not just a liaison to the
+              decisionmaker.
         * "Build projects around motivated individuals. Give them the environment and support they need, and trust them
           to get the job done."
+            * Note that there's no "manager" mentioned anywhere here!!!
         * "The most efficient and effective method of conveying information to and within a development team is
           face-to-face conversation."
+            * Fortunately, Zoom is also face-to-face.
         * "Working software is the primary measure of progress."
         * "Agile processes promote sustainable development. The sponsors, developers, and users should be able to
           maintain a constant pace indefinitely."
