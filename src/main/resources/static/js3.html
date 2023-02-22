@@ -3,7 +3,15 @@
 <script>
   function addEventListeners(thisElement) {
    if (thisElement.id) {
-    ['abort', 'afterprint', 'animationend', 'animationiteration', 'animationstart', 'beforeprint', 'beforeunload', 'blur', 'canplay', 'canplaythrough', 'change', 'click', 'contextmenu', 'copy', 'cut', 'dblclick', 'drag', 'dragend', 'dragenter', 'dragleave', 'dragover', 'dragstart', 'drop', 'durationchange', 'ended', 'error', 'focus', 'focusin', 'focusout', 'fullscreenchange', 'fullscreenerror', 'hashchange', 'input', 'invalid', 'keydown', 'keypress', 'keyup', 'load', 'loadeddata', 'loadedmetadata', 'loadstart', 'message', 'mousedown', 'mouseenter', 'mouseleave', 'mousemove', 'mouseover', 'mouseout', 'mouseup', 'mousewheel', 'offline', 'online', 'open', 'pagehide', 'pageshow', 'paste', 'pause', 'play', 'playing', 'popstate', 'progress', 'ratechange', 'resize', 'reset', 'scroll', 'search', 'seeked', 'seeking', 'select', 'show', 'stalled', 'storage', 'submit', 'suspend', 'timeupdate', 'toggle', 'touchcancel', 'touchend', 'touchmove', 'touchstart', 'transitionend', 'unload', 'volumechange', 'waiting', 'wheel']
+    ['abort', 'afterprint', 'animationend', 'animationiteration', 'animationstart', 'beforeprint', 'beforeunload', 'blur',
+     'canplay', 'canplaythrough', 'change', 'click', 'contextmenu', 'copy', 'cut', 'dblclick', 'drag', 'dragend',
+     'dragenter', 'dragleave', 'dragover', 'dragstart', 'drop', 'durationchange', 'ended', 'error', 'focus', 'focusin',
+     'focusout', 'fullscreenchange', 'fullscreenerror', 'hashchange', 'input', 'invalid', 'keydown', 'keypress', 'keyup',
+     'load', 'loadeddata', 'loadedmetadata', 'loadstart', 'message', 'mousedown', 'mouseenter', 'mouseleave', 'mousemove',
+     'mouseover', 'mouseout', 'mouseup', 'mousewheel', 'offline', 'online', 'open', 'pagehide', 'pageshow', 'paste',
+     'pause', 'play', 'playing', 'popstate', 'progress', 'ratechange', 'resize', 'reset', 'scroll', 'search', 'seeked',
+     'seeking', 'select', 'show', 'stalled', 'storage', 'submit', 'suspend', 'timeupdate', 'toggle', 'touchcancel',
+     'touchend', 'touchmove', 'touchstart', 'transitionend', 'unload', 'volumechange', 'waiting', 'wheel']
      .map(
         (eventName) => thisElement.addEventListener(eventName,
                                                     (event) => {
@@ -17,40 +25,42 @@
 
 </script>
 <div id="div_1">
+   <h1 id="counter">0</h1>
    <h1 id="h1_1">Hello World</h1>
    <a href="http://google.com">Google Homepage</a>
    <textarea id="textarea_1" rows="4" cols="50">First textbox.</textarea>
    <textarea id="textarea_2" rows="4" cols="50">Second textbox.</textarea>
    <div id="div_2">
       <table id="table_1" border="1">
+         <tr id="tr_0">
+            <th id="th_0_1">Col 1</th>
+            <th id="th_0_2">Col 2</th>
+            <th id="th_0_3">Col 3</th>
+         </tr>
          <tr id="tr_1">
-            <td id="td_1_1">
-               Cell 1_1
-            </td>
-            <td id="td_1_2">
-               Cell 1_2
-            </td>
-            <td id="td_1_3">
-               Cell 1_3
-            </td>
+            <td id="td_1_1">Orange</td>
+            <td id="td_1_2">Yellow</td>
+            <td id="td_1_3">Banana</td>
          </tr>
          <tr id="tr_2">
-            <td id="td_2_1">
-               Cell 2_1
-            </td>
-            <td id="td_2_2">
-               Cell 2_2
-            </td>
-            <td id="td_2_3">
-               Cell 2_3
-            </td>
+            <td id="td_2_1">Cell 2_1</td>
+            <td id="td_2_2">Cell 2_2</td>
+            <td id="td_2_3">Cell 2_3</td>
          </tr>
       </table>
    </div>
    <button id="button_1">Press Me!</button>
+   <h1 id="clock"></h1>
 </div>
 <script>
   addEventListeners(document.getElementById("div_1"))
+  document.getElementById("textarea_1").addEventListener("focus", (event) => {document.getElementById("counter").innerText = Date()})
+
+  // Every 10 seconds
+  window.setInterval(() => document.getElementById("clock").innerText = Date(), 10000)
+
+  // If you wanted to write a tick-tac-toe game, you'd create a table and then have an event listener on each cell
+  // that would turn the cell X or O and then check for a winner
 </script>
 </body>
 </html>
