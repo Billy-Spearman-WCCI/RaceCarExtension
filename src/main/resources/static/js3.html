@@ -1,9 +1,8 @@
 <html>
 <body>
 <script>
-  function addEventListeners(thisElement) {
-   if (thisElement.id) {
-    ['abort', 'afterprint', 'animationend', 'animationiteration', 'animationstart', 'beforeprint', 'beforeunload', 'blur',
+  function createDiagnosticListeners(thisElement) {
+   const listOfEventNames = ['abort', 'afterprint', 'animationend', 'animationiteration', 'animationstart', 'beforeprint', 'beforeunload', 'blur',
      'canplay', 'canplaythrough', 'change', 'click', 'contextmenu', 'copy', 'cut', 'dblclick', 'drag', 'dragend',
      'dragenter', 'dragleave', 'dragover', 'dragstart', 'drop', 'durationchange', 'ended', 'error', 'focus', 'focusin',
      'focusout', 'fullscreenchange', 'fullscreenerror', 'hashchange', 'input', 'invalid', 'keydown', 'keypress', 'keyup',
@@ -12,15 +11,20 @@
      'pause', 'play', 'playing', 'popstate', 'progress', 'ratechange', 'resize', 'reset', 'scroll', 'search', 'seeked',
      'seeking', 'select', 'show', 'stalled', 'storage', 'submit', 'suspend', 'timeupdate', 'toggle', 'touchcancel',
      'touchend', 'touchmove', 'touchstart', 'transitionend', 'unload', 'volumechange', 'waiting', 'wheel']
-     .map(
-        (eventName) => thisElement.addEventListener(eventName,
-                                                    (event) => {
-                                                      console.log("Id: " + thisElement.id + "; event: " + eventName);
-                                                      event.stopPropagation()
-                                                    }))
+
+   if (thisElement.id) {
+     for (const eventName of listOfEventNames) {
+       thisElement.addEventListener(eventName,
+                                    (event) => {console.log("Id: " + thisElement.id + "; event: " + eventName + "; value: " + event.target.value);
+                                                event.stopPropagation()
+                                               })
+     }
    }
 
-   for (childElement of thisElement.children) addEventListeners(childElement)
+   // Recursively do the same for each child
+   for (childElement of thisElement.children) {
+     createDiagnosticListeners(childElement)
+   }
   }
 
 </script>
@@ -53,14 +57,20 @@
    <h1 id="clock"></h1>
 </div>
 <script>
-  addEventListeners(document.getElementById("div_1"))
+  createDiagnosticListeners(document.getElementById("div_1"))
   document.getElementById("textarea_1").addEventListener("focus", (event) => {document.getElementById("counter").innerText = Date()})
+  document.getElementById("textarea_1").addEventListener("input", (event) => {document.getElementById("textarea_2").innerText = "First box contains: " + event.target.value})
 
   // Every 10 seconds
   window.setInterval(() => document.getElementById("clock").innerText = Date(), 10000)
 
+  // A standard thing for an event listener to do is to add/remove "classes" from elements.
+  // In css `.className1 {}`
+
   // If you wanted to write a tick-tac-toe game, you'd create a table and then have an event listener on each cell
   // that would turn the cell X or O and then check for a winner
+
+
 </script>
 </body>
 </html>
