@@ -2,17 +2,23 @@
 
 * https://github.com/marshallfWCCI/RaceCarInterface
     * Step-by-step refactoring
+
 * https://github.com/2023-Spring-Cohort/RaceCarExtension/
     * This Structured Glossary
     * Example of subclasses, interfaces, abstract classes, etc.
+
 * https://github.com/marshallfWCCI/SpringBootExample1/tree/main/src/main/java/com/example/springboot
     * Spring boot: REST endpoints, Thymeleaf HTML templates. Entities for the Employees mySQL database.
+
 * https://github.com/marshallfWCCI/SpringBootExample2/tree/main/src/main/java/com/example/springboot
     * Spring boot: Just Thymeleaf templates ... no REST or JPA.
+
 * https://github.com/marshallfWCCI/MarshallCampusExample
     * My fork of https://github.com/2022-Fall-Cohort/CampusExample, with comments and examples.
+
 * https://github.com/marshallfWCCI/p134022/blob/main/src/main/java/org/wecancodeit/LinearIn.java
     * My solution to https://codingbat.com/prob/p134022
+
 * https://github.com/marshallfWCCI/ReviewAPI
     * My solution for the Reviews API project
 
@@ -362,6 +368,31 @@
 * A JavaScript clock can be as simple
   as `window.setInterval(() => document.getElementById("clock").innerText = Date(), 1000)`.
 
+## overview
+
+* JS really good at event-driven behavior (at least when the event occurs locally) ... when ___ happens, so _____.
+* JS really good at GETing and POSTing to REST APIs which return JSON.
+* JS really good at constructing HTML dynamically based on what it gets from REST APIs.
+* JS really good at adding/removing .css "class" to elements, so it works well with CSS (though there is very little
+  overlap).
+* JS is ok at doing things every "_ seconds".
+* JQuery really good at making JS easier to use. To be fair, modern JS is much easier to use than it was 10 years ago.
+* CSS really good at making well-designed and pretty.
+* Thymeleaf really good at service-side merging data and templates.
+
+### Virtual Pet shop requirements
+
+* Login and see current pets available ==> Hit an REST endpoint and get a JSON list, create DOM table with JSON, and add
+  appropriate styles.
+* Have an adopt button on each row, and hit a POST endpoint if it is clicked ==> Pretty straightforward as well.
+    * And then have the new list of pets show on the screen.
+* Walk all pets button --> and that first walk the pets and then ask for all of their status and display them.
+* Missing behavior ==> we won't have a good solution for this until we do React. Raw JavaScript *can* do this, but it's
+  a bit ugly.
+    * I login and see the list of pets, and then take my hand off the mouse and keyboard
+    * Somebody logins, sees the list, adopts one.
+    * Missing behavior is updating my screen automatically.
+
 ## CSS
 
 * **Cascading Style Sheets** -- The style layer of the front end. Linked to the HTML document and with the use of
@@ -483,7 +514,18 @@
           The Product Owner ranks them in priority order (or at least ranks the most-important stories ... stuff far
           back in the backlog can be dealt with later).
         * Stories are defined using user-centric language, "as a _____, I need to _____, so that _____".
+            * (Hardcoded examples) "As salesperson, I need to be able to display two stylesheets with the same structure
+              but different colors, so I can do demos and sell this investors."
+                * Development team: "oh, thats medium-to-small"
+            * (READONLY User) "As a website developer, I need to be able to download CSS based on styleNumber, so my
+              site is pretty."
+                * Dev team: "oh, that's medium if there's just one color knob to turn, but super-hard if one knob
+                  determines how many other knobs there are"
+            * (WRITING User) "As a graphic designer, I need to be able to modify the colors for a given styleNumber, so
+              my stylesheets are purchased by developers."
         * The team assigns a "size" to each story for planning purposes.
+        * Smaller stories are much better. At the end of the week, the question is: "which stories are *done*?". There
+          is no partial credit.
     * **Sprint** -- The cadence at which the team works, typically one or two weeks in length (though it could be
       larger).
         * **Sprint Planning** -- The team takes as many items from the highest-priority end of the product backlog as
@@ -907,10 +949,15 @@ openNewAccount(((((new Account.Builder())
 * **Spring** -- a widely-used and powerful framework for creating Java servers. Spring scans your code for annotated
   Java entities (classes, interfaces, methods, fields, etc) and connects them altogether into a production-ready
   application.
-    * This pattern of: (1) components identifying what resources they require, (2) components identifying what resources
-      they could make available, and (3) a framework detangling these dependencies and passing to each component the
+    * This pattern of: (1) components identifying what resources they require (e.g. with `@AutoWired`),
+      (2) components identifying what resources they could make available, and
+      (3) a framework detangling these dependencies and passing to each component the
       dependencies it requires is called **Dependency Injection**
-      e.g., https://en.wikipedia.org/wiki/Dependency_injection.
+      e.g., https://en.wikipedia.org/wiki/Dependency_injection.  
+      The process of linking everything together is sometimes called "wiring it together".
+        * So, our RestController says that it needs a Repository. But we can't make a repository yet because the
+          repository needs an entity first. What Spring does is figure out, hey, I could could first make an entity, and
+          then make a repository, and then make a controller.
 * **JPA** -- Java Persistence Architecture ... a standard way of marking Java objects which should be stored in
   databases. Hibernate is by far the most common *implementation* of JPA (and predates it). In most cases, they're
   interchangeable in ordinary speech. This also called an ORM (Object-RelationalDatabase Mapping).
