@@ -327,6 +327,41 @@
     * It would be nice if we could program everything without having to worry about delays in getting responses.
     * But we can't avoid this when writing client-side javascript code, because web servers always have delays.
 
+## Events
+
+* To play around with the various event listeners:
+
+```
+  function createDiagnosticListeners(thisElement) {
+   const listOfEventNames = ['abort', 'afterprint', 'animationend', 'animationiteration', 'animationstart', 'beforeprint', 'beforeunload', 'blur', 'canplay', 'canplaythrough', 'change', 'click', 'contextmenu', 'copy', 'cut', 'dblclick', 'drag', 'dragend', 'dragenter', 'dragleave', 'dragover', 'dragstart', 'drop', 'durationchange', 'ended', 'error', 'focus', 'focusin', 'focusout', 'fullscreenchange', 'fullscreenerror', 'hashchange', 'input', 'invalid', 'keydown', 'keypress', 'keyup', 'load', 'loadeddata', 'loadedmetadata', 'loadstart', 'message', 'mousedown', 'mouseenter', 'mouseleave', 'mousemove', 'mouseover', 'mouseout', 'mouseup', 'mousewheel', 'offline', 'online', 'open', 'pagehide', 'pageshow', 'paste', 'pause', 'play', 'playing', 'popstate', 'progress', 'ratechange', 'resize', 'reset', 'scroll', 'search', 'seeked', 'seeking', 'select', 'show', 'stalled', 'storage', 'submit', 'suspend', 'timeupdate', 'toggle', 'touchcancel', 'touchend', 'touchmove', 'touchstart', 'transitionend', 'unload', 'volumechange', 'waiting', 'wheel']
+
+   if (thisElement.id) {
+     for (const eventName of listOfEventNames) {
+       thisElement.addEventListener(eventName,
+                                    (event) => {console.log("Id: " + thisElement.id + "; event: " + eventName + "; value: " + event.target.value);
+                                                event.stopPropagation()
+                                               })
+     }
+   }
+
+   // Recursively do the same for each child
+   for (childElement of thisElement.children) {createDiagnosticListeners(childElement)}
+  }
+```
+
+## Other JavaScript Thoughts
+
+* Yes, JavaScript does classes (https://www.w3schools.com/js/js_classes.asp), but hopefully your JavaScript won't be so
+  fancy as to need to create your own.
+* The world is switching to JavaScript Modules (https://www.w3schools.com/js/js_modules.asp), so use them rather than
+  oldstyle code importing.
+* `document.getElementById("unique_id")` is horribly verbose. JQuery allows you to type `$(#unique_id)`, and offers
+  *many* other shortcuts. However, JavaScript is improving over time, and so needs jQuery less. But more importantly,
+  higher-level frameworks (e.g. React) allow an entirely different
+  approach. https://www.w3schools.com/js/js_jquery_selectors.asp
+* A JavaScript clock can be as simple
+  as `window.setInterval(() => document.getElementById("clock").innerText = Date(), 1000)`.
+
 ## CSS
 
 * **Cascading Style Sheets** -- The style layer of the front end. Linked to the HTML document and with the use of
