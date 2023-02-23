@@ -1161,7 +1161,10 @@ public class CategoryControllerTest {
 * **View** takes data and converts it to a form suitable for use (HTML, or JSON, ...)
     * **Thymeleaf** templates in src/main/resources/templates (
       e.g., https://github.com/marshallfWCCI/SpringBootExample1/blob/main/src/main/resources/templates/departments.html )
-        *
+        * Useful references for normal Thymeleaf expressions -- https://www.baeldung.com/spring-thymeleaf-3-expressions
+          and https://github.com/engma/thymeleaf-cheat-sheet/blob/master/README.md
+        * But non-HTML files (e.g. CSS) have a different
+          syntax -- https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#textual-syntax
 * **Controller** contains logic for what data is written to the database and how the information is presented to users.
     * src/main/java/..../restController -- endpoints accepting and consuming JSON.
     * src/main/java/..../templateControllers -- endpoints populating data for the Thymeleaf HTML templates.
