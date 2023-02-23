@@ -299,6 +299,14 @@
     * *Java*: easier to write programs that work correctly
     * *JavaScript*: easier to write programs
 
+## Useful Javascript idioms
+
+* Iterate character-by-character along a string: `for (c of thisString) {}`
+* Larger of two values: `Math.max(a,b)`
+* https://the-winter.github.io/codingjs/exercise.html?name=arrayFront9 `return nums.slice(0,4).findIndex(n => n==9) >= 0`
+* https://the-winter.github.io/codingjs/exercise.html?name=hasTee `return [a,b,c].some((n) => n>=13 && n <= 19)`
+* https://the-winter.github.io/codingjs/exercise.html?name=atFirst `return ((str.substring(0,2)) + "@@").substring(0,2)`
+
 ## Dynamic Javascript Pages and synchronous vs. asynchronous
 
 * We have a HTML page, and it's probably loading in .css and .js resources.
@@ -515,7 +523,7 @@
           back in the backlog can be dealt with later).
         * Stories are defined using user-centric language, "as a _____, I need to _____, so that _____".
             * (Hardcoded examples) "As salesperson, I need to be able to display two stylesheets with the same structure
-              but different colors, so I can do demos and sell this investors."
+              but different colors, so I can do demos and sell this to investors."
                 * Development team: "oh, thats medium-to-small"
             * (READONLY User) "As a website developer, I need to be able to download CSS based on styleNumber, so my
               site is pretty."
@@ -679,9 +687,15 @@ openNewAccount(((((new Account.Builder())
 // Account a = b.build();
 ```
 
-* **Convention over Configuration** -- Put things where the framework expects and you don't to tell it explicitly. So
-  IntelliJ *expects* that code will be in src/main/java and src/test/java. If you that, your configuration is *much*
-  easier.
+* **Convention over Configuration** -- Put things where the framework expects and you don't to tell it explicitly.
+    * IntelliJ *expects* that code will be in src/main/java and src/test/java.
+      If you that, your configuration is *much* easier.
+    * Spring *expects* that all components you wish for it to discover are in either:
+      (1) in the same package as the class annotated with `@SpringBootApplication`, or
+      (2) in a subpackage thereof.
+    * Spring will automatically serve resources in `src/main/resources/static`,
+      e.g. `src/main/resources/static/index.html`.
+    * Spring expects to find Thymeleaf templates in `src/main/resources/templates`
 
 ## Code exploration styles
 
@@ -838,7 +852,7 @@ openNewAccount(((((new Account.Builder())
 * To make sure that our classes do what we think they do
 * To make sure that our code keeps on working.
 
-# The (Almost) Truth about Java
+# The Truth about Java
 
 * Variables in Java contain either "primitive values" (`float`, `int`, `char`, etc.) or *references* to objects. The
   address of a house is not the house itself. A single human can have two nicknames.
@@ -886,9 +900,8 @@ openNewAccount(((((new Account.Builder())
     ```
     return categoryRepository.findById(category_id)
                 .map((category) -> category.getReviews())
-                .orElseGet(() -> {
-                    // this never returns data because it throws an exception instead
-                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cannot find category " + category_id);
+                .orElseThrow(() -> {
+                    new ResponseStatusException(HttpStatus.NOT_FOUND, "Cannot find category " + category_id);
                 });
     ```
 
@@ -1038,6 +1051,14 @@ openNewAccount(((((new Account.Builder())
 * **Gradle** -- a system for defining the configuration of a Java project in a `build.gradle` file, written in the
   "Groovy" language. Defines what version of Java is required, which libraries to download and use, etc. Is a modern
   replacement for the "Maven" system (which used a `pom.xml` file instead).
+    * Since we are using Spring Boot, you can download a `build.gradle` from https://start.spring.io/ ... just specify
+      the features you want, including perhaps:
+        * Spring Web
+        * Spring Boot Actuator (so you can get useful information at http://localhost:8080/actuator)
+        * Thymeleaf
+        * Spring Data JPA
+        * Spring Security (we haven't used this, but any real application should)
+        * Quartz Scheduler (we haven't used this, but excellent if you need jobs to run periodically)
 
 ## Spring *integration* tests
 
@@ -1140,6 +1161,7 @@ public class CategoryControllerTest {
 * **View** takes data and converts it to a form suitable for use (HTML, or JSON, ...)
     * **Thymeleaf** templates in src/main/resources/templates (
       e.g., https://github.com/marshallfWCCI/SpringBootExample1/blob/main/src/main/resources/templates/departments.html )
+        *
 * **Controller** contains logic for what data is written to the database and how the information is presented to users.
     * src/main/java/..../restController -- endpoints accepting and consuming JSON.
     * src/main/java/..../templateControllers -- endpoints populating data for the Thymeleaf HTML templates.
@@ -1313,6 +1335,7 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
 
 # Too-advanced to discuss now
 
+* Regular Expressions
 * End-point **Pagination**, e.g. https://www.baeldung.com/rest-api-pagination-in-spring.
 * JPA Laziness, e.g. https://www.baeldung.com/hibernate-lazy-eager-loading
 * Default methods in interfaces, e.g. https://www.baeldung.com/java-static-default-methods
