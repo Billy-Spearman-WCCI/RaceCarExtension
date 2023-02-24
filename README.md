@@ -693,7 +693,7 @@ openNewAccount(((((new Account.Builder())
     * Spring *expects* that all components you wish for it to discover are in either:
       (1) in the same package as the class annotated with `@SpringBootApplication`, or
       (2) in a subpackage thereof.
-    * Spring will automatically serve resources in `src/main/resources/static`,
+    * Spring will automatically serve static resources such as an index.html in `src/main/resources/static`,
       e.g. `src/main/resources/static/index.html`.
     * Spring expects to find Thymeleaf templates in `src/main/resources/templates`
 
@@ -982,6 +982,10 @@ openNewAccount(((((new Account.Builder())
     * `@Controller` -- An annotation for linking endpoints (e.g. `/fancyHello`) to templated web pages (e.g,
       in `src/main/resources/templates`). The templates are using a library called Thymeleaf and has special tags
       like `th:each` which can iterate lists, etc.
+        * Useful references for normal Thymeleaf expressions -- https://www.baeldung.com/spring-thymeleaf-3-expressions
+          and https://github.com/engma/thymeleaf-cheat-sheet/blob/master/README.md
+        * But non-HTML files (e.g. CSS) have a different
+          syntax -- https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#textual-syntax
     * `@RestController` -- An annotation for linking endpoints (e.g. `/courses/{course_id}/`) to API responses.
         * `@CrossOrigin` -- An annotation stating that REST will accept requests from JavaScript running in any webpage,
           as opposed to the default where only requests from scripts loaded from the same site will be
@@ -1159,12 +1163,6 @@ public class CategoryControllerTest {
       automatically.
         * `CrudRepository<TableClass, PrimaryKeyClass>` automatically knows how to create/read/update/delete.
 * **View** takes data and converts it to a form suitable for use (HTML, or JSON, ...)
-    * **Thymeleaf** templates in src/main/resources/templates (
-      e.g., https://github.com/marshallfWCCI/SpringBootExample1/blob/main/src/main/resources/templates/departments.html )
-        * Useful references for normal Thymeleaf expressions -- https://www.baeldung.com/spring-thymeleaf-3-expressions
-          and https://github.com/engma/thymeleaf-cheat-sheet/blob/master/README.md
-        * But non-HTML files (e.g. CSS) have a different
-          syntax -- https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#textual-syntax
 * **Controller** contains logic for what data is written to the database and how the information is presented to users.
     * src/main/java/..../restController -- endpoints accepting and consuming JSON.
     * src/main/java/..../templateControllers -- endpoints populating data for the Thymeleaf HTML templates.
