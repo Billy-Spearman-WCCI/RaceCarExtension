@@ -983,6 +983,8 @@ openNewAccount(((((new Account.Builder())
       them in `/src/main/resources/static` (or subdirectories thereof).
       So `/src/main/resources/static/images/smiley.jpg` would be delivered to `http://localhost:8080/images/smiley.jpg`
       without any coding.
+    * Remember: the exact pathComponent in the `GetMapping("/styles/{styleNum}.css")` must match the exact name of the
+      parameter marked with @PathVariable.
     * `@Controller` -- An annotation for linking endpoints (e.g. `/fancyHello`) to templated web pages (e.g,
       in `src/main/resources/templates`). The templates are using a library called Thymeleaf and has special tags
       like `th:each` which can iterate lists, etc.
@@ -990,6 +992,8 @@ openNewAccount(((((new Account.Builder())
           and https://github.com/engma/thymeleaf-cheat-sheet/blob/master/README.md
         * But non-HTML files (e.g. CSS) have a different
           syntax -- https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#textual-syntax
+        * The attribute names in calls to `model.addAttribute()` must match exactly the variables referenced within the
+          templates themselves.
     * `@RestController` -- An annotation for linking endpoints (e.g. `/courses/{course_id}/`) to API responses.
         * `@CrossOrigin` -- An annotation stating that REST will accept requests from JavaScript running in any webpage,
           as opposed to the default where only requests from scripts loaded from the same site will be
