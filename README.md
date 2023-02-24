@@ -979,6 +979,10 @@ openNewAccount(((((new Account.Builder())
   have `final MyEntityRepository myEntityRepo; public MyRestController(final @Autowired MyEntityRepository repo){this.myEntityRepo = repo;}`.
   https://www.youtube.com/watch?v=aX-bgylmprA.
 * Controllers
+    * Non-dynamic files (e.g. an index.html or a stylesheet) don't need an explicit controller ... instead just place
+      them in `/src/main/resources/static` (or subdirectories thereof).
+      So `/src/main/resources/static/images/smiley.jpg` would be delivered to `http://localhost:8080/images/smiley.jpg`
+      without any coding.
     * `@Controller` -- An annotation for linking endpoints (e.g. `/fancyHello`) to templated web pages (e.g,
       in `src/main/resources/templates`). The templates are using a library called Thymeleaf and has special tags
       like `th:each` which can iterate lists, etc.
