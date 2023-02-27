@@ -818,6 +818,7 @@ openNewAccount(((((new Account.Builder())
 
 * `Collection<V>` -- even more generic than a `List` or
   a `Set`.  https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html
+    * Technically, it's a "bag" of stuff.
 * `List<V>` -- a list to which elements of type V can be added. If you don't have a specific need, use `ArrayList`.
     * Good for adding to the end of a list.
     * Good for doing the same thing to everything on a list.
@@ -838,6 +839,10 @@ openNewAccount(((((new Account.Builder())
     * .equals() and .hashCode() need to make sense (and be consistent with each other) for `K`'s and there really should
       only be one `V` for any given `K`.
     * `V`'s can be anything, even other Lists or Maps.  `Map<String, List<Integers>>` is perfectly fine.
+    * Technically, `Map` is not a container because you can't iterate it. But Map exposes three containers:
+        * `getKeys()`
+        * `getValues()`
+        * `getEntries()`
 * `Iterable<V>` -- Something which can be after the `:` in `for (V value : values) {}`. All lists, `map.keySet()`,
   and `map.valueSet()` are all iterables.
 * `Stack<V>` -- A list with easy access to the last element. Think a spring-powered plate dispenser in a cafeteria.
@@ -994,7 +999,11 @@ openNewAccount(((((new Account.Builder())
           syntax -- https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#textual-syntax
         * The attribute names in calls to `model.addAttribute()` must match exactly the variables referenced within the
           templates themselves.
+        * The return value for these methods is the the name of the template.
     * `@RestController` -- An annotation for linking endpoints (e.g. `/courses/{course_id}/`) to API responses.
+        * Here, you're explicitly stating *what* to return. You can return a String, or you can return an object and
+          have Spring convert to a string for you. But either way, *you* are deciding the details of what is being
+          returned.
         * `@CrossOrigin` -- An annotation stating that REST will accept requests from JavaScript running in any webpage,
           as opposed to the default where only requests from scripts loaded from the same site will be
           allowed. https://www.baeldung.com/spring-cors
@@ -1004,6 +1013,19 @@ openNewAccount(((((new Account.Builder())
         * In addition to GET, POST, PUT, DELETE, PATCH, there's also HEAD, and what does is a GET without actually
           getting the data. Suppose there's a *large* endpoint that changes every-so-often. The browser can do a HEAD
           first to see if it has changes, and only GET when necessary.
+        * A `@GetMapping` can be in either a RestController or a tempated Controller, depending on what you want to
+          return to the user. If it is JSON, you probably want a RestController. If it's HTML, it's probably a templated
+          Controller.
+        * But suppose you have an HTML and it a submit button and you want that button to be *doing* something, and so
+          issuing a POST or PUT is better. But do you sent it to a RestController or a templated Controller?
+            * Scenario 1 (server-side rendering, older): When the user clicks OK, they want to see a new page with the
+              result of their action.
+                * This is a good case for a templated Controller because you want to return HTML to them.
+            * Scenario 2: (client-side rendering, newer) You have a Javascript-heavy page where the end result of most
+              activity is that JS code calls JSON endpoints and the JS code then modifies the DOM to reflect the JSON
+              that comes back. In this case, a RestController endpoint is better.
+                * An example of client-side rendering is experiment2
+                  at https://github.com/2023-Spring-Cohort/RaceCarExtension/blob/main/src/main/resources/static/js1.html
     * `@RequestBody` -- A parameter to endpoint extracted from the body of a POST or PUT and deserialized from JSON to
       the appropriate entity type.
     * `@PathVariable` -- A parameter to an endpoint method extracted from a `{some_id}` component of the endpoint path.
