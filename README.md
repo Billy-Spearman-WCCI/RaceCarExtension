@@ -7,6 +7,9 @@
     * This Structured Glossary
     * Example of subclasses, interfaces, abstract classes, etc.
 
+* https://github.com/2023-Spring-Cohort/atm-project-marshallfWCCI
+    * A fully TDD project, including I/O
+
 * https://github.com/marshallfWCCI/SpringBootExample1/tree/main/src/main/java/com/example/springboot
     * Spring boot: REST endpoints, Thymeleaf HTML templates. Entities for the Employees mySQL database.
 
@@ -966,7 +969,7 @@ openNewAccount(((((new Account.Builder())
 
 * **Spring** -- a widely-used and powerful framework for creating Java servers. Spring scans your code for annotated
   Java entities (classes, interfaces, methods, fields, etc) and connects them altogether into a production-ready
-  application.
+  application``.
     * This pattern of: (1) components identifying what resources they require (e.g. with `@AutoWired`),
       (2) components identifying what resources they could make available, and
       (3) a framework detangling these dependencies and passing to each component the
@@ -976,8 +979,9 @@ openNewAccount(((((new Account.Builder())
         * So, our RestController says that it needs a Repository. But we can't make a repository yet because the
           repository needs an entity first. What Spring does is figure out, hey, I could could first make an entity, and
           then make a repository, and then make a controller.
-* **JPA** -- Java Persistence Architecture ... a standard way of marking Java objects which should be stored in
-  databases. Hibernate is by far the most common *implementation* of JPA (and predates it). In most cases, they're
+    * `@AutoWired` is sort of the core of understanding Spring.
+* **JPA** -- Java Persistence API ... a standard way of marking Java objects which should be stored in databases.
+  Hibernate is by far the most common *implementation* of JPA (and predates it). In most cases, they're
   interchangeable in ordinary speech. This also called an ORM (Object-RelationalDatabase Mapping).
 * **Constructor dependency injection** -- the preferred pattern for injecting dependencies. For example,
   a `@RestController`-annotated class might
@@ -1040,6 +1044,20 @@ openNewAccount(((((new Account.Builder())
       when autowiring them, to choose one.
         * `@Primary` -- An alternative to `@Qualifier`, when one of the beans should be used unless the consuming
           component specified otherwise with a `@Qualifier` as part of its `@Autowired`.
+* `@Service`
+    * Today, we have web-facing components (`@Controller` and `@RestController`) which talk Thymeleaf and REST and which
+      depend upon one or more CrudRepositories (and they indicate with stuff like `@Autowired`).
+    * But suppose there were fancier logic between the Controller and the Repository. (Or suppose I just wanted to
+      divide up my program even more cleanly.) Then we could make a new component.
+        * This new component would depend upon one or more CrudRepositories, and the Controllers would in turn depend
+          upon it.
+        * In such a case, we need to allow Spring to find it. We could probably give it a plain `@Bean` annotation or a
+          plain `@Component` annotation, but the general term for such things that sit between components and
+          repositories is a "Service" and Spring offers a `@Service` annotation.
+* Java programs using Spring don't have to have everything annotated for Spring. You can just plain classes that do
+  stuff. You need Spring annotations when Dependency Injection needs to occur.
+    * But a class with only static methods (e.g. returning a fixed list of strings) doesn't need such things.
+    * We need spring annotations for classes which should have exactly one instance.
 * `@Entity` -- Marks a class as an "entity" which should be persisted in a Relational Database.
     * `@Table` -- the database table for the entity. Optional unless you wish to specify the name of the table or if you
       wish to specify secondary key(s) using the `@Index` annotation.
