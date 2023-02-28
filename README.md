@@ -137,7 +137,7 @@
     * The simplest example is `() -> {do_something();}`, which is a method with no parameters that does something.
     * This is a relatively new addition to Java, but Spring does use it.
     * These are sometimes called **lambda expressions**.
-* `interface`: a list of promised behaviors (i.e. a list of methods -- but without implementations)
+* `interface`: a set of promised behaviors (i.e. a list of methods -- but without implementations)
     * `implements`
         * Easy definition: an assertion by a class that it implements all promised behaviors of an interface.
         * True definition:
@@ -161,7 +161,8 @@
 * **Hyper Text Markup Language** -- We are using Markdown Language to write this document here, but HTML is the
   unified language of the internet. If you're looking at a web page, you're looking at HTML.
 * **tags**: A way to reference HTML elements within the documents most (not all) tags will have an
-  opening and closing tag with the syntax <></>
+  opening and closing tag with the syntax `<tag>...</tag>`, though some are more like `<tag/>`.
+  We usually call `<` and `>` angle brackets because they look like angles.
 * **useful tags and what they do**:
 * Division `<div></div>` -- A commonly used wrapper, used to contain elements for reference in CSS.
 * Style `<style></style>` -- Used for internal styling with CSS. It is not best practice to use internal styling.
@@ -572,6 +573,8 @@
       possible.
     * **polymorphism**: the Race class can call `contestant.turn()` and Java will ensure that the right method is
       called, depending upon the *actual* class of the object implementing Contestant.
+        * Polymorphism is easiest to explain if one considers the case of an interface implemented by two concrete
+          classes, and a variable whose type is that of the interface.
     * **inheritance**: when one class extends another.
     * **encapsulation**: when a RaceCar contains an Odometer rather than trying to do that behavior
       itself https://github.com/marshallfWCCI/RaceCarInterface/commit/92e8da66095290ebdb11e4e53e04cede7639f787
@@ -740,7 +743,7 @@ openNewAccount(((((new Account.Builder())
     * The only reason to have an abstract class is when you want to create subclasses which share some behavior.
 * **Class Hierarchy** -- a diagram showing which classes extend and/or implement other classes and interfaces. For
   instance, https://en.wikipedia.org/wiki/Java_collections_framework#/media/File:Java.util.Collection_hierarchy.svg
-* Visibility (of data and behavior)
+* **Visibility** (of data and behavior)
     * `final` -- Write-once. May not be modified after it is set.
     * `private` -- Only visible within the defining class. (Most restrictive, and there easiest for the reader.)
     * `protected` -- Only visible within:
@@ -853,6 +856,9 @@ openNewAccount(((((new Account.Builder())
     * `.push()` -- adds to the end of the list.
     * `.shift()` -- like `.pop()` but removes the *first* element.
     * `.unshift()` -- like .push()` but inserts at the first location and everything else slides to the right.
+* `Set<V>` (e.g. `HashSet<V>`) -- like a list but forgetting the order in which elements were inserted.
+    * If the "same" element is added twice to a Set, it is only stored once. ("Same" is of course defined
+      by `.equals()`.)
 
 # Why do we write unit tests?
 
