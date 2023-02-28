@@ -13,25 +13,26 @@ abstract public class GenericRacer implements Contestant {
     }
 
     // Update the speed according to the logic of your speedComputer
-    public void accelerate() {
+    final public void accelerate() {
         currentSpeed = speedComputer.computeNewSpeed(currentSpeed);
     }
 
     // Update the odometer
-    public void move() throws HackingException {
+    final public void move() throws HackingException {
         odometer.increase(currentSpeed);
     }
 
     // Speed might change when you turn.
-    public void turn() {
+    // Because this is not marked final, subclasses *may* -- but are not required to -- override this method.
+    final public void turn() {
         currentSpeed = speedComputer.computerTurningSpeed(currentSpeed);
     }
 
-    public float getDistanceTravelled() {
+    final public float getDistanceTravelled() {
         return odometer.getCurrentMileage();
     }
 
-    public void setPosition(final int position) {
+    final public void setPosition(final int position) {
         this.position = position;
     }
 }
