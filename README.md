@@ -53,7 +53,15 @@
 
 ## Java
 
-* TODO: JRE, JDK, https://en.wikipedia.org/wiki/Java_version_history
+* **JRE** -- Java Runtime Environment -- the thing that actually runs compiled Java code.
+    * Originally created by Sun Microsystems, which was then bought by Oracle. Now there are several free alternatives:
+    * OpenJDK (Oracle's "free" version)
+    * Amazon Corretto (based on Oracle's OpenJDK)
+    * Azul Zulu (Microsoft)
+* **JDK** -- Java Development Kit -- includes the built-in libraries which makes Java usable. Necessary for development.
+    * https://en.wikipedia.org/wiki/Java_version_history
+* **JVM** -- Java Virtual Machine -- an imaginary computer that all Java code is compiled for. The JVM implements this
+  imaginary computer on your real computer so your Java code can run.
 
 * **object**: a thing encapsulating data (in "instance fields") and behavior (in "methods")
     * `this` -- the syntax to access **Instance fields**
