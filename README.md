@@ -53,6 +53,8 @@
 
 ## Java
 
+* TODO: JRE, JDK, https://en.wikipedia.org/wiki/Java_version_history
+
 * **object**: a thing encapsulating data (in "instance fields") and behavior (in "methods")
     * `this` -- the syntax to access **Instance fields**
     * `class`: The definition of the data and/or behavior of its instances.
@@ -652,10 +654,17 @@
         * Builders can be super-fancy. You could allow .withInterestRate() if .withSavings() was called before but not
           if .withChecking() was called.
         * But normally, one of the nice things about builders is they can be called in any order.
-    * **Fluent Pattern** -- Methods which end with `return this;` so that multiple methods can be called on a single
-      object in a single statement. Highly related to "functional programming".
+    * **Fluent Pattern** -- Methods which end with `return this;` (or returning a related object) so that multiple
+      methods can be called on a single object in a single statement. Highly related to "functional programming".
         * Note that the methods don't actually have to end with "return this" ... they just need to return some object
           upon which further method calls can be made.
+        * The most commonly-used fluent pattern is streams
+            * `list.stream().filter((x) -> (x > 0)).map((x) -> (2*x)).collect(Collectors.toList());`
+            * But what do you do if you're starting with a `[]` array.
+              The problem is that arrays aren't really objects, and so they don't have methods, so we can't just
+              say `.stream()` on the array.
+                * The answer is to call a *static* method on the `Arrays` class, e.g. `Arrays.stream(myArr)`.
+                * And we need to do this static nonsense because not everything in Java is an object.
 * **Refactoring** -- Simplifying your code without changing its behavior.
     * If you're doing TDD, refactoring can occur anytime: (1) all tests are currently passing, and (2) you've already
       committed to git.
@@ -753,8 +762,11 @@ openNewAccount(((((new Account.Builder())
     * `public` -- Visible everywhere. (Unrestricted)
     * Rule: use `private` when you can, otherwise `protected`, otherwise `public`
 * `package` -- The directory where the class is defined. Code in `src/main/java/org/wcci/marshall/project1`
-  and `src/test/java/org/wcci/marshall/project1/` lie in package `org.wcci.marshall.project1`. Many core classes lie in
-  subpackages of `java`, e.g. `java.util`.
+  and `src/test/java/org/wcci/marshall/project1/` lie in package `org.wcci.marshall.project1`.
+  Many core classes lie in subpackages of `java`, e.g. `java.util`.
+  The first letter of each component should be lowercase.
+  The first part of the package should be designed to not overlap with projects created in other organizations, hence
+  the `org.wecancodeit.` prefix.
     * `import` -- Having `import java.util.ArrayList` or `import java.util.*` at the top of a source file allows one to
       type `new ArrayList()` rather than `new java.util.ArrayList()`. If no import applies and the full path of the
       class isn't specified, then Java defaults to only seeing classes in the current package.
