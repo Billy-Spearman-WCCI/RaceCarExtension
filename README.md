@@ -165,6 +165,7 @@
 * **tags**: A way to reference HTML elements within the documents most (not all) tags will have an
   opening and closing tag with the syntax `<tag>...</tag>`, though some are more like `<tag/>`.
   We usually call `<` and `>` angle brackets because they look like angles.
+  We also say "surrounded" or "wrapped" by angle brackets, e.g. "we wrap the `p` tag in angle brackets".
 * **useful tags and what they do**:
 * Division `<div></div>` -- A commonly used wrapper, used to contain elements for reference in CSS.
 * Style `<style></style>` -- Used for internal styling with CSS. It is not best practice to use internal styling.
@@ -573,13 +574,30 @@
 * **OO** -- An Object-Oriented programming style
     * **abstraction**: separating what's essential for a particular use from what isn't. Code to interfaces whenever
       possible.
+        * "Thin interfaces" better than "fat interfaces".
     * **polymorphism**: the Race class can call `contestant.turn()` and Java will ensure that the right method is
       called, depending upon the *actual* class of the object implementing Contestant.
         * Polymorphism is easiest to explain if one considers the case of an interface implemented by two concrete
           classes, and a variable whose type is that of the interface.
+        * Consider the following code:
+          ```
+          // This example is *NOT* polymorphism
+          final RaceCar raceCar = new RaceCar();
+          final RaceTruck raceTruck = new RaceTruck();
+          raceCar.turn();
+          raceTruck.turn();
+
+          // This example *is* polymorphism
+          final Contestant contestant1 = new RaceCar();
+          final Contestant contestant2 = new RaceTruck();
+          contestant1.turn();
+          contestant2.turn();
+          ```
     * **inheritance**: when one class extends another.
     * **encapsulation**: when a RaceCar contains an Odometer rather than trying to do that behavior
       itself https://github.com/marshallfWCCI/RaceCarInterface/commit/92e8da66095290ebdb11e4e53e04cede7639f787
+        * You should think of this as one object containing another object, rather than a class containing another
+          class. The latter is for "inner classes", which is an advanced topic we try to avoid.
     * Note: you will see the acronym "A PIE" to remember the above, but I dislike it because abstraction (programming to
       interfaces), polymorphism (the magic which allows abstraction to work), and encapsulation are essential to OO
       programming, but inheritance is usually a way to reduce duplicate code when classes don't encapsulate well.
@@ -857,10 +875,11 @@ openNewAccount(((((new Account.Builder())
     * .equals() and .hashCode() need to make sense (and be consistent with each other) for `K`'s and there really should
       only be one `V` for any given `K`.
     * `V`'s can be anything, even other Lists or Maps.  `Map<String, List<Integers>>` is perfectly fine.
-    * Technically, `Map` is not a container because you can't iterate it. But Map exposes three containers:
-        * `getKeys()`
-        * `getValues()`
-        * `getEntries()`
+    * Technically, `Map` is not a container because you can't iterate it. But Map exposes three methods which return
+      containers:
+        * `.getKeys()`
+        * `.getValues()`
+        * `.getEntries()`
 * `Iterable<V>` -- Something which can be after the `:` in `for (V value : values) {}`. All lists, `map.keySet()`,
   and `map.valueSet()` are all iterables.
 * `Stack<V>` -- A list with easy access to the last element. Think a spring-powered plate dispenser in a cafeteria.
@@ -998,6 +1017,7 @@ openNewAccount(((((new Account.Builder())
           repository needs an entity first. What Spring does is figure out, hey, I could could first make an entity, and
           then make a repository, and then make a controller.
     * `@AutoWired` is sort of the core of understanding Spring.
+    * Spring only exists for Java and related languages.
 * **JPA** -- Java Persistence API ... a standard way of marking Java objects which should be stored in databases.
   Hibernate is by far the most common *implementation* of JPA (and predates it). In most cases, they're
   interchangeable in ordinary speech. This also called an ORM (Object-RelationalDatabase Mapping).
@@ -1035,7 +1055,7 @@ openNewAccount(((((new Account.Builder())
         * In addition to GET, POST, PUT, DELETE, PATCH, there's also HEAD, and what does is a GET without actually
           getting the data. Suppose there's a *large* endpoint that changes every-so-often. The browser can do a HEAD
           first to see if it has changes, and only GET when necessary.
-        * A `@GetMapping` can be in either a RestController or a tempated Controller, depending on what you want to
+        * A `@GetMapping` can be in either a RestController or a templated Controller, depending on what you want to
           return to the user. If it is JSON, you probably want a RestController. If it's HTML, it's probably a templated
           Controller.
         * But suppose you have an HTML and it a submit button and you want that button to be *doing* something, and so
