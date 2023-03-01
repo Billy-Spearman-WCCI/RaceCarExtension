@@ -1500,11 +1500,12 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
           little styling done per-individual-element."
     * "What type of visibility modifiers does Java offer?"
         * "The primary ones are private, protected, and public. Code is cleaner when as many things as possible are
-          private and as few things as possible are public. There's also a "default" modified, but modern code avoids
-          it."
+          private and as few things as possible are public. There's also a "default" modified, but modern code rarely
+          uses it."
 * When talking out-loud during a CodingBat style problem, feel free to also say what you're *not* doing.
-    * "I'm iterating the chars in this list using the modern `for (char c : str.toCharArray())` syntax. I could be using
-      an old-style "for" loop with the two semicolons and the `i++`, but I prefer this approach because ..."
+    * "I'm iterating the characters in this String using the modern `for (char c : str.toCharArray())` syntax.
+      I could be using an old-style "for" loop with the two semicolons and the `i++`, but I prefer this approach
+      because ..."
 
 # Principles
 
