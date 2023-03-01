@@ -1480,6 +1480,32 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
     * *Now* you can start working on the `@RestController` endpoints. Do this
       using [Integration-test TDD](#spring-integration-tests).
 
+# Interview tips
+
+* Ask clarifying questions that also show off your knowledge.
+    * "What is HTML?"
+        * "Would you like me to talk about the various tags, or would you like me to talk about how it populates the
+          DOM, or talk about what a markup language is?"
+    * "What is polymorphism?"
+        * "Would you like a textbook definition, or would you like a concrete example with an interface and implementing
+          classes?"
+    * "What is Spring?"
+        * "Do you want to know about the Dependency Injection of the underlying framework, or about typical uses such as
+          for REST endpoints and database interactions?"
+* Don't be afraid to give your opinions
+    * "What are the three main type of CSS selectors"?
+        * "At end of the spectrum we have selectors which are based purely on HTML tags, in the middle we have per 'CSS
+          Class' selectors, and there are even per-ID selectors which apply to individual elements. But we don't want to
+          repeat ourselves, so I prefer to have as much styling common to all elements of a given tag, and have as
+          little styling done per-individual-element."
+    * "What type of visibility modifiers does Java offer?"
+        * "The primary ones are private, protected, and public. Code is cleaner when as many things as possible are
+          private and as few things as possible are public. There's also a "default" modified, but modern code avoids
+          it."
+* When talking out-loud during a CodingBat style problem, feel free to also say what you're *not* doing.
+    * "I'm iterating the chars in this list using the modern `for (char c : str.toCharArray())` syntax. I could be using
+      an old-style "for" loop with the two semicolons and the `i++`, but I prefer this approach because ..."
+
 # Principles
 
 * **Fail quickly and cheaply**
