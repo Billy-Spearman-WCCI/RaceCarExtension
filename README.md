@@ -590,18 +590,28 @@
         * Consider the following code:
           ```
           // This example is *NOT* polymorphism
-          final RaceCar raceCar = new RaceCar();
+          final RaceCar raceCar = new RaceCar();          // We're *remembering* the exact class
           final RaceTruck raceTruck = new RaceTruck();
           raceCar.turn();
           raceTruck.turn();
 
           // This example *is* polymorphism
-          final Contestant contestant1 = new RaceCar();
+          final Contestant contestant1 = new RaceCar();   // We're *forgetting* the exact class
           final Contestant contestant2 = new RaceTruck();
-          contestant1.turn();
+          contestant1.turn();    // Without us doing anything, Java on its own will look to see the actual type and call the right method
           contestant2.turn();
+          turnSomething(contestant1);
+          turnSomething(contestant2);
+          
+          public void turnSomething(final Contestant c) {c.turn();}
           ```
     * **inheritance**: when one class extends another.
+        * When one class extends another, the subclass has some methods defined in itself and other methods defined in
+          its parent or grandparent, etc.
+        * When a class implements an interface, it gets obligations from interface. (I.e. a set of methods it promises
+          to implement.)
+        * When a class extends another class, it gets implementations from its parent. Sometimes it will override that
+          behavior, and other times it won't.
     * **encapsulation**: when a RaceCar contains an Odometer rather than trying to do that behavior
       itself https://github.com/marshallfWCCI/RaceCarInterface/commit/92e8da66095290ebdb11e4e53e04cede7639f787
         * You should think of this as one object containing another object, rather than a class containing another
@@ -1079,6 +1089,7 @@ openNewAccount(((((new Account.Builder())
     * `@RequestBody` -- A parameter to endpoint extracted from the body of a POST or PUT and deserialized from JSON to
       the appropriate entity type.
     * `@PathVariable` -- A parameter to an endpoint method extracted from a `{some_id}` component of the endpoint path.
+    * `@RequestParam` -- A parameter to an endpoint method passed in from a `<form>`, usually.
     * `@ResponseBody` -- An annotation on an endpoint that it's returning json-encoded data. Not needed
       for `@RestController`-annotated classes.
 * `@SpringBootApplication` -- An annotation that Spring should run the `main()` in the class.
