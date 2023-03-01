@@ -83,6 +83,10 @@
             * (Safe for all the instances of a class to share) String, Integer, ImmutableHashMap --> These cannot change
               on the inside and therefore can be shared by all of the objects of a class. But it's common for such
               classes to return new instances containing modified information.
+        * A "mutation" is when your DNA changes.
+        * A good hint that an object is immutable is that all of its fields are `final` (though technically all of its
+          fields also need to be immutable).
+        * Normally, a `void` method doesn't make sense for an immutable object.
     * The data and behavior contained in a Class can be other classes too. Normally, this is super-confusing, so don't
       do it. The exception is when a class has a "helper".
         * Another example is when the job of a class is complicated that it needs other classes to solve its problem,
@@ -1059,6 +1063,13 @@ openNewAccount(((((new Account.Builder())
           syntax -- https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#textual-syntax
         * The attribute names in calls to `model.addAttribute()` must match exactly the variables referenced within the
           templates themselves.
+        * Instead of having your controller do stuff
+          like `model.addAttribute("bgColor", something); model.addAttribute("fgColor", somethingElse);`, it's cleaner
+          to have some class, perhaps `FormatInfo` with `bgColor` and `fgColor` as fields.
+          Then your controller can do a single `model.addAttribute("format", formatInfo)`.
+          Of course you'd have to change your css template from `[(${bgColor})]` to `[(${format.bgColor})]`, but it's
+          ultimately cleaner and more readable code.
+          (And eventually `FormatInfo` will probably get JPA annotations.)
         * The return value for these methods is the the name of the template.
     * `@RestController` -- An annotation for linking endpoints (e.g. `/courses/{course_id}/`) to API responses.
         * Here, you're explicitly stating *what* to return. You can return a String, or you can return an object and
