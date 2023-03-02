@@ -46,6 +46,7 @@
 * Java has a syntax -- `;` separate statements, etc.
     * IntelliJ does the parsing of your Java program, converting it into something that can run.
 * Html has a syntax -- `<tagName>` at start and `</tagName>` at end, etc.
+  `<!-- HTML comments start with an angle bracket, exclaimation, and two hyphens -->`
     * Chrome is *VERY* good at parsing HTML for you.
 * Markdown (.md files like this one) has a syntax, for instance backquotes say that it should have a grey background.
 * **Parsing** -- The act of taking text (e.g. a String) and splitting it up into meaning "words" according to the syntax
