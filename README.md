@@ -1647,7 +1647,10 @@ it does so and not worry about how it does so."
 # Quick-and-dirty branches for teams
 
 * Rules: Never actually write *any* code in the `main` branch.
+* Suggestion: if possible, work on different files; if that isn't possible, try to work on different parts of the file.
 * Every story should have its own "feature branch"
+    * Branches can be called anything, but it's kinda nice to have a consistent naming convention, like "FEATURE_story"
+      Branches can be called anything, but it's kinda nice to have a consistent naming convention, like "FEATURE_story".
     * To create a branch `git checkout -b feature_list_shelters`
     * To switch to a branch `git checkout feature_list_shelters`
         * (Only time really to switch between branches is if you're working on multiple stories at once, which is
