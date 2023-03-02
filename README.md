@@ -1449,6 +1449,13 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
   which is occurring on the primary branch. I suggest that you only run this command when `git status` is clean.
 * `git checkout FEATURE_SOMEFEATURE`, `git checkout main` -- Switches your workspace (e.g. the files in your project) to
   an existing branch. I suggest that you only run this command when `git status` is clean.
+* `git remote -v` -- Shows the remote repositories your local repository is aware of.
+  You will at least have an `origin` repository, and that's the default.
+  So `git pull` and `git pull origin` are identical...same for `git push` and `git push origin`.
+* `git remote add personal <your-new-repo-url>` -- tells your local git repo about *another* remote repository
+  (in this case, called "personal", though you could call it anything).  
+  Then you can do `git push personal` to send a copy of your work to your *personal* GitHub account, and `git push` will
+  continue to push to your WCCI-controlled repository.
 
 # Too-advanced to discuss now
 
