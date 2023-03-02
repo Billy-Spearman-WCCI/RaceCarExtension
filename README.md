@@ -1643,3 +1643,30 @@ it does so and not worry about how it does so."
   (e.g., what the least bit of Java work so that someone can start working on the CSS and layout part).
 * Project is currently due at 5PM on Thursday 2023-03-09, though I may give you more time as conditions demand.
 * I *strongly* urge you to periodically slack me and ask for comments on what you've pushed to your shared repository.
+
+# Quick-and-dirty branches for teams
+
+* Rules: Never actually write *any* code in the `main` branch.
+* Every story should have its own "feature branch"
+    * To create a branch `git checkout -b feature_list_shelters`
+    * To switch to a branch `git checkout feature_list_shelters`
+        * (Only time really to switch between branches is if you're working on multiple stories at once, which is
+          usually not a good idea.)
+    * Notice that the bash shell prompt is super-useful (except perhaps on Macs...that depends on how it's setup)
+* Doing
+  a `git status; git add .; git status; git commit -m "SomethingShortButWillRemindYou"; git status; git push; git status`
+  on a regular basis will make for a happy and healthy life.
+* Get into the habit of doing `git fetch; git merge origin/main` frequently.
+    * `git fetch` --> makes your repository know about anything which happened at GitHub
+    * `git merge origin/main` --> merges anything recently added to GitHub's "main" branch onto your feature branch
+* When you think your feature branch is ready:
+    * Do another `git fetch; git merge origin/main; git status`, and then do any necessary adds/commits/pushes.
+    * Go onto GitHub and create a Pull Request.
+    * Have the others on your team review the change and then accept your code and merge it into main.
+    * Then everyone on the team should do a `git fetch; git merge origin/main; git status` on their machines (i.e. in
+      the feature branch they're working on)
+* When you're ready to start a new feature branch:
+    * `git checkout main; git fetch; git merge origin/main`
+      (or you could be lazy and just do `git checkout main; git pull`)
+    * `git checkout -b feature_even_better_feature` and start from the top.
+ 
