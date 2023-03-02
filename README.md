@@ -1167,6 +1167,9 @@ openNewAccount(((((new Account.Builder())
     * Reminder: classes which are stored in Sets should have explicit `.equals()` and `.hashCode()` methods looking at
       the fields which should matter for saying that two objects are essentially the same. If two tags have the same
       name, then we want only one in the database -- so `.equals()` for tags should only look at important fields.
+    * NOTE: JPA offers multiple strategies for mapping when you have *inheritance* between classes.
+      For small projects like ours, the first choice at https://www.baeldung.com/hibernate-inheritance probably
+      suffices.
 * `final private Logger logger = LoggerFactory.getLogger(ThisClass.class);` -- standard phrasing to create a logger to
   which you can write interesting information. Used in all Java programs, Spring and non-Spring. We use the `org.slf4j`
   loggers.  `logger.error("Somehow the .name is null here");`
