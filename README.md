@@ -39,6 +39,10 @@
         * `git config --global --add --bool push.autoSetupRemote true`
         * `git config --global core.editor "nano"`
     * `nano` is a super-tiny text editor within git bash. Type control-X to exit, control-G for help.
+* **IntelliJ**
+    * Setting better defaults:
+        * `ctrl-alt-s` `Inspections` --> select "Inspections settings"
+        * (TODO -- enforcing capitalization requirements, etc.)
 
 ## Syntax
 
