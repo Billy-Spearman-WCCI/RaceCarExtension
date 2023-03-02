@@ -1650,10 +1650,10 @@ it does so and not worry about how it does so."
 # Quick-and-dirty branches for teams
 
 * Rules: Never actually write *any* code in the `main` branch.
+  Really, there's no need to ever do a `git checkout main` on your laptop.
 * Suggestion: if possible, work on different files; if that isn't possible, try to work on different parts of the file.
 * Every story should have its own "feature branch"
     * Branches can be called anything, but it's kinda nice to have a consistent naming convention, like "FEATURE_story"
-      Branches can be called anything, but it's kinda nice to have a consistent naming convention, like "FEATURE_story".
     * To create a branch `git checkout -b feature_list_shelters`
     * To switch to a branch `git checkout feature_list_shelters`
         * (Only time really to switch between branches is if you're working on multiple stories at once, which is
@@ -1668,9 +1668,10 @@ it does so and not worry about how it does so."
 * When you think your feature branch is ready:
     * Do another `git fetch; git merge origin/main; git status`, and then do any necessary adds/commits/pushes.
     * Go onto GitHub and create a Pull Request.
-    * Have the others on your team review the change and then accept your code and merge it into main.
+    * Have the others on your team review the change and then accept the Pull Request and merge it into main.
     * Then everyone on the team should do a `git fetch; git merge origin/main; git status` on their machines (i.e. in
-      the feature branch they're working on)
+      the feature branch they're working on). If they happen to be working on multiple feature branches (and they should
+      *not* be), then do the `git merge origin/main` on each such branch.
 * When you're ready to start a new feature branch:
     * `git checkout main; git fetch; git merge origin/main`
       (or you could be lazy and just do `git checkout main; git pull`)
