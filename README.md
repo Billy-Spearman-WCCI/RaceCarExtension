@@ -1607,3 +1607,34 @@ should continue to use it. But don't just copy stuff without understanding.
 abstractions. So we can tell students: "The `Console` object knows how to write stuff to the screen. We can trust that
 it does so and not worry about how it does so."
 ********
+
+# Virtual Pet API Requirements
+
+* Your team needs to decide on a name, which will determine the GitHub account containing your code.
+* Your team should have a Slack channel.
+  Your team is self-organizing, so you get to decide whether I and Billy should be on the channel.
+  (Or create two, one with us and one without us.)
+* You must be clear about which individual (or group of individuals) is working on a given story, so you don't
+  duplicate work.
+  Messages in Slack or face-to-face are fine at first.
+* While you will be doing division-of-labor for the coding, you must not do division-of-labor for the understanding of
+  the code.
+  Every team member must understand how the entire system works.
+* You may copy classes from the personal projects of one or more team members, or you may start from scratch.
+* All functionality must be available from via a REST-style API:
+    * List all shelters,
+      Create a new shelter,
+      Create a pet of a given type/name/age/etc,
+      List all pets at a given shelter,
+      Add a pet to a given shelter,
+      Adopt a pet from a given shelter,
+      Perform actions upon or see the status of a single pet who is a guest of a particular shelter,
+      Perform actions upon or see the status of all pets who are guests of a particular shelter,
+* All of the above functionality should also be available through user-friendly webpages, styled with CSS.
+  You get to decide on the mix of server-side or client-side rendering which works best for you.
+* The state of the system must survive the server restarting, so you will need a database backend, e.g. MySQL.
+* You must write the stories you're implementing into the project's README.md *before* implementing them.
+  I strongly suggest thinking carefully about the order in which you do the stories, so your team can work efficiently
+  (e.g., what the least bit of Java work so that someone can start working on the CSS and layout part).
+* Project is currently due at 5PM on Thursday 2023-03-09, though I may give you more time as conditions demand.
+* I *strongly* urge you to periodically slack me and ask for comments on what you've pushed to your shared repository.
