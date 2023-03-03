@@ -1569,8 +1569,8 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
     * "Don't Repeat Yourself" makes this easier. Code is expensive to write, and even more expensive to maintain. The
       less code we write, the better. Modern programming languages allow us to reuse code (ours and others') rather than
       repeating ourselves with similar code.
-    * Distinguish consistency from cargo-cult logic.[^1] Don't copy-and-paste without understanding -- but do accept
-      black-boxes. [^2] Practice https://en.wikipedia.org/wiki/Rubber_duck_debugging.
+    * Distinguish consistency from cargo-cult logic.[^Cargo] Don't copy-and-paste without understanding -- but do accept
+      black-boxes. [^BlackBox] Practice https://en.wikipedia.org/wiki/Rubber_duck_debugging.
 * **Expand empathy**
     * Empathy for the user
         * This is why Scrum stories start with `As a ____, I ...`.
@@ -1607,13 +1607,15 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
         * Avoid anti-patterns.
         * Collaborate with your tools (e.g., Git and GitHub). Let your tools guide you.
 
-[^1]: If you're working in a system in which each component is named after an animal species, then you should continue
-that pattern (to reduce the cognitive load on others). Or if your organization has a specific code formatting style, you
-should continue to use it. But don't just copy stuff without understanding.
+[^Cargo]: If you're working in a system in which each component is named after an animal species, then you should
+continue that pattern (to reduce the cognitive load on others).
+Or if your organization has a specific code formatting style, you should continue to use it. But don't just copy stuff
+without understanding.
 
-[^2]: The whole point of encapsulation is that we don't have to understand details if they're hidden behind
-abstractions. So we can tell students: "The `Console` object knows how to write stuff to the screen. We can trust that
-it does so and not worry about how it does so."
+[^BlackBox]: The whole point of encapsulation is that we don't have to understand details if they're hidden behind
+abstractions.
+So we can tell students: "The `Console` object knows how to write stuff to the screen.
+We can trust that it does so and not worry about how it does so."
 ********
 
 # Virtual Pet API Requirements
