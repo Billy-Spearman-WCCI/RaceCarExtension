@@ -1652,7 +1652,8 @@ We can trust that it does so and not worry about how it does so."
 # Quick-and-dirty branches for teams
 
 * Rules: Never actually write *any* code in the `main` branch.
-  Really, there's no need to ever do a `git checkout main` on your laptop.
+  Really, there's no need to ever do a `git checkout main` on your laptop, except immediately before making a new
+  branch.
 * Suggestion: don't ever have two people edit the same file at the same time. If you do need to, make it a super-small
   change.
 * Completely safe -- your branch is separate from everything else
