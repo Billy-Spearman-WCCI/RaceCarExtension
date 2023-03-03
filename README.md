@@ -1653,20 +1653,26 @@ We can trust that it does so and not worry about how it does so."
 
 * Rules: Never actually write *any* code in the `main` branch.
   Really, there's no need to ever do a `git checkout main` on your laptop.
-* Suggestion: if possible, work on different files; if that isn't possible, try to work on different parts of the file.
-* Every story should have its own "feature branch"
-    * Branches can be called anything, but it's kinda nice to have a consistent naming convention, like "FEATURE_story"
-    * To create a branch `git checkout -b feature_list_shelters`
-    * To switch to a branch `git checkout feature_list_shelters`
-        * (Only time really to switch between branches is if you're working on multiple stories at once, which is
-          usually not a good idea.)
-    * Notice that the bash shell prompt is super-useful (except perhaps on Macs...that depends on how it's setup)
-* Doing
-  a `git status; git add .; git status; git commit -m "SomethingShortButWillRemindYou"; git status; git push; git status`
-  on a regular basis will make for a happy and healthy life.
-* Get into the habit of doing `git fetch; git merge origin/main` frequently.
-    * `git fetch` --> makes your repository know about anything which happened at GitHub
-    * `git merge origin/main` --> merges anything recently added to GitHub's "main" branch onto your feature branch
+* Suggestion: don't ever have two people edit the same file at the same time. If you do need to, make it a super-small
+  change.
+* Completely safe -- your branch is separate from everything else
+    * Every story should have its own "feature branch"
+        * Branches can be called anything, but it's kinda nice to have a consistent naming convention, like "
+          FEATURE_story"
+        * To create a branch `git checkout main; git pull; git status; git checkout -b feature_list_shelters`
+        * If you happen to need to switch branches (rare) `git checkout feature_list_shelters`
+            * (Only time really to switch between branches is if you're working on multiple stories at once, which is
+              usually not a good idea.)
+        * Notice that the bash shell prompt is super-useful (except perhaps on Macs...that depends on how it's setup)
+    * Doing
+      a `git status; git add .; git status; git commit -m "SomethingShortButWillRemindYou"; git status; git push; git status`
+      on a regular basis will make for a happy and healthy life.
+        * All of this is just in your branch and won't bother anyone else
+    * Whenever the team *accepts* a Pull Request, everyone on the team needs to
+      do `git fetch; git merge origin/main; git status`.
+      We do this so GitHub won't say your feature branch is out-of-date.
+        * `git fetch` --> makes your repository know about anything which happened at GitHub
+        * `git merge origin/main` --> merges anything recently added to GitHub's "main" branch onto your feature branch
 * When you think your feature branch is ready:
     * Do another `git fetch; git merge origin/main; git status`, and then do any necessary adds/commits/pushes.
     * Go onto GitHub and create a Pull Request.
@@ -1678,4 +1684,15 @@ We can trust that it does so and not worry about how it does so."
     * `git checkout main; git fetch; git merge origin/main`
       (or you could be lazy and just do `git checkout main; git pull`)
     * `git checkout -b feature_even_better_feature` and start from the top.
+* What can go wrong?
+    * Possible problem: The team accepts a Pull Request with lousy code
+        * Possible solutions:
+            * Read the changes before agreeing.
+            * Create a new branch and fix what's wrong.
+    * Possible problem: After you're done coding your branch, you try to make a pull request and GitHub says that your
+      branch is-out-of-date.
+        * Possible solutions:
+            * Do lots of `git fetch; git merge origin/main` -- at least immediately after every PR is accepted.
+            * Wait until you're ready for the PR and do the `git fetch; git merge origin/main` then -- but it will be
+              harder then.
  
