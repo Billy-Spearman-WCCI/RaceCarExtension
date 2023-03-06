@@ -422,6 +422,35 @@ to the list (0, 1, ...) rather than the values in the list.
 * CSS really good at making well-designed and pretty.
 * Thymeleaf really good at service-side merging data and templates.
 
+# React.js
+
+* React applications are typically written in either JavaScript or TypeScript, and they leverage a syntax called JSX.
+  Your code is converted to raw (but difficult-to-read) JavaScript and packed (including perhaps related .css files)
+  into a single easy-to-download .js file.
+* JSX (JavaScript XML) is an extension to JavaScript which lets us write what looks like normal HTML as part of
+  JavaScript file.
+  In a way, it's like the exact opposite of Thymeleaf.
+  ```
+  const Greeting = () => {
+    return (
+        <div className="hello-world">
+            <h1>Hello, world!</h1>
+        </div>
+    ); 
+  }; 
+  ```
+* Creating a React application consists of two steps: defining components and defining the flow of data.
+    * Components are JavaScript code which create a tree of HTML elements based on the data available to them.
+        * These components can then be placed anywhere on your webpage, and React will update them as necessary.
+            * You can think of a React Component as an object with a `.render()` method which outputs a tree of elements
+              suitable for insertion in the right part of the DOM tree.
+            * If computers were infinitely fast, React could just repeatedly call `.render()` on every component and
+              then update the Browser's DOM with the results.
+              But efficiency is important, so under-the-covers it uses sophisticated techniques ("Virtual DOM", data
+              tracing) to minimize the work performed by the browser.
+        * JSX actually allows you to include your components and html tags with equal fluency.
+    * React takes seriously the flow of data through your front-side application.
+
 ### Virtual Pet shop requirements
 
 * Login and see current pets available ==> Hit an REST endpoint and get a JSON list, create DOM table with JSON, and add
