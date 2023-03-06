@@ -325,12 +325,12 @@
     * *JavaScript*: `import` loads and executes the specified library
 * Modern for loops
     * *Java*: `for (var s : someList)`
-    * *JavaScript*: `for s of someList` [^JavaScriptIn]
+    * *JavaScript*: `for s of someList` [^JSIn]
 * Ease of use
     * *Java*: easier to write programs that work correctly
     * *JavaScript*: easier to write programs
 
-[^JavaScriptIn]: JavaScript also offers `for i in someList`, but that causes `i` to take on the values of the *indexes*
+[^JSIn]: JavaScript also offers `for i in someList`, but that causes `i` to take on the values of the *indexes*
 to the list (0, 1, ...) rather than the values in the list.
 
 ## Useful Javascript idioms
