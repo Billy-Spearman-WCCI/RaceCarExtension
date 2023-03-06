@@ -75,7 +75,7 @@
 
 * **object**: a thing encapsulating data (in "instance fields") and behavior (in "methods")
     * `this` -- the syntax to access **Instance fields**
-    * `class`: The definition of the data and/or behavior of its instances.
+    * `class` -- Defines the structure of an object (i.e. what data is contains and what behavior it provides).
     * `new`: Creates an object of the specified class. `new` can only be called on non-abstract classes. It cannot be
       called on abstract classes or interfaces themselves.
     * **constructor**: A method which runs when an object is created and sets its initial state.
@@ -127,13 +127,15 @@
         * Programmers are lazy, and don't want to type `Integer val = new Integer(2);` when they just want to
           type `Integer val = 2;` ... so Java does the work automatically for you in such cases so you can be lazy. This
           laziness is called **autoboxing**.
-        * But why do we need types like `Integer`? Can't we always just use `int`??? Because Maps, Lists, etc, cannot
-          contain primitives. This is just a limitation of Java, and occurs because primitive values don't have methods.
+        * But why do we need types like `Integer`? Can't we always just use `int`???
+          Maps, Lists, etc, cannot contain primitives.
+          This is just a limitation of Java, and occurs because primitive values don't have methods.
         * The process of encapsulating primitive values is called "Boxing". And the process of getting a primitive back
-          is called "Unboxing". The box is a legitimate object, while primitives are the only things in Java which
-          aren't objects at all. When unboxing, you must be sure that the object isn't null, or deal with the
-          consequences (e.g. by running the code in a try/catch block), or be ok with the program crashing.
-    * **Type safety** -- Java won't compile if you try to write an incompatible value to a variable.
+          is called "Unboxing".
+          The box is an object, while primitives are the only things in Java which aren't objects at all.
+          When unboxing, you must be sure that the object isn't null, or deal with the consequences (e.g. by running
+          the code in a try/catch block), or be OK with the program crashing.
+    * **Type safety** -- Java simply won't compile if you try to write an incompatible value to a variable.
     * **Casting** or **TypeCasting** -- Telling Java to manually convert one type to another,
       e.g. `double x = (double) 0`;
 * **method**: A function defined within a class. In java, all functions are defined within classes.
@@ -322,11 +324,14 @@
     * *Java*: `import` is just a way to save typing when accessing classes in other packages
     * *JavaScript*: `import` loads and executes the specified library
 * Modern for loops
-    * *Java*: `(for String i : s.values())`
-    * *JavaScript*: `(for i of s.values())`
+    * *Java*: `for (var s : someList)`
+    * *JavaScript*: `for s of someList` [^JavaScriptIn]
 * Ease of use
     * *Java*: easier to write programs that work correctly
     * *JavaScript*: easier to write programs
+
+[^JavaScriptIn] JavaScript also offers `for i in someList`, but that causes `i` to take on the values of the *indexes*
+to the list (0, 1, ...) rather than the values in the list.
 
 ## Useful Javascript idioms
 
@@ -1693,7 +1698,7 @@ We can trust that it does so and not worry about how it does so."
     * `git status` --> Verify that the pull succeeded
     * `git checkout -b feature_even_better_feature` --> Create a new branch, and then start working there.
 * What can go wrong?
-    * Possible problem: The team accepts a Pull Request with lousy code
+    * Possible problem: The team accepts a Pull Request with less-than-perfect code
         * Possible solutions:
             * Read the changes before agreeing.
             * Create a new branch and fix what's wrong.
