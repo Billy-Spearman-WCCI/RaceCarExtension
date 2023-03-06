@@ -1114,8 +1114,10 @@ openNewAccount(((((new Account.Builder())
     * `@ResponseBody` -- An annotation on an endpoint that it's returning json-encoded data. Not needed
       for `@RestController`-annotated classes.
 * `@SpringBootApplication` -- An annotation that Spring should run the `main()` in the class.
-* `@Bean` -- An annotation that Spring should wire in the entity into its framework. Controllers, RestControllers, and
+* `@Bean` -- An annotation that Spring should wire the entity into its framework. Controllers, RestControllers, and
   everything else that Spring knows about are all subclasses of bean.
+  Note that you rarely will actually type `@Bean` ... instead you'll declare something as a component that Spring knows,
+  like a `CrudRepository` or `@Controller`.
     * `@Autowired` -- Annotation that Spring should automatically populate this parameter. This is sort of the partner
       to `@Bean`, in that it *uses* beans, whereas `@Bean` *provides* beans.
     * `@Qualifier` -- Allows Spring to manage two beans of the same type. Used when declaring them, to "name" them. Used
@@ -1687,8 +1689,9 @@ We can trust that it does so and not worry about how it does so."
       the feature branch they're working on). If they happen to be working on multiple feature branches (and they should
       *not* be), then do the `git merge origin/main` on each such branch.
 * When you're ready to start a new feature branch:
-    * `git checkout main; git pull`
-    * `git checkout -b feature_even_better_feature` and start from the top.
+    * `git checkout main; git pull` --> Temporarily switch back to the main branch and update it
+    * `git status` --> Verify that the pull succeeded
+    * `git checkout -b feature_even_better_feature` --> Create a new branch, and then start working there.
 * What can go wrong?
     * Possible problem: The team accepts a Pull Request with lousy code
         * Possible solutions:
@@ -1701,25 +1704,26 @@ We can trust that it does so and not worry about how it does so."
             * Wait until you're ready for the PR and do the `git fetch; git merge origin/main` then -- but it will be
               harder then.
 
-* Quick and Dirty Agile
-    * "New" -- Anything goes! You have an idea...just throw it here.
+# Quick and Dirty Agile
 
-    * "Backlog" -- This should contain *stories* in the form of "As a ____, I need ___, so that ____".
-      These should *not* contain references to technologies, specific behavior, etc.
-      Instead, they should detailed a small chunk of *useful* and *observable* behavior, in terms intelligible to a
-      Product Owner who knows what they want but hasn't programmed a day in their life.
-      But as long as your tasks comply with this, feel free to throw stuff at the *bottom* of the list.
-      But the team should have consensus on what gets moved to the top of the list.
-    * "Ready" -- This contains the tasks which the team agrees are "on deck".  
-      It's better to have fewer tasks here.  
-      Unlike "Backlog", the stories in this column should be well-defined and understood by the entire team, which means
-      you should list the actual tasks which need to be done.
-    * "In Progress" -- You should aim to have at most one item here per team member.  
-      It's perfectly fine for a team member to have zero items in this column if they're currently working on a task
-      that's in the "In Review" column. Moving items from "In Review" to "Done" is more important than moving items
-      from "In Progress" to "In Review".
-    * "In Review" -- This contains tasks for which the teammate doing the coding feel they're done, but the entire team
-      needs to verify that the work is *done*.
-      Inspecting such stories is usually your highest priority.
-    * "Done" -- You're confident that the work is correct.
-      Each team needs to define its own concept of "done", and this might be the most important decision the team makes.
+* "New" -- Anything goes! You have an idea...just throw it here.
+* "Backlog" -- This should contain *stories* in the form of "As a ____, I need ___, so that ____".
+  These should *not* contain references to technologies, specific behavior, etc.
+  Instead, they should detailed a small chunk of *useful* and *observable* behavior, in terms intelligible to a
+  Product Owner who knows what they want but hasn't programmed a day in their life.
+  But as long as your tasks comply with this, feel free to throw stuff at the *bottom* of the list.
+  But the team should have consensus on what gets moved to the top of the list.
+* "Ready" -- This contains the tasks which the team agrees are "on deck".  
+  It's better to have fewer tasks here.  
+  Unlike "Backlog", the stories in this column should be well-defined and understood by the entire team, which means
+  you should list the actual tasks which need to be done.
+* "In Progress" -- You should aim to have at most one item here per team member.  
+  It's perfectly fine for a team member to have zero items in this column if they're currently working on a task
+  that's in the "In Review" column. Moving items from "In Review" to "Done" is more important than moving items
+  from "In Progress" to "In Review".
+* "In Review" -- This contains tasks for which the teammate doing the coding feel they're done, but the entire team
+  needs to verify that the work is *done*.
+  Inspecting such stories is usually your highest priority.
+* "Done" -- You're confident that the work is correct.
+  Each team needs to define its own concept of "done", and this might be the most important decision the team makes.
+  "Done" has to mean "done" ... otherwise the board doesn't give an accurate summary of the state of your project.
