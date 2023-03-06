@@ -1687,8 +1687,7 @@ We can trust that it does so and not worry about how it does so."
       the feature branch they're working on). If they happen to be working on multiple feature branches (and they should
       *not* be), then do the `git merge origin/main` on each such branch.
 * When you're ready to start a new feature branch:
-    * `git checkout main; git fetch; git merge origin/main`
-      (or you could be lazy and just do `git checkout main; git pull`)
+    * `git checkout main; git pull`
     * `git checkout -b feature_even_better_feature` and start from the top.
 * What can go wrong?
     * Possible problem: The team accepts a Pull Request with lousy code
@@ -1713,7 +1712,8 @@ We can trust that it does so and not worry about how it does so."
       But the team should have consensus on what gets moved to the top of the list.
     * "Ready" -- This contains the tasks which the team agrees are "on deck".  
       It's better to have fewer tasks here.  
-      Unlike "Backlog", the tasks in this column should be well-defined and understood by the entire team.
+      Unlike "Backlog", the stories in this column should be well-defined and understood by the entire team, which means
+      you should list the actual tasks which need to be done.
     * "In Progress" -- You should aim to have at most one item here per team member.  
       It's perfectly fine for a team member to have zero items in this column if they're currently working on a task
       that's in the "In Review" column. Moving items from "In Review" to "Done" is more important than moving items
