@@ -25,6 +25,11 @@
 * https://github.com/marshallfWCCI/ReviewAPI
     * My solution for the Reviews API project
 
+* https://github.com/marshallfWCCI/gradleReact
+    * An IntelliJ project which contains React code (.js) and styleSheets (.css) in `src/main/webapp` and serves the
+      transcoded results from `src/main/resources/static/dist` (which of course is in the `.gitignore`).
+      Transcoding is automatically performed by gradle before `:bootRun` or `:test`.
+
 # Glossary
 
 ## Tools
@@ -1696,4 +1701,25 @@ We can trust that it does so and not worry about how it does so."
             * Do lots of `git fetch; git merge origin/main` -- at least immediately after every PR is accepted.
             * Wait until you're ready for the PR and do the `git fetch; git merge origin/main` then -- but it will be
               harder then.
- 
+
+* Quick and Dirty Agile
+    * "New" -- Anything goes! You have an idea...just throw it here.
+
+    * "Backlog" -- This should contain *stories* in the form of "As a ____, I need ___, so that ____".
+      These should *not* contain references to technologies, specific behavior, etc.
+      Instead, they should detailed a small chunk of *useful* and *observable* behavior, in terms intelligible to a
+      Product Owner who knows what they want but hasn't programmed a day in their life.
+      But as long as your tasks comply with this, feel free to throw stuff at the *bottom* of the list.
+      But the team should have consensus on what gets moved to the top of the list.
+    * "Ready" -- This contains the tasks which the team agrees are "on deck".  
+      It's better to have fewer tasks here.  
+      Unlike "Backlog", the tasks in this column should be well-defined and understood by the entire team.
+    * "In Progress" -- You should aim to have at most one item here per team member.  
+      It's perfectly fine for a team member to have zero items in this column if they're currently working on a task
+      that's in the "In Review" column. Moving items from "In Review" to "Done" is more important than moving items
+      from "In Progress" to "In Review".
+    * "In Review" -- This contains tasks for which the teammate doing the coding feel they're done, but the entire team
+      needs to verify that the work is *done*.
+      Inspecting such stories is usually your highest priority.
+    * "Done" -- You're confident that the work is correct.
+      Each team needs to define its own concept of "done", and this might be the most important decision the team makes.
