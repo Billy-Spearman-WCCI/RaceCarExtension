@@ -1192,6 +1192,8 @@ openNewAccount(((((new Account.Builder())
     * NOTE: JPA offers multiple strategies for mapping when you have *inheritance* between classes.
       For small projects like ours, the first choice at https://www.baeldung.com/hibernate-inheritance probably
       suffices.
+      HOWEVER, if you're trying to do a one-to-many mapping to an abstract class, then you need to use
+      the `TABLE_PER_CLASS` option.
 * `final private Logger logger = LoggerFactory.getLogger(ThisClass.class);` -- standard phrasing to create a logger to
   which you can write interesting information. Used in all Java programs, Spring and non-Spring. We use the `org.slf4j`
   loggers.  `logger.error("Somehow the .name is null here");`
