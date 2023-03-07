@@ -490,13 +490,21 @@ to the list (0, 1, ...) rather than the values in the list.
 
 ## Programming styles
 
-### Overview
+### Programming Overview
 
 * Software development is not graded like a high-school or college course. You'll be working on a team, and you will be
   doing your work in a git branch, and when you say you're ready your work will be reviewed *before* it will be merged
   into the main development branch. Your work will *not* be merged until is is _acceptable_ (i.e. it has passed all
   requirements for code to be accepted). Acceptance criteria include:
     * Compliance with coding standards, including stylistic things like formatting and comments.
+        * Java offers **JavaDoc** syntax.
+          `/** Documentation */`.
+          I would strongly suggest that code is not "done" until it has JavaDoc for each class describing what that
+          class's single purpose in life is. (And each class should have a single purpose.)
+          I have less-strong feelings about requiring that every method (and parameter thereof) have JavaDoc
+          documentation ... if the methods and parameters are well-named, it really should not be necessary -- but you
+          very well be hired by a team which requires that level of documentation before a Pull Request will be
+          accepted.
     * The code is *clean*, and consistent with the practices of already-existing code in your organization.
     * The use (e.g. public interface) of your new code is clearly documented.
     * You can answer the question: "how do you *know* that the code functions as desired?"
