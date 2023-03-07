@@ -456,12 +456,10 @@ to the list (0, 1, ...) rather than the values in the list.
     * React takes seriously the flow of data through your front-side application.
     ```mermaid
     graph LR;
-    IDE-->Compiler;
-    Compiler-->UnitTests;
-    UnitTests-->IntegrationTests;
-    IntegrationTests-->ManualTesting;
-    ManualTesting-->QA;
-    QA-->Production
+    data-->Component
+    Component-->Virtual_DOM
+    Virtual_DOM-->DOM
+    DOM-->display
     ```
 
 ### Virtual Pet shop requirements
