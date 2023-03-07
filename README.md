@@ -1576,6 +1576,15 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
     * It's better to catch errors in the editor than the compiler. It's better to catch errors in the compiler than
       while running unit tests. It's better to catch errors while running unit tests than while running integration
       tests. It's better to catch errors while running integration tests than in production.
+    ```mermaid
+    graph LR;
+    IDE-->Compiler;
+    Compiler-->UnitTests;
+    UnitTests-->IntegrationTests;
+    IntegrationTests-->ManualTesting;
+    ManualTesting-->QA;
+    QA-->Production
+    ```
     * Start with a proof-of-concept. Iterate with new versions as necessary.
     * Reduce the effort required to get good feedback.
     * Tighten feedback loops.
