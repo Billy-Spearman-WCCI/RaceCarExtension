@@ -454,6 +454,15 @@ to the list (0, 1, ...) rather than the values in the list.
               tracing) to minimize the work performed by the browser.
         * JSX actually allows you to include your components and html tags with equal fluency.
     * React takes seriously the flow of data through your front-side application.
+    ```mermaid
+    graph LR;
+    IDE-->Compiler;
+    Compiler-->UnitTests;
+    UnitTests-->IntegrationTests;
+    IntegrationTests-->ManualTesting;
+    ManualTesting-->QA;
+    QA-->Production
+    ```
 
 ### Virtual Pet shop requirements
 
@@ -1601,7 +1610,8 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
 
 # Principles
 
-* **Fail quickly and cheaply**
+## Fail quickly and cheaply
+
     * It's better to catch errors in the editor than the compiler. It's better to catch errors in the compiler than
       while running unit tests. It's better to catch errors while running unit tests than while running integration
       tests. It's better to catch errors while running integration tests than in production.
@@ -1619,13 +1629,17 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
     * Tighten feedback loops.
     * Prefer a rapid sequence of tiny lessons, each introducing just one new concept at a time.
     * This is the essence of agility.
-* **Ratchet success**
+
+## Ratchet success
+
     * Technically, we use Git to store our code. This allows us to always revert to the last good version, so we can
       experiment with complete safety.
     * Educationally, we continue to build on material learned previously, so we don't forget what we learned before.
       However, you should still periodically review all that you've covered so far in the course.
     * Continuously ensure that prior successes aren't lost. This allows us to reduce friction.
-* **Reduce cognitive load**
+
+## Reduce cognitive load
+
     * A well-structured complex system contains multiple programs, each of which should do a clearly-defined thing. A
       well-structured program is structured into components, each of which should a clearly-defined role. The
       alternative is incomprehensible chaos.
@@ -1636,7 +1650,10 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
     * Have as few development tasks in progress at a time as possible.
     * Have as few instructional concepts in progress at a time as possible. "Done" is good ... "almost done" is not.
     * Have as few as possible outstanding homework assignments projects at any time.
-* **A person wearing two watches doesn't know what time it is.**
+
+## Single Sources of Truth
+
+    * A person wearing two watches doesn't know what time it is.*
     * Get into the habit of thinking: "for this type of data, what is the single-source-of-truth". For some course info,
       the Canvas syllabus is authoritative.
     * In most complex systems, authoritative data isn't directly presented to end-users ... instead, it propagates to
@@ -1646,7 +1663,9 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
       repeating ourselves with similar code.
     * Distinguish consistency from cargo-cult logic.[^Cargo] Don't copy-and-paste without understanding -- but do accept
       black-boxes. [^BlackBox] Practice https://en.wikipedia.org/wiki/Rubber_duck_debugging.
-* **Expand empathy**
+
+## Expand empathy
+
     * Empathy for the user
         * This is why Scrum stories start with `As a ____, I ...`.
     * Empathy for the computer.
@@ -1658,10 +1677,14 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
         * Use standard frameworks, so experts can integrate them with accessability tools.
     * Empathy for history
         * `git config --global init.defaultBranch main` (rather than "master")
-* **Be Resilient**
+
+## Be Resilient
+
     * You will encounter bugs in the tools you use but which you don't control. Sometimes you will need to use ugly
       workarounds while the root cause is being addressed. Sometimes it will never be addressed.
-* **Iterate**
+
+## Iterate
+
     * Iterate Upon Yourself
         * Reflect on what takes time and effort, and see how it can be made
           easier. https://wiki.c2.com/?LazinessImpatienceHubris
