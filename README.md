@@ -1550,10 +1550,13 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
 # Advanced topics
 
 * `var` in Java
+* What is a JAR file
 * Java inner classes
 * Java reflection
 * Java Garbage Collection
 * Java Just-in-time JVM optimizations
+* What is Gradle
+* Where does Grade download libraries
 
 # Principles
 
