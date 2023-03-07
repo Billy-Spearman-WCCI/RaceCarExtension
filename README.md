@@ -1611,9 +1611,11 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
 
 ## Fail quickly and cheaply
 
-    * It's better to catch errors in the editor than the compiler. It's better to catch errors in the compiler than
-      while running unit tests. It's better to catch errors while running unit tests than while running integration
-      tests. It's better to catch errors while running integration tests than in production.
+* It's better to catch errors in the editor than the compiler.
+  It's better to catch errors in the compiler than while running unit tests.
+  It's better to catch errors while running unit tests than while running integration tests.
+  It's better to catch errors while running integration tests than in production.
+
     ```mermaid
     graph LR;
     IDE-->Compiler;
@@ -1623,6 +1625,7 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
     ManualTesting-->QA;
     QA-->Production
     ```
+
     * Start with a proof-of-concept. Iterate with new versions as necessary.
     * Reduce the effort required to get good feedback.
     * Tighten feedback loops.
@@ -1631,78 +1634,84 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
 
 ## Ratchet success
 
-    * Technically, we use Git to store our code. This allows us to always revert to the last good version, so we can
-      experiment with complete safety.
-    * Educationally, we continue to build on material learned previously, so we don't forget what we learned before.
-      However, you should still periodically review all that you've covered so far in the course.
-    * Continuously ensure that prior successes aren't lost. This allows us to reduce friction.
+* Technically, we use Git to store our code. This allows us to always revert to the last good version, so we can
+  experiment with complete safety.
+* Educationally, we continue to build on material learned previously, so we don't forget what we learned before.
+  However, you should still periodically review all that you've covered so far in the course.
+* Continuously ensure that prior successes aren't lost. This allows us to reduce friction.
 
 ## Reduce cognitive load
 
-    * A well-structured complex system contains multiple programs, each of which should do a clearly-defined thing. A
-      well-structured program is structured into components, each of which should a clearly-defined role. The
-      alternative is incomprehensible chaos.
-    * Many of the decisions made by the creators of Java are overkill for tiny programs. But the structure they provide
-      is essential for large programs developed by large teams. Have sympathy for the structure.
-    * Modern programming languages are designed for collaboration with IDEs.
-    * Always write code with your readers in mind. Obey idioms. Include parenthesis whenever there's a doubt.
-    * Have as few development tasks in progress at a time as possible.
-    * Have as few instructional concepts in progress at a time as possible. "Done" is good ... "almost done" is not.
-    * Have as few as possible outstanding homework assignments projects at any time.
+* A well-structured complex system contains multiple programs, each of which should do a clearly-defined thing.
+  A well-structured program is structured into components, each of which should a clearly-defined role.
+  The alternative is incomprehensible chaos.
+* Many of the decisions made by the creators of Java are overkill for tiny programs.
+  But the structure they provide is essential for large programs developed by large teams.
+  Have sympathy for the structure.
+* Modern programming languages are designed for collaboration with IDEs.
+* Always write code with your readers in mind. Obey idioms. Include parenthesis whenever there's a doubt.
+* Have as few development tasks in progress at a time as possible.
+* Have as few instructional concepts in progress at a time as possible. "Done" is good ... "almost done" is not.
+* Have as few as possible outstanding homework assignments projects at any time.
 
 ## Single Sources of Truth
 
-    * A person wearing two watches doesn't know what time it is.*
-    * Get into the habit of thinking: "for this type of data, what is the single-source-of-truth". For some course info,
-      the Canvas syllabus is authoritative.
-    * In most complex systems, authoritative data isn't directly presented to end-users ... instead, it propagates to
-      downstream systems for display.
-    * "Don't Repeat Yourself" makes this easier. Code is expensive to write, and even more expensive to maintain. The
-      less code we write, the better. Modern programming languages allow us to reuse code (ours and others') rather than
-      repeating ourselves with similar code.
-    * Distinguish consistency from cargo-cult logic.[^Cargo] Don't copy-and-paste without understanding -- but do accept
-      black-boxes. [^BlackBox] Practice https://en.wikipedia.org/wiki/Rubber_duck_debugging.
+* A person wearing two watches doesn't know what time it is.
+* Get into the habit of thinking: "for this type of data, what is the single-source-of-truth". For some course info,
+  the Canvas syllabus is authoritative.
+* In most complex systems, authoritative data isn't directly presented to end-users ... instead, it propagates to
+  downstream systems for display.
+* "Don't Repeat Yourself" makes this easier. Code is expensive to write, and even more expensive to maintain. The
+  less code we write, the better.
+  Modern programming languages allow us to reuse code (ours and others') rather than repeating ourselves with similar
+  code.
+* Distinguish consistency from cargo-cult logic.[^Cargo]
+  Don't copy-and-paste without understanding -- but do accept black-boxes.[^BlackBox]
+  Practice https://en.wikipedia.org/wiki/Rubber_duck_debugging.
 
 ## Expand empathy
 
-    * Empathy for the user
-        * This is why Scrum stories start with `As a ____, I ...`.
-    * Empathy for the computer.
-        * Computers aren't magical, they obey physical laws. They cannot guess your intention.
-    * Empathy for the future you.
-        * Write comments useful to anyone reading your code, especially yourself a year from now.
-    * Empathy for disability.
-        * Separate data and presentation, so people can access your data in ways best suited to their abilities.
-        * Use standard frameworks, so experts can integrate them with accessability tools.
-    * Empathy for history
-        * `git config --global init.defaultBranch main` (rather than "master")
+* Empathy for the user
+    * This is why Scrum stories start with `As a ____, I ...`.
+* Empathy for the computer.
+    * Computers aren't magical, they obey physical laws. They cannot guess your intention.
+* Empathy for the future you.
+    * Write comments useful to anyone reading your code, especially yourself a year from now.
+* Empathy for disability.
+    * Separate data and presentation, so people can access your data in ways best suited to their abilities.
+    * Use standard frameworks, so experts can integrate them with accessability tools.
+* Empathy for history
+    * `git config --global init.defaultBranch main` (rather than "master")
 
 ## Be Resilient
 
-    * You will encounter bugs in the tools you use but which you don't control. Sometimes you will need to use ugly
-      workarounds while the root cause is being addressed. Sometimes it will never be addressed.
+* You will encounter bugs in the tools you use but which you don't control.
+  Sometimes you will need to use ugly workarounds while the root cause is being addressed.
+  Sometimes it will never be addressed.
 
 ## Iterate
 
-    * Iterate Upon Yourself
-        * Reflect on what takes time and effort, and see how it can be made
-          easier. https://wiki.c2.com/?LazinessImpatienceHubris
-        * Reduce friction. Increase transparency, which in turn is utterly dependent upon psychological safety.
-          PostMortems *must* be blameless.
-        * Avoid anti-patterns. Embrace science as "a collection of techniques architected to minimize self-deception".
-        * Collaborate with your tools (e.g., IDEs). Let your tools guide you.
-        * Learn keyboard shortcuts. https://xkcd.com/1205/. Instead of the usual 80/20 rule, expect a 95/5 rule ... a
-          handful of shortcuts can save a huge amount of effort.
-            * (META: we should strongly encourage students to learn touch-typing before they begin the cohort.)
-        * Observe your ergonomics and posture. Allow your upper body to balance on your lower body. Relax those
-          shoulders. Remember to breathe.
-    * Iterate as a team
-        * Reflect on what takes time and effort, and see how it can be made
-          easier. https://wiki.c2.com/?LazinessImpatienceHubris
-        * Reduce friction. Increase transparency. The bedrock of any team is psychological safety. PostMortems *must* be
-          blameless.
-        * Avoid anti-patterns.
-        * Collaborate with your tools (e.g., Git and GitHub). Let your tools guide you.
+* Iterate Upon Yourself
+    * Reflect on what takes time and effort, and see how it can be made
+      easier. https://wiki.c2.com/?LazinessImpatienceHubris
+    * Reduce friction. Increase transparency, which in turn is utterly dependent upon psychological safety.
+      PostMortems *must* be blameless.
+    * Avoid anti-patterns. Embrace science as "a collection of techniques architected to minimize self-deception".
+    * Collaborate with your tools (e.g., IDEs). Let your tools guide you.
+    * Learn keyboard shortcuts. https://xkcd.com/1205/. Instead of the usual 80/20 rule, expect a 95/5 rule ... a
+      handful of shortcuts can save a huge amount of effort.
+    * (META: we should strongly encourage students to learn touch-typing before they begin the cohort.)
+    * Observe your ergonomics and posture. Allow your upper body to balance on your lower body.
+      Relax those shoulders.
+      Remember to breathe.
+* Iterate as a team
+    * Reflect on what takes time and effort, and see how it can be made
+      easier. https://wiki.c2.com/?LazinessImpatienceHubris
+    * Reduce friction. Increase transparency.
+      The bedrock of any team is psychological safety.
+      PostMortems *must* be blameless.
+    * Avoid anti-patterns.
+    * Collaborate with your tools (e.g., Git and GitHub). Let your tools guide you.
 
 [^Cargo]: If you're working in a system in which each component is named after an animal species, then you should
 continue that pattern (to reduce the cognitive load on others).
