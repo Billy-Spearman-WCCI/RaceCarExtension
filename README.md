@@ -35,6 +35,8 @@
 ## Tools
 
 * **Markdown**: The format of the source code for this glossary.
+    * The name is a play on **Markup**, which describes the addition of structural elements to plain text.  
+      **HTML** ("Hypertext Markup Language") is the most famous markup syntax.
 * **IDE**: Integrated Development Environment (VSCode, IntelliJ) -- a programming-language-aware text editor.
 * **JavaDoc** -- Documentation for each Java class, defining the methods, their parameters, return types, and behavior.
   Adding comments of the form `/** Text describing the method */` just before each method will automatically be
