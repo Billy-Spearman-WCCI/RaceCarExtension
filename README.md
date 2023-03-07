@@ -46,6 +46,8 @@
         * `git config --global --add --bool push.autoSetupRemote true`
         * `git config --global core.editor "nano"`
     * `nano` is a super-tiny text editor within git bash. Type control-X to exit, control-G for help.
+* **Chrome** extensions
+    * JSON Formatter -- https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa
 * **IntelliJ**
     * Setting better defaults:
         * `ctrl-alt-s` `Inspections` --> select "Inspections settings"
