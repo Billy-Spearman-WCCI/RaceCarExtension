@@ -453,7 +453,8 @@ to the list (0, 1, ...) rather than the values in the list.
               But efficiency is important, so under-the-covers it uses sophisticated techniques ("Virtual DOM", data
               tracing) to minimize the work performed by the browser.
         * JSX actually allows you to include your components and html tags with equal fluency.
-    * React takes seriously the flow of data through your front-side application.
+    * React takes seriously the flow of data through your front-side application and
+      the [Single Source of Truth Principle](#single-sources-of-truth).
     ```mermaid
     graph LR;
     data-->Component
