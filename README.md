@@ -426,43 +426,6 @@ to the list (0, 1, ...) rather than the values in the list.
 * CSS really good at making well-designed and pretty.
 * Thymeleaf really good at service-side merging data and templates.
 
-# React.js
-
-* React applications are typically written in either JavaScript or TypeScript, and they leverage a syntax called JSX.
-  Your code is converted to raw (but difficult-to-read) JavaScript and packed (including perhaps related .css files)
-  into a single easy-to-download .js file.
-* JSX (JavaScript XML) is an extension to JavaScript which lets us write what looks like normal HTML as part of
-  JavaScript file.
-  In a way, it's like the exact opposite of Thymeleaf.
-  ```
-  const Greeting = () => {
-    return (
-        <div className="hello-world">
-            <h1>Hello, world!</h1>
-        </div>
-    ); 
-  }; 
-  ```
-* Creating a React application consists of two steps: defining components and defining the flow of data.
-    * Components are JavaScript code which create a tree of HTML elements based on the data available to them.
-        * These components can then be placed anywhere on your webpage, and React will update them as necessary.
-            * You can think of a React Component as an object with a `.render()` method which outputs a tree of elements
-              suitable for insertion in the right part of the DOM tree.
-            * If computers were infinitely fast, React could just repeatedly call `.render()` on every component and
-              then update the Browser's DOM with the results.
-              But efficiency is important, so under-the-covers it uses sophisticated techniques ("Virtual DOM", data
-              tracing) to minimize the work performed by the browser.
-        * JSX actually allows you to include your components and html tags with equal fluency.
-    * React takes seriously the flow of data through your front-side application and
-      the [Single Source of Truth Principle](#single-sources-of-truth).
-    ```mermaid
-    graph LR;
-    data-->Component
-    Component-->Virtual_DOM
-    Virtual_DOM-->DOM
-    DOM-->display
-    ```
-
 ### Virtual Pet shop requirements
 
 * Login and see current pets available ==> Hit an REST endpoint and get a JSON list, create DOM table with JSON, and add
@@ -527,9 +490,46 @@ to the list (0, 1, ...) rather than the values in the list.
           element in your CSS.
           `:root{--my-variable-color: blue;} p{background-color: var(--my-variable-color);}`
 
-## Programming styles
+# React.js
 
-### Programming Overview
+* React applications are typically written in either JavaScript or TypeScript, and they leverage a syntax called JSX.
+  Your code is converted to raw (but difficult-to-read) JavaScript and packed (including perhaps related .css files)
+  into a single easy-to-download .js file.
+* JSX (JavaScript XML) is an extension to JavaScript which lets us write what looks like normal HTML as part of
+  JavaScript file.
+  In a way, it's like the exact opposite of Thymeleaf.
+  ```
+  const Greeting = () => {
+    return (
+        <div className="hello-world">
+            <h1>Hello, world!</h1>
+        </div>
+    ); 
+  }; 
+  ```
+* Creating a React application consists of two steps: defining components and defining the flow of data.
+    * Components are JavaScript code which create a tree of HTML elements based on the data available to them.
+        * These components can then be placed anywhere on your webpage, and React will update them as necessary.
+            * You can think of a React Component as an object with a `.render()` method which outputs a tree of elements
+              suitable for insertion in the right part of the DOM tree.
+            * If computers were infinitely fast, React could just repeatedly call `.render()` on every component and
+              then update the Browser's DOM with the results.
+              But efficiency is important, so under-the-covers it uses sophisticated techniques ("Virtual DOM", data
+              tracing) to minimize the work performed by the browser.
+        * JSX actually allows you to include your components and html tags with equal fluency.
+    * React takes seriously the flow of data through your front-side application and
+      the [Single Source of Truth Principle](#single-sources-of-truth).
+    ```mermaid
+    graph LR;
+    data-->Component
+    Component-->Virtual_DOM
+    Virtual_DOM-->DOM
+    DOM-->display
+    ```
+
+# Programming styles
+
+## Programming Overview
 
 * Software development is not graded like a high-school or college course. You'll be working on a team, and you will be
   doing your work in a git branch, and when you say you're ready your work will be reviewed *before* it will be merged
@@ -550,7 +550,7 @@ to the list (0, 1, ...) rather than the values in the list.
     * You can answer the question: "how do you *know* that adding this code doesn't break other parts of the system?"
 * Code will go through as many review cycles as are necessary, until the review(s) judge the code acceptable.
 
-### Approaches for organizing software development
+## Approaches for organizing software development
 
 * **Agile** -- depending on the context, either a buzzword used by micromanagers or a radical restructuring of the
   workplace.
@@ -645,7 +645,7 @@ to the list (0, 1, ...) rather than the values in the list.
             * **Sprint Retrospective** -- Guided by the Scrum Master, the team reflects on how it performed during the
               sprint and how it can incrementally improve itself.
 
-### Approaches for writing acceptable code.
+## Approaches for writing acceptable code.
 
 * **OO** -- An Object-Oriented programming style
     * **abstraction**: separating what's essential for a particular use from what isn't. Code to interfaces whenever
@@ -751,6 +751,10 @@ to the list (0, 1, ...) rather than the values in the list.
       List internally. All that should be tested is the external *behavior* of its objects. Of course, if you want to "
       encourage" a class to be a List, you could have tests verifying a "returnPetsInTheOrderTheyWereAdded()". But if
       the class still decided to use a `LinkedHashMap<K,V>`, that's the class's business.
+    * Why do we write unit tests?
+        * To better understand what our classes are supposed to do
+        * To make sure that our classes do what we think they do
+        * To make sure that our code keeps on working.
 * **Design Patterns** -- Standard solution to design problems
     * **Builder Pattern** -- Standard solution to the problem of constructors getting too complex. Uses the "Fluent"
       pattern to accumulate parameters one-by-one -- rather than having complicated constructors with
@@ -827,6 +831,8 @@ openNewAccount(((((new Account.Builder())
   fit together ... temporarily remove an annotation and see what happens. (In the real world, if you're using Spring
   then you'll have IntelliJ Ultimate Edition rather than IntelliJ Community Edition, and there are more tools to
   visualize how Spring wires beans together.)
+
+# More Java
 
 ## More Java keywords
 
@@ -917,7 +923,7 @@ openNewAccount(((((new Account.Builder())
 * `enum` -- Defines a small set of possibilities. Can do many of the things a `short` can do (e.g. be part of a `switch`
   statement).
 
-# Control flow
+## Control flow
 
 * `while(condition) {statements;}` -- the simplest loop.
 * `do {statements;} while (condition)` -- only use when you can't check the condition before the loop runs.
@@ -936,7 +942,7 @@ openNewAccount(((((new Account.Builder())
   point.
     * In a switch statement, either: (1) every statement has a `break;` or (2) none do -- be consistent.
 
-# Containers
+## Containers
 
 * `Collection<V>` -- even more generic than a `List` or
   a `Set`.  https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html
@@ -977,13 +983,7 @@ openNewAccount(((((new Account.Builder())
     * If the "same" element is added twice to a Set, it is only stored once. ("Same" is of course defined
       by `.equals()`.)
 
-# Why do we write unit tests?
-
-* To better understand what our classes are supposed to do
-* To make sure that our classes do what we think they do
-* To make sure that our code keeps on working.
-
-# The Truth about Java
+## The Truth about Java
 
 * Variables in Java contain either "primitive values" (`float`, `int`, `char`, etc.) or *references* to objects. The
   address of a house is not the house itself. A single human can have two nicknames.
