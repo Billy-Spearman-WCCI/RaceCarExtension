@@ -1547,6 +1547,14 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
       I could be using an old-style "for" loop with the two semicolons and the `i++`, but I prefer this approach
       because ..."
 
+# Advanced topics
+
+* `var` in Java
+* Java inner classes
+* Java reflection
+* Java Garbage Collection
+* Java Just-in-time JVM optimizations
+
 # Principles
 
 * **Fail quickly and cheaply**
