@@ -524,13 +524,22 @@ to the list (0, 1, ...) rather than the values in the list.
         * JSX actually allows you to include your components and html tags with equal fluency.
     * React takes seriously the flow of data through your front-side application and
       the [Single Source of Truth Principle](#single-sources-of-truth).
-    ```mermaid
-    graph LR;
-    data-->Component
-    Component-->Virtual_DOM
-    Virtual_DOM-->DOM
-    DOM-->display
-    ```
+      ```mermaid
+      graph LR;
+      data-->Component
+      Component-->Virtual_DOM
+      Virtual_DOM-->DOM
+      DOM-->display
+      ``` 
+    * Modern React defines the flow of data using a handful of "hooks". We will be using the most common ones:
+        * `useState()`
+        * `useEffect()`
+    * We might use these hooks
+        * `useReducer()`
+        * `useContext()`
+    * We probably won't use the other hooks:
+        * `useCallback()`, `useMemo()`, `useRef()`, `useImperativeHandle()`, `useLayoutEffect()`, `useDebugValue()`,
+          `useDeferredValu()`, `useTransition()`, or `useId()`
 
 # Programming styles
 
@@ -599,7 +608,8 @@ to the list (0, 1, ...) rather than the values in the list.
         * "At regular intervals, the team reflects on how to become more effective, then tunes and adjusts its behavior
           accordingly."
             * Again, this is the team self-organizing.
-* **Scrum** -- A set of practices which *implement* the agile values and principles.
+* **Scrum** -- A set of practices which *implement* the agile values and principles.  (http://michaeljames.org/ isn't a
+  bad place to start.)
     * **Scrum Team** -- A self-organizing and cohesive group of developers
         * The **Scrum Master** is an advisor to the team, helping it function more collaborative and efficiently, but is
           not part of the team.
