@@ -649,6 +649,21 @@ to the list (0, 1, ...) rather than the values in the list.
               audience).
             * **Sprint Retrospective** -- Guided by the Scrum Master, the team reflects on how it performed during the
               sprint and how it can incrementally improve itself.
+* Collaborate with the product owner, even during the sprint
+    * When you encounter an unforeseen problem, look to the *reasons* for the original story and see how you can adapt.
+      For example, your team might find that having a `@RequestBody` containing an abstract class is more complicated
+      than you predicted.
+      So *negotiate* with your Product Owner
+      > "Hey, PO, I know we talked about having a /api/pets POST endpoint to which we could add any type of pet, but
+      that's turning out to be a larger story than we predicted.
+      Can we start with a single type of animal in our shelter, perhaps only RoboticCat, for now.
+      That way we can continue forward progress on the webpage and other stories.
+      Then we'll add a separate story that *solely* consists of using `@JsonSubTypes` to support abstract `@RequestBody`
+      parameters.
+      And we'll have a separate story to see whether we need a
+      repository-per-subclass or whether we can have a single repository for all the subclasses.
+      Does that work for
+      you?"
 
 ## Approaches for writing acceptable code.
 
@@ -1215,6 +1230,9 @@ openNewAccount(((((new Account.Builder())
     * `@JsonIgnore` -- Not actually a JPA annotation, but marks a field which should not be converted to/from JSON,
       especially for `@RequestBody`. Useful when you wish to store data in the database but not return it from GET or
       require it in POST.
+      If two objects refer to each other, then you will get something like
+      `org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: Infinite recursion (StackOverflowError)`
+      unless at least one of them has the annotation, which should make sense if you really think about it.
     * `@Lob` -- identifies a field containing large data (e.g. images, etc.)  Useful when you want to store a longer
       string (e.g. longer than 255 characters).
     * Two-sided: ManyToMany. Let's suppose that "Primary" is the "owning" class (i.e. insertions and deletions are done
