@@ -1765,14 +1765,13 @@ We can trust that it does so and not worry about how it does so."
 ```mermaid
 graph TB 
 CreateBranch["Create new Branch `git checkout main; git pull; git status; git checkout -b NEW_BRANCH`"] --> |Start work on new feature...smaller is better| Sync["Keep branch in sync: `git fetch; git merge origin/main`"]
-UpdateBranch["Push Updates to Branch: `git status; git add . ; git status; git commit -m 'msg'; git push; git status`"] --> |Merge from origin/main early and often| Sync
-UpdateBranch-->|When you think you're done| CreatePR["Create Pull Request: `git fetch; git merge origin/main; git push; git status` and then create a Pull Request on GitHub."] 
-Sync --> |Add some tests, write some code| UpdateBranch
-CreatePR --> |Respond to suggestions from teammates. Improve your code.| UpdateBranch2["Continue to push to branch: `git fetch; git merge origin/main; git push; git status`"]
-UpdateBranch2 --> |Teammates consider the feature done| Accepted
-Accepted --> |Your Pull Request is merged to main on GitHub.| CreateBranch
-Accepted --> |When any other branch is merged| Sync
-UpdateBranch2 --> |Continue to push to the feature branch| CreatePR
+UpdateBranch["Push Updates to Branch: `git status; git add . ; git status; git commit -m 'msg'; git push; git status`"] --> |Merge from origin/main early and often, especially when a PR is merged| Sync
+UpdateBranch-->|When you think you're done| CreatePR["`git fetch; git merge origin/main; git push; git status` and then create a Pull Request on GitHub."] 
+Sync --> |Add a test, write some code.| UpdateBranch
+CreatePR --> |Notify Team!|ReviewPR["Teammates review changes in your Pull Request"]
+ReviewPR --> |Respond to suggestions from teammates. Improve your code.| UpdateBranch2["Continue to push to branch: `git fetch; git merge origin/main; git push; git status`"]
+ReviewPR  --> |Your PR is merged to main on GitHub.| CreateBranch
+UpdateBranch2 --> |Notify teammates PR is ready for re-review| ReviewPR
 ```
 
 * Rules: Never actually write *any* code in the `main` branch.
