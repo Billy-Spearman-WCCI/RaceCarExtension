@@ -1631,6 +1631,7 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
 
 # Advanced topics
 
+* `Producer<T>` and `Consumer<T>`
 * `var` in Java
 * What is a JAR file
 * Java inner classes
