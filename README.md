@@ -41,6 +41,11 @@
 * **JavaDoc** -- Documentation for each Java class, defining the methods, their parameters, return types, and behavior.
   Adding comments of the form `/** Text describing the method */` just before each method will automatically be
   understood by IntelliJ and is most useful.
+  ```mermaid
+  graph TB
+  JavaDoc["JavaDoc Comments surrounded in /** ... */"] --> IntelliJ[IntelliJ hints]
+  JavaDoc --> HTML[HTML documentation, e.g. https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html]
+  ```
 * **Git**
     * Setting better defaults:
         * `git config --global --add --bool push.autoSetupRemote true`
@@ -1756,6 +1761,19 @@ We can trust that it does so and not worry about how it does so."
 * I *strongly* urge you to periodically slack me and ask for comments on what you've pushed to your shared repository.
 
 # Quick-and-dirty branches for teams
+
+```mermaid
+graph TB 
+CreateBranch["Create new Branch `git checkout main; git pull; git status; git checkout -b NEW_BRANCH`"] --> |Start work on new feature...smaller is better| Sync["Keep branch in sync: `git fetch; git merge origin/main`"]
+UpdateBranch["Push Updates to Branch: `git status; git add . ; git status; git commit -m 'msg'; git push; git status`"] --> |Merge from origin/main early and often| Sync
+UpdateBranch-->|When you think you're done| CreatePR["Create Pull Request: `git fetch; git merge origin/main; git push; git status` and then create a Pull Request on GitHub."] 
+Sync --> |Add some tests, write some code| UpdateBranch
+CreatePR --> |Respond to suggestions from teammates. Improve your code.| UpdateBranch2["Continue to push to branch: `git fetch; git merge origin/main; git push; git status`"]
+UpdateBranch2 --> |Teammates consider the feature done| Accepted
+Accepted --> |When your Pull Request is merged to main on GitHub. And you should delete the branch in GitHub.| CreateBranch
+Accepted --> |When any other branch is merged| Sync
+UpdateBranch2 --> |Continue to push to the feature branch| CreatePR
+```
 
 * Rules: Never actually write *any* code in the `main` branch.
   Really, there's no need to ever do a `git checkout main` on your laptop, except immediately before making a new
