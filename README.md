@@ -335,6 +335,11 @@
 * Modern for loops
     * *Java*: `for (var s : someList)`
     * *JavaScript*: `for s of someList` [^JSIn]
+* **Destructuring Assignment** --
+  (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+    * *Java*: Not currently available. Java 19 might offer some small parts of this.
+    * *JavaScript*: `[x, y] = [10, 20]` populates a with 10 and b with 20. What could be simpler?
+        * `let arr = [10,20]; [x,y] = arr` works equally well.
 * Ease of use
     * *Java*: easier to write programs that work correctly
     * *JavaScript*: easier to write programs
@@ -532,8 +537,12 @@ to the list (0, 1, ...) rather than the values in the list.
       DOM-->display
       ``` 
     * Modern React defines the flow of data using a handful of "hooks". We will be using the most common ones:
-        * `useState()`
-        * `useEffect()`
+        * `useState()` -- https://beta.reactjs.org/reference/react/useState
+            * Returns an array of two functions, which should be destructured into two named
+              functions: `const [state, setState] = useState(initialState)`
+            * The first function is
+
+            * `useEffect()`
     * We might use these hooks
         * `useReducer()`
         * `useContext()`
