@@ -42,8 +42,8 @@
   Adding comments of the form `/** Text describing the method */` just before each method will automatically be
   understood by IntelliJ and is most useful.
   ```mermaid
-  graph TB
-  JavaDoc["JavaDoc Comments surrounded in /** ... */"] --> IntelliJ[IntelliJ hints]
+  graph LR
+  JavaDoc("JavaDoc Comments surrounded in /** ... */") --> IntelliJ[IntelliJ context-sensitive hints]
   JavaDoc --> HTML[HTML documentation, e.g. https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html]
   ```
 * **Git**
@@ -540,9 +540,8 @@ to the list (0, 1, ...) rather than the values in the list.
         * `useState()` -- https://beta.reactjs.org/reference/react/useState
             * Returns an array of two functions, which should be destructured into two named
               functions: `const [state, setState] = useState(initialState)`
-            * The first function is
-
-            * `useEffect()`
+            * The first function functions like a Thymeleaf variable.
+        * `useEffect()`
     * We might use these hooks
         * `useReducer()`
         * `useContext()`
@@ -590,6 +589,9 @@ to the list (0, 1, ...) rather than the values in the list.
           competitive advantage."
             * With a weekly Scrum cycle (see below), the product owner can have radically-different priorities for next
               week's sprint.
+            * The product owner should always be available, so if you discover unexpected issues or challenges, you
+              should be able to get feedback from them as to what parts of the story are vital and which are
+              inessential.
         * "Deliver working software frequently, from a couple of weeks to a couple of months, with a preference to the
           shorter timescale."
             * With internet delivery, delivery cycles of just a week (or even shorter) are common now.
@@ -1808,7 +1810,7 @@ UpdateBranch-->|When you think you're done| CreatePR["`git fetch; git merge orig
 Sync --> |Add a test, write some code.| UpdateBranch
 CreatePR --> |Notify Team!|ReviewPR["Teammates review changes in your Pull Request"]
 ReviewPR --> |Respond to suggestions from teammates. Improve your code.| UpdateBranch2["Continue to push to branch: `git fetch; git merge origin/main; git push; git status`"]
-ReviewPR  --> |Your PR is merged to main on GitHub.| CreateBranch
+ReviewPR  --> |Your PR is merged to main on GitHub| CreateBranch
 UpdateBranch2 --> |Notify teammates PR is ready for re-review| ReviewPR
 ```
 
