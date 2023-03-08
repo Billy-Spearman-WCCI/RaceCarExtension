@@ -1770,7 +1770,7 @@ UpdateBranch-->|When you think you're done| CreatePR["Create Pull Request: `git 
 Sync --> |Add some tests, write some code| UpdateBranch
 CreatePR --> |Respond to suggestions from teammates. Improve your code.| UpdateBranch2["Continue to push to branch: `git fetch; git merge origin/main; git push; git status`"]
 UpdateBranch2 --> |Teammates consider the feature done| Accepted
-Accepted --> |When your Pull Request is merged to main on GitHub. And you should delete the branch in GitHub.| CreateBranch
+Accepted --> |Your Pull Request is merged to main on GitHub.| CreateBranch
 Accepted --> |When any other branch is merged| Sync
 UpdateBranch2 --> |Continue to push to the feature branch| CreatePR
 ```
