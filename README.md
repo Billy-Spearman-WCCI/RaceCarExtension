@@ -72,15 +72,31 @@
 
 ## Java
 
+* Versions (https://en.wikipedia.org/wiki/Java_version_history)
+    * 6 --> No longer supported, but was super-popular for many years.
+    * 8 --> Almost ten years old, but still used widely in industry, though everyone has a TODO to upgrade to a more
+      recent version.
+      This is the first "modern" release with features like anonymous functions and streams.
+    * 11 --> Another long-term-support release, and now almost five years old.
+      This has convenience features like `var` declarations.
+    * 17 --> The most recent long-term-support release.
+      This introduces "new-style" `switch` statements, among other nice features.
+      New development should be done with this release, unless you need a bleeding-edge feature introduced in 18 or 19.
+      (And you don't.)
+    * 21 --> The next long-term-support release, probably coming this fall.
+      You probably don't want to start using it until the frameworks you use (e.g. Spring) have new releases supporting
+      it and they've had the initial bugs detected by others.
+* **JVM** -- Java Virtual Machine -- an imaginary computer that all Java code is compiled for. The JVM implements this
+  imaginary computer on your real computer so your Java code can run.
 * **JRE** -- Java Runtime Environment -- the thing that actually runs compiled Java code.
+    * Contains a JVM and standard libraries
     * Originally created by Sun Microsystems, which was then bought by Oracle. Now there are several free alternatives:
     * OpenJDK (Oracle's "free" version)
     * Amazon Corretto (based on Oracle's OpenJDK)
     * Azul Zulu (Microsoft)
 * **JDK** -- Java Development Kit -- includes the built-in libraries which makes Java usable. Necessary for development.
+    * Contains a JVM, standard libraries, and additional development tools
     * https://en.wikipedia.org/wiki/Java_version_history
-* **JVM** -- Java Virtual Machine -- an imaginary computer that all Java code is compiled for. The JVM implements this
-  imaginary computer on your real computer so your Java code can run.
 
 * **object**: a thing encapsulating data (in "instance fields") and behavior (in "methods")
     * `this` -- the syntax to access **Instance fields**
@@ -539,8 +555,28 @@ to the list (0, 1, ...) rather than the values in the list.
     * Modern React defines the flow of data using a handful of "hooks". We will be using the most common ones:
         * `useState()` -- https://beta.reactjs.org/reference/react/useState
             * Returns an array of two functions, which should be destructured into two named
-              functions: `const [state, setState] = useState(initialState)`
+              functions: `const [someState, setSomeState] = useState(someInitialState)`
             * The first function functions like a Thymeleaf variable.
+              The second function should be called whenever the state should be updated.
+              Note that the state can be a number, a string, a list, or a map.
+              Basically, anything which can be passed as a JSON message, but lists and maps are most common.
+              Whatever the structure of the state, `someInitialState` should have the same structure, but it can start
+              empty, e.g. `[]` for an empty list or `{}` for an empty map.
+            * `SetState()` can accept either a new value for the state, or a function which transforms the existing
+              state to a new state
+              ```
+              function Counter({initialCount}) {
+                const [count, setCount] = useState(initialCount);
+                return (
+                  <>
+                    Count: {count}
+                    <button onClick={() => setCount(initialCount)}>Reset</button>
+                    <button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
+                    <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
+                  </>
+                ); 
+              }
+              ```
         * `useEffect()`
     * We might use these hooks
         * `useReducer()`
