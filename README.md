@@ -478,8 +478,8 @@ to the list (0, 1, ...) rather than the values in the list.
       Multiple HTML elements can be defined by the same class
       HTML:`<div class="my-class"></div>` CSS: `.my-class{css-goes: here;}`
     * **ID Selectors** -- Just like classes, ID's must be applied to HTML elements first to be referenced by CSS.
-      Referenced by `#class-name`
-      Unlike classes, ID's can only be applied to on HTML element at a time. Duplicate ID's will have conflicting
+      Referenced by `#ID`
+      Unlike classes, ID's can only be applied to one HTML element at a time. Duplicate ID's will have conflicting
       results in your HTML, leading to undesired styling. HTML:`<div id="my-id"></div>` CSS: `#my-id{css-goes: here;}`
     * **Chain Selectors** -- With CSS you are able to chain together selectors to reference multiple elements
       `element another-element .class-name one-more-element{css-goes: here;}`
@@ -565,6 +565,8 @@ to the list (0, 1, ...) rather than the values in the list.
             * `SetState()` can accept either a new value for the state, or a function which transforms the existing
               state to a new state
               ```
+              import { useState } from 'react';
+              
               function Counter({initialCount}) {
                 const [count, setCount] = useState(initialCount);
                 return (
@@ -1848,6 +1850,14 @@ CreatePR --> |Notify Team!|ReviewPR["Teammates review changes in your Pull Reque
 ReviewPR --> |Respond to suggestions from teammates. Improve your code.| UpdateBranch2["Continue to push to branch: `git fetch; git merge origin/main; git push; git status`"]
 ReviewPR  --> |Your PR is merged to main on GitHub| CreateBranch
 UpdateBranch2 --> |Notify teammates PR is ready for re-review| ReviewPR
+```
+
+```mermaid
+graph TB 
+Sync["Everybody's current work is merged"]-->MajorRefactor["Do some global refactor, e.g. moving packages around"]
+MajorRefactor-->SmallPR["Create and accept a PR containing *only* the refactoring"]
+SmallPR-->EveryBodyMerges["Everybody merges the refactoring"]
+EveryBodyMerges-->BackToNormal["Everybody creates a new branch and continues the normal process"]
 ```
 
 * Rules: Never actually write *any* code in the `main` branch.
