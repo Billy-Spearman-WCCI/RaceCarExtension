@@ -42,7 +42,7 @@
   Adding comments of the form `/** Text describing the method */` just before each method will automatically be
   understood by IntelliJ and is most useful.
   ```mermaid
-  graph LR
+  graph TB
   JavaDoc("JavaDoc Comments surrounded in /** ... */") --> IntelliJ[IntelliJ context-sensitive hints]
   JavaDoc --> HTML[HTML documentation, e.g. https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html]
   ```
@@ -54,9 +54,8 @@
 * **Chrome** extensions
     * JSON Formatter -- https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa
 * **IntelliJ**
-    * Setting better defaults:
-        * `ctrl-alt-s` `Inspections` --> select "Inspections settings"
-        * (TODO -- enforcing capitalization requirements, etc.)
+    * Setting better defaults,
+      e.g. https://github.com/marshallfWCCI/gradleReact/blob/main/.idea/inspectionProfiles/Project_Default.xml
 
 ## Syntax
 
@@ -72,7 +71,7 @@
 
 ## Java
 
-* Versions (https://en.wikipedia.org/wiki/Java_version_history)
+* Versions (https://en.wikipedia.org/wiki/Java_version_history) (These apply to JVM, JRE, JDK described below.)
     * 6 --> No longer supported, but was super-popular for many years.
     * 8 --> Almost ten years old, but still used widely in industry, though everyone has a TODO to upgrade to a more
       recent version.
@@ -86,17 +85,20 @@
     * 21 --> The next long-term-support release, probably coming this fall.
       You probably don't want to start using it until the frameworks you use (e.g. Spring) have new releases supporting
       it and they've had the initial bugs detected by others.
-* **JVM** -- Java Virtual Machine -- an imaginary computer that all Java code is compiled for. The JVM implements this
-  imaginary computer on your real computer so your Java code can run.
-* **JRE** -- Java Runtime Environment -- the thing that actually runs compiled Java code.
+* **JVM** -- Java Virtual Machine
+    * An imaginary computer that all Java code is compiled for.
+      The JVM implements this imaginary computer on your real computer so your Java code can run.
+    * Over time the JVM has become quite optimized and better at creating objects and then recovering their memory when
+      they are destroyed.
+* **JRE** -- Java Runtime Environment
     * Contains a JVM and standard libraries
     * Originally created by Sun Microsystems, which was then bought by Oracle. Now there are several free alternatives:
     * OpenJDK (Oracle's "free" version)
     * Amazon Corretto (based on Oracle's OpenJDK)
     * Azul Zulu (Microsoft)
-* **JDK** -- Java Development Kit -- includes the built-in libraries which makes Java usable. Necessary for development.
-    * Contains a JVM, standard libraries, and additional development tools
-    * https://en.wikipedia.org/wiki/Java_version_history
+* **JDK** -- Java Development Kit
+    * Contains a JVM, standard libraries, and additional development tools, especially the compiler which converts
+      human-readable code into instructions which the JVM can execute.
 
 * **object**: a thing encapsulating data (in "instance fields") and behavior (in "methods")
     * `this` -- the syntax to access **Instance fields**
@@ -180,8 +182,8 @@
     * `void`: Indicates that the call to a method does not result in a value.
     * **call stack**: The current method, the method from which it is called, the method from which that was called, and
       all the way up to the `main()` method.
-* Anonymous methods: `public static void something(int a, int b) {}` is a *named* function. You need a class to own that
-  method.
+* Anonymous methods: `public static void something(int a, int b) {}` is a *named* function. You need a class to contain
+  that method.
     * `(int a, int b) -> {return a > b;}` is a special syntax when you want to create a function just for a single
       purpose.
     * This is used when you want to pass *behavior* as a parameter to an actual method.
@@ -198,6 +200,15 @@
           basing yourself on something else.
             * I usually put grandparents at the top and grandchildren at the bottom. As you go towards the bottom of the
               page, more and more information and behavior is added -- but *never* subtracted.
+            ```mermaid
+            graph TB;
+            Pet-->|add breathing|OrganicPet
+            Pet-->|add batteries|RoboticPet
+            OrganicPet-->|add meowing methods|OrganicCat
+            OrganicPet-->|add barking methods|OrganicDog
+            RoboticPet-->|add simulated meowing methods|RoboticCat
+            RoboticPet-->|add simulated barking methods|RoboticDog
+            ```
         * Class and interface are actually different.
             * `class` defines objects with data and behavior.
             * `interface` lists required behavior.
@@ -518,6 +529,13 @@ to the list (0, 1, ...) rather than the values in the list.
 
 # React.js
 
+* The concept of *purity* underlies React.  
+  A *pure* function is just the functions you were taught in math class: they compute a result based on their inputs.
+  For a given input, they always return the same output.
+  They don't change anything while performing their calculations.
+  Anything messing with `System.in` or `System.out` is definitely not "pure".
+  Mutable objects usually do not expose pure methods.
+
 * React applications are typically written in either JavaScript or TypeScript, and they leverage a syntax called JSX.
   Your code is converted to raw (but difficult-to-read) JavaScript and packed (including perhaps related .css files)
   into a single easy-to-download .js file.
@@ -579,7 +597,8 @@ to the list (0, 1, ...) rather than the values in the list.
                 ); 
               }
               ```
-        * `useEffect()`
+        * `useEffect()` -- used to synchronize browser state with *external* data sources, e.g. `fetch()` from REST
+          endpoints.
     * We might use these hooks
         * `useReducer()`
         * `useContext()`
@@ -611,6 +630,8 @@ to the list (0, 1, ...) rather than the values in the list.
 * Code will go through as many review cycles as are necessary, until the review(s) judge the code acceptable.
 
 ## Approaches for organizing software development
+
+### Agile
 
 * **Agile** -- depending on the context, either a buzzword used by micromanagers or a radical restructuring of the
   workplace.
@@ -662,8 +683,12 @@ to the list (0, 1, ...) rather than the values in the list.
     * **Scrum Team** -- A self-organizing and cohesive group of developers
         * The **Scrum Master** is an advisor to the team, helping it function more collaborative and efficiently, but is
           not part of the team.
-        * The team itself is responsible for the code generated by the team -- not any individual. While individuals on
-          the team may have specific expertises, every team member should understand everything created by the team.
+        * The team itself is responsible for the code generated by the team -- not any individual.
+          While individuals on the team may have specific expertises, every team member should understand everything
+          created by the team.
+          In particular, every team member should feel empowered to give constructive criticism against every Pull
+          Request, and should also understand every Pull Request. (Don't fall into the trap of forgetting that every
+          team member is responsible for every part of the system they develop.)
     * **Product backlog** -- A ranked list of user stories
         * The team and the Product Owner collaborate on adding and defining the stories.
           The Product Owner ranks them in priority order (or at least ranks the most-important stories ... stuff far
@@ -696,9 +721,12 @@ to the list (0, 1, ...) rather than the values in the list.
               automated tests verifying its core functionality.
         * Throughout the Sprint
             * The day begins with a very short **standup**, with each team member telling the team of their plans for
-              the
-              day and identifying any blockers. If the team can resolve the blockers internally (e.g., others on the
-              team assist), that is perfect. If the blockage is external, the Scrum Master may assist.
+              the day and identifying any blockers.
+              (However, something is wrong if your team first hears of blockers at the standup ... continuous
+              communication is key, so if you're blocked, say so on Slack or someplace else if you're stuck for more
+              than a short period of time.)
+              If the team can resolve the blockers internally (e.g., others on the team assist), that is perfect.
+              If the blockage is external, the Scrum Master may assist.
             * The Product Owner (i.e., someone with decision-making power) is readily accessible to the team. This is
               vital.
             * Anyone can throw new items onto the Product Backlog. A good Product Owner will reorganize the Product
@@ -1682,13 +1710,14 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
 
 * `Producer<T>` and `Consumer<T>`
 * `var` in Java
-* What is a JAR file
+* JAR files.
 * Java inner classes
 * Java reflection
 * Java Garbage Collection
 * Java Just-in-time JVM optimizations
-* What is Gradle
-* Where does Grade download libraries
+* What is Gradle?
+* Domain-specific languages (DSLs)
+* Where does Gradle download libraries
 
 # Principles
 
@@ -1701,12 +1730,14 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
 
     ```mermaid
     graph LR;
+    Brain-->Hands;
+    Hands-->IDE;
     IDE-->Compiler;
-    Compiler-->UnitTests;
-    UnitTests-->IntegrationTests;
-    IntegrationTests-->ManualTesting;
+    Compiler-->UnitTests[Unit Tests];
+    UnitTests-->IntegrationTests[Integration Tests];
+    IntegrationTests-->ManualTesting[Manual Testing];
     ManualTesting-->QA;
-    QA-->Production
+    QA-->Production;
     ```
 
     * Start with a proof-of-concept. Iterate with new versions as necessary.
