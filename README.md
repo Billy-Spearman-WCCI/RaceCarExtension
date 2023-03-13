@@ -27,7 +27,7 @@
 
 * https://github.com/marshallfWCCI/gradleReact
     * An IntelliJ project which contains React code (.js) and styleSheets (.css) in `src/main/webapp` and serves the
-      transcoded results from `src/main/resources/static/dist` (which of course is in the `.gitignore`).
+      "transcoded" results from `src/main/resources/static/dist` (which of course is in the `.gitignore`).
       Transcoding is automatically performed by gradle before `:bootRun` or `:test`.
 
 # Glossary
@@ -53,6 +53,7 @@
     * `nano` is a super-tiny text editor within git bash. Type control-X to exit, control-G for help.
 * **Chrome** extensions
     * JSON Formatter -- https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa
+    * React tools -- https://beta.reactjs.org/learn/react-developer-tools
 * **IntelliJ**
     * Setting better defaults,
       e.g. https://github.com/marshallfWCCI/gradleReact/blob/main/.idea/inspectionProfiles/Project_Default.xml
@@ -365,8 +366,11 @@
 * **Destructuring Assignment** --
   (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
     * *Java*: Not currently available. Java 19 might offer some small parts of this.
-    * *JavaScript*: `[x, y] = [10, 20]` populates a with 10 and b with 20. What could be simpler?
+    * *JavaScript*:
+        * `[x, y] = [10, 20]` populates a with 10 and b with 20. What could be simpler?
         * `let arr = [10,20]; [x,y] = arr` works equally well.
+        * React destructures function parameters,
+          e.g. `const destructuring = ({ used }) => console.log(used); const props = {unused:1, used:2}; destructuring(props); // 2`
 * Ease of use
     * *Java*: easier to write programs that work correctly
     * *JavaScript*: easier to write programs
@@ -565,7 +569,7 @@ to the list (0, 1, ...) rather than the values in the list.
       the [Single Source of Truth Principle](#single-sources-of-truth).
       ```mermaid
       graph LR;
-      data-->Component
+      state-->Component
       Component-->Virtual_DOM
       Virtual_DOM-->DOM
       DOM-->display
@@ -819,6 +823,12 @@ to the list (0, 1, ...) rather than the values in the list.
         * Most code has zero idea which database it's using. Instead, it provides constructors which are passed the
           information they need.
 * **TDD (Test-driven development)**
+  ```mermaid
+  graph LR;
+  NewTest[Write new failing test]-->|Implement, now that we've defined an interface|GetToGreen[Write minimal obvious code]
+  GetToGreen-->|Refactor without Fear|RemoveRedundancy[Remove Redundancy]
+  RemoveRedundancy-->|Run *all* tests, and then ratchet success by committing to Git|NewTest 
+  ```
     * To the extent TDD is utilized, all code is justified by some test.
     * The best time to use TDD is when you don't know how to otherwise begin.
     * The best time to use TDD is when you're still trying to think through what a new method should do, and what it
@@ -862,6 +872,8 @@ to the list (0, 1, ...) rather than the values in the list.
         * To better understand what our classes are supposed to do
         * To make sure that our classes do what we think they do
         * To make sure that our code keeps on working.
+
+
 * **Design Patterns** -- Standard solution to design problems
     * **Builder Pattern** -- Standard solution to the problem of constructors getting too complex. Uses the "Fluent"
       pattern to accumulate parameters one-by-one -- rather than having complicated constructors with
