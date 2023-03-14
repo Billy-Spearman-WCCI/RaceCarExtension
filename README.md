@@ -576,10 +576,10 @@ to the list (0, 1, ...) rather than the values in the list.
     BrowserDOM-->|Browser draws the screen|Display[Browser Display]
     Display-->BrowserEvents[HTML events]
     BrowserEvents-->nextState
-    BrowserEvents-->Reducer
     nextState[Next states]-->|Next rendering cycle begins|state[Current States]
-    Reducer-->nextState
     ``` 
+       - BrowserEvents-->Reducer 
+       - Reducer-->nextState
 
 * The concept of *purity* underlies React.  
   A *pure* function is just the functions you were taught in math class: they compute a result based on their inputs.
