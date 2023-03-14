@@ -566,10 +566,10 @@ to the list (0, 1, ...) rather than the values in the list.
     BrowserDOM-->|Browser draws the screen|Display[Browser Display]
     Display-->|"useState" -- User actions, e.g. pressing a button, update the state|nextState
     nextState-->|Next rendering cycle begins|state
-    Reducer-->|Logic to update state based on events|nextState
     ``` 
     * BrowserDOM-->|"useEffect" calls to external services, e.g. `fetch` can update state|nextState
     * Display-->|"useReducer" -- User actions funnel into a reducer component|Reducer
+    * Reducer-->|Logic to update state based on events|nextState
 
 * The concept of *purity* underlies React.  
   A *pure* function is just the functions you were taught in math class: they compute a result based on their inputs.
