@@ -125,6 +125,8 @@
         * A good hint that an object is immutable is that all of its fields are `final` (though technically all of its
           fields also need to be immutable).
         * Normally, a `void` method doesn't make sense for an immutable object.
+        * React's whole philosophy rests on immutability --
+          https://beta.reactjs.org/learn/tutorial-tic-tac-toe#why-immutability-is-important
     * The data and behavior contained in a Class can be other classes too. Normally, this is super-confusing, so don't
       do it. The exception is when a class has a "helper".
         * Another example is when the job of a class is complicated that it needs other classes to solve its problem,
@@ -607,8 +609,8 @@ to the list (0, 1, ...) rather than the values in the list.
         * JSX actually allows you to include your components and html tags with equal fluency.
     * Modern React defines the flow of data using a handful of "hooks". We will be using the most common ones:
         * `useState()` -- https://beta.reactjs.org/reference/react/useState
-            * Returns an array of two functions, which should be destructured into two named
-              functions: `const [someState, setSomeState] = useState(someInitialState)`
+            * Returns an array of two functions, which are destructured into two named functions:
+              `const [someState, setSomeState] = useState(someInitialState)`
             * The first function functions like a Thymeleaf variable.
               The second function should be called whenever the state should be updated.
               Note that the state can be a number, a string, a list, or a map.
