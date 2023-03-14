@@ -557,17 +557,18 @@ to the list (0, 1, ...) rather than the values in the list.
 * Data
     * React takes seriously the flow of data through your front-side application and
       the [Single Source of Truth Principle](#single-sources-of-truth).
+    * State can be any JavaScript data: a string, a number, a boolean, a list, or a map.
     ```mermaid
     graph TB;
-    state-->|"UseState()"|Component
-    state-->|"UseState()"|Component2[Component]
-    state-->|"UseState()"|Component4[Component]
+    state-->|"UseState()"|Component[Component1]
+    state-->|"UseState()"|Component2
+    state-->|"UseState()"|Component3
     Component2-->JSX2[JSX]
     JSX2-->ReactDOM
-    Component3[Component]-->JSX3[JSX]
+    Component3-->JSX3[JSX]
     JSX3-->ReactDOM
-    Component3-->|state passed as parameter|Component5
-    Component4-->|state passed as parameter|Component3
+    Component4-->|state passed as parameter|Component5
+    Component3-->|state passed as parameter|Component4
     Component4-->JSX4[JSX]
     Component5-->JSX5[JSX]
     JSX4-->ReactDOM
