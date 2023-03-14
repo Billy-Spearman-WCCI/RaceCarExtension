@@ -566,9 +566,12 @@ to the list (0, 1, ...) rather than the values in the list.
     JSX2-->ReactDOM
     Component3[Component]-->JSX3[JSX]
     JSX3-->ReactDOM
+    Component3-->|state passed as parameter|Component5
     Component4-->|state passed as parameter|Component3
     Component4-->JSX4[JSX]
+    Component5-->JSX5[JSX]
     JSX4-->ReactDOM
+    JSX5-->ReactDOM
     Component-->|"useEffect" calls to external services, e.g. `fetch` can update state|nextState
     Component-->JSX
     JSX-->ReactDOM[React.js DOM]
