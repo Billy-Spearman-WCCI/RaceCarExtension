@@ -533,6 +533,44 @@ to the list (0, 1, ...) rather than the values in the list.
 
 # React.js
 
+* JSX
+    * 99% of valid HTML is valid JSX (assuming that every open tag has a close tag).
+    * But text between a `{` and `}` is interpreted as JavaScript.
+      (No more remembering the many `th:` tags.)
+    * You can define your own tags, and pass parameters to them.
+
+* Components
+    * Dividing a large Java program into many small methods is consistent with our core principle of "Reducing Cognitive
+      Load".
+      Can we do the same with HTML?
+      First, we need to think a bit about the similarities and differences between an HTML tag and a Java class.
+    * Similarities:
+        * Each was born for encapsulation
+        * Each has well-defined parameters
+        * Each has well-defined behavior, though outsiders shouldn't be involved in implementation details.
+    * Differences:
+        * HTML tags don't really inherit from other tags.
+        * Most HTML tags can contain (and therefore encapsulate) lists of many types of tags.
+        * But the biggest difference is that HTML tags don't maintain state ... they would be considered "immutable"
+          classes.  
+          In a browser, except for of data being entered into forms, all mutable state is stored in JavaScript.
+* Data
+    * React takes seriously the flow of data through your front-side application and
+      the [Single Source of Truth Principle](#single-sources-of-truth).
+    ```mermaid
+    graph TB;
+    state-->|Components contain JavaScript which can access functions which expose state|Component
+    Component-->|Components return JSX to define their output|JSX
+    JSX-->|React.js calls all Components and updates an in-memory tree of data to display|ReactDOM[React.js DOM]
+    ReactDOM-->|React.js notes differences from the last cycle and updates the browser accordingly|BrowserDOM[Browser DOM]
+    BrowserDOM-->|Browser draws the screen|Display[Browser Display]
+    Display-->|"useState" -- User actions, e.g. pressing a button, update the state|nextState
+    nextState-->|Next rendering cycle begins|state
+    Reducer-->|Logic to update state based on events|nextState
+    ``` 
+    * BrowserDOM-->|"useEffect" calls to external services, e.g. `fetch` can update state|nextState
+    * Display-->|"useReducer" -- User actions funnel into a reducer component|Reducer
+
 * The concept of *purity* underlies React.  
   A *pure* function is just the functions you were taught in math class: they compute a result based on their inputs.
   For a given input, they always return the same output.
@@ -543,18 +581,7 @@ to the list (0, 1, ...) rather than the values in the list.
 * React applications are typically written in either JavaScript or TypeScript, and they leverage a syntax called JSX.
   Your code is converted to raw (but difficult-to-read) JavaScript and packed (including perhaps related .css files)
   into a single easy-to-download .js file.
-* JSX (JavaScript XML) is an extension to JavaScript which lets us write what looks like normal HTML as part of
-  JavaScript file.
-  In a way, it's like the exact opposite of Thymeleaf.
-  ```
-  const Greeting = () => {
-    return (
-        <div className="hello-world">
-            <h1>Hello, world!</h1>
-        </div>
-    ); 
-  }; 
-  ```
+
 * Creating a React application consists of two steps: defining components and defining the flow of data.
     * Components are JavaScript code which create a tree of HTML elements based on the data available to them.
         * These components can then be placed anywhere on your webpage, and React will update them as necessary.
@@ -565,15 +592,6 @@ to the list (0, 1, ...) rather than the values in the list.
               But efficiency is important, so under-the-covers it uses sophisticated techniques ("Virtual DOM", data
               tracing) to minimize the work performed by the browser.
         * JSX actually allows you to include your components and html tags with equal fluency.
-    * React takes seriously the flow of data through your front-side application and
-      the [Single Source of Truth Principle](#single-sources-of-truth).
-      ```mermaid
-      graph LR;
-      state-->Component
-      Component-->Virtual_DOM
-      Virtual_DOM-->DOM
-      DOM-->display
-      ``` 
     * Modern React defines the flow of data using a handful of "hooks". We will be using the most common ones:
         * `useState()` -- https://beta.reactjs.org/reference/react/useState
             * Returns an array of two functions, which should be destructured into two named
