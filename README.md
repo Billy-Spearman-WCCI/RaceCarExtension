@@ -559,17 +559,27 @@ to the list (0, 1, ...) rather than the values in the list.
       the [Single Source of Truth Principle](#single-sources-of-truth).
     ```mermaid
     graph TB;
-    state-->|Components contain JavaScript which can access functions which expose state|Component
-    Component-->|Components return JSX to define their output|JSX
-    JSX-->|React.js calls all Components and updates an in-memory tree of data to display|ReactDOM[React.js DOM]
+    state-->|"UseState()"|Component
+    state-->|"UseState()"|Component2[Component]
+    state-->|"UseState()"|Component4[Component]
+    Component2-->JSX2[JSX]
+    JSX2-->ReactDOM
+    Component3[Component]-->JSX3[JSX]
+    JSX3-->ReactDOM
+    Component4-->|state passed as parameter|Component3
+    Component4-->JSX4[JSX]
+    JSX4-->ReactDOM
+    Component-->|"useEffect" calls to external services, e.g. `fetch` can update state|nextState
+    Component-->JSX
+    JSX-->ReactDOM[React.js DOM]
     ReactDOM-->|React.js notes differences from the last cycle and updates the browser accordingly|BrowserDOM[Browser DOM]
     BrowserDOM-->|Browser draws the screen|Display[Browser Display]
-    Display-->|"useState" -- User actions, e.g. pressing a button, update the state|nextState
-    nextState-->|Next rendering cycle begins|state
+    Display-->BrowserEvents[HTML events]
+    BrowserEvents-->nextState
+    BrowserEvents-->Reducer
+    nextState[Next states]-->|Next rendering cycle begins|state[Current States]
+    Reducer-->nextState
     ``` 
-    * BrowserDOM-->|"useEffect" calls to external services, e.g. `fetch` can update state|nextState
-    * Display-->|"useReducer" -- User actions funnel into a reducer component|Reducer
-    * Reducer-->|Logic to update state based on events|nextState
 
 * The concept of *purity* underlies React.  
   A *pure* function is just the functions you were taught in math class: they compute a result based on their inputs.
