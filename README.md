@@ -560,9 +560,9 @@ to the list (0, 1, ...) rather than the values in the list.
     * State can be any JavaScript data: a string, a number, a boolean, a list, or a map.
     ```mermaid
     graph TB;
-    state-->|"UseState()"|Component[Component1]
-    state-->|"UseState()"|Component2
-    state-->|"UseState()"|Component3
+    state-->|"useState()"|Component[Component1]
+    state-->|"useState()"|Component2
+    state-->|"useState()"|Component3
     Component2-->JSX2[JSX]
     JSX2-->ReactDOM
     Component3-->JSX3[JSX]
@@ -578,8 +578,7 @@ to the list (0, 1, ...) rather than the values in the list.
     JSX-->ReactDOM[React.js DOM]
     ReactDOM-->|React.js notes differences from the last cycle and updates the browser accordingly|BrowserDOM[Browser DOM]
     BrowserDOM-->|Browser draws the screen|Display[Browser Display]
-    Display-->BrowserEvents[HTML events]
-    BrowserEvents-->nextState
+    Display-->|"addEventListener() callbacks"|nextState
     nextState[Next states]-->|Next rendering cycle begins|state[Current States]
     ``` 
        - BrowserEvents-->Reducer 
