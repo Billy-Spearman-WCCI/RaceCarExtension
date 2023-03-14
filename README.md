@@ -540,8 +540,8 @@ to the list (0, 1, ...) rather than the values in the list.
     * You can define your own tags, and pass parameters to them.
 
 * Components
-    * Dividing a large Java program into many small methods is consistent with our core principle of "Reducing Cognitive
-      Load".
+    * Dividing a large Java program into many small methods is consistent with our core principle of
+      [Reducing Cognitive Load](#reduce-cognitive-load).
       Can we do the same with HTML?
       First, we need to think a bit about the similarities and differences between an HTML tag and a Java class.
     * Similarities:
