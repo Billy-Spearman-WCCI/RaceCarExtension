@@ -540,6 +540,28 @@ to the list (0, 1, ...) rather than the values in the list.
     * But text between a `{` and `}` is interpreted as JavaScript.
       (No more remembering the many `th:` tags.)
     * You can define your own tags, and pass parameters to them.
+    * JSX is super-convenient, but React can be written without it. It is a good example of "syntactic sugar".
+      ``` 
+      function Greeting({ name }) {
+        return (
+          <h1 className="greeting">
+            Hello <i>{name}</i>. Welcome!
+          </h1>
+        );
+      }
+      ```
+      is actually just a convenient way of typing (https://beta.reactjs.org/reference/react/createElement)
+      ```
+      function Greeting({ name }) {
+        return createElement(
+          'h1',
+          { className: 'greeting' },
+          'Hello ',
+          createElement('i', null, name),
+          '. Welcome!'
+        );
+      }
+      ```
 
 * Components
     * Dividing a large Java program into many small methods is consistent with our core principle of
@@ -582,9 +604,9 @@ to the list (0, 1, ...) rather than the values in the list.
     BrowserDOM-->|Browser draws the screen|Display[Browser Display]
     Display-->|"addEventListener() callbacks"|nextState
     nextState[Next states]-->|Next rendering cycle begins|state[Current States]
+    Display-->|"addEventListener() callbacks"|Reducer 
+    Reducer-->nextState
     ``` 
-       - BrowserEvents-->Reducer 
-       - Reducer-->nextState
 
 * The concept of *purity* underlies React.  
   A *pure* function is just the functions you were taught in math class: they compute a result based on their inputs.
@@ -1763,6 +1785,7 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
 * What is Gradle?
 * Domain-specific languages (DSLs)
 * Where does Gradle download libraries
+* Minifying JS
 
 # Principles
 
