@@ -889,7 +889,7 @@ executed.
 ### **TDD (Test-driven development)**
 
 ```mermaid
-%%{init: { 'flowchart': { 'curve': 'monotoneX', "defaultRenderer": "elk"}} }%%
+%%{init: { 'flowchart': { 'curve': 'monotoneX'}} }%%
 graph LR;
 CommitToGit-->MakeImprovements["Increase readability or reduce duplication. No tests change."]
 CommitToGit==>Think(["*Think* about what this class or interface should *do*"])
