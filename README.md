@@ -815,55 +815,55 @@ to the list (0, 1, ...) rather than the values in the list.
 
 ### **OO** -- An Object-Oriented programming style
 
-    * **abstraction**: separating what's essential for a particular use from what isn't. Code to interfaces whenever
-      possible.
-        * "Thin interfaces" better than "fat interfaces".
-    * **polymorphism**: the Race class can call `contestant.turn()` and Java will ensure that the right method is
-      called, depending upon the *actual* class of the object implementing Contestant.
-        * Polymorphism is easiest to explain if one considers the case of an interface implemented by two concrete
-          classes, and a variable whose type is that of the interface.
-        * Consider the following code:
-          ```
-          // This example is *NOT* polymorphism
-          final RaceCar raceCar = new RaceCar();          // We're *remembering* the exact class
-          final RaceTruck raceTruck = new RaceTruck();
-          raceCar.turn();
-          raceTruck.turn();
+* **abstraction**: separating what's essential for a particular use from what isn't. Code to interfaces whenever
+  possible.
+    * "Thin interfaces" better than "fat interfaces".
+* **polymorphism**: the Race class can call `contestant.turn()` and Java will ensure that the right method is
+  called, depending upon the *actual* class of the object implementing Contestant.
+    * Polymorphism is easiest to explain if one considers the case of an interface implemented by two concrete
+      classes, and a variable whose type is that of the interface.
+    * Consider the following code:
+      ```
+      // This example is *NOT* polymorphism
+      final RaceCar raceCar = new RaceCar();          // We're *remembering* the exact class
+      final RaceTruck raceTruck = new RaceTruck();
+      raceCar.turn();
+      raceTruck.turn();
 
-          // This example *is* polymorphism
-          final Contestant contestant1 = new RaceCar();   // We're *forgetting* the exact class
-          final Contestant contestant2 = new RaceTruck();
-          contestant1.turn();    // Without us doing anything, Java on its own will look to see the actual type and call the right method
-          contestant2.turn();
-          turnSomething(contestant1);
-          turnSomething(contestant2);
-          
-          public void turnSomething(final Contestant c) {c.turn();}
-          ```
-    * **inheritance**: when one class extends another.
-        * When one class extends another, the subclass has some methods defined in itself and other methods defined in
-          its parent or grandparent, etc.
-        * When a class implements an interface, it gets obligations from interface. (I.e. a set of methods it promises
-          to implement.)
-        * When a class extends another class, it gets implementations from its parent. Sometimes it will override that
-          behavior, and other times it won't.
-    * **encapsulation**: when a RaceCar contains an Odometer rather than trying to do that behavior
-      itself https://github.com/marshallfWCCI/RaceCarInterface/commit/92e8da66095290ebdb11e4e53e04cede7639f787
-        * You should think of this as one object containing another object, rather than a class containing another
-          class. The latter is for "inner classes", which is an advanced topic we try to avoid.
-    * Note: you will see the acronym "A PIE" to remember the above, but I dislike it because abstraction (programming to
-      interfaces), polymorphism (the magic which allows abstraction to work), and encapsulation are essential to OO
-      programming, but inheritance is usually a way to reduce duplicate code when classes don't encapsulate well.
-    * In general, classes should know about other interfaces, not other classes.
-        * When designing OO programs, the primary question is: who needs to know what?
-    * SOLID
-        * Single responsibility principle -- each class should have one job.
-        * Open/closed principle -- parent classes should not know about the existence of subclasses, and certainly
-          should not need modification for new children to be added.
-        * Liskov substitution principle -- if you can do something with an instance of the parent class, then you also
-          should be able to do the same thing with an instance of the child class.
-        * Interface segregation principle -- more smaller interfaces better than fewer larger interfaces.
-        * Dependency inversion principle -- Spring is Magic.
+      // This example *is* polymorphism
+      final Contestant contestant1 = new RaceCar();   // We're *forgetting* the exact class
+      final Contestant contestant2 = new RaceTruck();
+      contestant1.turn();    // Without us doing anything, Java on its own will look to see the actual type and call the right method
+      contestant2.turn();
+      turnSomething(contestant1);
+      turnSomething(contestant2);
+      
+      public void turnSomething(final Contestant c) {c.turn();}
+      ```
+* **inheritance**: when one class extends another.
+    * When one class extends another, the subclass has some methods defined in itself and other methods defined in
+      its parent or grandparent, etc.
+    * When a class implements an interface, it gets obligations from interface. (I.e. a set of methods it promises
+      to implement.)
+    * When a class extends another class, it gets implementations from its parent. Sometimes it will override that
+      behavior, and other times it won't.
+* **encapsulation**: when a RaceCar contains an Odometer rather than trying to do that behavior
+  itself https://github.com/marshallfWCCI/RaceCarInterface/commit/92e8da66095290ebdb11e4e53e04cede7639f787
+    * You should think of this as one object containing another object, rather than a class containing another
+      class. The latter is for "inner classes", which is an advanced topic we try to avoid.
+* Note: you will see the acronym "A PIE" to remember the above, but I dislike it because abstraction (programming to
+  interfaces), polymorphism (the magic which allows abstraction to work), and encapsulation are essential to OO
+  programming, but inheritance is usually a way to reduce duplicate code when classes don't encapsulate well.
+* In general, classes should know about other interfaces, not other classes.
+    * When designing OO programs, the primary question is: who needs to know what?
+* SOLID
+    * Single responsibility principle -- each class should have one job.
+    * Open/closed principle -- parent classes should not know about the existence of subclasses, and certainly
+      should not need modification for new children to be added.
+    * Liskov substitution principle -- if you can do something with an instance of the parent class, then you also
+      should be able to do the same thing with an instance of the child class.
+    * Interface segregation principle -- more smaller interfaces better than fewer larger interfaces.
+    * Dependency inversion principle -- Spring is Magic.
 
 ### **Imperative** -- A programming style in which the system is told what to do step-by-step.
 
@@ -879,118 +879,118 @@ executed.
 
 ### **Inversion of Control** or **Dependency Injection** -- a style of programming in which classes can do two things:
 
-    * Define how to create instances of classes, and trust the framework to call those constructors when necessary.
-    * Define what instances one expects and trust the framework to provide them as necessary.
-    * In other words, Spring is *magic*.
-    * Another example:
-        * Most code has zero idea which database it's using. Instead, it provides constructors which are passed the
-          information they need.
+* Define how to create instances of classes, and trust the framework to call those constructors when necessary.
+* Define what instances one expects and trust the framework to provide them as necessary.
+* In other words, Spring is *magic*.
+* Another example:
+    * Most code has zero idea which database it's using. Instead, it provides constructors which are passed the
+      information they need.
 
 ### **TDD (Test-driven development)**
 
-  ```mermaid
-  graph LR;
-  CommitToGit-->Think{"*Think* about what this class or interface should *do*"}
-  Think-->CreateANewClass["Create a new empty class and corresponding test class"]
-  Think-->DONE["All functionality required by the story is complete! Brag"]
-  CreateANewClass-->AddATest["Observe new test fails"]
-  Think-->AddATestToAnExistingTestClass
-  AddATestToAnExistingTestClass-->AddATest
-  AllTestsPass-->|"Ratchet success"|CommitToGit
-  CommitToGit-->MakeImprovements["Increase readability or reduce duplication. No tests change."]
-  MakeImprovements-->RenameAVariable
-  RenameAVariable-->AllTestsPass
-  MakeImprovements-->IntroduceInterface
-  IntroduceInterface-->AllTestsPass
-  MakeImprovements-->MoveLogicToParent
-  MoveLogicToParent-->AllTestsPass
-  MakeImprovements-->IntroduceParentClass
-  IntroduceParentClass-->AllTestsPass
-  MakeImprovements-->ExtractCodeToMethod
-  ExtractCodeToMethod-->AllTestsPass
-  AddATest-->WriteCode["Add simplest obvious code"]
-  WriteCode-->AllTestsPass
-  MakeImprovements-->|"Never mind! git restore ."|CommitToGit
-  ```
+```mermaid
+graph LR;
+CommitToGit-->Think{"*Think* about what this class or interface should *do*"}
+Think-->CreateANewClass["Create a new empty class and corresponding test class"]
+Think-->DONE["All functionality required by the story is complete! Brag"]
+CreateANewClass-->AddATest["Observe new test fails"]
+Think-->AddATestToAnExistingTestClass
+AddATestToAnExistingTestClass-->AddATest
+AllTestsPass-->|"Ratchet success"|CommitToGit
+CommitToGit-->MakeImprovements["Increase readability or reduce duplication. No tests change."]
+MakeImprovements-->RenameAVariable
+RenameAVariable-->AllTestsPass
+MakeImprovements-->IntroduceInterface
+IntroduceInterface-->AllTestsPass
+MakeImprovements-->MoveLogicToParent
+MoveLogicToParent-->AllTestsPass
+MakeImprovements-->IntroduceParentClass
+IntroduceParentClass-->AllTestsPass
+MakeImprovements-->ExtractCodeToMethod
+ExtractCodeToMethod-->AllTestsPass
+AddATest-->WriteCode["Add simplest obvious code"]
+WriteCode-->AllTestsPass
+MakeImprovements-->|"Never mind! git restore ."|CommitToGit
+```
 
-    * To the extent TDD is utilized, all code is justified by some test.
-    * The best time to use TDD is when you don't know how to otherwise begin.
-    * The best time to use TDD is when you're still trying to think through what a new method should do, and what it
-      should return.
-    * The best time to use TDD is when you discover a bug. Don't fix the bug until you first write a test which detects
-      it.
-    * Always run **all** tests for the class, not just the one you're working on. Success should be a "ratchet".
-    * Occasionally run all tests for all classes. IntelliJ can do this with control-shift-F10, or you can do it in Git
-      Bash with `gradle test`.
-    * Name tests usefully. There's no reason to have lots of verbiage duplicating the name of the class, etc. But you
-      should get at least a hint of what the class was testing from the name. The same rule as `git commit -m""`
-      applies ... write comments useful to you in the future.
-    * To the extent possible, tests should be simple, so that when it fails you have a good idea where to look in your
-      code. Use nice round numbers when possible. Avoid unintentional coincidences. Adding $1 to an account containing
-      $1 might not detect all failure scenarios. Subtracting $1 from an account containing $100 is quite
-      straightforward.
-    * There's no reason not to commit to git after *every* successful addition of a test. When all tests pass you may:
-        * Celebrate
-        * See that your class is still missing some desired behavior, and add another test.
-        * See that some other class is missing some desired behavior, and switch to working on that class for a while.
-        * Look at the class's implementation and see ways it could be clearer or faster or better in some other way.
-          Assuming you have submitted and pushed the working code, you can experiment with refactoring your code. If the
-          experiment succeeds, congratulations ... otherwise you can just rollback to the last-committed code.
-        * Imagine that a chaos monkey will occasionally go and change your class's code. Do your tests cover all of the
-          bugs they might try to introduce? (Sometimes called **Adversarial TDD**.)
-        * See that the class is good-enough, and get on to the next class -- or even be done with the project.
-    * Tests are perfect to understand using the debugger, because you can run the same code paths many times until you
-      find out what isn't behaving as expected.
-    * It's often entirely reasonable to use TDD at the start of a project, when you're defining your business objects
-      and how they should behave and interact -- but not for the final user-interacting stuff (if the user-interacting
-      stuff contains little business logic itself).
-    * TDD forces you to think of the *uses* of your objects, because every test:
-        * Starts with the creation of an instance of the class which is being tested;
-        * Usually calls one or more methods on that object; and then
-        * Ends with an expectation about the information returned by a method on that object.
-    * TDD should never be a micro-manager. It's not the test's business whether the class being tested uses a Map or a
-      List internally. All that should be tested is the external *behavior* of its objects. Of course, if you want to "
-      encourage" a class to be a List, you could have tests verifying a "returnPetsInTheOrderTheyWereAdded()". But if
-      the class still decided to use a `LinkedHashMap<K,V>`, that's the class's business.
-    * Why do we write unit tests?
-        * To better understand what our classes are supposed to do
-        * To make sure that our classes do what we think they do
-        * To make sure that our code keeps on working.
+* To the extent TDD is utilized, all code is justified by some test.
+* The best time to use TDD is when you don't know how to otherwise begin.
+* The best time to use TDD is when you're still trying to think through what a new method should do, and what it
+  should return.
+* The best time to use TDD is when you discover a bug. Don't fix the bug until you first write a test which detects
+  it.
+* Always run **all** tests for the class, not just the one you're working on. Success should be a "ratchet".
+* Occasionally run all tests for all classes. IntelliJ can do this with control-shift-F10, or you can do it in Git
+  Bash with `gradle test`.
+* Name tests usefully. There's no reason to have lots of verbiage duplicating the name of the class, etc. But you
+  should get at least a hint of what the class was testing from the name. The same rule as `git commit -m""`
+  applies ... write comments useful to you in the future.
+* To the extent possible, tests should be simple, so that when it fails you have a good idea where to look in your
+  code. Use nice round numbers when possible. Avoid unintentional coincidences. Adding $1 to an account containing
+  $1 might not detect all failure scenarios. Subtracting $1 from an account containing $100 is quite
+  straightforward.
+* There's no reason not to commit to git after *every* successful addition of a test. When all tests pass you may:
+    * Celebrate
+    * See that your class is still missing some desired behavior, and add another test.
+    * See that some other class is missing some desired behavior, and switch to working on that class for a while.
+    * Look at the class's implementation and see ways it could be clearer or faster or better in some other way.
+      Assuming you have submitted and pushed the working code, you can experiment with refactoring your code. If the
+      experiment succeeds, congratulations ... otherwise you can just rollback to the last-committed code.
+    * Imagine that a chaos monkey will occasionally go and change your class's code. Do your tests cover all of the
+      bugs they might try to introduce? (Sometimes called **Adversarial TDD**.)
+    * See that the class is good-enough, and get on to the next class -- or even be done with the project.
+* Tests are perfect to understand using the debugger, because you can run the same code paths many times until you
+  find out what isn't behaving as expected.
+* It's often entirely reasonable to use TDD at the start of a project, when you're defining your business objects
+  and how they should behave and interact -- but not for the final user-interacting stuff (if the user-interacting
+  stuff contains little business logic itself).
+* TDD forces you to think of the *uses* of your objects, because every test:
+    * Starts with the creation of an instance of the class which is being tested;
+    * Usually calls one or more methods on that object; and then
+    * Ends with an expectation about the information returned by a method on that object.
+* TDD should never be a micro-manager. It's not the test's business whether the class being tested uses a Map or a
+  List internally. All that should be tested is the external *behavior* of its objects. Of course, if you want to "
+  encourage" a class to be a List, you could have tests verifying a "returnPetsInTheOrderTheyWereAdded()". But if
+  the class still decided to use a `LinkedHashMap<K,V>`, that's the class's business.
+* Why do we write unit tests?
+    * To better understand what our classes are supposed to do
+    * To make sure that our classes do what we think they do
+    * To make sure that our code keeps on working.
 
 ### **Design Patterns** -- Standard solution to design problems
 
-    * **Builder Pattern** -- Standard solution to the problem of constructors getting too complex. Uses the "Fluent"
-      pattern to accumulate parameters one-by-one -- rather than having complicated constructors with
-      difficult-to-remember parameters.
-        * Builders can be super-fancy. You could allow .withInterestRate() if .withSavings() was called before but not
-          if .withChecking() was called.
-        * But normally, one of the nice things about builders is they can be called in any order.
-    * **Fluent Pattern** -- Methods which end with `return this;` (or returning a related object) so that multiple
-      methods can be called on a single object in a single statement. Highly related to "functional programming".
-        * Note that the methods don't actually have to end with "return this" ... they just need to return some object
-          upon which further method calls can be made.
-        * The most commonly-used fluent pattern is streams
-            * `list.stream().filter((x) -> (x > 0)).map((x) -> (2*x)).collect(Collectors.toList());`
-            * But what do you do if you're starting with a `[]` array.
-              The problem is that arrays aren't really objects, and so they don't have methods, so we can't just
-              say `.stream()` on the array.
-                * The answer is to call a *static* method on the `Arrays` class, e.g. `Arrays.stream(myArr)`.
-                * And we need to do this static nonsense because not everything in Java is an object.
+* **Builder Pattern** -- Standard solution to the problem of constructors getting too complex. Uses the "Fluent"
+  pattern to accumulate parameters one-by-one -- rather than having complicated constructors with
+  difficult-to-remember parameters.
+    * Builders can be super-fancy. You could allow .withInterestRate() if .withSavings() was called before but not
+      if .withChecking() was called.
+    * But normally, one of the nice things about builders is they can be called in any order.
+* **Fluent Pattern** -- Methods which end with `return this;` (or returning a related object) so that multiple
+  methods can be called on a single object in a single statement. Highly related to "functional programming".
+    * Note that the methods don't actually have to end with "return this" ... they just need to return some object
+      upon which further method calls can be made.
+    * The most commonly-used fluent pattern is streams
+        * `list.stream().filter((x) -> (x > 0)).map((x) -> (2*x)).collect(Collectors.toList());`
+        * But what do you do if you're starting with a `[]` array.
+          The problem is that arrays aren't really objects, and so they don't have methods, so we can't just
+          say `.stream()` on the array.
+            * The answer is to call a *static* method on the `Arrays` class, e.g. `Arrays.stream(myArr)`.
+            * And we need to do this static nonsense because not everything in Java is an object.
 
 ### **Refactoring** -- Simplifying your code without changing its behavior.
 
-    * If you're doing TDD, refactoring can occur anytime: (1) all tests are currently passing, and (2) you've already
-      committed to git.
-    * Refactor in as small steps as humanly possible.
-        * Rename a single method or field, and then run your tests again.
-        * If you're introducing an interface to a class which currently doesn't implement any interface, start with an
-          empty interface, and add one method at a time.
-        * Refactor early and often.
-    * Examples of refactoring
-        * Suppose classB and classC are children of classA, and classB and classC each contain the same logic.
-          Moving that logic out of B and C and into A is a classic example of refactoring.
-    * Refactoring should not be done just because you think the code will be faster ... that's an entirely separate
-      discussion. Refactoring should be to make the code cleaner.
+* If you're doing TDD, refactoring can occur anytime: (1) all tests are currently passing, and (2) you've already
+  committed to git.
+* Refactor in as small steps as humanly possible.
+    * Rename a single method or field, and then run your tests again.
+    * If you're introducing an interface to a class which currently doesn't implement any interface, start with an
+      empty interface, and add one method at a time.
+    * Refactor early and often.
+* Examples of refactoring
+    * Suppose classB and classC are children of classA, and classB and classC each contain the same logic.
+      Moving that logic out of B and C and into A is a classic example of refactoring.
+* Refactoring should not be done just because you think the code will be faster ... that's an entirely separate
+  discussion. Refactoring should be to make the code cleaner.
 
 ```
 // Error-prone
@@ -1020,14 +1020,14 @@ openNewAccount(((((new Account.Builder())
 
 ### **Convention over Configuration** -- Put things where the framework expects and you don't to tell it explicitly.
 
-    * IntelliJ *expects* that code will be in src/main/java and src/test/java.
-      If you that, your configuration is *much* easier.
-    * Spring *expects* that all components you wish for it to discover are in either:
-      (1) in the same package as the class annotated with `@SpringBootApplication`, or
-      (2) in a subpackage thereof.
-    * Spring will automatically serve static resources such as an index.html in `src/main/resources/static`,
-      e.g. `src/main/resources/static/index.html`.
-    * Spring expects to find Thymeleaf templates in `src/main/resources/templates`
+* IntelliJ *expects* that code will be in src/main/java and src/test/java.
+  If you that, your configuration is *much* easier.
+* Spring *expects* that all components you wish for it to discover are in either:
+  (1) in the same package as the class annotated with `@SpringBootApplication`, or
+  (2) in a subpackage thereof.
+* Spring will automatically serve static resources such as an index.html in `src/main/resources/static`,
+  e.g. `src/main/resources/static/index.html`.
+* Spring expects to find Thymeleaf templates in `src/main/resources/templates`
 
 ### Code exploration styles
 
