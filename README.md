@@ -890,7 +890,7 @@ executed.
 
 ```mermaid
 graph LR;
-CommitToGit-->Think{"*Think* about what this class or interface should *do*"}
+CommitToGit-->Think[/"*Think* about what this class or interface should *do*"/]
 Think-->CreateANewClass["Create a new empty class and corresponding test class"]
 Think-->DONE["All functionality required by the story is complete! Brag"]
 CreateANewClass-->AddATest["Observe new test fails"]
