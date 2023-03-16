@@ -792,7 +792,7 @@ to the list (0, 1, ...) rather than the values in the list.
               Backlog so the highest-priority items are identified.
         * At the end of the Sprint:
             * **Sprint Review** -- The team presents completed tasks to the Product Owner (and perhaps a wider
-              audience).
+              audience). https://www.scrum.org/resources/what-is-a-sprint-review
             * **Sprint Retrospective** -- Guided by the Scrum Master, the team reflects on how it performed during the
               sprint and how it can incrementally improve itself.
 * Collaborate with the product owner, even during the sprint
@@ -879,10 +879,24 @@ to the list (0, 1, ...) rather than the values in the list.
           information they need.
 * **TDD (Test-driven development)**
   ```mermaid
-  graph LR;
-  NewTest[Write new failing test]-->|Implement, now that we've defined an interface|GetToGreen[Write minimal obvious code]
-  GetToGreen-->|Refactor without Fear|RemoveRedundancy[Remove Redundancy]
-  RemoveRedundancy-->|Run *all* tests, and then ratchet success by committing to Git|NewTest 
+  graph TB;
+  CommitToGit-->Think["*Think* about what this class or interface should *do*"]
+  Think-->CreateANewClass["Create a new empty class and corresponding test class"]
+  CreateANewClass-->AddATest["Observe new test fails"]
+  Think-->AddATestToAnExistingTestClass
+  AddATestToAnExistingTestClass-->AddATest
+  AllTestsPass-->|"Ratchet success"|CommitToGit
+  CommitToGit-->MakeImprovements["Increase readability or reduce duplication, but do not touch any test or change any new behavior."]
+  MakeImprovements-->|"Never Mind; git restore ."|CommitToGit
+  MakeImprovements-->IntroduceInterface
+  IntroduceInterface-->AllTestsPass
+  MakeImprovements-->MoveLogicToParent
+  MoveLogicToParent-->AllTestsPass
+  MakeImprovements-->IntroduceParentClass
+  IntroduceParentClass-->AllTestsPass
+  MakeImprovements-->ExtractCodeToMethod
+  ExtractCodeToMethod-->AllTestsPass
+  AddATest-->|"Add simplest obvious code"|AllTestsPass
   ```
     * To the extent TDD is utilized, all code is justified by some test.
     * The best time to use TDD is when you don't know how to otherwise begin.
@@ -955,6 +969,9 @@ to the list (0, 1, ...) rather than the values in the list.
         * If you're introducing an interface to a class which currently doesn't implement any interface, start with an
           empty interface, and add one method at a time.
         * Refactor early and often.
+    * Examples of refactoring
+        * Suppose classB and classC are children of classA, and classB and classC each contain the same logic.
+          Moving that logic out of B and C and into A is a classic example of refactoring.
     * Refactoring should not be done just because you think the code will be faster ... that's an entirely separate
       discussion. Refactoring should be to make the code cleaner.
 
@@ -1775,6 +1792,7 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
 
 # Advanced topics
 
+* TypeScript
 * `Producer<T>` and `Consumer<T>`
 * `var` in Java
 * JAR files.
@@ -1785,6 +1803,7 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
 * What is Gradle?
 * Domain-specific languages (DSLs)
 * Where does Gradle download libraries
+* Linters
 * Minifying JS
 
 # Principles
