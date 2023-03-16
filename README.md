@@ -891,6 +891,7 @@ executed.
 ```mermaid
 %%{init: { 'flowchart': { 'curve': 'monotoneX', "defaultRenderer": "elk"}} }%%
 graph LR;
+CommitToGit-->MakeImprovements["Increase readability or reduce duplication. No tests change."]
 CommitToGit==>Think(["*Think* about what this class or interface should *do*"])
 classDef thinkStyle fill:#f00,stroke:#00f
 class Think thinkStyle;
@@ -900,20 +901,19 @@ CreateANewClass-->AddATest["Observe new test fails"]
 Think==>AddATestToAnExistingTestClass
 AddATestToAnExistingTestClass==>AddATest
 AllTestsPass==>|"Ratchet success"|CommitToGit
-CommitToGit-->MakeImprovements["Increase readability or reduce duplication. No tests change."]
 MakeImprovements-->RenameAVariable
-RenameAVariable-->AllTestsPass
+RenameAVariable--->AllTestsPass
 MakeImprovements-->IntroduceInterface
-IntroduceInterface-->AllTestsPass
+IntroduceInterface--->AllTestsPass
 MakeImprovements-->MoveLogicToParent
-MoveLogicToParent-->AllTestsPass
+MoveLogicToParent--->AllTestsPass
 MakeImprovements-->IntroduceParentClass
-IntroduceParentClass-->AllTestsPass
+IntroduceParentClass--->AllTestsPass
 MakeImprovements-->ExtractCodeToMethod
-ExtractCodeToMethod-->AllTestsPass
+ExtractCodeToMethod--->AllTestsPass
 AddATest==>WriteCode["Add simplest obvious code"]
 WriteCode==>AllTestsPass
-MakeImprovements-->|"Never mind! git restore ."|CommitToGit
+MakeImprovements-->|"Fail cheaply! `git restore .`"|CommitToGit
 ```
 
 * To the extent TDD is utilized, all code is justified by some test.
