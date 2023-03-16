@@ -891,29 +891,28 @@ executed.
 ```mermaid
 %%{init: { 'flowchart': { 'curve': 'monotoneX'}} }%%
 graph LR;
-CommitToGit-->MakeImprovements["Increase readability or reduce duplication. No tests change."]
-CommitToGit==>Think(["*Think* about what this class or interface should *do*"])
+Think-->MakeImprovements["Increase readability or reduce duplication. No tests change."]
 classDef thinkStyle fill:#f00,stroke:#00f
 class Think thinkStyle;
 Think-->CreateANewClass["Create a new empty class and corresponding test class"]
 Think-->DONE(["All functionality required by the story is complete! Brag"])
-CreateANewClass-->AddATest["Observe new test fails"]
-Think==>AddATestToAnExistingTestClass
+CreateANewClass-->AddATest["Observe the new test fails"]
+Think==>AddATestToAnExistingTestClass["Add a new test"]
 AddATestToAnExistingTestClass==>AddATest
-AllTestsPass==>|"Ratchet success"|CommitToGit
+AllTestsPass==>|"Ratchet success. Commit to Git!"|Think(["*Think* about what this class or interface should *do*"])
 MakeImprovements-->RenameAVariable
-RenameAVariable--->AllTestsPass
+RenameAVariable-->AllTestsPass
 MakeImprovements-->IntroduceInterface
-IntroduceInterface--->AllTestsPass
+IntroduceInterface-->AllTestsPass
 MakeImprovements-->MoveLogicToParent
-MoveLogicToParent--->AllTestsPass
+MoveLogicToParent-->AllTestsPass
 MakeImprovements-->IntroduceParentClass
-IntroduceParentClass--->AllTestsPass
+IntroduceParentClass-->AllTestsPass
 MakeImprovements-->ExtractCodeToMethod
-ExtractCodeToMethod--->AllTestsPass
+ExtractCodeToMethod-->AllTestsPass
 AddATest==>WriteCode["Add simplest obvious code"]
 WriteCode==>AllTestsPass
-MakeImprovements-->|"Fail cheaply! `git restore .`"|CommitToGit
+MakeImprovements-->|"Fail cheaply! `git restore .`"|AllTestsPass
 ```
 
 * To the extent TDD is utilized, all code is justified by some test.
