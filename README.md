@@ -664,6 +664,14 @@ to the list (0, 1, ...) rather than the values in the list.
     * We probably won't use the other hooks:
         * `useCallback()`, `useMemo()`, `useRef()`, `useImperativeHandle()`, `useLayoutEffect()`, `useDebugValue()`,
           `useDeferredValu()`, `useTransition()`, or `useId()`
+* Documentation
+    * https://beta.reactjs.org/learn/thinking-in-react
+    * https://beta.reactjs.org/learn/tutorial-tic-tac-toe
+        * (The example code is mostly merged into https://github.com/marshallfWCCI/gradleReact)
+    * https://www.w3schools.com/react/react_router.asp
+    * https://beta.reactjs.org/learn/describing-the-ui
+    * Rest of https://beta.reactjs.org/learn except the only "escape hatches" you'll need are:
+        * `useEffect()` for the result of `fetch()`
 
 # Programming styles
 
