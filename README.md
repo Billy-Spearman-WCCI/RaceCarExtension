@@ -889,7 +889,7 @@ executed.
 ### **TDD (Test-driven development)**
 
 ```mermaid
-%%{ init: { 'flowchart': { 'curve': 'monotoneX' } } }%%
+%%{init: { 'flowchart': { 'curve': 'monotoneX', "defaultRenderer": "elk"}} }%%
 graph LR;
 CommitToGit==>Think(["*Think* about what this class or interface should *do*"])
 classDef thinkStyle fill:#f00,stroke:#00f
