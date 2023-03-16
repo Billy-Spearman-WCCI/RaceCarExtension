@@ -879,15 +879,17 @@ to the list (0, 1, ...) rather than the values in the list.
           information they need.
 * **TDD (Test-driven development)**
   ```mermaid
-  graph TB;
-  CommitToGit-->Think["*Think* about what this class or interface should *do*"]
+  graph LR;
+  CommitToGit-->Think{"*Think* about what this class or interface should *do*"}
   Think-->CreateANewClass["Create a new empty class and corresponding test class"]
+  Think-->DONE["All functionality required by the story is complete! Brag"]
   CreateANewClass-->AddATest["Observe new test fails"]
   Think-->AddATestToAnExistingTestClass
   AddATestToAnExistingTestClass-->AddATest
   AllTestsPass-->|"Ratchet success"|CommitToGit
-  CommitToGit-->MakeImprovements["Increase readability or reduce duplication, but do not touch any test or change any new behavior."]
-  MakeImprovements-->|"Never Mind; git restore ."|CommitToGit
+  CommitToGit-->MakeImprovements["Increase readability or reduce duplication. No tests change."]
+  MakeImprovements-->RenameAVariable
+  RenameAVariable-->AllTestsPass
   MakeImprovements-->IntroduceInterface
   IntroduceInterface-->AllTestsPass
   MakeImprovements-->MoveLogicToParent
@@ -896,7 +898,9 @@ to the list (0, 1, ...) rather than the values in the list.
   IntroduceParentClass-->AllTestsPass
   MakeImprovements-->ExtractCodeToMethod
   ExtractCodeToMethod-->AllTestsPass
-  AddATest-->|"Add simplest obvious code"|AllTestsPass
+  AddATest-->WriteCode["Add simplest obvious code"]
+  WriteCode-->AllTestsPass
+  MakeImprovements-->|"Never mind! git restore ."|CommitToGit
   ```
     * To the extent TDD is utilized, all code is justified by some test.
     * The best time to use TDD is when you don't know how to otherwise begin.
