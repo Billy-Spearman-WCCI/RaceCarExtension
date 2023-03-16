@@ -889,14 +889,17 @@ executed.
 ### **TDD (Test-driven development)**
 
 ```mermaid
+%%{ init: { 'flowchart': { 'curve': 'monotoneX' } } }%%
 graph LR;
-CommitToGit-->Think[/"*Think* about what this class or interface should *do*"/]
+CommitToGit==>Think(["*Think* about what this class or interface should *do*"])
+classDef thinkStyle fill:#f00,stroke:#00f
+class Think thinkStyle;
 Think-->CreateANewClass["Create a new empty class and corresponding test class"]
-Think-->DONE["All functionality required by the story is complete! Brag"]
+Think-->DONE(["All functionality required by the story is complete! Brag"])
 CreateANewClass-->AddATest["Observe new test fails"]
-Think-->AddATestToAnExistingTestClass
-AddATestToAnExistingTestClass-->AddATest
-AllTestsPass-->|"Ratchet success"|CommitToGit
+Think==>AddATestToAnExistingTestClass
+AddATestToAnExistingTestClass==>AddATest
+AllTestsPass==>|"Ratchet success"|CommitToGit
 CommitToGit-->MakeImprovements["Increase readability or reduce duplication. No tests change."]
 MakeImprovements-->RenameAVariable
 RenameAVariable-->AllTestsPass
@@ -908,8 +911,8 @@ MakeImprovements-->IntroduceParentClass
 IntroduceParentClass-->AllTestsPass
 MakeImprovements-->ExtractCodeToMethod
 ExtractCodeToMethod-->AllTestsPass
-AddATest-->WriteCode["Add simplest obvious code"]
-WriteCode-->AllTestsPass
+AddATest==>WriteCode["Add simplest obvious code"]
+WriteCode==>AllTestsPass
 MakeImprovements-->|"Never mind! git restore ."|CommitToGit
 ```
 
