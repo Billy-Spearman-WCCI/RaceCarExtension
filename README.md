@@ -813,7 +813,8 @@ to the list (0, 1, ...) rather than the values in the list.
 
 ## Approaches for writing acceptable code.
 
-* **OO** -- An Object-Oriented programming style
+### **OO** -- An Object-Oriented programming style
+
     * **abstraction**: separating what's essential for a particular use from what isn't. Code to interfaces whenever
       possible.
         * "Thin interfaces" better than "fat interfaces".
@@ -863,21 +864,30 @@ to the list (0, 1, ...) rather than the values in the list.
           should be able to do the same thing with an instance of the child class.
         * Interface segregation principle -- more smaller interfaces better than fewer larger interfaces.
         * Dependency inversion principle -- Spring is Magic.
-* **Imperative** -- A programming style in which the system is told what to do step-by-step.
-* **Declarative** -- A programming style in which the system is told the desired state and isn't micromanaged in the
-  executed.
-    * `build.gradle` is declarative.
-    * SQL is probably the most famous declarative language. You tell the database which tables to merge together and it
-      decides the best strategy for doing so.
-* **Structured** -- An imperative programming style in which statements are organized into nesting contexts.
-* **Inversion of Control** or **Dependency Injection** -- a style of programming in which classes can do two things:
+
+### **Imperative** -- A programming style in which the system is told what to do step-by-step.
+
+### **Declarative** -- A programming style in which the system is told the desired state and isn't micromanaged in the
+
+executed.
+
+* `build.gradle` is declarative.
+* SQL is probably the most famous declarative language. You tell the database which tables to merge together and it
+  decides the best strategy for doing so.
+
+### **Structured** -- An imperative programming style in which statements are organized into nesting contexts.
+
+### **Inversion of Control** or **Dependency Injection** -- a style of programming in which classes can do two things:
+
     * Define how to create instances of classes, and trust the framework to call those constructors when necessary.
     * Define what instances one expects and trust the framework to provide them as necessary.
     * In other words, Spring is *magic*.
     * Another example:
         * Most code has zero idea which database it's using. Instead, it provides constructors which are passed the
           information they need.
-* **TDD (Test-driven development)**
+
+### **TDD (Test-driven development)**
+
   ```mermaid
   graph LR;
   CommitToGit-->Think{"*Think* about what this class or interface should *do*"}
@@ -902,6 +912,7 @@ to the list (0, 1, ...) rather than the values in the list.
   WriteCode-->AllTestsPass
   MakeImprovements-->|"Never mind! git restore ."|CommitToGit
   ```
+
     * To the extent TDD is utilized, all code is justified by some test.
     * The best time to use TDD is when you don't know how to otherwise begin.
     * The best time to use TDD is when you're still trying to think through what a new method should do, and what it
@@ -946,8 +957,8 @@ to the list (0, 1, ...) rather than the values in the list.
         * To make sure that our classes do what we think they do
         * To make sure that our code keeps on working.
 
+### **Design Patterns** -- Standard solution to design problems
 
-* **Design Patterns** -- Standard solution to design problems
     * **Builder Pattern** -- Standard solution to the problem of constructors getting too complex. Uses the "Fluent"
       pattern to accumulate parameters one-by-one -- rather than having complicated constructors with
       difficult-to-remember parameters.
@@ -965,7 +976,9 @@ to the list (0, 1, ...) rather than the values in the list.
               say `.stream()` on the array.
                 * The answer is to call a *static* method on the `Arrays` class, e.g. `Arrays.stream(myArr)`.
                 * And we need to do this static nonsense because not everything in Java is an object.
-* **Refactoring** -- Simplifying your code without changing its behavior.
+
+### **Refactoring** -- Simplifying your code without changing its behavior.
+
     * If you're doing TDD, refactoring can occur anytime: (1) all tests are currently passing, and (2) you've already
       committed to git.
     * Refactor in as small steps as humanly possible.
@@ -1005,7 +1018,8 @@ openNewAccount(((((new Account.Builder())
 // Account a = b.build();
 ```
 
-* **Convention over Configuration** -- Put things where the framework expects and you don't to tell it explicitly.
+### **Convention over Configuration** -- Put things where the framework expects and you don't to tell it explicitly.
+
     * IntelliJ *expects* that code will be in src/main/java and src/test/java.
       If you that, your configuration is *much* easier.
     * Spring *expects* that all components you wish for it to discover are in either:
@@ -1015,7 +1029,7 @@ openNewAccount(((((new Account.Builder())
       e.g. `src/main/resources/static/index.html`.
     * Spring expects to find Thymeleaf templates in `src/main/resources/templates`
 
-## Code exploration styles
+### Code exploration styles
 
 * Make fields and methods `final` and `private`, and see if IntelliJ complains. Remove apparently-unused constructors
   and see if IntelliJ complains. Add `@Override` annotations if you think a method might be overriding something in the
