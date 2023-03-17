@@ -833,9 +833,9 @@ to the list (0, 1, ...) rather than the values in the list.
     * Consider the following code:
       ```
       // This example is *NOT* polymorphism
-      final RaceCar raceCar = new RaceCar();          // We're *remembering* the exact class
+      final FunnyRaceCar raceCar = new FunnyRaceCar();          // We're *remembering* the exact class
       final RaceTruck raceTruck = new RaceTruck();
-      raceCar.turn();
+      raceCar.tellAJoke();
       raceTruck.turn();
 
       // This example *is* polymorphism
@@ -865,13 +865,17 @@ to the list (0, 1, ...) rather than the values in the list.
 * In general, classes should know about other interfaces, not other classes.
     * When designing OO programs, the primary question is: who needs to know what?
 * SOLID
-    * Single responsibility principle -- each class should have one job.
+    * Single responsibility principle -- each class should have one job. That job should be in its /** JavaDoc */
     * Open/closed principle -- parent classes should not know about the existence of subclasses, and certainly
       should not need modification for new children to be added.
     * Liskov substitution principle -- if you can do something with an instance of the parent class, then you also
       should be able to do the same thing with an instance of the child class.
+      `X extends Y` or `X implements Y` means in English: "An X is a Y".
+      An ArrayList is a List. A FunnyRaceCar is a Contestant.
+      This principle requires that if contestant.turn() makes sense, then funnyracecar.turn() must also make sense.
+      As you go down an inheritance diagram, you only ever *add* behavior...you never lose behavior.
     * Interface segregation principle -- more smaller interfaces better than fewer larger interfaces.
-    * Dependency inversion principle -- Spring is Magic.
+    * Dependency inversion principle -- Spring brings your dependencies to you.
 
 ### **Imperative**
 
@@ -902,10 +906,10 @@ to the list (0, 1, ...) rather than the values in the list.
 ```mermaid
 %%{init: { 'flowchart': { 'curve': 'monotoneX'}} }%%
 graph LR;
-Think-->MakeImprovements["Increase readability or reduce duplication. No tests change."]
+Think-->|Code is difficult to think about|MakeImprovements["Increase readability or reduce duplication. No tests change."]
 classDef thinkStyle fill:#f00,stroke:#00f
 class Think thinkStyle;
-Think-->CreateANewClass["Create a new empty class and corresponding test class"]
+Think-->CreateANewClass["Create a new empty class and corresponding test class. Describe the class in a sentence."]
 Think-->DONE(["All functionality required by the story is complete! Brag"])
 CreateANewClass-->AddATest["Observe the new test fails"]
 Think==>AddATestToAnExistingTestClass["Add a new test"]
@@ -925,6 +929,11 @@ AddATest==>WriteCode["Add simplest obvious code"]
 WriteCode==>AllTestsPass
 MakeImprovements-->|"Fail cheaply! `git restore .`"|AllTestsPass
 ```
+
+* If the job of code is to solve problems, then you can do that without inheritance or abstraction or anything else OO.
+    * It's completely fine to not start with OO code.
+    * Inheritance and abstraction and the rest are ways of *improving* your code.
+    * If abstraction and inheritance are the solution, readability is the problem.
 
 * To the extent TDD is utilized, all code is justified by some test.
 * The best time to use TDD is when you don't know how to otherwise begin.
