@@ -918,9 +918,12 @@ Think==>|Identify desired behavior|AddATestToAnExistingTestClass["Add a new test
 Think-->|Reproduce Bug|AddATestToAnExistingTestClass
 Think-->|"All functionality required by the story is complete!"|CodeDone["Is the code clean?"]
 CodeDone-->PullRequest["Pull Request"]
+classDef pullRequestStyle fill:#00f,stroke:#00f
+class PullRequest pullRequestStyle;
 CodeDone-->MakeImprovements
 AddATestToAnExistingTestClass==>NewTestFails["Verify the new test fails"]
-AllTestsPass==>|"Ratchet success. Commit to Git!"|Think(["*Think* about what this class or interface should *do*"])
+AllTestsPass==>|"Ratchet success. Commit to Git!"|Think["*Think* about what this class or interface should *do*"]
+MakeImprovements-->|"Fail cheaply! `git restore .`"|AllTestsPass
 MakeImprovements-->RenameAVariable
 RenameAVariable-->AllTestsPass
 MakeImprovements-->IntroduceInterface
@@ -930,7 +933,6 @@ MoveLogicToParent-->AllTestsPass
 MakeImprovements-->IntroduceParentClass
 IntroduceParentClass-->AllTestsPass
 MakeImprovements-->ExtractCodeToMethod
-MakeImprovements-->|"Fail cheaply! `git restore .`"|AllTestsPass
 ExtractCodeToMethod-->AllTestsPass
 NewTestFails==>WriteCode["Add simplest obvious code"]
 WriteCode==>AllTestsPass
