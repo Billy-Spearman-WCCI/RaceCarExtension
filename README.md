@@ -909,9 +909,9 @@ to the list (0, 1, ...) rather than the values in the list.
 ```mermaid
 graph TB;
 Think-->|Code is difficult to read or think about|MakeImprovements["Increase readability or reduce duplication. No tests change."]
-classDef thinkStyle fill:#f00
-classDef pullRequestStyle fill:#007
-classDef allTestsPassStyle fill:#070
+classDef thinkStyle fill:#f77,color:#000
+classDef pullRequestStyle fill:#77F,color:#000
+classDef allTestsPassStyle fill:#7F7,color:#000
 class Think thinkStyle;
 Think-->CreateANewClass["Create a new empty class and corresponding test class."]
 CreateANewClass-->DescribeANewClass["/** Describe the class in a sentence */"]
