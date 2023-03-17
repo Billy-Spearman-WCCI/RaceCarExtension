@@ -873,17 +873,20 @@ to the list (0, 1, ...) rather than the values in the list.
     * Interface segregation principle -- more smaller interfaces better than fewer larger interfaces.
     * Dependency inversion principle -- Spring is Magic.
 
-### **Imperative** -- A programming style in which the system is told what to do step-by-step.
+### **Imperative**
 
-### **Declarative** -- A programming style in which the system is told the desired state and isn't micromanaged in the
+* A programming style in which the system is told what to do step-by-step.
 
-executed.
+### **Structured**
 
-* `build.gradle` is declarative.
-* SQL is probably the most famous declarative language. You tell the database which tables to merge together and it
-  decides the best strategy for doing so.
+* An imperative programming style in which statements are organized into nesting contexts.
 
-### **Structured** -- An imperative programming style in which statements are organized into nesting contexts.
+### **Declarative**
+
+* A programming style in which the system is told the desired state and isn't micromanaged in the
+    * `build.gradle` is declarative.
+    * SQL is probably the most famous declarative language. You tell the database which tables to merge together and it
+      decides the best strategy for doing so.
 
 ### **Inversion of Control** or **Dependency Injection** -- a style of programming in which classes can do two things:
 
