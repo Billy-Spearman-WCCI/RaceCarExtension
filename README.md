@@ -30,6 +30,9 @@
       "transcoded" results from `src/main/resources/static/dist` (which of course is in the `.gitignore`).
       Transcoding is automatically performed by gradle before `:bootRun` or `:test`.
 
+* https://github.com/marshallfWCCI/ooExample
+    * An example of TDD creation demonstrating core OO concepts
+
 # Glossary
 
 ## Tools
@@ -904,16 +907,19 @@ to the list (0, 1, ...) rather than the values in the list.
 ### **TDD (Test-driven development)**
 
 ```mermaid
-%%{init: { 'flowchart': { 'curve': 'monotoneX'}} }%%
-graph LR;
-Think-->|Code is difficult to think about|MakeImprovements["Increase readability or reduce duplication. No tests change."]
+graph TB;
+Think-->|Code is difficult to read or think about|MakeImprovements["Increase readability or reduce duplication. No tests change."]
 classDef thinkStyle fill:#f00,stroke:#00f
 class Think thinkStyle;
-Think-->CreateANewClass["Create a new empty class and corresponding test class. Describe the class in a sentence."]
-Think-->DONE(["All functionality required by the story is complete! Brag"])
-CreateANewClass-->AddATest["Observe the new test fails"]
-Think==>AddATestToAnExistingTestClass["Add a new test"]
-AddATestToAnExistingTestClass==>AddATest
+Think-->CreateANewClass["Create a new empty class and corresponding test class."]
+CreateANewClass-->DescribeANewClass["/** Describe the class in a sentence */"]
+DescribeANewClass-->AddATestToAnExistingTestClass
+Think==>|Identify desired behavior|AddATestToAnExistingTestClass["Add a new test"]
+Think-->|Reproduce Bug|AddATestToAnExistingTestClass
+Think-->|"All functionality required by the story is complete!"|CodeDone["Is the code clean?"]
+CodeDone-->PullRequest["Pull Request"]
+CodeDone-->MakeImprovements
+AddATestToAnExistingTestClass==>NewTestFails["Verify the new test fails"]
 AllTestsPass==>|"Ratchet success. Commit to Git!"|Think(["*Think* about what this class or interface should *do*"])
 MakeImprovements-->RenameAVariable
 RenameAVariable-->AllTestsPass
@@ -924,10 +930,10 @@ MoveLogicToParent-->AllTestsPass
 MakeImprovements-->IntroduceParentClass
 IntroduceParentClass-->AllTestsPass
 MakeImprovements-->ExtractCodeToMethod
-ExtractCodeToMethod-->AllTestsPass
-AddATest==>WriteCode["Add simplest obvious code"]
-WriteCode==>AllTestsPass
 MakeImprovements-->|"Fail cheaply! `git restore .`"|AllTestsPass
+ExtractCodeToMethod-->AllTestsPass
+NewTestFails==>WriteCode["Add simplest obvious code"]
+WriteCode==>AllTestsPass
 ```
 
 * If the job of code is to solve problems, then you can do that without inheritance or abstraction or anything else OO.

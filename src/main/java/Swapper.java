@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class Swapper {
     public static void main(String[] args) {
-        allSwap(new String[]{"ab", "ac"}]);
+//        allSwap(new String[]{"ab", "ac"}]);
     }
 
     public static String[] allSwap(final String[] strings) {
