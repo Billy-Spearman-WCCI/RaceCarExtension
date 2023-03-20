@@ -2106,8 +2106,7 @@ EveryBodyMerges-->BackToNormal["Everybody creates a new branch and continues the
         * [ ] You must have an *expectation* for the result of the "ask".
         * [ ] Combine the "tell" and the expectation about the result into a test.
         * [ ] Get the test to compile -- but failing. You should then have:
-            * [ ] One class --> describe it in a phrase.  
-              This phrase must refer to tested behavior.
+            * [ ] One class --> describe it in a phrase. This phrase must refer to tested behavior.
                 * [ ] Add the phrase as a JavaDoc comment for the class
             * [ ] Two methods --> describe each in a sentence, starting with either "Tell me ..." or "Ask me ..."
                 * [ ] Add the sentence as a JavaDoc comment for the method
@@ -2126,13 +2125,14 @@ EveryBodyMerges-->BackToNormal["Everybody creates a new branch and continues the
     * [ ] Can it be just another instance of your existing class?
       If so, consider whether it deserves a test of its own.
     * [ ] Create a new class, preferably implementing an existing interface.
-      Extending an existing class is sometimes fine.
-      But don't try to create abstract classes or anything fancy.
-    * [ ] Repeat the steps for the first class.
-      Write tests.
-      It's ok if they're similar to tests you've written for other classes.
+        * [ ] Extending an existing class is sometimes fine, if you have a working class which sometimes needs some
+          *additional* features.
+        * [ ] But don't try to create abstract classes or anything fancy.
+    * [ ] Repeat the steps for the first class. Write tests. It's ok if they're similar to tests you've written for
+      other classes.
     * [ ] Get tests to pass by writing obvious code. It's OK if this code duplicates code in other classes.
     * [ ] Repeat until the second class is well-defined.
 
-* [ ] Consider the two classes you've created.
-  *Now* you're allowed to extract common methods into an abstract parent class.
+* [ ] Consider the two classes you've created. *Now* you're allowed to extract common methods into an abstract parent
+  class.
+    * [ ] If you find that *every* method can moved out of a class, then you don't need it.
