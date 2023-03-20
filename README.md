@@ -2097,3 +2097,42 @@ EveryBodyMerges-->BackToNormal["Everybody creates a new branch and continues the
 * "Done" -- You're confident that the work is correct.
   Each team needs to define its own concept of "done", and this might be the most important decision the team makes.
   "Done" has to mean "done" ... otherwise the board doesn't give an accurate summary of the state of your project.
+
+# OO Programming, step-by-step
+
+* [ ] Consider an object.
+    * [ ] The object must have at least one "tell" and one "ask".
+        * [ ] The "tell" can be via constructor or method.
+        * [ ] You must have an *expectation* for the result of the "ask".
+        * [ ] Combine the "tell" and the expectation about the result into a test.
+        * [ ] Get the test to compile -- but failing. You should then have:
+            * [ ] One class --> describe it in a phrase.  
+              This phrase must refer to tested behavior.
+                * [ ] Add the phrase as a JavaDoc comment for the class
+            * [ ] Two methods --> describe each in a sentence, starting with either "Tell me ..." or "Ask me ..."
+                * [ ] Add the sentence as a JavaDoc comment for the method
+    * [ ] Do you feel that the possible behaviors for the existing methods are adequately covered?
+        * [ ] Add tests.
+    * [ ] Are additional "telling" or "asking" methods required?
+        * [ ] Describe each new method as a sentence
+        * [ ] Add tests.
+    * [ ] Revisit the phrase describing the class
+    * [ ] Consider the methods exposed by the method.
+        * [ ] If there are only two methods, extract them into an interface.
+        * [ ] If there are many methods, consider whether groups of them should be extracted into separate interfaces.
+        * [ ] Update your tests so that we immediately forget the actual class and only remember the interface.
+
+* [ ] Consider another object
+    * [ ] Can it be just another instance of your existing class?
+      If so, consider whether it deserves a test of its own.
+    * [ ] Create a new class, preferably implementing an existing interface.
+      Extending an existing class is sometimes fine.
+      But don't try to create abstract classes or anything fancy.
+    * [ ] Repeat the steps for the first class.
+      Write tests.
+      It's ok if they're similar to tests you've written for other classes.
+    * [ ] Get tests to pass by writing obvious code. It's OK if this code duplicates code in other classes.
+    * [ ] Repeat until the second class is well-defined.
+
+* [ ] Consider the two classes you've created.
+  *Now* you're allowed to extract common methods into an abstract parent class.
