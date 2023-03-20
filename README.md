@@ -932,8 +932,6 @@ MakeImprovements-->IntroduceInterface
 IntroduceInterface-->AllTestsPass
 MakeImprovements-->MoveLogicToParent
 MoveLogicToParent-->AllTestsPass
-MakeImprovements-->IntroduceParentClass
-IntroduceParentClass-->AllTestsPass
 MakeImprovements-->ExtractCodeToMethod
 ExtractCodeToMethod-->AllTestsPass
 NewTestFails==>WriteCode["Add simplest obvious code"]
@@ -2100,39 +2098,55 @@ EveryBodyMerges-->BackToNormal["Everybody creates a new branch and continues the
 
 # OO Programming, step-by-step
 
-* [ ] Consider an object.
-    * [ ] The object must have at least one "tell" and one "ask".
-        * [ ] The "tell" can be via constructor or method.
-        * [ ] You must have an *expectation* for the result of the "ask".
-        * [ ] Combine the "tell" and the expectation about the result into a test.
-        * [ ] Get the test to compile -- but failing. You should then have:
-            * [ ] One class --> describe it in a phrase. This phrase must refer to tested behavior.
-                * [ ] Add the phrase as a JavaDoc comment for the class
-            * [ ] Two methods --> describe each in a sentence, starting with either "Tell me ..." or "Ask me ..."
-                * [ ] Add the sentence as a JavaDoc comment for the method
-    * [ ] Do you feel that the possible behaviors for the existing methods are adequately covered?
-        * [ ] Add tests.
-    * [ ] Are additional "telling" or "asking" methods required?
-        * [ ] Describe each new method as a sentence
-        * [ ] Add tests.
-    * [ ] Revisit the phrase describing the class
-    * [ ] Consider the methods exposed by the method.
-        * [ ] If there are only two methods, extract them into an interface.
-        * [ ] If there are many methods, consider whether groups of them should be extracted into separate interfaces.
-        * [ ] Update your tests so that we immediately forget the actual class and only remember the interface.
+- [ ] Consider an object.
+    - [ ] The object must have at least one "tell" and one "ask".
+        - [ ] The "tell" can be via constructor or method. (This is almost always a `void` method)
+        - [ ] You must have an *expectation* for the result of the "ask". (This is almost never a `void` method)
+            - There must be a relationship between what you tell the object and what you get back.
+            - Odometer: tell it speed, ask its distance.
+            - TireInspection: tell it model of car and PSI, ask whether the inspection passes or fails.
+            - RaceCar: tell it turn, ask it's speed
+            - Robbers and Plans
+                - Robbers -- might have plans
+                    - If the "tell" and the "ask" are identical, that's boring ... that's just a boolean variable
+                - Plans
+                    - Require robbers
+                    - For a single target
+                    - Might succeed
+                - Targets
+                    - Have a difficulty level
+                    - If you give a target a plan, it should say whether the plan succeeds or not.
+                    - If you tell the target the plan, you can ask whether it succeeds.
+                    - If you tell the target it's difficulty, then you can give it a plan and find if it succeeds or
+                      not.
+        - [ ] Combine the "tell" and the expectation about the result into a test.
+        - [ ] Get the test to compile -- but failing. You should then have:
+            - [ ] One class --> describe it in a phrase. This phrase must refer to tested behavior.
+                - [ ] Add the phrase as a JavaDoc comment for the class
+            - [ ] Two methods --> describe each in a sentence, starting with either "Tell me ..." or "Ask me ..."
+                - [ ] Add the sentence as a JavaDoc comment for the method
+    - [ ] Do you feel that the possible behaviors for the existing methods are adequately covered?
+        - [ ] Add tests.
+    - [ ] Are additional "telling" or "asking" methods required?
+        - [ ] Describe each new method as a sentence
+        - [ ] Add tests.
+    - [ ] Revisit the phrase describing the class
+    - [ ] Consider the methods exposed by the method.
+        - [ ] Extract them into interface
+        - [ ] Update your tests so that we immediately forget the actual class and only remember the interface.
 
-* [ ] Consider another object
-    * [ ] Can it be just another instance of your existing class?
+- [ ] Consider another object
+    - [ ] Can it be just another instance of your existing class?
       If so, consider whether it deserves a test of its own.
-    * [ ] Create a new class, preferably implementing an existing interface.
-        * [ ] Extending an existing class is sometimes fine, if you have a working class which sometimes needs some
+    - [ ] Create a new class, preferably implementing an existing interface.
+        - [ ] Extending an existing class is sometimes fine, if you have a working class which sometimes needs some
           *additional* features.
-        * [ ] But don't try to create abstract classes or anything fancy.
-    * [ ] Repeat the steps for the first class. Write tests. It's ok if they're similar to tests you've written for
+        - [ ] But don't try to create abstract classes or anything fancy.
+    - [ ] Repeat the steps for the first class. Write tests. It's ok if they're similar to tests you've written for
       other classes.
-    * [ ] Get tests to pass by writing obvious code. It's OK if this code duplicates code in other classes.
-    * [ ] Repeat until the second class is well-defined.
+    - [ ] Get tests to pass by writing obvious code. It's OK if this code duplicates code in other classes.
+    - [ ] Repeat until the second class is well-defined.
 
-* [ ] Consider the two classes you've created. *Now* you're allowed to extract common methods into an abstract parent
+- [ ] Consider the two classes you've created. *Now* you're allowed to extract common methods into an abstract parent
   class.
-    * [ ] If you find that *every* method can moved out of a class, then you don't need it.
+    - [ ] If you find that *every* method can moved out of a class, then you don't need it.
