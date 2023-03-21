@@ -667,6 +667,19 @@ to the list (0, 1, ...) rather than the values in the list.
     * We probably won't use the other hooks:
         * `useCallback()`, `useMemo()`, `useRef()`, `useImperativeHandle()`, `useLayoutEffect()`, `useDebugValue()`,
           `useDeferredValu()`, `useTransition()`, or `useId()`
+    * More thoughts on SPAs (Single-page applications)
+        * First, a reminder: any component which calls `[someState, setSomeState] = useState({initial});` has
+          *created* that new pair of getters and setters. Perhaps it would have been better to have the function
+          called `makeState()` rather than `useState()`.
+        * In plain React application, the *only* thing which determines how the React components are rendered is the
+          value of the various states during that rendering cycle. So if you want an image to be sometimes displayed,
+          you merely need to have some state which says so.
+        * In a SPA React application using react-router-dom, there are two types of control over what is displayed: the
+          current "route" determines which high-level components are displayed and which are not ... and then the usual
+          React logic determines how state is converted to JSX (and eventually HTML) for the displayed components.
+        * There are times in which you could use either the route or state to control how your application behaves.
+          Generally, if your application has different pages (e.g. summary vs detailed), then routing is probably more
+          appropriate ... but in general the center of any React application is the state it manages.
 * Documentation
     * https://beta.reactjs.org/learn/thinking-in-react
     * https://beta.reactjs.org/learn/tutorial-tic-tac-toe
