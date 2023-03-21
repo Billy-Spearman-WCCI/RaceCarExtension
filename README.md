@@ -1962,8 +1962,19 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
       handful of shortcuts can save a huge amount of effort.
     * (META: we should strongly encourage students to learn touch-typing before they begin the cohort.)
     * Observe your ergonomics and posture. Allow your upper body to balance on your lower body.
-      Relax those shoulders.
-      Remember to breathe.
+      Relax those shoulders. Remember to breathe.
+        * Get an adjustable split keyboard (i.e. the distance between the two halves can be adjusted at will), with
+          tactile (if there are other people nearby you might annoy) or clicky (if you like annoying people) keys. I
+          like https://ultimatehackingkeyboard.com/ with box brown or box white switches ( though I'm currently using
+          the super-noisy box jades), but there are cheaper keyboards out there. The point of having two separate halves
+          is so you can *vary* the distance between them.
+        * Avoid frequently switching between mouse and keyboard. You're a programmer, so learn shortcuts. A handful can
+          suffice, for instance, control-alt-p in VSCode or control-alt-a in IntelliJ.
+        * Measure the distance from your face to your monitors, and tell your optometrist. You're going to
+          be spending many hours looking at text at that distance, and you can get glasses optimized for that exact use.
+        * Don't stay frozen. Get up frequently. Stretch. Alternating between chairs is better than sitting in the same
+          chair. Alternating between sitting and standing is better still.
+        * Balance your head on top of your neck, e.g. https://www.youtube.com/watch?v=jHhodrmF-Fs
 * Iterate as a team
     * Reflect on what takes time and effort, and see how it can be made
       easier. https://wiki.c2.com/?LazinessImpatienceHubris
