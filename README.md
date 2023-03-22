@@ -530,22 +530,15 @@
     examples.
   - **Red, Green, Blue, Alpha** -- RGB have values of 0-255, while alpha is opacity ranging from 0.0 to
     1.0. `0,255,0,1` is opaque green.
-  - **Units** -- There are multiple units of measurements in CSS: some dynamic and some static.
-    - **`px`** -- Refers to pixels on a screen. Screen sizes are not universal so be careful in using this.
-    - **`rem`** -- Root em. Refers to the default font size of the root element HTML in most cases.
-    - **`em`** -- Relative to the font size in containing elements.
-    - **Percentage** -- Relative to the size of the parent element `element{300px}` `element h1{width: 50%}` = 150px
-    - **Viewport Height`vh` & Width`vw`** -- This is measured based on the X (0 would be the left most area of the
-      Viewport 100 is the right most.)
-      and the Y (0 would be the top of the Viewport. 100 is the bottom) axes. `
-img{height: 50vh; width: 50vw;}` would put something directly in the middle of the Viewport.
-    - **Font Stack** -- Font stacks are used for applying fonts for elements. CSS will pick the first declared font
-      and continue down the stack
-      based on what is available to the user. `h1{font-family: Cambria, Utopia, Times-New-Roman}` Cambria will be
-      displayed if available, if not Utopia... etc.
-    - **CSS Variables** -- Just like Java you can declare Variables in CSS. These must be declared in the `:root{}`
-      element in your CSS.
-      `:root{--my-variable-color: blue;} p{background-color: var(--my-variable-color);}`
+  - **Units** -- There are multiple units of measurements in CSS: some dynamic and some static. - **`px`** -- Refers to pixels on a screen. Screen sizes are not universal so be careful in using this. - **`rem`** -- Root em. Refers to the default font size of the root element HTML in most cases. - **`em`** -- Relative to the font size in containing elements. - **Percentage** -- Relative to the size of the parent element `element{300px}` `element h1{width: 50%}` = 150px - **Viewport Height`vh` & Width`vw`** -- This is measured based on the X (0 would be the left most area of the
+    Viewport 100 is the right most.)
+    and the Y (0 would be the top of the Viewport. 100 is the bottom) axes. `
+img{height: 50vh; width: 50vw;}` would put something directly in the middle of the Viewport. - **Font Stack** -- Font stacks are used for applying fonts for elements. CSS will pick the first declared font
+    and continue down the stack
+    based on what is available to the user. `h1{font-family: Cambria, Utopia, Times-New-Roman}` Cambria will be
+    displayed if available, if not Utopia... etc. - **CSS Variables** -- Just like Java you can declare Variables in CSS. These must be declared in the `:root{}`
+    element in your CSS.
+    `:root{--my-variable-color: blue;} p{background-color: var(--my-variable-color);}`
 
 # React.js
 
@@ -637,6 +630,7 @@ img{height: 50vh; width: 50vw;}` would put something directly in the middle of t
   into a single easy-to-download .js file.
 
 - Creating a React application consists of two steps: defining components and defining the flow of data.
+
   - Components are JavaScript code which create a tree of HTML elements based on the data available to them.
     - These components can then be placed anywhere on your webpage, and React will update them as necessary.
       - You can think of a React Component as an object with a `.render()` method which outputs a tree of elements
@@ -647,7 +641,9 @@ img{height: 50vh; width: 50vw;}` would put something directly in the middle of t
         tracing) to minimize the work performed by the browser.
     - JSX actually allows you to include your components and html tags with equal fluency.
   - Modern React defines the flow of data using a handful of "hooks". We will be using the most common ones:
+
     - `useState()` -- https://beta.reactjs.org/reference/react/useState
+
       - Returns an array of two functions, which are destructured into two named functions:
         `const [someState, setSomeState] = useState(someInitialState)`
       - The first function functions like a Thymeleaf variable.
@@ -674,8 +670,10 @@ img{height: 50vh; width: 50vw;}` would put something directly in the middle of t
           );
         }
         ```
+
     - `useEffect()` -- used to synchronize browser state with _external_ data sources, e.g. `fetch()` from REST
       endpoints.
+
   - We might use these hooks
     - `useReducer()`
     - `useContext()`
@@ -695,6 +693,7 @@ img{height: 50vh; width: 50vw;}` would put something directly in the middle of t
     - There are times in which you could use either the route or state to control how your application behaves.
       Generally, if your application has different pages (e.g. summary vs detailed), then routing is probably more
       appropriate ... but in general the center of any React application is the state it manages.
+
 - Documentation
   - https://beta.reactjs.org/learn/thinking-in-react
   - https://beta.reactjs.org/learn/tutorial-tic-tac-toe
@@ -1494,12 +1493,9 @@ openNewAccount(((((new Account.Builder())
     - And the Secondary class
       contains `@ManyToMany(mappedBy = "secondaries") private Collection<Primary> primaries;`
   - Two-sided: OneToMany. Let's suppose that the "Many" is the "owning" class (i.e. insertions and deletions are done
-    via that class)
-    - Then the Primary class contains `@ManyToOne() @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
-private Secondary secondary;`
-      - The cascade is so we can add new Secondaries as implied when we are creating new Primaries.
-    - And the Secondary class contains something
-      like `@OneToMany(mappedBy="secondaries") @JsonIgnore private Collection<Primary> primaries = new HashSet<>();`.
+    via that class) - Then the Primary class contains `@ManyToOne() @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
+private Secondary secondary;` - The cascade is so we can add new Secondaries as implied when we are creating new Primaries. - And the Secondary class contains something
+    like `@OneToMany(mappedBy="secondaries") @JsonIgnore private Collection<Primary> primaries = new HashSet<>();`.
   - Reminder: classes which are stored in Sets should have explicit `.equals()` and `.hashCode()` methods looking at
     the fields which should matter for saying that two objects are essentially the same. If two tags have the same
     name, then we want only one in the database -- so `.equals()` for tags should only look at important fields.
