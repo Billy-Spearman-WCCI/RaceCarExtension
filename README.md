@@ -862,6 +862,23 @@ img{height: 50vh; width: 50vw;}` would put something directly in the middle of t
     > repository-per-subclass or whether we can have a single repository for all the subclasses.
     > Does that work for
     > you?"
+- Thoughts on self-organizing teams
+  - There's an unspoken part of the Agile Manifesto, and it should be made explicit.
+    The Agile movement was born at a time in which programmers saw that their jobs could go in one of two directions:
+    - Programming could transition into a mechanistic assembly-line, or
+    - Programming could transition into a profession of craftspeople.
+  - The Agile movement was a vote _against_ turning the profession into assembly-line workers.
+  - This is why the the manifesto emphasizes self-organizing teams and doesn't talk about managers at all.
+  - But this approach asks more of programmers.
+    - On an assembly-line, all that's required is that you deal with parts as they arrive on the line,
+      and do what your boss tells you to do.
+      In some ways, this _passive_ approach is what a factory expects of its workers.
+    - In a workshop, on the other hand, every team member is expected to be _active_:
+      _actively_ looking for the next job which needs doing,
+      and _actively_ communicating their status to the rest of the team.
+      - We're lucky to be living in a time in which we have many good communication technologies:
+        typing into Slack "I'm going to go off-line for the next hour to see if I can wrap my head
+        around Spring Security" just isn't that much of a burden.
 
 ## Approaches for writing acceptable code.
 
