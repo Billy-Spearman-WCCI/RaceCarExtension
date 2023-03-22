@@ -879,6 +879,30 @@ img{height: 50vh; width: 50vw;}` would put something directly in the middle of t
       - We're lucky to be living in a time in which we have many good communication technologies:
         typing into Slack "I'm going to go off-line for the next hour to see if I can wrap my head
         around Spring Security" just isn't that much of a burden.
+  - While you will be doing division-of-labor for the coding, 
+    you must not do division-of-labor for the planning or understanding of the code.
+- How to handle team members with different skill levels
+  - Let's imagine the team as a black-box, with inputs and outputs
+    - Input:
+      - People's time
+      - Existing codebase 
+    - Output:
+      - Git repository with improved codebase
+      - A demo of what was accomplished
+      - But Also: a team that can support the product in the future...anyone on the team can push forward the next cycle.
+    - Bad output:
+      - A team where some people only know the front-end and others only the know the backend.
+  - Lots of advantages to training the new person
+    - Documentation gets better
+      - The javadoc comment for this class doesn't match what it does
+    - Procedures get cleaner
+    - The intermediate people get better at teaching...and so become qualified to become senior people.
+    - It forces the senior people to really think about what's essential in what they're doing.
+  - We have a huge disadvantage ... we don't have a Scrum Master here.
+  - Psychological safety is the foundation of everything.
+    - It saves millions of dollars when you make a mistake.
+    - It's the instructor's job at the start of the bootcamp to create that safety.
+    - In the workplace, that's the most important job of a manager
 
 ## Approaches for writing acceptable code.
 
@@ -2069,8 +2093,6 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
 - You must be clear about which individual (or group of individuals) is working on a given story, so you don't
   duplicate work.
   Messages in Slack or face-to-face are fine at first.
-- While you will be doing division-of-labor for the coding, you must not do division-of-labor for the understanding of
-  the code.
   Every team member must understand how the entire system works.
 - You may copy classes from the personal projects of one or more team members, or you may start from scratch.
 - All functionality must be available from via a REST-style API:
