@@ -2061,6 +2061,8 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
     - Don't stay frozen. Get up frequently. Stretch. Alternating between chairs is better than sitting in the same
       chair. Alternating between sitting and standing is better still.
     - Balance your head on top of your neck, e.g. https://www.youtube.com/watch?v=jHhodrmF-Fs
+    - Tell your optometrist the distance to your monitors and how many hours per day you spend staring at them.
+      Getting a pair of glasses dedicated solely to programming might be the most important investment you make.
 - Iterate as a team
   - Reflect on what takes time and effort, and see how it can be made
     easier. https://wiki.c2.com/?LazinessImpatienceHubris
