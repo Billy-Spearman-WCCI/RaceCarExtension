@@ -703,16 +703,16 @@ img{height: 50vh; width: 50vw;}` would put something directly in the middle of t
   - Rest of https://beta.reactjs.org/learn except the only "escape hatches" you'll need are:
     - `useEffect()` for the result of `fetch()`
 - Thoughts on learning React
-  - Programming is hard, because our tools keep getting better. 
+  - Programming is hard, because our tools keep getting better.
     The better our tools, the fewer boring tasks remain and the more of our day can be spent on the complex stuff.
   - The best we can hope for -- and React is an example of this -- is that the complexity is simple.
-    Let's consider the `.jsx` syntax.  It has exactly three rules:
+    Let's consider the `.jsx` syntax. It has exactly three rules:
     - When reading a `.jsx` file, start by interpreting the code as JavaScript.
-    - When you're in JavaScript mode and encounter a `<something ...>` tag, *switch* to generating JSX. 
+    - When you're in JavaScript mode and encounter a `<something ...>` tag, _switch_ to generating JSX.
       Everything up to the corresponding `</something>` close tag will be evaluated as JSX object and eventually create HTML.
     - While you're in JSX mode, if you encounter a `{` then everything up to the corresponding `}` will be evaluated as JavaScript.
-  - These rules are simple. 
-    But they can combine to create complicated structures in which you're switching back and forth, 
+  - These rules are simple.
+    But they can combine to create complicated structures in which you're switching back and forth,
     with JSX containing JS which in turn contains more JSX which in turn contains more JS, etc.
   - Programmers get paid good money because its easy to be scared by this apparent complexity rather than embracing it.
   - Embrace the complexity. Experiment with it, and go with the flow.
