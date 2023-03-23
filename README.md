@@ -49,6 +49,9 @@
 - **Markdown**: The format of the source code for this glossary.
   - The name is a play on **Markup**, which describes the addition of structural elements to plain text.  
     **HTML** ("Hypertext Markup Language") is the most famous markup syntax.
+  - We use markdown for documentation and even diagrams (just enable Mermaid within VSCode). 
+    Having your documentation in the same version-control repo as your code is essential to keeping documentation up-to-date. 
+    Plus, it's far better to learn fewer tools better than to be a poor user of many tools.
 - **IDE**: Integrated Development Environment (VSCode, IntelliJ) -- a programming-language-aware text editor.
 - **JavaDoc** -- Documentation for each Java class, defining the methods, their parameters, return types, and behavior.
   Adding comments of the form `/** Text describing the method */` just before each method will automatically be
