@@ -1,3 +1,5 @@
+Note: the interviewer might ask: "what is `___`", but they might also ask "what is your experience with `___`", "why would one use `___`, or "can you give an example of `___`".
+
 - Markdown
 - JavaDoc
 - JVM vs JRE vs JDK
@@ -8,6 +10,7 @@
 - constructor
 - immutable object
 - primitive type
+- scope of a variable
 - boolean vs byte vs char
 - boxing and unboxing
 - method

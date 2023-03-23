@@ -185,7 +185,7 @@
   - **code block** -- one or more statements surrounded by curly braces `{` ... `}`.
   - **nesting** -- when one code block has sub-code-blocks within it.
   - **parameters** -- the actual values passed to a method or constructor.
-  - **variable** -- a placeholder defined within a method ... available within the block but not outside.
+  - **variable** -- a placeholder defined within a method ... available within the block but not outside. The code block within which a variable is visible is called its **scope**.
   - `return`: Exit the current method. If the method returns a value, specifies the value to return.
   - **signature**: The definition of the types of the parameters a method accepts and the type of the value the method
     returns. Also, what types of Exceptions it might throw.
