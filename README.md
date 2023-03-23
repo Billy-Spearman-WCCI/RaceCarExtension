@@ -1934,7 +1934,7 @@ curl -s https://collectionapi.metmuseum.org/public/collection/v1/departments
   you don't want to confuse things in the repository.)
 - `git commit -m "Useful message"` -- stores the staged changes into your repository. The message should be useful most
   of all to you. Smaller commits are far easier to summarize -- which is yet another reason to commit frequently.
-- `git reset HEAD~1` -- Undos the most recent commit -- _but_ should only be used if that change is not yet pushed.
+- `git reset HEAD~1` -- Undoes the most recent commit -- _but_ should only be used if that change is not yet pushed.
 - `git push` -- Sends changes on the current branch to GitHub. Works best if you first did a `git pull`.
 - `git checkout -b FEATURE_SOMEFEATURE` -- Creates a new branch, allowing for experimentation independent of maintenance
   which is occurring on the primary branch. I suggest that you only run this command when `git status` is clean.
@@ -1962,7 +1962,7 @@ ReviewPR  --> |Your PR is merged to main on GitHub| CreateBranch
 UpdateBranch2 --> |Notify teammates PR is ready for re-review| ReviewPR
 ```
 
-### Alternative workflow for widescale refactoring
+### Alternative workflow for wide-scale refactoring
 
 ```mermaid
 graph TB
