@@ -1,0 +1,70 @@
+Markdown
+JavaDoc
+JVM vs JRE vs JDK
+object
+`this` vs. `super`
+static method
+static field
+constructor
+immutable object
+primitive type
+boolean vs byte vs char
+boxing and unboxing
+method
+casting
+code block
+method signature
+call stack
+interface vs class
+destructuring
+iterator
+synchronous vs asynchronous
+http request methods (e.g. GET)
+RGB
+JSX
+useState vs useEffect
+Agile vs. Scrum
+The columns in a sprint board
+git add vs git commit vs git push
+thin vs leaky interfaces
+abstraction
+polymorphism
+inheritance
+encapsulation
+imperative vs declarative
+inversion of control vs dependency injection
+refactoring
+builder pattern
+convention over configuration
+annotations
+abstract method vs abstract class
+private vs protected vs public
+final vs. not-final
+exceptions
+try/catch block
+do while vs. while do
+increment
+sets vs lists
+null pointer
+Optional<T>
+URL
+network port (and some common values)
+DNS
+4xx vs 5xx http response codes
+JPA
+Constructor dependency injection
+`@Autowired`
+`@PathVariable` vs `@RequestParam` vs `@RequestBody`
+`@Bean`
+`@Entity`
+`@GeneratedValue`
+Gradle
+Spring Framework
+Unit test vs integration test
+MVC
+CRUD
+Database Transaction
+JSON
+State diagram
+Feature branch
+Scrum story format

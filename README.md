@@ -934,7 +934,7 @@ img{height: 50vh; width: 50vw;}` would put something directly in the middle of t
 
 - **abstraction**: separating what's essential for a particular use from what isn't. Code to interfaces whenever
   possible.
-  - "Thin interfaces" better than "fat interfaces".
+  - "Thin interfaces" better than "leaky interfaces". A leaky interface exposes implementation details.
 - **polymorphism**: the Race class can call `contestant.turn()` and Java will ensure that the right method is
   called, depending upon the _actual_ class of the object implementing Contestant.
 
