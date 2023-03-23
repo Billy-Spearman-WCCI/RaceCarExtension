@@ -82,7 +82,7 @@
 - Java has a syntax -- `;` separate statements, etc.
   - IntelliJ does the parsing of your Java program, converting it into something that can run.
 - Html has a syntax -- `<tagName>` at start and `</tagName>` at end, etc.
-  `<!-- HTML comments start with an angle bracket, exclaimation, and two hyphens -->`
+  `<!-- HTML comments start with an angle bracket, exclamation, and two hyphens -->`
   - Chrome is _VERY_ good at parsing HTML for you.
 - Markdown (.md files like this one) has a syntax, for instance backquotes say that it should have a grey background.
 - **Parsing** -- The act of taking text (e.g. a String) and splitting it up into meaning "words" according to the syntax
@@ -289,7 +289,7 @@
   on branching and branching. This tree is the "Document Object Model" because it's all of the objects in the html
   document.
 - Javascript allows for _dynamic_ web pages. If you want new messages to appear at the bottom of your screen, then
-  you're adding additionals `div` or whatever, and that requires JS.
+  you're adding additional `div` or whatever, and that requires JS.
 - Javascript updates the DOM in response to user actions.
 - Javascript talks to webservers to get information so that they can update the DOM.
 
@@ -417,7 +417,7 @@
   about anything you could imagine in response to user actions.
   So you could have a button that adds a row to a table, or a button that causes part of the display to disappear
   temporarily.
-- BUT ... everything above occurs essentially instantanously ... if you press a button and it adds a row to the table,
+- BUT ... everything above occurs essentially instantaneously ... if you press a button and it adds a row to the table,
   all of that can occur before Chrome does the next thing.
   - You press button; JS executes and adds elements to the existing DOM, or modifies the existing DOM; Chrome redraws
     the screen.
@@ -679,7 +679,7 @@ img{height: 50vh; width: 50vw;}` would put something directly in the middle of t
     - `useContext()`
   - We probably won't use the other hooks:
     - `useCallback()`, `useMemo()`, `useRef()`, `useImperativeHandle()`, `useLayoutEffect()`, `useDebugValue()`,
-      `useDeferredValu()`, `useTransition()`, or `useId()`
+      `useDeferredValue()`, `useTransition()`, or `useId()`
   - More thoughts on SPAs (Single-page applications)
     - First, a reminder: any component which calls `[someState, setSomeState] = useState({initial});` has
       _created_ that new pair of getters and setters. Perhaps it would have been better to have the function
@@ -766,8 +766,8 @@ img{height: 50vh; width: 50vw;}` would put something directly in the middle of t
       shorter timescale."
       - With internet delivery, delivery cycles of just a week (or even shorter) are common now.
     - "Business people and developers must work together daily throughout the project."
-      - This is vital. The team needs ready access to a _decisionmaker_ ... not just a liaison to the
-        decisionmaker.
+      - This is vital. The team needs ready access to a _decision-maker_ ... not just a liaison to the
+        decision-maker.
     - "Build projects around motivated individuals. Give them the environment and support they need, and trust them
       to get the job done."
       - Note that there's no "manager" mentioned anywhere here!!!
@@ -894,7 +894,7 @@ img{height: 50vh; width: 50vw;}` would put something directly in the middle of t
       - A team where some people only know the front-end and others only the know the backend.
   - Lots of advantages to training the new person
     - Documentation gets better
-      - The javadoc comment for this class doesn't match what it does
+      - The JavaDoc comment for this class doesn't match what it does
     - Procedures get cleaner
     - The intermediate people get better at teaching...and so become qualified to become senior people.
     - It forces the senior people to really think about what's essential in what they're doing.
@@ -2049,7 +2049,7 @@ EveryBodyMerges-->BackToNormal["Everybody creates a new branch and continues the
     classes you defined above allow you to actually support these endpoints. Also include in the README.md
     human-readable descriptions of each class and the relationships (e.g. one-to-many or many-to-many) between them.
   - Annotate your classes with JPA annotations (`@Entity`, etc.) Create a super-simple `CrudRepository` per class.
-    Create the standard `main()` with the usual `@SpringBootAppplication`. Run the program. See if Spring is able to
+    Create the standard `main()` with the usual `@SpringBootApplication`. Run the program. See if Spring is able to
     create the database tables, or whether you have missed something in your annotations. Perhaps Spring requires
     zero-argument constructors, etc. (If it doesn't even try to create tables, perhaps annotations
     like `spring.jpa.hibernate.ddl-auto=create-drop` are missing.) Verify that the tables exist (and look roughly like
