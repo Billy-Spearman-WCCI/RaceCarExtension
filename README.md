@@ -611,6 +611,10 @@ img{height: 50vh; width: 50vw;}` would put something directly in the middle of t
   They don't change anything while performing their calculations.
   Anything messing with `System.in` or `System.out` is definitely not "pure".
   Mutable objects usually do not expose pure methods.
+  In the react world, the inputs to a component are:
+  - The properties they receive in their constructor
+  - State they get from `useState()`
+- A component can be thought of as a machine which receives property and state from React and creates HTML.
 
 - React applications are typically written in either JavaScript or TypeScript, and they leverage a syntax called JSX.
   Your code is converted to raw (but difficult-to-read) JavaScript and packed (including perhaps related .css files)
@@ -1830,10 +1834,14 @@ GET /api/v1/pets
  ]
 ```
 
-- `curl` -- a command in the Git Bash shell which will send data to an endpoint and display the response.
+- `curl` -- a command in the Git Bash shell which will send data to an endpoint and display the response. It works for both your own servers and remote servers, and defaults to GET.
 
 ```
 curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
+
+# The -s option says to only show the actual returned data...not any diagnostic info.
+# The -X option is only necessary when doing an operation other than "GET".
+curl -s https://collectionapi.metmuseum.org/public/collection/v1/departments
 ```
 
 # **Algorithms**
