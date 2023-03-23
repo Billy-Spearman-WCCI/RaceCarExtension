@@ -904,6 +904,30 @@ img{height: 50vh; width: 50vw;}` would put something directly in the middle of t
     - It's the instructor's job at the start of the bootcamp to create that safety.
     - In the workplace, that's the most important job of a manager
 
+### Scrum Board
+
+- "New" -- Anything goes! You have an idea...just throw it here.
+- "Backlog" -- This should contain _stories_ in the form of "As a \_**_, I need _**, so that \_\_\_\_".
+  These should _not_ contain references to technologies, specific behavior, etc.
+  Instead, they should detailed a small chunk of _useful_ and _observable_ behavior, in terms intelligible to a
+  Product Owner who knows what they want but hasn't programmed a day in their life.
+  But as long as your tasks comply with this, feel free to throw stuff at the _bottom_ of the list.
+  But the team should have consensus on what gets moved to the top of the list.
+- "Ready" -- This contains the tasks which the team agrees are "on deck".  
+  It's better to have fewer tasks here.  
+  Unlike "Backlog", the stories in this column should be well-defined and understood by the entire team, which means
+  you should list the actual tasks which need to be done.
+- "In Progress" -- You should aim to have at most one item here per team member.  
+  It's perfectly fine for a team member to have zero items in this column if they're currently working on a task
+  that's in the "In Review" column. Moving items from "In Review" to "Done" is more important than moving items
+  from "In Progress" to "In Review".
+- "In Review" -- This contains tasks for which the teammate doing the coding feel they're done, but the entire team
+  needs to verify that the work is _done_.
+  Inspecting such stories is usually your highest priority.
+- "Done" -- You're confident that the work is correct.
+  Each team needs to define its own concept of "done", and this might be the most important decision the team makes.
+  "Done" has to mean "done" ... otherwise the board doesn't give an accurate summary of the state of your project.
+
 ## Approaches for writing acceptable code.
 
 ### **OO** -- An Object-Oriented programming style
@@ -1867,6 +1891,76 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
   Then you can do `git push personal` to send a copy of your work to your _personal_ GitHub account, and `git push` will
   continue to push to your WCCI-controlled repository.
 
+## Quick-and-dirty branches for teams
+
+```mermaid
+graph TB
+CreateBranch["Create new Branch `git checkout main; git pull; git status; git checkout -b NEW_BRANCH`"] --> |Start work on new feature...smaller is better| Sync["Keep branch in sync: `git fetch; git merge origin/main`"]
+UpdateBranch["Push Updates to Branch: `git status; git add . ; git status; git commit -m 'msg'; git push; git status`"] --> |Merge from origin/main early and often, especially when a PR is merged| Sync
+UpdateBranch-->|When you think you're done| CreatePR["`git fetch; git merge origin/main; git push; git status` and then create a Pull Request on GitHub."]
+Sync --> |Add a test, write some code.| UpdateBranch
+CreatePR --> |Notify Team!|ReviewPR["Teammates review changes in your Pull Request"]
+ReviewPR --> |Respond to suggestions from teammates. Improve your code.| UpdateBranch2["Continue to push to branch: `git fetch; git merge origin/main; git push; git status`"]
+ReviewPR  --> |Your PR is merged to main on GitHub| CreateBranch
+UpdateBranch2 --> |Notify teammates PR is ready for re-review| ReviewPR
+```
+
+### Alternative workflow for widescale refactoring
+
+```mermaid
+graph TB
+Sync["Everybody's current work is merged"]-->MajorRefactor["Do some global refactor, e.g. moving packages around"]
+MajorRefactor-->SmallPR["Create and accept a PR containing *only* the refactoring"]
+SmallPR-->EveryBodyMerges["Everybody merges the refactoring"]
+EveryBodyMerges-->BackToNormal["Everybody creates a new branch and continues the normal process"]
+```
+
+- Rules: Never actually write _any_ code in the `main` branch.
+  Really, there's no need to ever do a `git checkout main` on your laptop, except immediately before making a new
+  branch.
+- Suggestion: don't ever have two people edit the same file at the same time. If you do need to, make it a super-small
+  change.
+- Completely safe -- your branch is separate from everything else
+  - Every story should have its own "feature branch"
+    - Branches can be called anything, but it's kinda nice to have a consistent naming convention, like "
+      FEATURE_story"
+    - To create a branch `git checkout main; git pull; git status; git checkout -b feature_list_shelters`
+    - If you happen to need to switch branches (rare) `git checkout feature_list_shelters`
+      - (Only time really to switch between branches is if you're working on multiple stories at once, which is
+        usually not a good idea.)
+    - Notice that the bash shell prompt is super-useful (except perhaps on Macs...that depends on how it's setup)
+  - Doing
+    a `git status; git add .; git status; git commit -m "SomethingShortButWillRemindYou"; git status; git push; git status`
+    on a regular basis will make for a happy and healthy life.
+    - All of this is just in your branch and won't bother anyone else
+  - Whenever the team _accepts_ a Pull Request, everyone on the team needs to
+    do `git fetch; git merge origin/main; git status`.
+    We do this so GitHub won't say your feature branch is out-of-date.
+    - `git fetch` --> makes your repository know about anything which happened at GitHub
+    - `git merge origin/main` --> merges anything recently added to GitHub's "main" branch onto your feature branch
+- When you think your feature branch is ready:
+  - Do another `git fetch; git merge origin/main; git status`, and then do any necessary adds/commits/pushes.
+  - Go onto GitHub and create a Pull Request.
+  - Have the others on your team review the change and then accept the Pull Request and merge it into main.
+  - Then everyone on the team should do a `git fetch; git merge origin/main; git status` on their machines (i.e. in
+    the feature branch they're working on). If they happen to be working on multiple feature branches (and they should
+    _not_ be), then do the `git merge origin/main` on each such branch.
+- When you're ready to start a new feature branch:
+  - `git checkout main; git pull` --> Temporarily switch back to the main branch and update it
+  - `git status` --> Verify that the pull succeeded
+  - `git checkout -b feature_even_better_feature` --> Create a new branch, and then start working there.
+- What can go wrong?
+  - Possible problem: The team accepts a Pull Request with less-than-perfect code
+    - Possible solutions:
+      - Read the changes before agreeing.
+      - Create a new branch and fix what's wrong.
+  - Possible problem: After you're done coding your branch, you try to make a pull request and GitHub says that your
+    branch is-out-of-date.
+    - Possible solutions:
+      - Do lots of `git fetch; git merge origin/main` -- at least immediately after every PR is accepted.
+      - Wait until you're ready for the PR and do the `git fetch; git merge origin/main` then -- but it will be
+        harder then.
+
 # Too-advanced to discuss now
 
 - Regular Expressions
@@ -1908,7 +2002,7 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
   - _Now_ you can start working on the `@RestController` endpoints. Do this
     using [Integration-test TDD](#spring-integration-tests).
 
-# Interview tips
+## Interview tips
 
 - Ask clarifying questions that also show off your knowledge.
   - "What is HTML?"
@@ -1935,7 +2029,7 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
     I could be using an old-style "for" loop with the two semicolons and the `i++`, but I prefer this approach
     because ..."
 
-# Advanced topics
+## Advanced topics
 
 - TypeScript
 - `Producer<T>` and `Consumer<T>`
@@ -2084,133 +2178,8 @@ curl -X POST http://localhost:8080/process_form -d fname=John -d lname=Doe
     So we can tell students: "The `Console` object knows how to write stuff to the screen.
     We can trust that it does so and not worry about how it does so."
 
----
-
-# Virtual Pet API Requirements
-
-- Your team needs to decide on a name, which will determine the GitHub account containing your code.
-- Your team should have a Slack channel.
-  Your team is self-organizing, so you get to decide whether I and Billy should be on the channel.
-  (Or create two, one with us and one without us.)
-- You must be clear about which individual (or group of individuals) is working on a given story, so you don't
-  duplicate work.
-  Messages in Slack or face-to-face are fine at first.
-  Every team member must understand how the entire system works.
-- You may copy classes from the personal projects of one or more team members, or you may start from scratch.
-- All functionality must be available from via a REST-style API:
-  - List all shelters,
-    Create a new shelter,
-    Create a pet of a given type/name/age/etc,
-    List all pets at a given shelter,
-    Add a pet to a given shelter,
-    Adopt a pet from a given shelter,
-    Perform actions upon or see the status of a single pet who is a guest of a particular shelter,
-    Perform actions upon or see the status of all pets who are guests of a particular shelter,
-- All of the above functionality should also be available through user-friendly webpages, styled with CSS.
-  You get to decide on the mix of server-side or client-side rendering which works best for you.
-- The state of the system must survive the server restarting, so you will need a database backend, e.g. MySQL.
-- You must write the stories you're implementing into the project's README.md _before_ implementing them.
-  I strongly suggest thinking carefully about the order in which you do the stories, so your team can work efficiently
-  (e.g., what the least bit of Java work so that someone can start working on the CSS and layout part).
-- Project is currently due at 5PM on Thursday 2023-03-09, though I may give you more time as conditions demand.
-- I _strongly_ urge you to periodically slack me and ask for comments on what you've pushed to your shared repository.
-
-# Quick-and-dirty branches for teams
-
-```mermaid
-graph TB
-CreateBranch["Create new Branch `git checkout main; git pull; git status; git checkout -b NEW_BRANCH`"] --> |Start work on new feature...smaller is better| Sync["Keep branch in sync: `git fetch; git merge origin/main`"]
-UpdateBranch["Push Updates to Branch: `git status; git add . ; git status; git commit -m 'msg'; git push; git status`"] --> |Merge from origin/main early and often, especially when a PR is merged| Sync
-UpdateBranch-->|When you think you're done| CreatePR["`git fetch; git merge origin/main; git push; git status` and then create a Pull Request on GitHub."]
-Sync --> |Add a test, write some code.| UpdateBranch
-CreatePR --> |Notify Team!|ReviewPR["Teammates review changes in your Pull Request"]
-ReviewPR --> |Respond to suggestions from teammates. Improve your code.| UpdateBranch2["Continue to push to branch: `git fetch; git merge origin/main; git push; git status`"]
-ReviewPR  --> |Your PR is merged to main on GitHub| CreateBranch
-UpdateBranch2 --> |Notify teammates PR is ready for re-review| ReviewPR
-```
-
-```mermaid
-graph TB
-Sync["Everybody's current work is merged"]-->MajorRefactor["Do some global refactor, e.g. moving packages around"]
-MajorRefactor-->SmallPR["Create and accept a PR containing *only* the refactoring"]
-SmallPR-->EveryBodyMerges["Everybody merges the refactoring"]
-EveryBodyMerges-->BackToNormal["Everybody creates a new branch and continues the normal process"]
-```
-
-- Rules: Never actually write _any_ code in the `main` branch.
-  Really, there's no need to ever do a `git checkout main` on your laptop, except immediately before making a new
-  branch.
-- Suggestion: don't ever have two people edit the same file at the same time. If you do need to, make it a super-small
-  change.
-- Completely safe -- your branch is separate from everything else
-  - Every story should have its own "feature branch"
-    - Branches can be called anything, but it's kinda nice to have a consistent naming convention, like "
-      FEATURE_story"
-    - To create a branch `git checkout main; git pull; git status; git checkout -b feature_list_shelters`
-    - If you happen to need to switch branches (rare) `git checkout feature_list_shelters`
-      - (Only time really to switch between branches is if you're working on multiple stories at once, which is
-        usually not a good idea.)
-    - Notice that the bash shell prompt is super-useful (except perhaps on Macs...that depends on how it's setup)
-  - Doing
-    a `git status; git add .; git status; git commit -m "SomethingShortButWillRemindYou"; git status; git push; git status`
-    on a regular basis will make for a happy and healthy life.
-    - All of this is just in your branch and won't bother anyone else
-  - Whenever the team _accepts_ a Pull Request, everyone on the team needs to
-    do `git fetch; git merge origin/main; git status`.
-    We do this so GitHub won't say your feature branch is out-of-date.
-    - `git fetch` --> makes your repository know about anything which happened at GitHub
-    - `git merge origin/main` --> merges anything recently added to GitHub's "main" branch onto your feature branch
-- When you think your feature branch is ready:
-  - Do another `git fetch; git merge origin/main; git status`, and then do any necessary adds/commits/pushes.
-  - Go onto GitHub and create a Pull Request.
-  - Have the others on your team review the change and then accept the Pull Request and merge it into main.
-  - Then everyone on the team should do a `git fetch; git merge origin/main; git status` on their machines (i.e. in
-    the feature branch they're working on). If they happen to be working on multiple feature branches (and they should
-    _not_ be), then do the `git merge origin/main` on each such branch.
-- When you're ready to start a new feature branch:
-  - `git checkout main; git pull` --> Temporarily switch back to the main branch and update it
-  - `git status` --> Verify that the pull succeeded
-  - `git checkout -b feature_even_better_feature` --> Create a new branch, and then start working there.
-- What can go wrong?
-  - Possible problem: The team accepts a Pull Request with less-than-perfect code
-    - Possible solutions:
-      - Read the changes before agreeing.
-      - Create a new branch and fix what's wrong.
-  - Possible problem: After you're done coding your branch, you try to make a pull request and GitHub says that your
-    branch is-out-of-date.
-    - Possible solutions:
-      - Do lots of `git fetch; git merge origin/main` -- at least immediately after every PR is accepted.
-      - Wait until you're ready for the PR and do the `git fetch; git merge origin/main` then -- but it will be
-        harder then.
-
-# Quick and Dirty Agile
-
-- "New" -- Anything goes! You have an idea...just throw it here.
-- "Backlog" -- This should contain _stories_ in the form of "As a \_**_, I need _**, so that \_\_\_\_".
-  These should _not_ contain references to technologies, specific behavior, etc.
-  Instead, they should detailed a small chunk of _useful_ and _observable_ behavior, in terms intelligible to a
-  Product Owner who knows what they want but hasn't programmed a day in their life.
-  But as long as your tasks comply with this, feel free to throw stuff at the _bottom_ of the list.
-  But the team should have consensus on what gets moved to the top of the list.
-- "Ready" -- This contains the tasks which the team agrees are "on deck".  
-  It's better to have fewer tasks here.  
-  Unlike "Backlog", the stories in this column should be well-defined and understood by the entire team, which means
-  you should list the actual tasks which need to be done.
-- "In Progress" -- You should aim to have at most one item here per team member.  
-  It's perfectly fine for a team member to have zero items in this column if they're currently working on a task
-  that's in the "In Review" column. Moving items from "In Review" to "Done" is more important than moving items
-  from "In Progress" to "In Review".
-- "In Review" -- This contains tasks for which the teammate doing the coding feel they're done, but the entire team
-  needs to verify that the work is _done_.
-  Inspecting such stories is usually your highest priority.
-- "Done" -- You're confident that the work is correct.
-  Each team needs to define its own concept of "done", and this might be the most important decision the team makes.
-  "Done" has to mean "done" ... otherwise the board doesn't give an accurate summary of the state of your project.
-
 # OO Programming, step-by-step
-
 - [ ] Consider an object.
-
   - [ ] The object must have at least one "tell" and one "ask".
     - [ ] The "tell" can be via constructor or method. (This is almost always a `void` method)
     - [ ] You must have an _expectation_ for the result of the "ask". (This is almost never a `void` method)
@@ -2246,9 +2215,7 @@ EveryBodyMerges-->BackToNormal["Everybody creates a new branch and continues the
   - [ ] Consider the methods exposed by the method.
     - [ ] Extract them into interface
     - [ ] Update your tests so that we immediately forget the actual class and only remember the interface.
-
 - [ ] Consider another object
-
   - [ ] Can it be just another instance of your existing class?
         If so, consider whether it deserves a test of its own.
   - [ ] Create a new class, preferably implementing an existing interface.
@@ -2259,7 +2226,6 @@ EveryBodyMerges-->BackToNormal["Everybody creates a new branch and continues the
         other classes.
   - [ ] Get tests to pass by writing obvious code. It's OK if this code duplicates code in other classes.
   - [ ] Repeat until the second class is well-defined.
-
 - [ ] Consider the two classes you've created. _Now_ you're allowed to extract common methods into an abstract parent
       class.
-  - [ ] If you find that _every_ method can moved out of a class, then you don't need it.
+  - [ ] If you find that _every_ method can moved out of a class, then you probably don't need it.
