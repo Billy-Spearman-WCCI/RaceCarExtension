@@ -879,13 +879,13 @@ img{height: 50vh; width: 50vw;}` would put something directly in the middle of t
       - We're lucky to be living in a time in which we have many good communication technologies:
         typing into Slack "I'm going to go off-line for the next hour to see if I can wrap my head
         around Spring Security" just isn't that much of a burden.
-  - While you will be doing division-of-labor for the coding, 
+  - While you will be doing division-of-labor for the coding,
     you must not do division-of-labor for the planning or understanding of the code.
 - How to handle team members with different skill levels
   - Let's imagine the team as a black-box, with inputs and outputs
     - Input:
       - People's time
-      - Existing codebase 
+      - Existing codebase
     - Output:
       - Git repository with improved codebase
       - A demo of what was accomplished
@@ -1096,6 +1096,59 @@ WriteCode==>AllTestsPass
   - To better understand what our classes are supposed to do
   - To make sure that our classes do what we think they do
   - To make sure that our code keeps on working.
+
+### OO Programming, step-by-step
+
+- [ ] Consider an object.
+  - [ ] The object must have at least one "tell" and one "ask".
+    - [ ] The "tell" can be via constructor or method. (This is almost always a `void` method)
+    - [ ] You must have an _expectation_ for the result of the "ask". (This is almost never a `void` method)
+      - There must be a relationship between what you tell the object and what you get back.
+      - Odometer: tell it speed, ask its distance.
+      - TireInspection: tell it model of car and PSI, ask whether the inspection passes or fails.
+      - RaceCar: tell it turn, ask it's speed
+      - Robbers and Plans
+        - Robbers -- might have plans
+          - If the "tell" and the "ask" are identical, that's boring ... that's just a boolean variable
+        - Plans
+          - Require robbers
+          - For a single target
+          - Might succeed
+        - Targets
+          - Have a difficulty level
+          - If you give a target a plan, it should say whether the plan succeeds or not.
+          - If you tell the target the plan, you can ask whether it succeeds.
+          - If you tell the target it's difficulty, then you can give it a plan and find if it succeeds or
+            not.
+    - [ ] Combine the "tell" and the expectation about the result into a test.
+    - [ ] Get the test to compile -- but failing. You should then have:
+      - [ ] One class --> describe it in a phrase. This phrase must refer to tested behavior.
+        - [ ] Add the phrase as a JavaDoc comment for the class
+      - [ ] Two methods --> describe each in a sentence, starting with either "Tell me ..." or "Ask me ..."
+        - [ ] Add the sentence as a JavaDoc comment for the method
+  - [ ] Do you feel that the possible behaviors for the existing methods are adequately covered?
+    - [ ] Add tests.
+  - [ ] Are additional "telling" or "asking" methods required?
+    - [ ] Describe each new method as a sentence
+    - [ ] Add tests.
+  - [ ] Revisit the phrase describing the class
+  - [ ] Consider the methods exposed by the method.
+    - [ ] Extract them into interface
+    - [ ] Update your tests so that we immediately forget the actual class and only remember the interface.
+- [ ] Consider another object
+  - [ ] Can it be just another instance of your existing class?
+        If so, consider whether it deserves a test of its own.
+  - [ ] Create a new class, preferably implementing an existing interface.
+    - [ ] Extending an existing class is sometimes fine, if you have a working class which sometimes needs some
+          _additional_ features.
+    - [ ] But don't try to create abstract classes or anything fancy.
+  - [ ] Repeat the steps for the first class. Write tests. It's ok if they're similar to tests you've written for
+        other classes.
+  - [ ] Get tests to pass by writing obvious code. It's OK if this code duplicates code in other classes.
+  - [ ] Repeat until the second class is well-defined.
+- [ ] Consider the two classes you've created. _Now_ you're allowed to extract common methods into an abstract parent
+      class.
+  - [ ] If you find that _every_ method can moved out of a class, then you probably don't need it.
 
 ### **Design Patterns** -- Standard solution to design problems
 
@@ -1342,7 +1395,7 @@ openNewAccount(((((new Account.Builder())
   references to objects as parameters to methods. But that's too many words, so we oversimplify. As long as you know the
   truth, talking in shorthand is fine.
 
-# The Billion-Dollar Mistake -- NPE
+### The Billion-Dollar Mistake -- NPE
 
 - In `Odometer huh = new HashMap<String, Odometer>().get("B");`, `huh` is _not_ a reference to any actual object.
   Instead, it has the value `null`.
@@ -1700,7 +1753,7 @@ public class CategoryControllerTest {
 - Also:
   - The `build.gradle` file is small and so fairly straightforward to make sure you got right.
 
-# \*\*Model-View-Controller" style of web server programming ("MVC")
+## Model-View-Controller style of web server programming ("MVC")
 
 - **Model** interfaces with the database
   - Spring provides an "Object-Relational Mapping" (called Hibernate) which allows you to _annotate_ your classes and
@@ -1715,7 +1768,7 @@ public class CategoryControllerTest {
   - src/main/java/..../restController -- endpoints accepting and consuming JSON.
   - src/main/java/..../templateControllers -- endpoints populating data for the Thymeleaf HTML templates.
 
-# \*\*Databases
+# Databases
 
 - Java servers lose their memory when they restart, so we write data we care about to databases. Some might argue that
   the primary job of most servers is to feed data to databases, and present data already in databases.
@@ -2177,55 +2230,3 @@ EveryBodyMerges-->BackToNormal["Everybody creates a new branch and continues the
     abstractions.
     So we can tell students: "The `Console` object knows how to write stuff to the screen.
     We can trust that it does so and not worry about how it does so."
-
-# OO Programming, step-by-step
-- [ ] Consider an object.
-  - [ ] The object must have at least one "tell" and one "ask".
-    - [ ] The "tell" can be via constructor or method. (This is almost always a `void` method)
-    - [ ] You must have an _expectation_ for the result of the "ask". (This is almost never a `void` method)
-      - There must be a relationship between what you tell the object and what you get back.
-      - Odometer: tell it speed, ask its distance.
-      - TireInspection: tell it model of car and PSI, ask whether the inspection passes or fails.
-      - RaceCar: tell it turn, ask it's speed
-      - Robbers and Plans
-        - Robbers -- might have plans
-          - If the "tell" and the "ask" are identical, that's boring ... that's just a boolean variable
-        - Plans
-          - Require robbers
-          - For a single target
-          - Might succeed
-        - Targets
-          - Have a difficulty level
-          - If you give a target a plan, it should say whether the plan succeeds or not.
-          - If you tell the target the plan, you can ask whether it succeeds.
-          - If you tell the target it's difficulty, then you can give it a plan and find if it succeeds or
-            not.
-    - [ ] Combine the "tell" and the expectation about the result into a test.
-    - [ ] Get the test to compile -- but failing. You should then have:
-      - [ ] One class --> describe it in a phrase. This phrase must refer to tested behavior.
-        - [ ] Add the phrase as a JavaDoc comment for the class
-      - [ ] Two methods --> describe each in a sentence, starting with either "Tell me ..." or "Ask me ..."
-        - [ ] Add the sentence as a JavaDoc comment for the method
-  - [ ] Do you feel that the possible behaviors for the existing methods are adequately covered?
-    - [ ] Add tests.
-  - [ ] Are additional "telling" or "asking" methods required?
-    - [ ] Describe each new method as a sentence
-    - [ ] Add tests.
-  - [ ] Revisit the phrase describing the class
-  - [ ] Consider the methods exposed by the method.
-    - [ ] Extract them into interface
-    - [ ] Update your tests so that we immediately forget the actual class and only remember the interface.
-- [ ] Consider another object
-  - [ ] Can it be just another instance of your existing class?
-        If so, consider whether it deserves a test of its own.
-  - [ ] Create a new class, preferably implementing an existing interface.
-    - [ ] Extending an existing class is sometimes fine, if you have a working class which sometimes needs some
-          _additional_ features.
-    - [ ] But don't try to create abstract classes or anything fancy.
-  - [ ] Repeat the steps for the first class. Write tests. It's ok if they're similar to tests you've written for
-        other classes.
-  - [ ] Get tests to pass by writing obvious code. It's OK if this code duplicates code in other classes.
-  - [ ] Repeat until the second class is well-defined.
-- [ ] Consider the two classes you've created. _Now_ you're allowed to extract common methods into an abstract parent
-      class.
-  - [ ] If you find that _every_ method can moved out of a class, then you probably don't need it.
