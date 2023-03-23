@@ -483,19 +483,6 @@
 - CSS really good at making well-designed and pretty.
 - Thymeleaf really good at service-side merging data and templates.
 
-### Virtual Pet shop requirements
-
-- Login and see current pets available ==> Hit an REST endpoint and get a JSON list, create DOM table with JSON, and add
-  appropriate styles.
-- Have an adopt button on each row, and hit a POST endpoint if it is clicked ==> Pretty straightforward as well.
-  - And then have the new list of pets show on the screen.
-- Walk all pets button --> and that first walk the pets and then ask for all of their status and display them.
-- Missing behavior ==> we won't have a good solution for this until we do React. Raw JavaScript _can_ do this, but it's
-  a bit ugly.
-  - I login and see the list of pets, and then take my hand off the mouse and keyboard
-  - Somebody logins, sees the list, adopts one.
-  - Missing behavior is updating my screen automatically.
-
 ## CSS
 
 - **Cascading Style Sheets** -- The style layer of the front end. Linked to the HTML document and with the use of
@@ -640,6 +627,9 @@ img{height: 50vh; width: 50vw;}` would put something directly in the middle of t
         But efficiency is important, so under-the-covers it uses sophisticated techniques ("Virtual DOM", data
         tracing) to minimize the work performed by the browser.
     - JSX actually allows you to include your components and html tags with equal fluency.
+    - Components have two types of data available to them via React. All the JSX they create should be based solely on this data.
+      - Properties passed through their constructor. These properties can be either literal values or state
+      - State the component itself declares using `useState()`.
   - Modern React defines the flow of data using a handful of "hooks". We will be using the most common ones:
 
     - `useState()` -- https://beta.reactjs.org/reference/react/useState
