@@ -29,7 +29,8 @@ Note: the interviewer might ask: "what is `___`", but they might also ask "what 
 - Agile vs. Scrum
 - The columns in a sprint board
 - git add vs git commit vs git push
-- thin vs leaky interfaces
+- thin vs leaky 
+interfaces
 - abstraction
 - polymorphism
 - inheritance
@@ -71,3 +72,4 @@ Note: the interviewer might ask: "what is `___`", but they might also ask "what 
 - State diagram
 - Feature branch
 - Scrum story format
+[Terms.docx](https://github.com/2023-Spring-Cohort/RaceCarExtension/files/11062513/Terms.docx)
