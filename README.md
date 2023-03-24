@@ -116,10 +116,8 @@
   - Amazon Corretto (based on Oracle's OpenJDK)
   - Azul Zulu (Microsoft)
 - **JDK** -- Java Development Kit
-
   - Contains a JVM, standard libraries, and additional development tools, especially the compiler which converts
     human-readable code into instructions which the JVM can execute.
-
 - **object**: a thing encapsulating data (in "instance fields") and behavior (in "methods")
   - `this` -- the syntax to access **Instance fields**
   - `class` -- Defines the structure of an object (i.e. what data is contains and what behavior it provides).
@@ -271,6 +269,7 @@
 - Paragraph `<p></p>`-- Normally used for the vast majority of text that appears on a web page; A small text element.
 - Anchor `<a></a>` -- Used, in combination with "href="link destination"" to link pages together.
 - Footer `<footer></footer>` Exists at the very bottom of the page.
+- Navigation `<nav></nav>` -- A collection of navigation links, useful for React routes.
 
 # Browser
 
@@ -1636,7 +1635,7 @@ private Secondary secondary;` - The cascade is so we can add new Secondaries as 
     suffices.
     HOWEVER, if you're trying to do a one-to-many mapping to an abstract class, then you need to use another option,
     perhaps `TABLE_PER_CLASS`.
-- `final private Logger logger = LoggerFactory.getLogger(ThisClass.class);` -- standard phrasing to create a logger to
+- `final private static Logger logger = LoggerFactory.getLogger(ThisClass.class);` -- standard phrasing to create a logger to
   which you can write interesting information. Used in all Java programs, Spring and non-Spring. We use the `org.slf4j`
   loggers. `logger.error("Somehow the .name is null here");`
 - **Reflection** -- The ability for Java code to see the structure of Classes programmatically. You should never use
@@ -2086,8 +2085,9 @@ EveryBodyMerges-->BackToNormal["Everybody creates a new branch and continues the
     I could be using an old-style "for" loop with the two semicolons and the `i++`, but I prefer this approach
     because ..."
 
-## Advanced topics
+## Advanced or just neglected topics
 
+- Loggers (`final private static Logger logger = LoggerFactory.getLogger(ThisClass.class);`) -- org.slf4j is most common now.
 - TypeScript
 - `Producer<T>` and `Consumer<T>`
 - `var` in Java
